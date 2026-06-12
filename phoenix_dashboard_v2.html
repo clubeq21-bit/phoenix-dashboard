@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sotam Group · Business Impact Dashboard</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg: #0d0f14;
+    --surface: #13161e;
+    --surface2: #1a1d28;
+    --border: #1f2433;
+    --border2: #252a3a;
+    --cream: #e8e2d4;
+    --cream-dim: #9a9488;
+    --cream-faint: #4a4840;
+    --gold: #c9a84c;
+    --gold-dim: #8a6e2a;
+    --green: #3ecf8e;
+    --green-dim: #1a5c3e;
+    --red: #e05252;
+    --red-dim: #5c1a1a;
+    --amber: #f0a030;
+    --blue: #4a9eff;
+    --stone: #7a8090;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--cream);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 28px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .logo-mark {
+    width: 34px; height: 34px;
+    background: var(--gold);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 13px;
+    color: #000;
+    letter-spacing: -0.5px;
+  }
+  .header-title { font-size: 14px; font-weight: 600; color: var(--cream); }
+  .header-sub { font-size: 11px; color: var(--cream-dim); margin-top: 1px; }
+  .header-right { display: flex; align-items: center; gap: 10px; }
+  .period-badge {
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    color: var(--cream-dim);
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .live-dot {
+    width: 7px; height: 7px;
+    background: var(--green);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100%{opacity:1;} 50%{opacity:.3;}
+  }
+
+  /* ── TABS ── */
+  .tab-bar {
+    display: flex;
+    gap: 0;
+    padding: 0 28px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+  }
+  .tab {
+    padding: 12px 18px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--cream-dim);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: all .15s;
+    letter-spacing: .3px;
+  }
+  .tab:hover { color: var(--cream); }
+  .tab.active {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+  }
+
+  /* ── CONTENT ── */
+  .content { padding: 24px 28px; max-width: 1400px; margin: 0 auto; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--cream-faint);
+    margin-bottom: 14px;
+    margin-top: 28px;
+  }
+  .section-label:first-child { margin-top: 0; }
+
+  /* ── KPI ROW ── */
+  .kpi-row {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .kpi-row-5 { grid-template-columns: repeat(5,1fr); }
+  .kpi-row-4 { grid-template-columns: repeat(4,1fr); }
+  .kpi-row-3 { grid-template-columns: repeat(3,1fr); }
+  .kpi-row-2 { grid-template-columns: repeat(2,1fr); }
+
+  .kpi-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+  }
+  .kpi-label { font-size: 10px; color: var(--cream-dim); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 8px; }
+  .kpi-value {
+    font-size: 26px;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .kpi-value.gold { color: var(--gold); }
+  .kpi-value.green { color: var(--green); }
+  .kpi-value.red { color: var(--red); }
+  .kpi-value.amber { color: var(--amber); }
+  .kpi-sub { font-size: 10px; color: var(--cream-dim); }
+
+  /* ── PROGRESS BAR ── */
+  .progress-wrap { margin-top: 10px; }
+  .progress-track {
+    height: 4px;
+    background: var(--border2);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width .4s ease;
+  }
+  .progress-fill.green { background: var(--green); }
+  .progress-fill.gold { background: var(--gold); }
+  .progress-fill.red { background: var(--red); }
+  .progress-fill.amber { background: var(--amber); }
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    font-size: 10px;
+    color: var(--cream-dim);
+  }
+
+  /* ── GRID CARD ── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px;
+  }
+  .card-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--cream-dim);
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    margin-bottom: 14px;
+  }
+
+  /* ── TABLE ── */
+  .data-table { width: 100%; border-collapse: collapse; }
+  .data-table th {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    color: var(--cream-faint);
+    text-align: left;
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .data-table td {
+    padding: 9px 10px;
+    font-size: 12px;
+    color: var(--cream-dim);
+    border-bottom: 1px solid var(--border);
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:hover td { background: var(--surface2); }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .text-green { color: var(--green); }
+  .text-red { color: var(--red); }
+  .text-gold { color: var(--gold); }
+  .text-amber { color: var(--amber); }
+  .text-cream { color: var(--cream); font-weight: 500; }
+
+  /* ── MINI BAR CHART ── */
+  .bar-chart { display: flex; align-items: flex-end; gap: 4px; height: 60px; margin-top: 10px; }
+  .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; }
+  .bar-fill { width: 100%; border-radius: 2px 2px 0 0; min-height: 2px; }
+  .bar-label { font-size: 9px; color: var(--cream-faint); font-family: 'JetBrains Mono', monospace; }
+
+  /* ── SELLER CARD ── */
+  .seller-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+  .seller-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px;
+  }
+  .seller-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
+  .seller-name { font-size: 15px; font-weight: 700; color: var(--cream); }
+  .seller-role { font-size: 10px; color: var(--cream-dim); margin-top: 2px; }
+  .status-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    margin-top: 5px;
+  }
+  .status-dot.active { background: var(--green); box-shadow: 0 0 6px var(--green); }
+  .status-dot.warn { background: var(--amber); }
+  .status-dot.off { background: var(--stone); }
+
+  .seller-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+  .stat-box { background: var(--bg); border-radius: 5px; padding: 8px 10px; }
+  .stat-label { font-size: 9px; text-transform: uppercase; letter-spacing: .6px; color: var(--cream-faint); margin-bottom: 3px; }
+  .stat-val { font-size: 16px; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+
+  /* ── MONTH TREND ── */
+  .month-trend { display: flex; gap: 3px; margin-top: 10px; }
+  .month-bar { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+  .month-fill { width: 100%; border-radius: 1px 1px 0 0; min-height: 1px; }
+  .month-lbl { font-size: 8px; color: var(--cream-faint); }
+
+  /* ── STORE TABLE ── */
+  .store-row {
+    display: grid;
+    grid-template-columns: 80px 160px 60px 120px 100px 100px 80px;
+    gap: 8px;
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--border);
+    align-items: center;
+  }
+  .store-row.header { background: var(--surface2); border-radius: 5px 5px 0 0; }
+  .store-row:hover:not(.header) { background: var(--surface2); }
+
+  /* ── ALERT CARD ── */
+  .alert-card {
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .alert-card.red { background: rgba(224,82,82,.08); border: 1px solid rgba(224,82,82,.2); }
+  .alert-card.amber { background: rgba(240,160,48,.08); border: 1px solid rgba(240,160,48,.2); }
+  .alert-card.green { background: rgba(62,207,142,.08); border: 1px solid rgba(62,207,142,.2); }
+  .alert-icon { font-size: 14px; margin-top: 1px; }
+  .alert-title { font-size: 11px; font-weight: 600; margin-bottom: 3px; }
+  .alert-body { font-size: 11px; color: var(--cream-dim); line-height: 1.5; }
+
+  /* ── HORIZONTAL GOAL BAR ── */
+  .goal-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .goal-row:last-child { border-bottom: none; }
+  .goal-name { width: 130px; font-size: 12px; color: var(--cream); font-weight: 500; flex-shrink: 0; }
+  .goal-track { flex: 1; height: 6px; background: var(--border2); border-radius: 3px; overflow: hidden; }
+  .goal-bar { height: 100%; border-radius: 3px; }
+  .goal-pct { width: 50px; text-align: right; font-size: 12px; font-family: 'JetBrains Mono', monospace; flex-shrink: 0; }
+  .goal-amt { width: 90px; text-align: right; font-size: 11px; color: var(--cream-dim); font-family: 'JetBrains Mono', monospace; flex-shrink: 0; }
+
+  /* scrollbar */
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <div class="logo-mark">SG</div>
+    <div>
+      <div class="header-title">Sotam Group · Business Impact</div>
+      <div class="header-sub">Phoenix MM Stone Design — Performance Dashboard</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="live-dot"></div>
+    <div class="period-badge">Jun 12, 2026</div>
+  </div>
+</div>
+
+<!-- TAB BAR -->
+<div class="tab-bar">
+  <div class="tab active" onclick="switchTab('team')">Team Scoreboard</div>
+  <div class="tab" onclick="switchTab('exec')">Executive Overview</div>
+  <div class="tab" onclick="switchTab('annual')">Annual Performance</div>
+  <div class="tab" onclick="switchTab('stores')">HD Stores</div>
+  <div class="tab" onclick="switchTab('sellers')">Individual Reports</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     TAB 1 — TEAM SCOREBOARD (preserved from v1.1)
+═══════════════════════════════════════════════════════ -->
+<div class="tab-panel active" id="tab-team">
+<div class="content">
+
+  <div class="section-label">Company Overview — Week of June 8–12, 2026</div>
+  <div class="kpi-row kpi-row-5">
+    <div class="kpi-card">
+      <div class="kpi-label">Total Leads (Week)</div>
+      <div class="kpi-value gold">32</div>
+      <div class="kpi-sub">Eveline + Julia + Stephanie</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Appts Scheduled</div>
+      <div class="kpi-value">29</div>
+      <div class="kpi-sub">All SDR agents combined</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Sales Closed (Week)</div>
+      <div class="kpi-value green">6</div>
+      <div class="kpi-sub">Stephanie: 4 · Eveline: 2</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Sq Ft Fabricated</div>
+      <div class="kpi-value">320+</div>
+      <div class="kpi-sub">Mercedes · Week of Jun 9</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Install Issues (Week)</div>
+      <div class="kpi-value red">5</div>
+      <div class="kpi-sub">Saulo: fab errors + reschedules</div>
+    </div>
+  </div>
+
+  <!-- Sales Team -->
+  <div class="section-label">Sales Team</div>
+  <div class="seller-grid">
+
+    <!-- Julia -->
+    <div class="seller-card">
+      <div class="seller-header">
+        <div>
+          <div class="seller-name">Julia</div>
+          <div class="seller-role">SDR / Inside Sales — High Volume</div>
+        </div>
+        <div class="status-dot active"></div>
+      </div>
+      <div class="seller-stats">
+        <div class="stat-box"><div class="stat-label">Calls (Week)</div><div class="stat-val text-gold">150</div></div>
+        <div class="stat-box"><div class="stat-label">Appts Set</div><div class="stat-val text-green">28</div></div>
+        <div class="stat-box"><div class="stat-label">Leads Received</div><div class="stat-val">27</div></div>
+        <div class="stat-box"><div class="stat-label">Follow-Ups</div><div class="stat-val">44</div></div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-label"><span>Weekly Activity</span><span class="text-green">Strong</span></div>
+        <div class="progress-track"><div class="progress-fill green" style="width:92%"></div></div>
+      </div>
+    </div>
+
+    <!-- Eveline -->
+    <div class="seller-card">
+      <div class="seller-header">
+        <div>
+          <div class="seller-name">Eveline</div>
+          <div class="seller-role">SDR / Sales — Alabama + GA</div>
+        </div>
+        <div class="status-dot active"></div>
+      </div>
+      <div class="seller-stats">
+        <div class="stat-box"><div class="stat-label">Leads (Week)</div><div class="stat-val">9</div></div>
+        <div class="stat-box"><div class="stat-label">Calls Made</div><div class="stat-val text-gold">21</div></div>
+        <div class="stat-box"><div class="stat-label">Sales Closed</div><div class="stat-val text-green">2</div></div>
+        <div class="stat-box"><div class="stat-label">SDR for Steph</div><div class="stat-val">23</div></div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-label"><span>Jun Goal — $42K</span><span class="text-amber">49%</span></div>
+        <div class="progress-track"><div class="progress-fill amber" style="width:49%"></div></div>
+      </div>
+    </div>
+
+    <!-- Stephanie -->
+    <div class="seller-card">
+      <div class="seller-header">
+        <div>
+          <div class="seller-name">Stephanie</div>
+          <div class="seller-role">Sales Agent — Countertops</div>
+        </div>
+        <div class="status-dot active"></div>
+      </div>
+      <div class="seller-stats">
+        <div class="stat-box"><div class="stat-label">Closings (Week)</div><div class="stat-val text-green">4</div></div>
+        <div class="stat-box"><div class="stat-label">Visits Done</div><div class="stat-val">7</div></div>
+        <div class="stat-box"><div class="stat-label">Proposals</div><div class="stat-val">12</div></div>
+        <div class="stat-box"><div class="stat-label">Pending</div><div class="stat-val text-amber">14</div></div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-label"><span>Jun Goal — $72K</span><span class="text-amber">48%</span></div>
+        <div class="progress-track"><div class="progress-fill amber" style="width:48%"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Operations -->
+  <div class="section-label">Operations & Fabrication</div>
+  <div class="seller-grid">
+    <div class="seller-card">
+      <div class="seller-header">
+        <div><div class="seller-name">Mercedes</div><div class="seller-role">Fabrication Manager</div></div>
+        <div class="status-dot active"></div>
+      </div>
+      <div class="seller-stats">
+        <div class="stat-box"><div class="stat-label">Sq Ft (Week)</div><div class="stat-val text-gold">320+</div></div>
+        <div class="stat-box"><div class="stat-label">Layouts</div><div class="stat-val">18</div></div>
+        <div class="stat-box"><div class="stat-label">Estimates</div><div class="stat-val">9</div></div>
+        <div class="stat-box"><div class="stat-label">Issues</div><div class="stat-val text-amber">2</div></div>
+      </div>
+    </div>
+    <div class="seller-card">
+      <div class="seller-header">
+        <div><div class="seller-name">Saulo</div><div class="seller-role">Installation Coordinator</div></div>
+        <div class="status-dot warn"></div>
+      </div>
+      <div class="seller-stats">
+        <div class="stat-box"><div class="stat-label">Installs (Week)</div><div class="stat-val">11</div></div>
+        <div class="stat-box"><div class="stat-label">Completed</div><div class="stat-val text-green">8</div></div>
+        <div class="stat-box"><div class="stat-label">Reschedules</div><div class="stat-val text-amber">3</div></div>
+        <div class="stat-box"><div class="stat-label">Fab Errors</div><div class="stat-val text-red">2</div></div>
+      </div>
+    </div>
+    <div class="seller-card">
+      <div class="seller-header">
+        <div><div class="seller-name">Angela</div><div class="seller-role">Admin / Front Desk</div></div>
+        <div class="status-dot active"></div>
+      </div>
+      <div class="seller-stats">
+        <div class="stat-box"><div class="stat-label">Calls Handled</div><div class="stat-val">34</div></div>
+        <div class="stat-box"><div class="stat-label">Systems Updated</div><div class="stat-val text-green">✓</div></div>
+        <div class="stat-box"><div class="stat-label">Fab Orders</div><div class="stat-val">12</div></div>
+        <div class="stat-box"><div class="stat-label">Walk-ins</div><div class="stat-val">5</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Leadership Notes -->
+  <div class="section-label">Leadership Notes — Jun 12</div>
+  <div class="grid-2">
+    <div>
+      <div class="alert-card amber">
+        <div class="alert-icon">⚠</div>
+        <div>
+          <div class="alert-title" style="color:var(--amber)">HD Portal — Action Required</div>
+          <div class="alert-body">Sales team needs to clean up the HD Portal. Assign ownership and set a deadline before Friday's meeting.</div>
+        </div>
+      </div>
+      <div class="alert-card red">
+        <div class="alert-icon">🔴</div>
+        <div>
+          <div class="alert-title" style="color:var(--red)">Leadership Observation — Office Dynamic</div>
+          <div class="alert-body">When Matos arrives, parallel conversations are consuming his time resolving minor issues. Needs a triage system or designated point of contact.</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="alert-card green">
+        <div class="alert-icon">✓</div>
+        <div>
+          <div class="alert-title" style="color:var(--green)">KPI System Adoption</div>
+          <div class="alert-body">Team has increased awareness and started using the sheets consistently. Saulo is tracking fabrication data. Week 3 of implementation.</div>
+        </div>
+      </div>
+      <div class="card" style="padding:14px;">
+        <div class="card-title">Leadership Question of the Week</div>
+        <div style="font-size:13px;color:var(--cream);line-height:1.6;font-style:italic;">"We can see the scoreboard. What is one thing each of us will change next week to move these numbers?"</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     TAB 2 — EXECUTIVE OVERVIEW
+═══════════════════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-exec">
+<div class="content">
+
+  <div class="section-label">2026 YTD — Company Total (Jan–May Closed + Jun Partial)</div>
+  <div class="kpi-row kpi-row-4">
+    <div class="kpi-card">
+      <div class="kpi-label">YTD Revenue (5 months)</div>
+      <div class="kpi-value gold">$1.40M</div>
+      <div class="kpi-sub">Jan $214K · Feb $396K · Mar $273K · Apr $281K · May $235K</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Annual Goal 2026</div>
+      <div class="kpi-value">$3.60M</div>
+      <div class="kpi-sub">Combined Phoenix + M&M target</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">YTD vs Goal (5 months)</div>
+      <div class="kpi-value amber">38.8%</div>
+      <div class="kpi-sub">$2.20M remaining in 7 months</div>
+      <div class="progress-wrap">
+        <div class="progress-track"><div class="progress-fill amber" style="width:38.8%"></div></div>
+      </div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Jun Goal (Active)</div>
+      <div class="kpi-value amber">46%</div>
+      <div class="kpi-sub">$246K of $274K goal — mid-month</div>
+      <div class="progress-wrap">
+        <div class="progress-track"><div class="progress-fill amber" style="width:46%"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">2026 Monthly Performance vs Goal — By Business Unit</div>
+  <div class="grid-2">
+    <!-- Phoenix BU -->
+    <div class="card">
+      <div class="card-title">Phoenix Stone Design</div>
+
+      <div class="goal-row">
+        <div class="goal-name">Jan — Alabama</div>
+        <div class="goal-track"><div class="goal-bar" style="width:100%;background:var(--green)"></div></div>
+        <div class="goal-pct text-green">+44%</div>
+        <div class="goal-amt">$47K / $33K</div>
+      </div>
+      <div class="goal-row">
+        <div class="goal-name">Jan — Georgia</div>
+        <div class="goal-track"><div class="goal-bar" style="width:60%;background:var(--red)"></div></div>
+        <div class="goal-pct text-red">-40%</div>
+        <div class="goal-amt">$48K / $81K</div>
+      </div>
+      <div class="goal-row">
+        <div class="goal-name">Feb — Alabama</div>
+        <div class="goal-track"><div class="goal-bar" style="width:66%;background:var(--red)"></div></div>
+        <div class="goal-pct text-red">-34%</div>
+        <div class="goal-amt">$22K / $33K</div>
+      </div>
+      <div class="goal-row">
+        <div class="goal-name">Feb — Georgia</div>
+        <div class="goal-track"><div class="goal-bar" style="width:100%;background:var(--green)"></div></div>
+        <div class="goal-pct text-green">+36%</div>
+        <div class="goal-amt">$83K / $61K</div>
+      </div>
+      <div class="goal-row">
+        <div class="goal-name">Mar — Alabama</div>
+        <div class="goal-track"><div class="goal-bar" style="width:100%;background:var(--green)"></div></div>
+        <div class="goal-pct text-green">+10%</div>
+        <div class="goal-amt">$42K / $38K</div>
+      </div>
+      <div class="goal-row">
+        <div class="goal-name">Mar — Georgia</div>
+        <div class="goal-track"><div class="goal-bar" style="width:100%;background:var(--green)"></div></div>
+        <div class="goal-pct text-green">+44%</div>
+        <div class="goal-amt">$61K / $42K</div>
+      </div>
+      <div class="goal-row">
+        <div class="goal-name">Apr — Alabama</div>
+        <div class="goal-track"><div class="goal-bar" style="width:100%;background:var(--green)"></div></div>
+        <div class="goal-pct text-green">+45%</div>
+        <div class="goal-amt">$52K / $36K</div>
+      </div>
+      <div class="goal-row">
+        <div class="goal-name">Apr — Georgia</div>
+        <div class="goal-track"><div class="goal-bar" style="width:85%;background:var(--red)"></div></div>
+        <div class="goal-pct text-red">-15%</div>
+        <div class="goal-amt">$81K / $96K</div>
+      </div>
+      <div class="goal-row">
+        <div class="goal-name">May — Alabama</div>
+        <div class="goal-track"><div class="goal-bar" style="width:59%;background:var(--red)"></div></div>
+        <div class="goal-pct text-red">-40%</div>
+        <div class="goal-amt">$27K / $45K</div>
+      </div>
+      <div class="goal-row">
+        <div class="goal-name">May — Georgia</div>
+        <div class="goal-track"><div class="goal-bar" style="width:100%;background:var(--green)"></div></div>
+        <div class="goal-pct text-green">+124%</div>
+        <div class="goal-amt">$119K / $53K</div>
+      </div>
+    </div>
+
+    <!-- M&M BU -->
+    <div class="card">
+      <div class="card-title">M&M Stone Design</div>
+
+      <div class="goal-row">
+        <div class="goal-name">Jan — Shower Glass</div>
+        <div class="goal-track"><div class="goal-bar" style="width:100%;background:var(--green)"></div></div>
+        <div class="goal-pct text-green">+23%</div>
+        <div class="goal-amt">$37K / $30K</div>
+      </div>
+      <div class="goal-row">
+        <div class="goal-name">Jan — Georgia</div>
+        <div class="goal-track"><div class="goal-bar" style="width:34%;background:var(--red)"></div></div>
+        <div class="goal-pct text-red">-66%</div>
+        <div class="goal-amt">$65K / $190K</div>
+      </div>
+      <div class="goal-row">
+        <div class="goal-name">Feb — Shower Glass</div>
+        <div class="goal-track"><div class="goal-bar" style="width:100%;background:var(--green)"></div></div>
+        <div class="goal-pct text-green">+65%</div>
+        <div class="goal-amt">$43K / $26K</div>
+      </div>
+      <div class="goal-row">
+        <div class="goal-name">Feb — Georgia</div>
+        <div class="goal-track"><div class="goal-bar" style="width:100%;background:var(--green)"></div></div>
+        <div class="goal-pct text-green">+84%</div>
+        <div class="goal-amt">$231K / $125K</div>
+      </div>
+      <div class="goal-row">
+        <div class="goal-name">Mar — Shower Glass</div>
+        <div class="goal-track"><div class="goal-bar" style="width:100%;background:var(--green)"></div></div>
+        <div class="goal-pct text-green">+248%</div>
+        <div class="goal-amt">$83K / $24K</div>
+      </div>
+      <div class="goal-row">
+        <div class="goal-name">Mar — Georgia</div>
+        <div class="goal-track"><div class="goal-bar" style="width:65%;background:var(--red)"></div></div>
+        <div class="goal-pct text-red">-35%</div>
+        <div class="goal-amt">$75K / $124K</div>
+      </div>
+      <div class="goal-row">
+        <div class="goal-name">Apr — Shower Glass</div>
+        <div class="goal-track"><div class="goal-bar" style="width:91%;background:var(--red)"></div></div>
+        <div class="goal-pct text-red">-9%</div>
+        <div class="goal-amt">$46K / $51K</div>
+      </div>
+      <div class="goal-row">
+        <div class="goal-name">Apr — Georgia</div>
+        <div class="goal-track"><div class="goal-bar" style="width:59%;background:var(--red)"></div></div>
+        <div class="goal-pct text-red">-41%</div>
+        <div class="goal-amt">$59K / $100K</div>
+      </div>
+      <div class="goal-row">
+        <div class="goal-name">May — Shower Glass</div>
+        <div class="goal-track"><div class="goal-bar" style="width:100%;background:var(--green)"></div></div>
+        <div class="goal-pct text-green">+94%</div>
+        <div class="goal-amt">$80K / $41K</div>
+      </div>
+      <div class="goal-row">
+        <div class="goal-name">May — Georgia</div>
+        <div class="goal-track"><div class="goal-bar" style="width:5%;background:var(--red)"></div></div>
+        <div class="goal-pct text-red">-95%</div>
+        <div class="goal-amt">$8K / $175K</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- June Active Goals -->
+  <div class="section-label">June 2026 — Active Individual Goals</div>
+  <div class="card">
+    <div class="goal-row">
+      <div class="goal-name" style="font-weight:600;color:var(--cream)">Eveline</div>
+      <div class="goal-track"><div class="goal-bar" style="width:49%;background:var(--amber)"></div></div>
+      <div class="goal-pct text-amber">49%</div>
+      <div class="goal-amt">$21.4K / $42K</div>
+    </div>
+    <div class="goal-row">
+      <div class="goal-name" style="font-weight:600;color:var(--cream)">Stephanie</div>
+      <div class="goal-track"><div class="goal-bar" style="width:48%;background:var(--amber)"></div></div>
+      <div class="goal-pct text-amber">48%</div>
+      <div class="goal-amt">$37.2K / $72K</div>
+    </div>
+    <div class="goal-row">
+      <div class="goal-name" style="font-weight:600;color:var(--cream)">Jessica (HD)</div>
+      <div class="goal-track"><div class="goal-bar" style="width:47%;background:var(--amber)"></div></div>
+      <div class="goal-pct text-amber">47%</div>
+      <div class="goal-amt">$18.7K / $40K</div>
+    </div>
+    <div class="goal-row">
+      <div class="goal-name" style="font-weight:600;color:var(--cream)">Matos</div>
+      <div class="goal-track"><div class="goal-bar" style="width:2%;background:var(--red)"></div></div>
+      <div class="goal-pct text-red">0%</div>
+      <div class="goal-amt">$0 / $100K</div>
+    </div>
+    <div class="goal-row">
+      <div class="goal-name" style="font-weight:600;color:var(--cream)">M&M Services</div>
+      <div class="goal-track"><div class="goal-bar" style="width:61%;background:var(--green)"></div></div>
+      <div class="goal-pct text-green">61%</div>
+      <div class="goal-amt">$12.2K / $20K</div>
+    </div>
+  </div>
+
+  <!-- Key Insight -->
+  <div class="section-label">Key Insight for Leadership</div>
+  <div class="alert-card red">
+    <div class="alert-icon">🔴</div>
+    <div>
+      <div class="alert-title" style="color:var(--red)">M&M Georgia — Critical Gap in May & June</div>
+      <div class="alert-body">May closed at only $8.2K against a $175K goal (-95%). Matos is at $0 for June against a $100K goal. This is the largest single revenue risk in the company. Needs direct leadership conversation before end of week.</div>
+    </div>
+  </div>
+  <div class="alert-card green">
+    <div class="alert-icon">✓</div>
+    <div>
+      <div class="alert-title" style="color:var(--green)">Phoenix Strong — Georgia May Breakout</div>
+      <div class="alert-body">Phoenix Georgia delivered $119K in May against a $53K goal (+124%). Stephanie's territory is performing. February also delivered $83K in Shower Glass against a $24K goal. Phoenix is carrying the company right now.</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     TAB 3 — ANNUAL PERFORMANCE
+═══════════════════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-annual">
+<div class="content">
+
+  <div class="section-label">Historical Revenue — All Companies (2024–2026)</div>
+  <div class="kpi-row kpi-row-4">
+    <div class="kpi-card">
+      <div class="kpi-label">2024 Total (May–Dec)</div>
+      <div class="kpi-value">$3.85M</div>
+      <div class="kpi-sub">First full data year on record</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">2025 Annual Total</div>
+      <div class="kpi-value gold">$3.46M</div>
+      <div class="kpi-sub">Full year — all BUs combined</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">2026 YTD (Jan–May)</div>
+      <div class="kpi-value amber">$1.40M</div>
+      <div class="kpi-sub">On pace for ~$3.3M if trend holds</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Avg Ticket (All Time)</div>
+      <div class="kpi-value">$2,789</div>
+      <div class="kpi-sub">Based on 1,381 total transactions</div>
+    </div>
+  </div>
+
+  <div class="section-label">2025 Monthly Revenue — Full Year Breakdown</div>
+  <div class="card">
+    <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:8px;text-align:center;margin-bottom:16px;">
+      <div style="font-size:10px;color:var(--cream-dim)">Jan</div>
+      <div style="font-size:10px;color:var(--cream-dim)">Feb</div>
+      <div style="font-size:10px;color:var(--cream-dim)">Mar</div>
+      <div style="font-size:10px;color:var(--cream-dim)">Apr</div>
+      <div style="font-size:10px;color:var(--cream-dim)">May</div>
+      <div style="font-size:10px;color:var(--cream-dim)">Jun</div>
+      <div style="font-size:10px;color:var(--cream-dim)">Jul</div>
+      <div style="font-size:10px;color:var(--cream-dim)">Aug</div>
+      <div style="font-size:10px;color:var(--cream-dim)">Sep</div>
+      <div style="font-size:10px;color:var(--cream-dim)">Oct</div>
+      <div style="font-size:10px;color:var(--cream-dim)">Nov</div>
+      <div style="font-size:10px;color:var(--cream-dim)">Dec</div>
+    </div>
+    <!-- Phoenix Alabama row -->
+    <div style="margin-bottom:10px;">
+      <div style="font-size:10px;color:var(--cream-dim);margin-bottom:4px;">Phoenix — Alabama ($)</div>
+      <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:4px;align-items:end;height:50px;">
+        <div style="background:var(--gold);border-radius:2px 2px 0 0;height:53%;" title="Jan $28.8K"></div>
+        <div style="background:var(--gold);border-radius:2px 2px 0 0;height:50%;" title="Feb $27K"></div>
+        <div style="background:var(--gold);border-radius:2px 2px 0 0;height:60%;" title="Mar $32.7K"></div>
+        <div style="background:var(--gold);border-radius:2px 2px 0 0;height:58%;" title="Apr $31.3K"></div>
+        <div style="background:var(--gold);border-radius:2px 2px 0 0;height:73%;" title="May $39.5K"></div>
+        <div style="background:var(--gold);border-radius:2px 2px 0 0;height:68%;" title="Jun $36.7K"></div>
+        <div style="background:var(--gold);border-radius:2px 2px 0 0;height:81%;" title="Jul $44.2K"></div>
+        <div style="background:var(--gold);border-radius:2px 2px 0 0;height:73%;" title="Aug $39.5K"></div>
+        <div style="background:var(--gold);border-radius:2px 2px 0 0;height:100%;" title="Sep $60.8K"></div>
+        <div style="background:var(--gold);border-radius:2px 2px 0 0;height:70%;" title="Oct $37.9K"></div>
+        <div style="background:var(--gold);border-radius:2px 2px 0 0;height:62%;" title="Nov $33.7K"></div>
+        <div style="background:var(--gold);border-radius:2px 2px 0 0;height:100%;" title="Dec $61.2K"></div>
+      </div>
+    </div>
+    <!-- M&M Georgia row -->
+    <div style="margin-bottom:10px;">
+      <div style="font-size:10px;color:var(--blue);margin-bottom:4px;">M&M — Georgia ($)</div>
+      <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:4px;align-items:end;height:50px;">
+        <div style="background:var(--blue);border-radius:2px 2px 0 0;height:87%;" title="Jan $166K"></div>
+        <div style="background:var(--blue);border-radius:2px 2px 0 0;height:57%;" title="Feb $110K"></div>
+        <div style="background:var(--blue);border-radius:2px 2px 0 0;height:56%;" title="Mar $108K"></div>
+        <div style="background:var(--blue);border-radius:2px 2px 0 0;height:27%;" title="Apr $52K"></div>
+        <div style="background:var(--blue);border-radius:2px 2px 0 0;height:79%;" title="May $153K"></div>
+        <div style="background:var(--blue);border-radius:2px 2px 0 0;height:44%;" title="Jun $85K"></div>
+        <div style="background:var(--blue);border-radius:2px 2px 0 0;height:59%;" title="Jul $114K"></div>
+        <div style="background:var(--blue);border-radius:2px 2px 0 0;height:64%;" title="Aug $123K"></div>
+        <div style="background:var(--blue);border-radius:2px 2px 0 0;height:35%;" title="Sep $67K"></div>
+        <div style="background:var(--blue);border-radius:2px 2px 0 0;height:100%;" title="Oct $190K"></div>
+        <div style="background:var(--blue);border-radius:2px 2px 0 0;height:9%;" title="Nov $17K"></div>
+        <div style="background:var(--blue);border-radius:2px 2px 0 0;height:18%;" title="Dec $34K"></div>
+      </div>
+    </div>
+    <div style="display:flex;gap:16px;margin-top:8px;">
+      <div style="display:flex;align-items:center;gap:6px;font-size:10px;color:var(--cream-dim)"><div style="width:10px;height:10px;background:var(--gold);border-radius:2px;"></div>Phoenix Alabama</div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:10px;color:var(--cream-dim)"><div style="width:10px;height:10px;background:var(--blue);border-radius:2px;"></div>M&M Georgia</div>
+    </div>
+  </div>
+
+  <div class="section-label">Year-over-Year Comparison — Key BUs</div>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Business Unit</th>
+        <th>2024 (Aug–Dec)</th>
+        <th>2025 Full Year</th>
+        <th>2026 YTD (5mo)</th>
+        <th>2025 Best Month</th>
+        <th>2026 Best Month</th>
+        <th>Trend</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="text-cream">Phoenix — Alabama</td>
+        <td class="mono">$133.6K</td>
+        <td class="mono">$473.0K</td>
+        <td class="mono text-gold">$190.0K</td>
+        <td>Sep $60.8K</td>
+        <td>Apr $52.4K</td>
+        <td class="text-green">↑ Stable</td>
+      </tr>
+      <tr>
+        <td class="text-cream">Phoenix — Georgia</td>
+        <td class="mono">$250.3K</td>
+        <td class="mono">$830.8K</td>
+        <td class="mono text-gold">$391.6K</td>
+        <td>Oct $102K</td>
+        <td>May $118.6K</td>
+        <td class="text-green">↑ Strong</td>
+      </tr>
+      <tr>
+        <td class="text-cream">M&M — Shower Glass</td>
+        <td class="mono">$119.8K</td>
+        <td class="mono">$297.8K</td>
+        <td class="mono text-gold">$289.9K</td>
+        <td>Oct $33.4K</td>
+        <td>Mar $83.4K</td>
+        <td class="text-green">↑ Very Strong</td>
+      </tr>
+      <tr>
+        <td class="text-cream">M&M — Georgia</td>
+        <td class="mono">$462.1K</td>
+        <td class="mono">$1.22M</td>
+        <td class="mono text-amber">$437.0K</td>
+        <td>Oct $190K</td>
+        <td>Feb $230.5K</td>
+        <td class="text-red">↓ Inconsistent</td>
+      </tr>
+      <tr>
+        <td class="text-cream">M&M — Fabrication</td>
+        <td class="mono">—</td>
+        <td class="mono">$220.4K</td>
+        <td class="mono text-amber">$89.5K</td>
+        <td>Aug $40.2K</td>
+        <td>Apr $41.6K</td>
+        <td class="text-amber">→ Flat</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     TAB 4 — HD STORES
+═══════════════════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-stores">
+<div class="content">
+
+  <div class="section-label">Home Depot Store Performance — 2026 YTD (Jan–Jun)</div>
+  <div class="kpi-row kpi-row-4">
+    <div class="kpi-card">
+      <div class="kpi-label">Total Stores Active</div>
+      <div class="kpi-value gold">28</div>
+      <div class="kpi-sub">Across GA, AL, SC markets</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Total HD Orders (YTD)</div>
+      <div class="kpi-value">262</div>
+      <div class="kpi-sub">Jan–Jun 2026</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">HD Total Revenue (YTD)</div>
+      <div class="kpi-value green">$866K</div>
+      <div class="kpi-sub">Phoenix Stone Design channel</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Average Ticket (HD)</div>
+      <div class="kpi-value">$3,305</div>
+      <div class="kpi-sub">vs $2,789 overall company avg</div>
+    </div>
+  </div>
+
+  <div class="section-label">Top Performing Stores — 2026 YTD</div>
+  <div class="card" style="padding:0;overflow:hidden;">
+    <div class="store-row header">
+      <div style="font-size:10px;font-weight:600;color:var(--cream-faint);text-transform:uppercase;letter-spacing:.8px;">Store #</div>
+      <div style="font-size:10px;font-weight:600;color:var(--cream-faint);text-transform:uppercase;letter-spacing:.8px;">Location</div>
+      <div style="font-size:10px;font-weight:600;color:var(--cream-faint);text-transform:uppercase;letter-spacing:.8px;">Orders</div>
+      <div style="font-size:10px;font-weight:600;color:var(--cream-faint);text-transform:uppercase;letter-spacing:.8px;">Total Revenue</div>
+      <div style="font-size:10px;font-weight:600;color:var(--cream-faint);text-transform:uppercase;letter-spacing:.8px;">Avg Ticket</div>
+      <div style="font-size:10px;font-weight:600;color:var(--cream-faint);text-transform:uppercase;letter-spacing:.8px;">Best Month</div>
+      <div style="font-size:10px;font-weight:600;color:var(--cream-faint);text-transform:uppercase;letter-spacing:.8px;">Trend</div>
+    </div>
+    <div class="store-row">
+      <div class="mono text-gold">#881</div><div class="text-cream">Hoover, AL</div>
+      <div class="mono text-gold">42</div><div class="mono">$115.3K</div>
+      <div class="mono">$2,746</div><div>Jan — 11 orders</div>
+      <div class="text-green">↑ Top</div>
+    </div>
+    <div class="store-row">
+      <div class="mono">#129</div><div class="text-cream">Athens, GA</div>
+      <div class="mono">27</div><div class="mono">$82.3K</div>
+      <div class="mono">$3,049</div><div>Jan — 5 orders</div>
+      <div class="text-green">↑ Strong</div>
+    </div>
+    <div class="store-row">
+      <div class="mono">#6979</div><div class="text-cream">Winder, GA</div>
+      <div class="mono">18</div><div class="mono">$76.7K</div>
+      <div class="mono">$4,263</div><div>May — 5 orders</div>
+      <div class="text-green">↑ High Ticket</div>
+    </div>
+    <div class="store-row">
+      <div class="mono">#8584</div><div class="text-cream">Greensboro, NC</div>
+      <div class="mono">22</div><div class="mono">$76.4K</div>
+      <div class="mono">$3,471</div><div>Feb — 11 orders</div>
+      <div class="text-green">↑ Growing</div>
+    </div>
+    <div class="store-row">
+      <div class="mono">#1764</div><div class="text-cream">Commerce, GA</div>
+      <div class="mono">16</div><div class="mono">$62.2K</div>
+      <div class="mono">$3,886</div><div>Feb — 5 orders</div>
+      <div class="text-amber">→ Steady</div>
+    </div>
+    <div class="store-row">
+      <div class="mono">#805</div><div class="text-cream">Pelham, AL</div>
+      <div class="mono">16</div><div class="mono">$60.3K</div>
+      <div class="mono">$3,767</div><div>Mar — 3 orders</div>
+      <div class="text-amber">→ Steady</div>
+    </div>
+    <div class="store-row">
+      <div class="mono">#875</div><div class="text-cream">Inverness, AL</div>
+      <div class="mono">10</div><div class="mono">$38.4K</div>
+      <div class="mono">$3,841</div><div>May — 5 orders</div>
+      <div class="text-green">↑ Growing</div>
+    </div>
+    <div class="store-row">
+      <div class="mono">#1774</div><div class="text-cream">Monroe, GA</div>
+      <div class="mono">11</div><div class="mono">$40.8K</div>
+      <div class="mono">$3,713</div><div>Mar — 4 orders</div>
+      <div class="text-amber">→ Steady</div>
+    </div>
+    <div class="store-row">
+      <div class="mono">#144</div><div class="text-cream">Snellville, GA</div>
+      <div class="mono">8</div><div class="mono">$34.0K</div>
+      <div class="mono">$4,244</div><div>Jan — 2 orders</div>
+      <div class="text-amber">→ High Ticket</div>
+    </div>
+    <div class="store-row">
+      <div class="mono">#134</div><div class="text-cream">Cumming, GA</div>
+      <div class="mono">10</div><div class="mono">$31.3K</div>
+      <div class="mono">$3,134</div><div>Jun — 3 orders</div>
+      <div class="text-green">↑ Jun Active</div>
+    </div>
+  </div>
+
+  <div class="section-label">Store Opportunity Analysis</div>
+  <div class="grid-2">
+    <div class="alert-card green">
+      <div class="alert-icon">✓</div>
+      <div>
+        <div class="alert-title" style="color:var(--green)">Highest Ticket Opportunity</div>
+        <div class="alert-body">Stores #6979 (Winder) and #144 (Snellville) have the highest average tickets ($4,263 and $4,244). These stores attract higher-value projects. Prioritize coverage and relationship-building here.</div>
+      </div>
+    </div>
+    <div class="alert-card amber">
+      <div class="alert-icon">⚠</div>
+      <div>
+        <div class="alert-title" style="color:var(--amber)">Volume Concentration Risk</div>
+        <div class="alert-body">Store #881 (Hoover) represents 42 of 262 orders (16% of all volume). Heavy dependency on one store. Stores #129 and #6979 are the next priorities to grow for geographic diversification.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     TAB 5 — INDIVIDUAL REPORTS
+═══════════════════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-sellers">
+<div class="content">
+
+  <div class="section-label">2026 Seller Performance — Year to Date</div>
+
+  <!-- Eveline -->
+  <div class="card" style="margin-bottom:14px;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;">
+      <div>
+        <div style="font-size:18px;font-weight:700;color:var(--cream);">Eveline Erbert</div>
+        <div style="font-size:11px;color:var(--cream-dim);margin-top:3px;">Phoenix Stone Design — SDR / Sales · Alabama + Georgia Territory</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:22px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--gold);">$164.3K</div>
+        <div style="font-size:10px;color:var(--cream-dim);">Total Revenue 2026 YTD · 39 closings</div>
+      </div>
+    </div>
+    <div class="kpi-row kpi-row-4" style="margin-bottom:12px;">
+      <div class="stat-box"><div class="stat-label">Avg Ticket</div><div class="stat-val text-gold">$4,212</div></div>
+      <div class="stat-box"><div class="stat-label">Jun Goal</div><div class="stat-val text-amber">49%</div></div>
+      <div class="stat-box"><div class="stat-label">Jun Closed</div><div class="stat-val">$21.4K</div></div>
+      <div class="stat-box"><div class="stat-label">Jun Target</div><div class="stat-val">$42K</div></div>
+    </div>
+    <div style="margin-bottom:8px;font-size:10px;color:var(--cream-dim);text-transform:uppercase;letter-spacing:.8px;">Monthly Revenue 2026</div>
+    <div style="display:flex;gap:4px;align-items:flex-end;height:80px;">
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;">
+        <div style="width:100%;background:var(--gold);border-radius:2px 2px 0 0;height:100%;" title="Jan: $47.4K"></div>
+        <div style="font-size:9px;color:var(--cream-faint);">Jan</div>
+        <div style="font-size:9px;color:var(--gold);font-family:'JetBrains Mono',monospace;">47K</div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;">
+        <div style="width:100%;background:var(--gold);border-radius:2px 2px 0 0;height:46%;" title="Feb: $21.7K"></div>
+        <div style="font-size:9px;color:var(--cream-faint);">Feb</div>
+        <div style="font-size:9px;color:var(--gold);font-family:'JetBrains Mono',monospace;">22K</div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;">
+        <div style="width:100%;background:var(--gold);border-radius:2px 2px 0 0;height:88%;" title="Mar: $41.7K"></div>
+        <div style="font-size:9px;color:var(--cream-faint);">Mar</div>
+        <div style="font-size:9px;color:var(--gold);font-family:'JetBrains Mono',monospace;">42K</div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;">
+        <div style="width:100%;background:var(--gold);border-radius:2px 2px 0 0;height:100%;" title="Apr: $52.4K"></div>
+        <div style="font-size:9px;color:var(--cream-faint);">Apr</div>
+        <div style="font-size:9px;color:var(--gold);font-family:'JetBrains Mono',monospace;">52K</div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;">
+        <div style="width:100%;background:var(--amber);border-radius:2px 2px 0 0;height:57%;" title="May: $26.8K"></div>
+        <div style="font-size:9px;color:var(--cream-faint);">May</div>
+        <div style="font-size:9px;color:var(--amber);font-family:'JetBrains Mono',monospace;">27K</div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;">
+        <div style="width:100%;background:var(--amber);border-radius:2px 2px 0 0;height:45%;opacity:.6;" title="Jun: ~$21K (partial)"></div>
+        <div style="font-size:9px;color:var(--cream-faint);">Jun*</div>
+        <div style="font-size:9px;color:var(--amber);font-family:'JetBrains Mono',monospace;">21K</div>
+      </div>
+    </div>
+    <div style="margin-top:12px;padding:10px;background:var(--bg);border-radius:5px;font-size:11px;color:var(--cream-dim);line-height:1.5;">
+      <span style="color:var(--cream);font-weight:600;">Analysis:</span> Eveline's best month was April ($52.4K). May dropped significantly (-49% vs April). June is at ~49% of goal mid-month. Average ticket of $4,212 is well above company average — she closes high-value jobs. The inconsistency between strong months (Jan, Mar, Apr) and weak months (Feb, May) suggests pipeline gaps between closing cycles.
+    </div>
+  </div>
+
+  <!-- Stephanie -->
+  <div class="card" style="margin-bottom:14px;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;">
+      <div>
+        <div style="font-size:18px;font-weight:700;color:var(--cream);">Stephanie Eisenhart</div>
+        <div style="font-size:11px;color:var(--cream-dim);margin-top:3px;">Phoenix Stone Design — Sales Agent · Countertops Georgia</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:22px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--green);">$429.5K</div>
+        <div style="font-size:10px;color:var(--cream-dim);">Total Revenue 2026 YTD · 98 closings</div>
+      </div>
+    </div>
+    <div class="kpi-row kpi-row-4" style="margin-bottom:12px;">
+      <div class="stat-box"><div class="stat-label">Avg Ticket</div><div class="stat-val text-green">$4,383</div></div>
+      <div class="stat-box"><div class="stat-label">Jun Goal</div><div class="stat-val text-amber">48%</div></div>
+      <div class="stat-box"><div class="stat-label">Jun Closed</div><div class="stat-val">$37.2K</div></div>
+      <div class="stat-box"><div class="stat-label">Jun Target</div><div class="stat-val">$72K</div></div>
+    </div>
+    <div style="margin-top:10px;padding:10px;background:var(--bg);border-radius:5px;font-size:11px;color:var(--cream-dim);line-height:1.5;">
+      <span style="color:var(--cream);font-weight:600;">Analysis:</span> Stephanie is the top revenue producer in 2026 with $429.5K across 98 closings. Highest average ticket among sales agents at $4,383. May was a breakout month (+124% over goal). The Phoenix Georgia territory is performing well under her coverage. June is mid-pace — needs to accelerate second half of month to hit $72K target.
+    </div>
+  </div>
+
+  <!-- Jessica -->
+  <div class="card" style="margin-bottom:14px;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;">
+      <div>
+        <div style="font-size:18px;font-weight:700;color:var(--cream);">Jessica Wolfe</div>
+        <div style="font-size:11px;color:var(--cream-dim);margin-top:3px;">M&M Stone Design HD — Shower Glass Sales</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:22px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--blue);">$281.4K</div>
+        <div style="font-size:10px;color:var(--cream-dim);">Total Revenue 2026 YTD · 121 closings</div>
+      </div>
+    </div>
+    <div class="kpi-row kpi-row-4" style="margin-bottom:12px;">
+      <div class="stat-box"><div class="stat-label">Avg Ticket</div><div class="stat-val" style="color:var(--blue);">$2,325</div></div>
+      <div class="stat-box"><div class="stat-label">Jun Goal</div><div class="stat-val text-amber">47%</div></div>
+      <div class="stat-box"><div class="stat-label">Jun Closed</div><div class="stat-val">$18.7K</div></div>
+      <div class="stat-box"><div class="stat-label">Jun Target</div><div class="stat-val">$40K</div></div>
+    </div>
+    <div style="margin-top:10px;padding:10px;background:var(--bg);border-radius:5px;font-size:11px;color:var(--cream-dim);line-height:1.5;">
+      <span style="color:var(--cream);font-weight:600;">Analysis:</span> Jessica handles the highest volume of individual transactions (121 closings) with the Shower Glass line. Lower ticket average ($2,325) reflects the product category. March was exceptional at $83.4K — nearly 3.5x her goal. Consistent performer across all 6 months of 2026.
+    </div>
+  </div>
+
+  <!-- Matos -->
+  <div class="card" style="margin-bottom:14px;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;">
+      <div>
+        <div style="font-size:18px;font-weight:700;color:var(--cream);">Matos</div>
+        <div style="font-size:11px;color:var(--cream-dim);margin-top:3px;">M&M Stone Design — Commercial + Large Projects</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:22px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--red);">$1.23M</div>
+        <div style="font-size:10px;color:var(--cream-dim);">Total Revenue 2026 YTD (incl. Feb $230K) · 149 closings</div>
+      </div>
+    </div>
+    <div class="kpi-row kpi-row-4" style="margin-bottom:12px;">
+      <div class="stat-box"><div class="stat-label">Avg Ticket</div><div class="stat-val text-gold">$8,235</div></div>
+      <div class="stat-box"><div class="stat-label">Jun Goal</div><div class="stat-val text-red">0%</div></div>
+      <div class="stat-box"><div class="stat-label">Jun Closed</div><div class="stat-val text-red">$0</div></div>
+      <div class="stat-box"><div class="stat-label">Jun Target</div><div class="stat-val">$100K</div></div>
+    </div>
+    <div style="margin-top:10px;padding:10px;background:rgba(224,82,82,.06);border:1px solid rgba(224,82,82,.15);border-radius:5px;font-size:11px;color:var(--cream-dim);line-height:1.5;">
+      <span style="color:var(--red);font-weight:600;">⚠ Critical Alert:</span> Matos has the highest average ticket in the company ($8,235) and is responsible for the largest individual deals — including the $230K February month. However, May closed at near-zero and June is at $0 with a $100K goal. This is a critical pattern: Matos drives large commercial deals in bursts, but the pipeline gaps are severe. The company's M&M Georgia BU is directly dependent on his activity.
+    </div>
+  </div>
+
+  <!-- Mercedes / M&M Services -->
+  <div class="grid-2">
+    <div class="card">
+      <div style="font-size:16px;font-weight:700;color:var(--cream);margin-bottom:4px;">Mercedes</div>
+      <div style="font-size:11px;color:var(--cream-dim);margin-bottom:14px;">Fabrication / Ops — M&M Stone Design</div>
+      <div class="seller-stats">
+        <div class="stat-box"><div class="stat-label">Revenue 2026</div><div class="stat-val text-gold">$65.1K</div></div>
+        <div class="stat-box"><div class="stat-label">Transactions</div><div class="stat-val">51</div></div>
+        <div class="stat-box"><div class="stat-label">Avg Ticket</div><div class="stat-val">$1,277</div></div>
+        <div class="stat-box"><div class="stat-label">Role</div><div class="stat-val" style="font-size:11px;">Fab Ops</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div style="font-size:16px;font-weight:700;color:var(--cream);margin-bottom:4px;">M&M Services (Fabrication)</div>
+      <div style="font-size:11px;color:var(--cream-dim);margin-bottom:14px;">Internal Fabrication Revenue 2026</div>
+      <div class="seller-stats">
+        <div class="stat-box"><div class="stat-label">Revenue YTD</div><div class="stat-val text-gold">$89.5K</div></div>
+        <div class="stat-box"><div class="stat-label">Transactions</div><div class="stat-val">512</div></div>
+        <div class="stat-box"><div class="stat-label">Avg Ticket</div><div class="stat-val">$705</div></div>
+        <div class="stat-box"><div class="stat-label">Jun Goal %</div><div class="stat-val text-green">61%</div></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<script>
+function switchTab(id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  const tabs = ['team','exec','annual','stores','sellers'];
+  const idx = tabs.indexOf(id);
+  document.querySelectorAll('.tab')[idx].classList.add('active');
+}
+</script>
+</body>
+</html>
