@@ -258,6 +258,7 @@
   .status-dot.active { background: var(--green); box-shadow: 0 0 6px var(--green); }
   .status-dot.warn { background: var(--amber); }
   .status-dot.off { background: var(--stone); }
+  .status-dot.critical { background: var(--red); box-shadow: 0 0 6px var(--red); }
 
   .seller-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
   .stat-box { background: var(--bg); border-radius: 5px; padding: 8px 10px; }
@@ -1336,7 +1337,10 @@ const meetingWeeks = [
           progressLabel:"Jun Goal — $42K", progressPct:12, progressNote:"12%", blocker:"⚠ 1 duplicate / wrong service lead"},
         {name:"Anderson", role:"Sales Agent — Onboarding", status:"pending",
           kpis:[{label:"Leads (Week)",value:"—",note:"No data yet"},{label:"Calls Made",value:"—",note:"No data yet"},{label:"Sales Closed",value:"—",note:"No data yet"},{label:"Revenue",value:"—",note:"Not yet on Sales Control"}],
-          progressLabel:"Onboarding Status", progressPct:0, progressNote:"Pending KPI sheet data", blocker:null, pending:true}
+          progressLabel:"Onboarding Status", progressPct:0, progressNote:"Pending KPI sheet data", blocker:null, pending:true},
+        {name:"Windson", role:"Sales Agent", status:"pending",
+          kpis:[{label:"Leads (Week)",value:"—",note:"Not yet on KPI sheet"},{label:"Calls Made",value:"—",note:"Not yet on KPI sheet"},{label:"Sales Closed",value:"—",note:"Not yet on KPI sheet"},{label:"Revenue",value:"—",note:"Not yet on Sales Control"}],
+          progressLabel:"KPI Sheet Status", progressPct:0, progressNote:"Not yet started", blocker:null, pending:true}
       ],
       ops: [
         {name:"Mercedes", role:"Fabrication Manager", status:"active",
@@ -1400,7 +1404,10 @@ const meetingWeeks = [
           progressLabel:"Jun Goal — $72K", progressPct:48, progressNote:"48%", blocker:null},
         {name:"Anderson", role:"Sales Agent — Onboarding", status:"pending",
           kpis:[{label:"Leads (Week)",value:"—",note:"No data yet"},{label:"Calls Made",value:"—",note:"No data yet"},{label:"Sales Closed",value:"—",note:"No data yet"},{label:"Revenue",value:"—",note:"Not yet on Sales Control"}],
-          progressLabel:"Onboarding Status", progressPct:0, progressNote:"Pending KPI sheet data", blocker:null, pending:true}
+          progressLabel:"Onboarding Status", progressPct:0, progressNote:"Pending KPI sheet data", blocker:null, pending:true},
+        {name:"Windson", role:"Sales Agent", status:"pending",
+          kpis:[{label:"Leads (Week)",value:"—",note:"Not yet on KPI sheet"},{label:"Calls Made",value:"—",note:"Not yet on KPI sheet"},{label:"Sales Closed",value:"—",note:"Not yet on KPI sheet"},{label:"Revenue",value:"—",note:"Not yet on Sales Control"}],
+          progressLabel:"KPI Sheet Status", progressPct:0, progressNote:"Not yet started", blocker:null, pending:true}
       ],
       ops: [
         {name:"Mercedes", role:"Fabrication Manager", status:"active",
@@ -1465,7 +1472,10 @@ const meetingWeeks = [
           progressLabel:"Lead Volume", progressPct:25, progressNote:"Down vs prior weeks", blocker:"⚠ KPI sheet shows 0 sales — Sales Control shows 2 ($17.5K)"},
         {name:"Anderson", role:"Sales Agent — Onboarding", status:"pending",
           kpis:[{label:"Leads (Week)",value:"—",note:"No data yet"},{label:"Calls Made",value:"—",note:"No data yet"},{label:"Sales Closed",value:"—",note:"No data yet"},{label:"Revenue",value:"—",note:"Not yet on Sales Control"}],
-          progressLabel:"Onboarding Status", progressPct:0, progressNote:"Pending KPI sheet data", blocker:null, pending:true}
+          progressLabel:"Onboarding Status", progressPct:0, progressNote:"Pending KPI sheet data", blocker:null, pending:true},
+        {name:"Windson", role:"Sales Agent", status:"critical",
+          kpis:[{label:"Leads (Week)",value:"—",note:"No entries logged"},{label:"Calls Made",value:"—",note:"No entries logged"},{label:"Sales Closed",value:"—",note:"No entries logged"},{label:"Days Silent",value:"6",note:"Since Jun 19",cls:"red"}],
+          progressLabel:"KPI Sheet Status", progressPct:0, progressNote:"6 days no update", blocker:"🔴 No entries since Jun 19 — central topic for Friday's meeting", critical:true}
       ],
       ops: [
         {name:"Mercedes", role:"Fabrication Manager", status:"active",
@@ -1477,9 +1487,6 @@ const meetingWeeks = [
         {name:"Angela", role:"Admin / Front Desk", status:"active",
           kpis:[{label:"Calls Answered",value:"20",note:"Jun 22–25",cls:"gold"},{label:"Templates",value:"30",note:"Jun 22–25"},{label:"Fab Orders",value:"22",note:"Jun 22–25"},{label:"Sales Assisted",value:"0",note:"No closes",cls:"amber"}],
           progressLabel:"Systems Updated", progressPct:100, progressNote:"JT/QB — every day", blocker:null}
-      ],
-      flagged: [
-        {name:"Windson", role:"Sales Agent", note:"No entries since Jun 19 — 6 days without an update"}
       ]
     }
   }
@@ -1491,7 +1498,7 @@ let currentMeetingWeek = meetingWeeks.length - 1;
 // PRESENCE FILTER — controls who's revenue/card shows in the
 // Weekly Meeting Scoreboard. Persists across week navigation.
 // ============================================================
-const ALL_PEOPLE = ["Eveline", "Stephanie", "Jessica", "Matos", "Julia", "Mercedes", "Saul", "Angela", "Anderson"];
+const ALL_PEOPLE = ["Eveline", "Stephanie", "Jessica", "Matos", "Julia", "Windson", "Mercedes", "Saul", "Angela", "Anderson"];
 const PENDING_PEOPLE = ["Anderson"]; // onboarding, no data yet — shown distinctly
 
 let presenceState = {};
@@ -1545,7 +1552,11 @@ function renderSellerKpis(kpis) {
 function renderSellerCard(agent) {
   const fillColor = agent.progressPct >= 70 ? 'green' : (agent.progressPct >= 40 ? 'amber' : 'red');
   const isPending = agent.pending === true;
-  return `<div class="seller-card" ${isPending ? 'style="border:1px dashed var(--amber);background:transparent;"' : ''}>
+  const isCritical = agent.critical === true;
+  const cardStyle = isPending ? 'border:1px dashed var(--amber);background:transparent;'
+                   : isCritical ? 'border:1px solid var(--red);'
+                   : '';
+  return `<div class="seller-card" ${cardStyle ? `style="${cardStyle}"` : ''}>
     <div class="seller-header">
       <div>
         <div class="seller-name" ${isPending ? 'style="color:var(--cream-dim)"' : ''}>${agent.name}</div>
@@ -1559,22 +1570,6 @@ function renderSellerCard(agent) {
       <div class="progress-track"><div class="progress-fill ${isPending ? 'amber' : fillColor}" style="width:${agent.progressPct}%"></div></div>
     </div>
     ${agent.blocker ? `<div style="margin-top:8px;display:inline-block;background:rgba(224,82,82,.1);border:1px solid rgba(224,82,82,.25);color:var(--red);font-size:10px;padding:3px 8px;border-radius:4px;font-weight:500;">${agent.blocker}</div>` : ''}
-  </div>`;
-}
-
-function renderFlaggedSellerCard(agent) {
-  return `<div class="seller-card" style="border:1px dashed var(--red);background:transparent;">
-    <div class="seller-header">
-      <div>
-        <div class="seller-name" style="color:var(--cream-dim)">${agent.name}</div>
-        <div class="seller-role">${agent.role}</div>
-      </div>
-      <div class="status-dot" style="background:var(--red);box-shadow:0 0 6px var(--red);"></div>
-    </div>
-    <div style="padding:14px 4px;text-align:center;">
-      <div style="font-size:18px;margin-bottom:6px;">⚠</div>
-      <div style="font-size:11px;color:var(--red);font-weight:600;line-height:1.5;">${agent.note}</div>
-    </div>
   </div>`;
 }
 
@@ -1638,14 +1633,6 @@ function renderMeetingWeek() {
     } else {
       html += `<div class="seller-grid">${visibleOps.map(renderSellerCard).join('')}</div>`;
     }
-  }
-
-  // FLAGGED / NO-DATA AGENTS
-  if (w.agents && w.agents.flagged && w.agents.flagged.length) {
-    html += `<div class="section-label">Needs Attention</div>
-    <div class="seller-grid">
-      ${w.agents.flagged.map(renderFlaggedSellerCard).join('')}
-    </div>`;
   }
 
   // WORKED / ATTENTION
