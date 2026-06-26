@@ -332,13 +332,14 @@
   </div>
   <div class="header-right">
     <div class="live-dot"></div>
-    <div class="period-badge">Jun 12, 2026</div>
+    <div class="period-badge">Jun 25, 2026</div>
   </div>
 </div>
 
 <!-- TAB BAR -->
 <div class="tab-bar">
-  <div class="tab active" onclick="switchTab('team')">Team Scoreboard</div>
+  <div class="tab active" onclick="switchTab('weekly')">Weekly Meeting Scoreboard</div>
+  <div class="tab" onclick="switchTab('team')">Team Scoreboard</div>
   <div class="tab" onclick="switchTab('exec')">Executive Overview</div>
   <div class="tab" onclick="switchTab('annual')">Annual Performance</div>
   <div class="tab" onclick="switchTab('stores')">HD Stores</div>
@@ -346,9 +347,34 @@
 </div>
 
 <!-- ══════════════════════════════════════════════════
+     TAB 0 — WEEKLY MEETING SCOREBOARD (new, combines
+     MM KPI sheet activity data + Sales Control revenue)
+═══════════════════════════════════════════════════════ -->
+<div class="tab-panel active" id="tab-weekly">
+<div class="content">
+
+  <!-- WEEK NAVIGATOR -->
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+    <div class="section-label" style="margin:0;">Friday Meeting Companion — Activity + Revenue Combined</div>
+    <div style="display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--gold-dim);border-radius:8px;padding:8px 12px;">
+      <button onclick="changeMeetingWeek(-1)" id="wkPrevBtn" style="width:28px;height:28px;border-radius:5px;background:transparent;border:1px solid var(--border2);color:var(--gold);font-size:15px;cursor:pointer;">‹</button>
+      <div style="text-align:center;min-width:170px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gold);text-transform:uppercase;letter-spacing:1px;" id="wkEyebrow">Week 2</div>
+        <div style="font-size:13px;font-weight:700;color:var(--cream);margin-top:2px;" id="wkDates">Jun 8 – 12, 2026</div>
+      </div>
+      <button onclick="changeMeetingWeek(1)" id="wkNextBtn" style="width:28px;height:28px;border-radius:5px;background:transparent;border:1px solid var(--border2);color:var(--gold);font-size:15px;cursor:pointer;">›</button>
+    </div>
+  </div>
+
+  <div id="weeklyDashboardContent"></div>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
      TAB 1 — TEAM SCOREBOARD (preserved from v1.1)
 ═══════════════════════════════════════════════════════ -->
-<div class="tab-panel active" id="tab-team">
+<div class="tab-panel" id="tab-team">
 <div class="content">
 
   <div class="section-label">Company Overview — Week of June 8–12, 2026</div>
@@ -1190,11 +1216,201 @@
 </div>
 
 <script>
+// ============================================================
+// WEEKLY MEETING SCOREBOARD — combines MM KPI sheet (activity)
+// with Sales Control (revenue) for each week on record.
+// ============================================================
+const meetingWeeks = [
+  {
+    eyebrow: "Week 1",
+    dates: "Jun 1 – 5, 2026",
+    revenue: [
+      {name:"Eveline", value:"~$5.2K", note:"Partial week, early June"},
+      {name:"Stephanie", value:"~$9.1K", note:"Partial week, early June"},
+      {name:"Jessica (HD)", value:"~$4.5K", note:"Partial week, early June"},
+      {name:"Matos", value:"$0", note:"No closings logged"}
+    ],
+    activity: [
+      {label:"Total Leads", value:"13", note:"Eveline + Julia + Stephanie"},
+      {label:"Appts Scheduled", value:"12", note:"All SDR agents"},
+      {label:"Sales Closed", value:"3", note:"Stephanie 1 · Julia SDR 2"},
+      {label:"Sq Ft Fabricated", value:"~300", note:"Mercedes, estimate"}
+    ],
+    worked: [
+      "First full week using the KPI sheet across the sales team",
+      "Eveline began gathering 2 months of historical sales data per Glendon's request",
+      "Julia held 100+ calls/day — strongest activity volume on the team"
+    ],
+    attention: [
+      "Stephanie's KPI sheet has gaps — missing visit and store-visit columns",
+      "Saul and Grace flagged as focused on a different department — scope needs clarity",
+      "Daily logging still inconsistent — numbers not yet trend-reliable"
+    ],
+    blockers: [
+      {owner:"Team — Process", text:"KPI sheets just launched. Several columns inconsistently filled across agents."}
+    ]
+  },
+  {
+    eyebrow: "Week 2",
+    dates: "Jun 8 – 12, 2026",
+    revenue: [
+      {name:"Eveline", value:"~$21.4K", note:"49% of June goal ($42K) reached mid-month"},
+      {name:"Stephanie", value:"~$37.2K", note:"48% of June goal ($72K) reached mid-month"},
+      {name:"Jessica (HD)", value:"~$18.7K", note:"47% of June goal ($40K)"},
+      {name:"Matos", value:"$0", note:"0% of $100K June goal — critical"}
+    ],
+    activity: [
+      {label:"Total Leads", value:"32", note:"Eveline + Julia + Stephanie"},
+      {label:"Appts Scheduled", value:"29", note:"All SDR agents combined"},
+      {label:"Sales Closed", value:"6", note:"Stephanie 4 · Eveline 2"},
+      {label:"Sq Ft Fabricated", value:"320+", note:"Mercedes, week peak Jun 9"}
+    ],
+    worked: [
+      "Julia delivered her strongest week: 150 calls, 28 appointments scheduled",
+      "Eveline closed 2 sales (Jun 9, Jun 10) and logged 8 Alabama store visits",
+      "Mercedes hit a 320 sq ft fabrication day — best of the period so far",
+      "Glendon ran the first full All-Team Meeting focused on KPI continuance"
+    ],
+    attention: [
+      "Matos is at $0 against a $100K June goal — the largest single revenue risk in the company",
+      "Saul flagged a major communication breakdown: decisions between templater, customer and Matos not reaching him",
+      "3 jobs had zero information in MM Jobs system, causing downstream issues",
+      "Backsplash fabricated and installed before customer confirmation — required removal",
+      "Sales team needs to clean up the Home Depot Portal (flagged Jun 12)",
+      "Parallel conversations are consuming Matos's time with minor issues when he's in the office"
+    ],
+    blockers: [
+      {owner:"Saul — Installation", text:"Backsplash fabricated and installed before customer confirmation. Removal required."},
+      {owner:"Saul — Fabrication Error", text:"Backsplash cut 4\" wrong height on PO 54565. Reschedule needed."},
+      {owner:"Mercedes — Material Quality", text:"Taj Mahal slabs from supplier have a bowing defect. Supplier notified via Valeria."},
+      {owner:"Matos — Revenue Critical", text:"$0 closed against $100K June goal. Needs direct leadership conversation."}
+    ]
+  },
+  {
+    eyebrow: "Week 3",
+    dates: "Jun 22 – 25, 2026",
+    revenue: [
+      {name:"Eveline", value:"$0 logged", note:"No new closings recorded this week"},
+      {name:"Stephanie", value:"~$8K est.", note:"2 sales closed Jun 22–25"},
+      {name:"Jessica (HD)", value:"Pending", note:"No update pulled yet"},
+      {name:"Matos", value:"Pending", note:"No update pulled yet"}
+    ],
+    activity: [
+      {label:"Total Leads", value:"17", note:"Eveline + Julia, Jun 22–25"},
+      {label:"Appts Scheduled", value:"18", note:"Julia, Jun 22–25"},
+      {label:"Sales Closed", value:"2", note:"Stephanie 2 · Eveline 0"},
+      {label:"Sq Ft Fabricated", value:"654", note:"Mercedes, Jun 24 — all-time high"}
+    ],
+    worked: [
+      "Mercedes hit an all-time fabrication high: 654 sq ft on Jun 24",
+      "Julia held strong volume: 120 calls, 18 appointments across 4 days",
+      "Stephanie closed 2 sales despite a dip in call volume on Jun 24",
+      "Angela kept JT/QB systems updated every single day this week"
+    ],
+    attention: [
+      "Windson has not logged a single entry since Jun 19 — 6 days of silence on the dashboard",
+      "Eveline's lead volume dropped sharply and zero sales closed this week",
+      "Week 2 install blockers (Saul's fab errors, Taj Mahal slab defect) still show no resolution update",
+      "Matos's $100K June goal status has not been re-checked since Week 2 — needs a direct follow-up",
+      "Stephanie's call volume cratered on Jun 24 (2 calls) — worth asking about directly"
+    ],
+    blockers: [
+      {owner:"Mercedes — Material Quality", text:"Taj Mahal slab bowing defect — still open, no resolution logged."},
+      {owner:"Saul — Fabrication Error", text:"PO 54565 wrong-height cut — status unconfirmed."},
+      {owner:"Windson — Ownership", text:"No KPI entries for 6 consecutive days. Central topic for Friday's meeting."},
+      {owner:"Matos — Revenue Critical", text:"June goal status not re-confirmed since Week 2. Direct check-in needed."}
+    ]
+  }
+];
+
+let currentMeetingWeek = meetingWeeks.length - 1;
+
+function changeMeetingWeek(delta) {
+  const next = currentMeetingWeek + delta;
+  if (next >= 0 && next < meetingWeeks.length) {
+    currentMeetingWeek = next;
+    renderMeetingWeek();
+  }
+}
+
+function renderMeetingWeek() {
+  const w = meetingWeeks[currentMeetingWeek];
+  document.getElementById('wkEyebrow').textContent = w.eyebrow;
+  document.getElementById('wkDates').textContent = w.dates;
+  document.getElementById('wkPrevBtn').style.opacity = currentMeetingWeek === 0 ? '0.3' : '1';
+  document.getElementById('wkNextBtn').style.opacity = currentMeetingWeek === meetingWeeks.length - 1 ? '0.3' : '1';
+
+  let html = '';
+
+  // ACTIVITY KPI ROW
+  html += `<div class="kpi-row kpi-row-4">`;
+  w.activity.forEach(a => {
+    html += `<div class="kpi-card">
+      <div class="kpi-label">${a.label}</div>
+      <div class="kpi-value gold">${a.value}</div>
+      <div class="kpi-sub">${a.note}</div>
+    </div>`;
+  });
+  html += `</div>`;
+
+  // REVENUE ROW
+  html += `<div class="section-label">Revenue This Week — By Seller (Sales Control)</div>
+  <div class="kpi-row kpi-row-4">`;
+  w.revenue.forEach(r => {
+    html += `<div class="kpi-card">
+      <div class="kpi-label">${r.name}</div>
+      <div class="kpi-value green">${r.value}</div>
+      <div class="kpi-sub">${r.note}</div>
+    </div>`;
+  });
+  html += `</div>`;
+
+  // WORKED / ATTENTION
+  html += `<div class="grid-2" style="margin-top:8px;">
+    <div>
+      <div class="section-label" style="margin-top:0;">✓ What We Worked On</div>
+      <div class="card">
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;">
+          ${w.worked.map(x => `<li style="font-size:12px;color:var(--cream-dim);line-height:1.5;padding-left:18px;position:relative;"><span style="position:absolute;left:0;color:var(--green);font-weight:700;">✓</span>${x}</li>`).join('')}
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div class="section-label" style="margin-top:0;">! Points of Attention for Next Week</div>
+      <div class="card">
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;">
+          ${w.attention.map(x => `<li style="font-size:12px;color:var(--cream-dim);line-height:1.5;padding-left:18px;position:relative;"><span style="position:absolute;left:2px;color:var(--amber);font-weight:700;">!</span>${x}</li>`).join('')}
+        </ul>
+      </div>
+    </div>
+  </div>`;
+
+  // BLOCKERS
+  if (w.blockers && w.blockers.length) {
+    html += `<div class="section-label">Active Blockers — Requires Leadership Attention</div>
+    <div class="grid-2">`;
+    w.blockers.forEach(b => {
+      html += `<div class="alert-card red">
+        <div class="alert-icon">⚠</div>
+        <div>
+          <div class="alert-title" style="color:var(--red)">${b.owner}</div>
+          <div class="alert-body">${b.text}</div>
+        </div>
+      </div>`;
+    });
+    html += `</div>`;
+  }
+
+  document.getElementById('weeklyDashboardContent').innerHTML = html;
+}
+
+renderMeetingWeek();
+
 function switchTab(id) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   document.getElementById('tab-' + id).classList.add('active');
-  const tabs = ['team','exec','annual','stores','sellers'];
+  const tabs = ['weekly','team','exec','annual','stores','sellers'];
   const idx = tabs.indexOf(id);
   document.querySelectorAll('.tab')[idx].classList.add('active');
 }
