@@ -1248,7 +1248,31 @@ const meetingWeeks = [
     ],
     blockers: [
       {owner:"Team — Process", text:"KPI sheets just launched. Several columns inconsistently filled across agents."}
-    ]
+    ],
+    agents: {
+      sales: [
+        {name:"Julia", role:"SDR / Inside Sales — High Volume", status:"active",
+          kpis:[{label:"Calls Made",value:"170",note:"Week total",cls:"gold"},{label:"Leads Received",value:"38",note:"This week"},{label:"Appts Scheduled",value:"19",note:"Week total",cls:"green"},{label:"Revenue",value:"—",note:"No direct sales role",cls:""}],
+          progressLabel:"Weekly Activity", progressPct:92, progressNote:"Strong", blocker:null},
+        {name:"Stephanie", role:"Sales Agent — Countertops", status:"warn",
+          kpis:[{label:"Closings (Week)",value:"1",note:"This week",cls:"green"},{label:"Calls Made",value:"99",note:"Week 1 total",cls:"gold"},{label:"Customer Visits",value:"6",note:"Completed"},{label:"Revenue",value:"~$9.1K",note:"Partial week",cls:"green"}],
+          progressLabel:"Data Completeness", progressPct:40, progressNote:"Gaps in visits cols", blocker:"⚠ Missing visit/store columns"},
+        {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"active",
+          kpis:[{label:"Leads (Week)",value:"11",note:"Jun 1–4"},{label:"Calls Made",value:"6",note:"Jun 1–4",cls:"gold"},{label:"Alabama Visits",value:"3",note:"Store visits"},{label:"Revenue",value:"~$5.2K",note:"Partial week",cls:"green"}],
+          progressLabel:"Jun Goal — $42K", progressPct:12, progressNote:"12%", blocker:"⚠ 1 duplicate / wrong service lead"}
+      ],
+      ops: [
+        {name:"Mercedes", role:"Fabrication Manager", status:"active",
+          kpis:[{label:"Sq Ft (Week)",value:"~300",note:"Estimate",cls:"gold"},{label:"HD Orders",value:"5",note:"This week"},{label:"Estimates",value:"6",note:"Renovation",cls:"green"},{label:"Layouts",value:"3",note:"Approved for cut"}],
+          progressLabel:"Production Issues", progressPct:0, progressNote:"None logged", blocker:null},
+        {name:"Saul", role:"Installation Coordinator", status:"warn",
+          kpis:[{label:"First Calls",value:"—",note:"No data yet"},{label:"Installs",value:"—",note:"No data yet"},{label:"FAB POs",value:"—",note:"No data yet"},{label:"Status",value:"Onboarding",note:"Sheet just launched",cls:"amber"}],
+          progressLabel:"Sheet Adoption", progressPct:15, progressNote:"Just started", blocker:"⚠ Flagged as focused on other dept"},
+        {name:"Angela", role:"Admin / Front Desk", status:"active",
+          kpis:[{label:"Calls Handled",value:"—",note:"Sheet starting"},{label:"Templates",value:"—",note:"Sheet starting"},{label:"Fab Orders",value:"—",note:"Sheet starting"},{label:"Systems",value:"Setup",note:"JT/QB/RD",cls:"green"}],
+          progressLabel:"Sheet Adoption", progressPct:15, progressNote:"Just started", blocker:null}
+      ]
+    }
   },
   {
     eyebrow: "Week 2",
@@ -1284,7 +1308,31 @@ const meetingWeeks = [
       {owner:"Saul — Fabrication Error", text:"Backsplash cut 4\" wrong height on PO 54565. Reschedule needed."},
       {owner:"Mercedes — Material Quality", text:"Taj Mahal slabs from supplier have a bowing defect. Supplier notified via Valeria."},
       {owner:"Matos — Revenue Critical", text:"$0 closed against $100K June goal. Needs direct leadership conversation."}
-    ]
+    ],
+    agents: {
+      sales: [
+        {name:"Julia", role:"SDR / Inside Sales — High Volume", status:"active",
+          kpis:[{label:"Calls (Week)",value:"150",note:"Mon–Fri",cls:"gold"},{label:"Appts Set",value:"28",note:"Week total",cls:"green"},{label:"Leads Received",value:"27",note:"This week"},{label:"Follow-Ups",value:"97",note:"This week"}],
+          progressLabel:"Weekly Activity", progressPct:92, progressNote:"Strong", blocker:null},
+        {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"active",
+          kpis:[{label:"Calls Made",value:"21",note:"+ 23 SDR for Steph",cls:"gold"},{label:"Sales Closed",value:"2",note:"Jun 9 + Jun 10",cls:"green"},{label:"Leads (Week)",value:"9",note:"Jun 8–11"},{label:"Revenue",value:"~$21.4K",note:"49% of $42K goal",cls:"amber"}],
+          progressLabel:"Jun Goal — $42K", progressPct:49, progressNote:"49%", blocker:null},
+        {name:"Stephanie", role:"Sales Agent — Countertops", status:"active",
+          kpis:[{label:"Closings (Week)",value:"4",note:"This week",cls:"green"},{label:"Visits Done",value:"7",note:"Completed"},{label:"Pending",value:"14",note:"Proposals",cls:"amber"},{label:"Revenue",value:"~$37.2K",note:"48% of $72K goal",cls:"amber"}],
+          progressLabel:"Jun Goal — $72K", progressPct:48, progressNote:"48%", blocker:null}
+      ],
+      ops: [
+        {name:"Mercedes", role:"Fabrication Manager", status:"active",
+          kpis:[{label:"Sq Ft (Week)",value:"320+",note:"Jun 9 peak",cls:"gold"},{label:"Layouts",value:"18",note:"This week"},{label:"Estimates",value:"9",note:"Sent"},{label:"Issues",value:"2",note:"Active",cls:"amber"}],
+          progressLabel:"Production Issues", progressPct:30, progressNote:"2 active", blocker:"⚠ Taj Mahal slab bowing defect"},
+        {name:"Saul", role:"Installation Coordinator", status:"warn",
+          kpis:[{label:"Installs (Week)",value:"11",note:"This week"},{label:"Completed",value:"8",note:"This week",cls:"green"},{label:"Reschedules",value:"3",note:"Material breakage",cls:"amber"},{label:"Fab Errors",value:"4",note:"Week of Jun 8–9",cls:"red"}],
+          progressLabel:"Install Issues", progressPct:80, progressNote:"Critical", blocker:"🔴 BS fabricated before customer confirmation"},
+        {name:"Angela", role:"Admin / Front Desk", status:"active",
+          kpis:[{label:"Calls Handled",value:"43",note:"Jun 8–10",cls:"gold"},{label:"Templates",value:"30",note:"Jun 8–10"},{label:"Fab Orders",value:"8",note:"This week"},{label:"Sales Assisted",value:"2",note:"Jun 9–10",cls:"green"}],
+          progressLabel:"Systems Updated", progressPct:100, progressNote:"JT/QB/RD", blocker:null}
+      ]
+    }
   },
   {
     eyebrow: "Week 3",
@@ -1319,7 +1367,34 @@ const meetingWeeks = [
       {owner:"Saul — Fabrication Error", text:"PO 54565 wrong-height cut — status unconfirmed."},
       {owner:"Windson — Ownership", text:"No KPI entries for 6 consecutive days. Central topic for Friday's meeting."},
       {owner:"Matos — Revenue Critical", text:"June goal status not re-confirmed since Week 2. Direct check-in needed."}
-    ]
+    ],
+    agents: {
+      sales: [
+        {name:"Julia", role:"SDR / Inside Sales — High Volume", status:"active",
+          kpis:[{label:"Calls (Week)",value:"120",note:"Mon–Thu",cls:"gold"},{label:"Appts Set",value:"18",note:"Week total",cls:"green"},{label:"Leads Received",value:"11",note:"This week"},{label:"Follow-Ups",value:"69",note:"This week"}],
+          progressLabel:"Notes", progressPct:70, progressNote:"Complex estimate flagged", blocker:null},
+        {name:"Stephanie", role:"Sales Agent — Countertops", status:"warn",
+          kpis:[{label:"Calls — Jun 22",value:"28",note:"Strong open",cls:"gold"},{label:"Calls — Jun 24",value:"2",note:"Sharp dip",cls:"red"},{label:"Sales Closed",value:"2",note:"This week",cls:"green"},{label:"Revenue",value:"~$8K est.",note:"2 closings",cls:"green"}],
+          progressLabel:"Sales Closed This Week", progressPct:50, progressNote:"2", blocker:"⚠ Jun 24 call volume cratered"},
+        {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"warn",
+          kpis:[{label:"Leads (Week)",value:"6",note:"Jun 22–25",cls:"amber"},{label:"Calls Made",value:"4",note:"Jun 22–25"},{label:"Sales Closed",value:"0",note:"No closes",cls:"red"},{label:"Revenue",value:"$0",note:"No closings logged",cls:"red"}],
+          progressLabel:"Lead Volume", progressPct:25, progressNote:"Down vs prior weeks", blocker:"⚠ Jun 25 — duplicate lead flagged"}
+      ],
+      ops: [
+        {name:"Mercedes", role:"Fabrication Manager", status:"active",
+          kpis:[{label:"Sq Ft Fabricated",value:"654",note:"Jun 24 · all-time high",cls:"gold"},{label:"HD Orders",value:"11",note:"Jun 24"},{label:"Slabs Ordered",value:"2",note:"TME, Jun 24",cls:"green"},{label:"Renovation/Layout",value:"2",note:"Matos + MM"}],
+          progressLabel:"Production Trend", progressPct:100, progressNote:"↑ vs prior weeks", blocker:"⚠ Taj Mahal slab bowing defect (open)"},
+        {name:"Saul", role:"Installation Coordinator", status:"warn",
+          kpis:[{label:"Installs Confirmed",value:"8",note:"Jun 4–5 (stale)"},{label:"Rescheduled",value:"3",note:"Material breakage",cls:"amber"},{label:"FAB POs",value:"9",note:"Jun 4–5 (stale)"},{label:"Fab Errors",value:"4",note:"No new update",cls:"red"}],
+          progressLabel:"Data Freshness", progressPct:20, progressNote:"No update since Jun 12", blocker:"🔴 No new entries — status unconfirmed"},
+        {name:"Angela", role:"Admin / Front Desk", status:"active",
+          kpis:[{label:"Calls Answered",value:"20",note:"Jun 22–25",cls:"gold"},{label:"Templates",value:"30",note:"Jun 22–25"},{label:"Fab Orders",value:"22",note:"Jun 22–25"},{label:"Sales Assisted",value:"0",note:"No closes",cls:"amber"}],
+          progressLabel:"Systems Updated", progressPct:100, progressNote:"JT/QB — every day", blocker:null}
+      ],
+      flagged: [
+        {name:"Windson", role:"Sales Agent", note:"No entries since Jun 19 — 6 days without an update"}
+      ]
+    }
   }
 ];
 
@@ -1331,6 +1406,49 @@ function changeMeetingWeek(delta) {
     currentMeetingWeek = next;
     renderMeetingWeek();
   }
+}
+
+function renderSellerKpis(kpis) {
+  return kpis.map(k => `
+    <div class="stat-box">
+      <div class="stat-label">${k.label}</div>
+      <div class="stat-val ${k.cls ? 'text-' + k.cls : ''}">${k.value}</div>
+    </div>`).join('');
+}
+
+function renderSellerCard(agent) {
+  const fillColor = agent.progressPct >= 70 ? 'green' : (agent.progressPct >= 40 ? 'amber' : 'red');
+  return `<div class="seller-card">
+    <div class="seller-header">
+      <div>
+        <div class="seller-name">${agent.name}</div>
+        <div class="seller-role">${agent.role}</div>
+      </div>
+      <div class="status-dot ${agent.status}"></div>
+    </div>
+    <div class="seller-stats">${renderSellerKpis(agent.kpis)}</div>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>${agent.progressLabel}</span><span class="text-${fillColor}">${agent.progressNote}</span></div>
+      <div class="progress-track"><div class="progress-fill ${fillColor}" style="width:${agent.progressPct}%"></div></div>
+    </div>
+    ${agent.blocker ? `<div style="margin-top:8px;display:inline-block;background:rgba(224,82,82,.1);border:1px solid rgba(224,82,82,.25);color:var(--red);font-size:10px;padding:3px 8px;border-radius:4px;font-weight:500;">${agent.blocker}</div>` : ''}
+  </div>`;
+}
+
+function renderFlaggedSellerCard(agent) {
+  return `<div class="seller-card" style="border:1px dashed var(--red);background:transparent;">
+    <div class="seller-header">
+      <div>
+        <div class="seller-name" style="color:var(--cream-dim)">${agent.name}</div>
+        <div class="seller-role">${agent.role}</div>
+      </div>
+      <div class="status-dot" style="background:var(--red);box-shadow:0 0 6px var(--red);"></div>
+    </div>
+    <div style="padding:14px 4px;text-align:center;">
+      <div style="font-size:18px;margin-bottom:6px;">⚠</div>
+      <div style="font-size:11px;color:var(--red);font-weight:600;line-height:1.5;">${agent.note}</div>
+    </div>
+  </div>`;
 }
 
 function renderMeetingWeek() {
@@ -1364,6 +1482,30 @@ function renderMeetingWeek() {
     </div>`;
   });
   html += `</div>`;
+
+  // SALES TEAM CARDS
+  if (w.agents && w.agents.sales) {
+    html += `<div class="section-label">Sales Team</div>
+    <div class="seller-grid">
+      ${w.agents.sales.map(renderSellerCard).join('')}
+    </div>`;
+  }
+
+  // OPERATIONS CARDS
+  if (w.agents && w.agents.ops) {
+    html += `<div class="section-label">Operations & Fabrication</div>
+    <div class="seller-grid">
+      ${w.agents.ops.map(renderSellerCard).join('')}
+    </div>`;
+  }
+
+  // FLAGGED / NO-DATA AGENTS
+  if (w.agents && w.agents.flagged && w.agents.flagged.length) {
+    html += `<div class="section-label">Needs Attention</div>
+    <div class="seller-grid">
+      ${w.agents.flagged.map(renderFlaggedSellerCard).join('')}
+    </div>`;
+  }
 
   // WORKED / ATTENTION
   html += `<div class="grid-2" style="margin-top:8px;">
