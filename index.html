@@ -1338,10 +1338,10 @@ const meetingWeeks = [
     eyebrow: "Week 3",
     dates: "Jun 22 – 25, 2026",
     revenue: [
-      {name:"Eveline", value:"$0 logged", note:"No new closings recorded this week"},
-      {name:"Stephanie", value:"~$8K est.", note:"2 sales closed Jun 22–25"},
-      {name:"Jessica (HD)", value:"Pending", note:"No update pulled yet"},
-      {name:"Matos", value:"Pending", note:"No update pulled yet"}
+      {name:"Eveline", value:"$17,506.40", note:"2 closings — Christine Cooley $2.6K, Carol Allen $14.9K"},
+      {name:"Stephanie", value:"$5,449.00", note:"2 closings — Lampert $3.97K, Reimold $1.48K"},
+      {name:"Jessica (HD)", value:"$4,675.00", note:"3 closings, Shower Glass — Jun 22, 23, 25"},
+      {name:"Matos", value:"$125,553.24", note:"14 entries logged Jun 24 — Patillo Manor lot + commercial batch"}
     ],
     activity: [
       {label:"Total Leads", value:"17", note:"Eveline + Julia, Jun 22–25"},
@@ -1353,20 +1353,22 @@ const meetingWeeks = [
       "Mercedes hit an all-time fabrication high: 654 sq ft on Jun 24",
       "Julia held strong volume: 120 calls, 18 appointments across 4 days",
       "Stephanie closed 2 sales despite a dip in call volume on Jun 24",
-      "Angela kept JT/QB systems updated every single day this week"
+      "Angela kept JT/QB systems updated every single day this week",
+      "Matos logged $125.5K across 14 closings on Jun 24 — largest single-day revenue entry on record (Patillo Manor lot + commercial batch)",
+      "Eveline closed 2 sales totaling $17.5K, led by a $14.9K closing with Carol Allen — strong week despite her own KPI sheet showing 0 in the daily activity log"
     ],
     attention: [
       "Windson has not logged a single entry since Jun 19 — 6 days of silence on the dashboard",
-      "Eveline's lead volume dropped sharply and zero sales closed this week",
+      "Eveline's KPI activity sheet shows 0 sales closed this week, but Sales Control shows 2 real closings ($17.5K) — her own daily log isn't reflecting her actual results",
       "Week 2 install blockers (Saul's fab errors, Taj Mahal slab defect) still show no resolution update",
-      "Matos's $100K June goal status has not been re-checked since Week 2 — needs a direct follow-up",
+      "Matos's $125.5K was logged in a single batch on Jun 24, not spread across the week — worth confirming these are new closings and not backlogged paperwork catching up",
       "Stephanie's call volume cratered on Jun 24 (2 calls) — worth asking about directly"
     ],
     blockers: [
       {owner:"Mercedes — Material Quality", text:"Taj Mahal slab bowing defect — still open, no resolution logged."},
       {owner:"Saul — Fabrication Error", text:"PO 54565 wrong-height cut — status unconfirmed."},
       {owner:"Windson — Ownership", text:"No KPI entries for 6 consecutive days. Central topic for Friday's meeting."},
-      {owner:"Matos — Revenue Critical", text:"June goal status not re-confirmed since Week 2. Direct check-in needed."}
+      {owner:"Eveline — Reporting Gap", text:"Daily KPI sheet shows 0 sales closed, but Sales Control confirms 2 real closings worth $17.5K. Sheet isn't being updated after a sale closes."}
     ],
     agents: {
       sales: [
@@ -1374,11 +1376,11 @@ const meetingWeeks = [
           kpis:[{label:"Calls (Week)",value:"120",note:"Mon–Thu",cls:"gold"},{label:"Appts Set",value:"18",note:"Week total",cls:"green"},{label:"Leads Received",value:"11",note:"This week"},{label:"Follow-Ups",value:"69",note:"This week"}],
           progressLabel:"Notes", progressPct:70, progressNote:"Complex estimate flagged", blocker:null},
         {name:"Stephanie", role:"Sales Agent — Countertops", status:"warn",
-          kpis:[{label:"Calls — Jun 22",value:"28",note:"Strong open",cls:"gold"},{label:"Calls — Jun 24",value:"2",note:"Sharp dip",cls:"red"},{label:"Sales Closed",value:"2",note:"This week",cls:"green"},{label:"Revenue",value:"~$8K est.",note:"2 closings",cls:"green"}],
+          kpis:[{label:"Calls — Jun 22",value:"28",note:"Strong open",cls:"gold"},{label:"Calls — Jun 24",value:"2",note:"Sharp dip",cls:"red"},{label:"Sales Closed",value:"2",note:"This week",cls:"green"},{label:"Revenue",value:"$5,449.00",note:"Lampert + Reimold",cls:"green"}],
           progressLabel:"Sales Closed This Week", progressPct:50, progressNote:"2", blocker:"⚠ Jun 24 call volume cratered"},
         {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"warn",
-          kpis:[{label:"Leads (Week)",value:"6",note:"Jun 22–25",cls:"amber"},{label:"Calls Made",value:"4",note:"Jun 22–25"},{label:"Sales Closed",value:"0",note:"No closes",cls:"red"},{label:"Revenue",value:"$0",note:"No closings logged",cls:"red"}],
-          progressLabel:"Lead Volume", progressPct:25, progressNote:"Down vs prior weeks", blocker:"⚠ Jun 25 — duplicate lead flagged"}
+          kpis:[{label:"Leads (Week)",value:"6",note:"Jun 22–25",cls:"amber"},{label:"Calls Made",value:"4",note:"Jun 22–25"},{label:"Sales Closed",value:"2",note:"Per Sales Control",cls:"green"},{label:"Revenue",value:"$17,506.40",note:"Cooley $2.6K + Allen $14.9K",cls:"green"}],
+          progressLabel:"Lead Volume", progressPct:25, progressNote:"Down vs prior weeks", blocker:"⚠ KPI sheet shows 0 sales — Sales Control shows 2 ($17.5K)"}
       ],
       ops: [
         {name:"Mercedes", role:"Fabrication Manager", status:"active",
