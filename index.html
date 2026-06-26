@@ -1299,9 +1299,9 @@ const meetingWeeks = [
     eyebrow: "Week 1",
     dates: "Jun 1 – 5, 2026",
     revenue: [
-      {name:"Eveline", value:"~$5.2K", note:"Partial week, early June"},
-      {name:"Stephanie", value:"~$9.1K", note:"Partial week, early June"},
-      {name:"Jessica (HD)", value:"~$4.5K", note:"Partial week, early June"},
+      {name:"Eveline", value:"$14,514.20", note:"3 closings — Willis $7.8K, Dickson $2.2K, Amerson $4.5K"},
+      {name:"Stephanie", value:"$25,058.00", note:"6 closings — Holmes $12K, Walker $4.5K + 4 more"},
+      {name:"Jessica (HD)", value:"$7,875.00", note:"3 closings — Pryor, Slack, Adedeji"},
       {name:"Matos", value:"$0", note:"No closings logged"},
       {name:"Anderson", value:"—", note:"Onboarding — not yet on Sales Control"}
     ],
@@ -1309,17 +1309,19 @@ const meetingWeeks = [
       {label:"Total Leads", value:"13", note:"Eveline + Julia + Stephanie"},
       {label:"Appts Scheduled", value:"12", note:"All SDR agents"},
       {label:"Sales Closed", value:"3", note:"Stephanie 1 · Julia SDR 2"},
-      {label:"Sq Ft Fabricated", value:"~300", note:"Mercedes, estimate"}
+      {label:"Sq Ft Fabricated", value:"350", note:"Mercedes, Jun 3 entry"}
     ],
     worked: [
       "First full week using the KPI sheet across the sales team",
-      "Eveline began gathering 2 months of historical sales data per Glendon's request",
+      "Stephanie closed $25K across 6 sales — strongest revenue week of the period",
+      "Eveline closed $14.5K across 3 sales, led by a $7.8K closing with Kristen Willis",
       "Julia held 100+ calls/day — strongest activity volume on the team"
     ],
     attention: [
       "Stephanie's KPI sheet has gaps — missing visit and store-visit columns",
       "Saul and Grace flagged as focused on a different department — scope needs clarity",
-      "Daily logging still inconsistent — numbers not yet trend-reliable"
+      "Daily logging still inconsistent — numbers not yet trend-reliable",
+      "Matos logged $0 in Sales Control this week — first sign of the pattern that continues into Week 2"
     ],
     blockers: [
       {owner:"Team — Process", text:"KPI sheets just launched. Several columns inconsistently filled across agents."}
@@ -1330,10 +1332,10 @@ const meetingWeeks = [
           kpis:[{label:"Calls Made",value:"170",note:"Week total",cls:"gold"},{label:"Leads Received",value:"38",note:"This week"},{label:"Appts Scheduled",value:"19",note:"Week total",cls:"green"},{label:"Revenue",value:"—",note:"No direct sales role",cls:""}],
           progressLabel:"Weekly Activity", progressPct:92, progressNote:"Strong", blocker:null},
         {name:"Stephanie", role:"Sales Agent — Countertops", status:"warn",
-          kpis:[{label:"Closings (Week)",value:"1",note:"This week",cls:"green"},{label:"Calls Made",value:"99",note:"Week 1 total",cls:"gold"},{label:"Customer Visits",value:"6",note:"Completed"},{label:"Revenue",value:"~$9.1K",note:"Partial week",cls:"green"}],
+          kpis:[{label:"Closings (Week)",value:"6",note:"Per Sales Control",cls:"green"},{label:"Calls Made",value:"99",note:"Week 1 total",cls:"gold"},{label:"Customer Visits",value:"6",note:"Completed"},{label:"Revenue",value:"$25,058.00",note:"Holmes $12K + 5 more",cls:"green"}],
           progressLabel:"Data Completeness", progressPct:40, progressNote:"Gaps in visits cols", blocker:"⚠ Missing visit/store columns"},
         {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"active",
-          kpis:[{label:"Leads (Week)",value:"11",note:"Jun 1–4"},{label:"Calls Made",value:"6",note:"Jun 1–4",cls:"gold"},{label:"Alabama Visits",value:"3",note:"Store visits"},{label:"Revenue",value:"~$5.2K",note:"Partial week",cls:"green"}],
+          kpis:[{label:"Leads (Week)",value:"11",note:"Jun 1–4"},{label:"Calls Made",value:"6",note:"Jun 1–4",cls:"gold"},{label:"Alabama Visits",value:"3",note:"Store visits"},{label:"Revenue",value:"$14,514.20",note:"3 closings, incl. Willis $7.8K",cls:"green"}],
           progressLabel:"Jun Goal — $42K", progressPct:12, progressNote:"12%", blocker:"⚠ 1 duplicate / wrong service lead"},
         {name:"Anderson", role:"Sales Agent — Onboarding", status:"pending",
           kpis:[{label:"Leads (Week)",value:"—",note:"No data yet"},{label:"Calls Made",value:"—",note:"No data yet"},{label:"Sales Closed",value:"—",note:"No data yet"},{label:"Revenue",value:"—",note:"Not yet on Sales Control"}],
@@ -1344,7 +1346,7 @@ const meetingWeeks = [
       ],
       ops: [
         {name:"Mercedes", role:"Fabrication Manager", status:"active",
-          kpis:[{label:"Sq Ft (Week)",value:"~300",note:"Estimate",cls:"gold"},{label:"HD Orders",value:"5",note:"This week"},{label:"Estimates",value:"6",note:"Renovation",cls:"green"},{label:"Layouts",value:"3",note:"Approved for cut"}],
+          kpis:[{label:"Sq Ft (Week)",value:"350",note:"Jun 3 entry",cls:"gold"},{label:"HD Orders",value:"7",note:"Jun 3 — HD + ED Granite"},{label:"Estimates",value:"4",note:"Windson renovation",cls:"green"},{label:"Layouts",value:"3",note:"Robot cut + cabinet"}],
           progressLabel:"Production Issues", progressPct:0, progressNote:"None logged", blocker:null},
         {name:"Saul", role:"Installation Coordinator", status:"warn",
           kpis:[{label:"First Calls",value:"—",note:"No data yet"},{label:"Installs",value:"—",note:"No data yet"},{label:"FAB POs",value:"—",note:"No data yet"},{label:"Status",value:"Onboarding",note:"Sheet just launched",cls:"amber"}],
@@ -1359,10 +1361,10 @@ const meetingWeeks = [
     eyebrow: "Week 2",
     dates: "Jun 8 – 12, 2026",
     revenue: [
-      {name:"Eveline", value:"~$21.4K", note:"49% of June goal ($42K) reached mid-month"},
-      {name:"Stephanie", value:"~$37.2K", note:"48% of June goal ($72K) reached mid-month"},
-      {name:"Jessica (HD)", value:"~$18.7K", note:"47% of June goal ($40K)"},
-      {name:"Matos", value:"$0", note:"0% of $100K June goal — critical"},
+      {name:"Eveline", value:"$2,495.80", note:"1 closing — Olivia Thompson"},
+      {name:"Stephanie", value:"$12,130.00", note:"3 closings — Francis $7K, James $4.08K, Hanifan $1.04K"},
+      {name:"Jessica (HD)", value:"$13,203.00", note:"6 closings, Shower Glass — Jun 8–12"},
+      {name:"Matos", value:"$0", note:"No closings logged"},
       {name:"Anderson", value:"—", note:"Onboarding — not yet on Sales Control"}
     ],
     activity: [
@@ -1373,11 +1375,13 @@ const meetingWeeks = [
     ],
     worked: [
       "Julia delivered her strongest week: 150 calls, 28 appointments scheduled",
-      "Eveline closed 2 sales (Jun 9, Jun 10) and logged 8 Alabama store visits",
+      "Jessica led revenue this week with $13.2K across 6 Shower Glass closings",
+      "Stephanie closed $12.1K across 3 sales, led by a $7K closing with Francis",
       "Mercedes hit a 320 sq ft fabrication day — best of the period so far",
       "Glendon ran the first full All-Team Meeting focused on KPI continuance"
     ],
     attention: [
+      "Eveline's revenue dropped to $2.5K (1 closing) from $14.5K the prior week — worth checking in on directly",
       "Matos is at $0 against a $100K June goal — the largest single revenue risk in the company",
       "Saul flagged a major communication breakdown: decisions between templater, customer and Matos not reaching him",
       "3 jobs had zero information in MM Jobs system, causing downstream issues",
@@ -1397,10 +1401,10 @@ const meetingWeeks = [
           kpis:[{label:"Calls (Week)",value:"150",note:"Mon–Fri",cls:"gold"},{label:"Appts Set",value:"28",note:"Week total",cls:"green"},{label:"Leads Received",value:"27",note:"This week"},{label:"Follow-Ups",value:"97",note:"This week"}],
           progressLabel:"Weekly Activity", progressPct:92, progressNote:"Strong", blocker:null},
         {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"active",
-          kpis:[{label:"Calls Made",value:"21",note:"+ 23 SDR for Steph",cls:"gold"},{label:"Sales Closed",value:"2",note:"Jun 9 + Jun 10",cls:"green"},{label:"Leads (Week)",value:"9",note:"Jun 8–11"},{label:"Revenue",value:"~$21.4K",note:"49% of $42K goal",cls:"amber"}],
+          kpis:[{label:"Calls Made",value:"21",note:"+ 23 SDR for Steph",cls:"gold"},{label:"Sales Closed",value:"1",note:"Per Sales Control",cls:"green"},{label:"Leads (Week)",value:"9",note:"Jun 8–11"},{label:"Revenue",value:"$2,495.80",note:"Olivia Thompson",cls:"amber"}],
           progressLabel:"Jun Goal — $42K", progressPct:49, progressNote:"49%", blocker:null},
         {name:"Stephanie", role:"Sales Agent — Countertops", status:"active",
-          kpis:[{label:"Closings (Week)",value:"4",note:"This week",cls:"green"},{label:"Visits Done",value:"7",note:"Completed"},{label:"Pending",value:"14",note:"Proposals",cls:"amber"},{label:"Revenue",value:"~$37.2K",note:"48% of $72K goal",cls:"amber"}],
+          kpis:[{label:"Closings (Week)",value:"3",note:"Per Sales Control",cls:"green"},{label:"Visits Done",value:"7",note:"Completed"},{label:"Pending",value:"14",note:"Proposals",cls:"amber"},{label:"Revenue",value:"$12,130.00",note:"Francis $7K + 2 more",cls:"amber"}],
           progressLabel:"Jun Goal — $72K", progressPct:48, progressNote:"48%", blocker:null},
         {name:"Anderson", role:"Sales Agent — Onboarding", status:"pending",
           kpis:[{label:"Leads (Week)",value:"—",note:"No data yet"},{label:"Calls Made",value:"—",note:"No data yet"},{label:"Sales Closed",value:"—",note:"No data yet"},{label:"Revenue",value:"—",note:"Not yet on Sales Control"}],
