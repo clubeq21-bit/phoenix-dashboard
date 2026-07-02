@@ -394,7 +394,7 @@
   </div>
   <div class="header-right">
     <div class="live-dot"></div>
-    <div class="period-badge">Jun 25, 2026</div>
+    <div class="period-badge">Jul 2, 2026</div>
   </div>
 </div>
 
@@ -1491,6 +1491,76 @@ const meetingWeeks = [
         {name:"Angela", role:"Admin / Front Desk", status:"active",
           kpis:[{label:"Calls Answered",value:"20",note:"Jun 22–25",cls:"gold"},{label:"Templates",value:"30",note:"Jun 22–25"},{label:"Fab Orders",value:"22",note:"Jun 22–25"},{label:"Sales Assisted",value:"0",note:"No closes",cls:"amber"}],
           progressLabel:"Systems Updated", progressPct:100, progressNote:"JT/QB — every day", blocker:null}
+      ]
+    }
+  },
+  {
+    eyebrow: "Week 4",
+    dates: "Jun 26 – Jul 2, 2026",
+    revenue: [
+      {name:"Eveline", value:"$0", note:"No new closings in Sales Control Jun 26–Jul 2"},
+      {name:"Stephanie", value:"$14,262.00", note:"Reynolds $7.8K (Jun 26) + Marki $6.4K (Jun 29)"},
+      {name:"Jessica (HD)", value:"$17,590.00", note:"6 closings Jun 26–Jul 1 — Shower Glass + Cabinets"},
+      {name:"Matos", value:"$0", note:"No new entries after Jun 24 batch"},
+      {name:"Windson", value:"$19,700.00", note:"2 closings Jun 24 — retroactively logged this week"},
+      {name:"Anderson", value:"—", note:"Onboarding — not yet on Sales Control"}
+    ],
+    activity: [
+      {label:"Total Leads", value:"10", note:"Eveline (3) + Julia (10) — Stephanie/Windson untracked"},
+      {label:"Appts Scheduled", value:"13", note:"Julia (10) + Eveline (3)"},
+      {label:"Sales Closed", value:"4", note:"Stephanie (2) + Windson (2 retroactive)"},
+      {label:"Sq Ft Fabricated", value:"Pending", note:"Mercedes — no Week 4 entry yet"}
+    ],
+    worked: [
+      "Windson retroactively filled his KPI sheet — 6/22–6/25 entries logged, including 2 closings worth $19,700 on Jun 24",
+      "Stephanie closed $14.2K across 2 sales (Reynolds Jun 26, Marki Jun 29)",
+      "Jessica delivered her strongest revenue week: $17.6K across 6 closings Jun 26–Jul 1",
+      "Julia maintained consistent volume through the week: 98 calls, 10 appointments Jun 26–Jul 1",
+      "Anderson showing consistent onboarding progress: 3–4 leads/appts/visits per day, asking questions about RD Station, QuickBooks, HD Portal",
+      "Eveline returned to activity Jun 29–Jul 1 after a quiet Jun 26"
+    ],
+    attention: [
+      "Windson's $19,700 in sales was never visible until he retroactively filled the sheet — this is the ownership gap in reverse: he was selling but not recording",
+      "Eveline had zero activity on Jun 26 and no closings this entire period — worth a direct check-in before the meeting",
+      "Matos has no new Sales Control entries since the Jun 24 batch — second consecutive week of $0 logged",
+      "Mercedes KPI has no Week 4 entry yet — fabrication data gap",
+      "Angela's Sales Assisted dropped to 0 — no sales closed in her presence this week",
+      "Stephanie's call volume is inconsistent: 34 calls on Jun 29, 0 on Jun 26 — pattern needs attention"
+    ],
+    blockers: [
+      {owner:"Windson — Reporting Gap (Resolved)", text:"Retroactively filled KPI sheet for Jun 22–25. 2 sales closed Jun 24 ($19,700) were invisible until now. Pattern: selling but not recording in real time.", resolved:true},
+      {owner:"Eveline — Activity Gap", text:"Zero activity logged on Jun 26. No new closings in Sales Control Jun 26–Jul 2. KPI sheet shows zero calls on 06/26."},
+      {owner:"Matos — Revenue Visibility", text:"No new entries in Sales Control after Jun 24 batch ($125K). Two consecutive weeks without logged closings."},
+      {owner:"Mercedes — Data Gap", text:"No KPI entry for Week 4 yet. Fabrication volume unknown for Jun 26–Jul 2."}
+    ],
+    agents: {
+      sales: [
+        {name:"Julia", role:"SDR / Inside Sales — High Volume", status:"active",
+          kpis:[{label:"Calls (Week)",value:"98",note:"Jun 26–Jul 1",cls:"gold"},{label:"Appts Set",value:"10",note:"Week total",cls:"green"},{label:"Leads Received",value:"10",note:"Jun 26–Jul 1"},{label:"Notes",value:"HD Work",note:"Cleared HD system backlog Jun 27",cls:"amber"}],
+          progressLabel:"Weekly Activity", progressPct:88, progressNote:"Strong, consistent", blocker:null},
+        {name:"Stephanie", role:"Sales Agent — Countertops", status:"active",
+          kpis:[{label:"Calls — Jun 29",value:"34",note:"Strong rebound",cls:"gold"},{label:"Sales — Jun 26",value:"1",note:"Reynolds $7.8K",cls:"green"},{label:"Sales — Jun 29",value:"1",note:"Marki $6.4K",cls:"green"},{label:"Revenue",value:"$14,262.00",note:"2 closings Jun 26+29",cls:"green"}],
+          progressLabel:"Revenue Week 4", progressPct:70, progressNote:"$14.2K", blocker:"⚠ Jun 26 — no calls logged"},
+        {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"warn",
+          kpis:[{label:"Leads (Jun 29-Jul1)",value:"6",note:"Back in action"},{label:"Calls Made",value:"6",note:"Jun 29–Jul 1"},{label:"Sales Closed",value:"0",note:"No closings",cls:"red"},{label:"Revenue",value:"$0",note:"No Sales Control entry",cls:"red"}],
+          progressLabel:"Lead Volume", progressPct:30, progressNote:"Zero activity Jun 26", blocker:"⚠ Jun 26 zero activity — KPI sheet blank"},
+        {name:"Windson", role:"Sales Agent", status:"active",
+          kpis:[{label:"Leads 6/22–25",value:"9",note:"Retroactively logged"},{label:"Calls 6/22–25",value:"21",note:"Retroactively logged"},{label:"Sales Closed",value:"2",note:"Jun 24 — $19,700",cls:"green"},{label:"Revenue",value:"$19,700.00",note:"2 closings retroactive",cls:"green"}],
+          progressLabel:"Revenue Week 4", progressPct:85, progressNote:"$19.7K — retroactive", blocker:"⚠ Logged late — not real-time. Revenue was invisible until filled."},
+        {name:"Anderson", role:"Sales Agent — Onboarding", status:"partial",
+          kpis:[{label:"Leads/Day",value:"3–4",note:"Jun 22–26",cls:"amber"},{label:"Appts/Day",value:"3–4",note:"Consistent"},{label:"Training Q's",value:"3",note:"RD, QB, HD Portal"},{label:"Sales Closed",value:"0",note:"Still onboarding"}],
+          progressLabel:"Onboarding Progress", progressPct:50, progressNote:"Consistent daily activity", blocker:"⚠ RD Station + QuickBooks questions — needs training"}
+      ],
+      ops: [
+        {name:"Mercedes", role:"Fabrication Manager", status:"warn",
+          kpis:[{label:"Sq Ft Fabricated",value:"Pending",note:"No Week 4 entry",cls:"amber"},{label:"Last Entry",value:"Jun 24",note:"654 sq ft"},{label:"HD Orders",value:"Pending",note:"No data"},{label:"Issues",value:"Open",note:"Taj Mahal defect",cls:"red"}],
+          progressLabel:"Data Entry", progressPct:0, progressNote:"No Week 4 data", blocker:"⚠ No KPI entry for Week 4 yet"},
+        {name:"Saul", role:"Installation Coordinator", status:"warn",
+          kpis:[{label:"Last Update",value:"Jun 12",note:"Still stale",cls:"red"},{label:"Fab Errors",value:"Open",note:"PO 54565"},{label:"Status",value:"Unknown",note:"No new entries",cls:"red"},{label:"Reschedules",value:"Open",note:"From Week 2",cls:"amber"}],
+          progressLabel:"Data Freshness", progressPct:10, progressNote:"Stale — Jun 12 last entry", blocker:"🔴 3 weeks without KPI update"},
+        {name:"Angela", role:"Admin / Front Desk", status:"active",
+          kpis:[{label:"Status",value:"Active",note:"Jun 22–25 complete",cls:"green"},{label:"Templates",value:"30",note:"Jun 22–25"},{label:"Fab Orders",value:"22",note:"Jun 22–25"},{label:"Sales Assisted",value:"0",note:"Week 4 pending",cls:"amber"}],
+          progressLabel:"Week 4 Data", progressPct:50, progressNote:"Partial", blocker:null}
       ]
     }
   }
