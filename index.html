@@ -1365,6 +1365,79 @@ const meetingWeeks = [
       ]
     }
   }
+,
+  {
+    eyebrow: "Week 5",
+    dates: "Jul 3 – 9, 2026",
+    revenue: [
+      {name:"Eveline", value:"$16,282.20", note:"5 closings — Begg $3K, Cotney $2.8K, Roller $3.3K, Branch $1.7K, Unan $5.6K"},
+      {name:"Stephanie", value:"$22,979.60", note:"6 closings — Monk $11K (Jul 8), Wilson $5.8K (Jul 6) + 4 more"},
+      {name:"Jessica (HD)", value:"$15,675.50", note:"7 closings Shower Glass — 4 on Jul 3, Dietrich Jul 6, Liburd + West Jul 9"},
+      {name:"Matos", value:"$0", note:"No new entries this week"},
+      {name:"Windson", value:"$0", note:"No new entries this week"},
+      {name:"Anderson", value:"—", note:"Onboarding — not yet on Sales Control"}
+    ],
+    activity: [
+      {label:"Total Leads", value:"26", note:"Julia (19) + Eveline (7)"},
+      {label:"Appts Scheduled", value:"24", note:"Julia (14) + Eveline (10)"},
+      {label:"Sales Closed", value:"11", note:"Stephanie (4 days) + Eveline (5) + Jessica (7 Shower Glass)"},
+      {label:"Sq Ft Fabricated", value:"Pending", note:"Mercedes — no Week 5 entry yet"}
+    ],
+    worked: [
+      "Stephanie delivered her strongest single week: $22,979 across 6 closings — led by Monk $11K on Jul 8",
+      "Eveline rebounded with 5 closings totaling $16,282 — best revenue week since Week 1",
+      "Jessica consistent: 7 Shower Glass closings, $15,675",
+      "Julia strongest day of the month: 30 calls + 7 appts on Jul 9 alone",
+      "Glendon ran 1:1 with Mercedes on fabrication leadership (Jul 8)",
+      "Glendon completed Windson DISC preparation (Jul 7)",
+      "Anderson active and consistent: 3–5 leads/appts per day",
+      "Julia training Otavio this week — contracts and onboarding"
+    ],
+    attention: [
+      "Angela — recurring attitude issue flagged by Glendon on Jul 8: missed SIM update caused a cutting error",
+      "Matos — no new Sales Control entries for 2 consecutive weeks",
+      "Windson — no new KPI entries or Sales Control entries this week (last entry was Jun 25)",
+      "Eveline — 7/2 zero activity and 7/3 duplicated leads flagged; KPI calls very low vs closings (5 calls, 5 sales — suggests closes coming from pipeline not new outreach)",
+      "Stephanie call volume inconsistent: 12 calls on Jul 7 vs 19 on Jul 9 — pattern worth watching",
+      "Mercedes KPI still has no Week 5 entry"
+    ],
+    blockers: [
+      {owner:"Angela — Attitude / Process", text:"Recurring attitude issue noted by Glendon Jul 8. Missed SIM update caused a cutting error in fabrication. Pattern needs direct leadership conversation."},
+      {owner:"Matos — Revenue Visibility", text:"No new Sales Control entries for 2+ weeks. Pattern since Jun 24 batch."},
+      {owner:"Windson — Silence", text:"No KPI entries or Sales Control entries since Jun 25. No DISC or update this week beyond Glendon's preparation."},
+      {owner:"Mercedes — Data Gap", text:"No KPI entry for Week 5. Fabrication volume unknown."}
+    ],
+    agents: {
+      sales: [
+        {name:"Julia", role:"SDR / Inside Sales — High Volume", status:"active",
+          kpis:[{label:"Calls (Week)",value:"132",note:"Jul 3–9",cls:"gold"},{label:"Appts Set",value:"14",note:"Week total",cls:"green"},{label:"Leads Received",value:"19",note:"Jul 3–9"},{label:"Best Day",value:"Jul 9",note:"30 calls · 7 appts",cls:"green"}],
+          progressLabel:"Weekly Volume", progressPct:95, progressNote:"Strongest week of July", blocker:null},
+        {name:"Stephanie", role:"Sales Agent — Countertops", status:"active",
+          kpis:[{label:"Calls (Week)",value:"62",note:"Jul 6–9",cls:"gold"},{label:"Sales Closed",value:"6",note:"Per Sales Control",cls:"green"},{label:"Best Sale",value:"$11,078",note:"Monk — Jul 8",cls:"green"},{label:"Revenue",value:"$22,979.60",note:"Best week of the month",cls:"green"}],
+          progressLabel:"Revenue Week 5", progressPct:92, progressNote:"$23K", blocker:null},
+        {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"active",
+          kpis:[{label:"Leads (Week)",value:"7",note:"Jul 3–9"},{label:"Calls Made",value:"5",note:"Low vs closings",cls:"amber"},{label:"Sales Closed",value:"5",note:"Per Sales Control",cls:"green"},{label:"Revenue",value:"$16,282.20",note:"Begg · Cotney · Roller · Branch · Unan",cls:"green"}],
+          progressLabel:"Revenue Week 5", progressPct:78, progressNote:"$16.3K rebound", blocker:"⚠ 5 calls but 5 closes — pipeline closes, not new outreach"},
+        {name:"Windson", role:"Sales Agent", status:"critical",
+          kpis:[{label:"Last Entry",value:"Jun 25",note:"2 weeks ago",cls:"red"},{label:"Sales (Week)",value:"0",note:"Nothing logged"},{label:"Calls (Week)",value:"0",note:"Nothing logged"},{label:"Revenue",value:"$0",note:"No Sales Control entry",cls:"red"}],
+          progressLabel:"KPI Sheet Status", progressPct:0, progressNote:"Silent since Jun 25", blocker:"🔴 2 weeks no entries — needs direct conversation", critical:true},
+        {name:"Anderson", role:"Sales Agent — Onboarding", status:"partial",
+          kpis:[{label:"Leads/Day",value:"2–5",note:"Jul 6–7",cls:"amber"},{label:"Appts/Day",value:"2–5",note:"Consistent"},{label:"Status",value:"Active",note:"Training with Julia"},{label:"Sales",value:"0",note:"Still onboarding"}],
+          progressLabel:"Onboarding Progress", progressPct:60, progressNote:"Training with Julia", blocker:null, pending:true}
+      ],
+      ops: [
+        {name:"Mercedes", role:"Fabrication Manager", status:"warn",
+          kpis:[{label:"KPI Entry",value:"Pending",note:"No Week 5 data",cls:"amber"},{label:"Leadership 1:1",value:"Jul 8",note:"With Glendon",cls:"green"},{label:"Blocker",value:"Open",note:"Angela attitude + SIM error",cls:"red"},{label:"Last Sq Ft",value:"654",note:"Jun 24 — all-time high"}],
+          progressLabel:"Data Entry", progressPct:0, progressNote:"No Week 5 data", blocker:"⚠ No KPI entry + Angela SIM error caused cutting mistake"},
+        {name:"Angela", role:"Admin / Front Desk", status:"warn",
+          kpis:[{label:"Status",value:"Active",note:"But flagged",cls:"amber"},{label:"Issue",value:"Attitude",note:"Recurring — Jul 8",cls:"red"},{label:"SIM Update",value:"Missed",note:"Caused cutting error",cls:"red"},{label:"Pattern",value:"Recurring",note:"Glendon flagged",cls:"red"}],
+          progressLabel:"Leadership Flag", progressPct:20, progressNote:"Needs direct conversation", blocker:"🔴 Recurring attitude + missed SIM update → cutting error"},
+        {name:"Saul", role:"Installation Coordinator", status:"warn",
+          kpis:[{label:"Last Update",value:"Jun 12",note:"Still stale",cls:"red"},{label:"Status",value:"Unknown",note:"No new entries",cls:"red"},{label:"Fab Errors",value:"Open",note:"PO 54565"},{label:"Week 5",value:"No data",note:"",cls:"red"}],
+          progressLabel:"Data Freshness", progressPct:5, progressNote:"4 weeks without update", blocker:"🔴 4 weeks without KPI update"}
+      ]
+    }
+  }
 ];
 
 let currentMeetingWeek = meetingWeeks.length - 1;
