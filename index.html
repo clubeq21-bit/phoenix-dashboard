@@ -1438,6 +1438,68 @@ const meetingWeeks = [
       ]
     }
   }
+,
+  {
+    eyebrow: "Week 6",
+    dates: "Jul 10 – 16, 2026",
+    revenue: [
+      {name:"Eveline", value:"$3,617.80", note:"1 closing — Kay Nelson (Jul 16) · week in progress"},
+      {name:"Stephanie", value:"$21,464.90", note:"3 closings — Hicks $15.9K (Jul 14), Vinson $2K, Berry $3.5K"},
+      {name:"Jessica (HD)", value:"$5,744.75", note:"3 closings Shower Glass — Billings, Krupa (Jul 15), Walker (Jul 16)"},
+      {name:"Anderson", value:"—", note:"Onboarding — not yet on Sales Control"}
+    ],
+    activity: [
+      {label:"Total Leads", value:"22", note:"Julia (13) + Eveline (9)"},
+      {label:"Appts Scheduled", value:"6", note:"Julia — week in progress"},
+      {label:"Sales Closed", value:"7", note:"Stephanie (3) + Jessica (3) + Eveline (1) · week in progress"},
+      {label:"Julia Best Day", value:"42 calls", note:"Jul 14 — highest single day ever recorded"}
+    ],
+    worked: [
+      "Julia recorded her highest single day ever: 42 calls on Jul 14",
+      "Stephanie back-to-back strong weeks: $22.9K (W5) + $21.5K (W6) — most consistent 2-week stretch of the year",
+      "Glendon ran the W5 debrief meeting Jul 10 using What/So What/Now What framework — Loiny co-facilitated",
+      "Stephanie offered to mentor — key cultural moment flagged by Glendon",
+      "Angela role clarified post-meeting — payroll issue raised and resolved",
+      "Anderson consistent all week: 3 leads/appts/visits per day Jul 10-14",
+      "Eveline active in Alabama: 4 store visits Jul 16, building pipeline"
+    ],
+    attention: [
+      "Week still in progress (today Jul 16) — revenue and activity will grow before Friday",
+      "Eveline: only 1 closing so far this week despite high call volume (9+ calls) — pipeline from W5 may have been exhausted",
+      "Julia: 170 calls but only 6 appts — conversion from call to appointment dropped vs W5 (14 appts from 132 calls)",
+      "Stephanie: Hicks $15,931 on Jul 14 was a single large closing — worth asking what made that sale happen",
+      "Anderson: still no sales — onboarding progressing but first closing not yet happened"
+    ],
+    blockers: [
+      {owner:"Angela — Role Clarity", text:"Role clarified post Jul 10 meeting. Payroll issue resolved. Follow up needed to confirm behavior change is holding.", resolved:false},
+      {owner:"Eveline — Pipeline Risk", text:"W5 closings came from old pipeline. W6 showing only 1 close so far. Alabama store visits Jul 16 suggest she's building new pipeline — watch next week."},
+      {owner:"Anderson — First Closing", text:"Consistent activity but no revenue yet. Julia training him. First closing expected soon — worth setting a target date."}
+    ],
+    agents: {
+      sales: [
+        {name:"Julia", role:"SDR / Inside Sales — High Volume", status:"active",
+          kpis:[{label:"Calls (Week)",value:"170",note:"Jul 10–16 · record pace",cls:"gold"},{label:"Best Day",value:"42 calls",note:"Jul 14 — all-time high",cls:"green"},{label:"Appts Set",value:"6",note:"Week in progress"},{label:"Leads Received",value:"13",note:"Jul 10–16"}],
+          progressLabel:"Weekly Volume", progressPct:100, progressNote:"Record week for calls", blocker:null},
+        {name:"Stephanie", role:"Sales Agent — Countertops", status:"active",
+          kpis:[{label:"Sales Closed",value:"3",note:"Per Sales Control",cls:"green"},{label:"Hicks Closing",value:"$15,931",note:"Jul 14 — largest of week",cls:"green"},{label:"Calls — Jul 15",value:"12",note:"Active"},{label:"Revenue",value:"$21,464.90",note:"2nd consecutive $20K+ week",cls:"green"}],
+          progressLabel:"Revenue Week 6", progressPct:88, progressNote:"$21.5K", blocker:null},
+        {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"warn",
+          kpis:[{label:"Calls (Week)",value:"22+",note:"Jul 10–16"},{label:"Store Visits",value:"4",note:"Jul 16 — Alabama",cls:"amber"},{label:"Sales Closed",value:"1",note:"Kay Nelson $3.6K",cls:"amber"},{label:"Revenue",value:"$3,617.80",note:"Week in progress",cls:"amber"}],
+          progressLabel:"Pipeline Status", progressPct:30, progressNote:"Building new pipeline", blocker:"⚠ W5 pipeline exhausted — rebuilding via store visits"},
+        {name:"Anderson", role:"Sales Agent — Onboarding", status:"partial",
+          kpis:[{label:"Leads/Day",value:"3",note:"Jul 10–14",cls:"amber"},{label:"Appts/Day",value:"3",note:"Consistent"},{label:"Visits/Day",value:"3",note:"Consistent"},{label:"Sales",value:"0",note:"First closing pending"}],
+          progressLabel:"Onboarding Progress", progressPct:70, progressNote:"Ready for first close", blocker:"⚠ First closing not yet happened — needs target date", pending:true}
+      ],
+      ops: [
+        {name:"Mercedes", role:"Fabrication Manager", status:"active",
+          kpis:[{label:"Meeting",value:"Jul 10",note:"W5 debrief attended"},{label:"Angela Role",value:"Clarified",note:"Post Jul 10 meeting",cls:"green"},{label:"Payroll",value:"Resolved",note:"Issue raised + closed",cls:"green"},{label:"Sq Ft",value:"Pending",note:"No W6 KPI entry yet"}],
+          progressLabel:"Leadership Actions", progressPct:70, progressNote:"Role + payroll resolved", blocker:null},
+        {name:"Angela", role:"Admin / Front Desk", status:"warn",
+          kpis:[{label:"Role Clarity",value:"Defined",note:"Post Jul 10 meeting",cls:"amber"},{label:"Payroll",value:"Resolved",note:"Jul 10",cls:"green"},{label:"Behavior",value:"Monitor",note:"Follow-up needed",cls:"amber"},{label:"Pattern",value:"Watch",note:"Too early to confirm change",cls:"amber"}],
+          progressLabel:"Behavior Change", progressPct:50, progressNote:"Clarified — monitoring", blocker:"⚠ Role clarified Jul 10 — confirm behavior change is holding"}
+      ]
+    }
+  }
 ];
 
 let currentMeetingWeek = meetingWeeks.length - 1;
