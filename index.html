@@ -1500,6 +1500,66 @@ const meetingWeeks = [
       ]
     }
   }
+,
+  {
+    eyebrow: "Week 7",
+    dates: "Jul 17 – 23, 2026",
+    revenue: [
+      {name:"Anderson", value:"$44,155.00", note:"🎉 FIRST CLOSING — William Homely Jul 17 · Full bath remodel: Cabinets, Countertops, Renovation, Shower Glass, Sinks, Tiles"},
+      {name:"Stephanie", value:"$11,960.80", note:"3 closings — Buchanan $4.4K (Jul 20), Palencia $3.8K (Jul 22), Valladares $3.8K (Jul 23)"},
+      {name:"Jessica (HD)", value:"$3,000.00", note:"2 closings — Keaver $1K (Jul 18), George $2K (Jul 20)"},
+      {name:"Eveline", value:"$0", note:"2 consecutive weeks without a closing in Sales Control"}
+    ],
+    activity: [
+      {label:"Total Leads", value:"21", note:"Julia (14) + Eveline (7)"},
+      {label:"Appts Scheduled", value:"14", note:"Julia — strong recovery vs W6"},
+      {label:"Sales Closed", value:"6", note:"Anderson (1) + Stephanie (3) + Jessica (2)"},
+      {label:"Week Total", value:"$59,115", note:"Anderson $44K carried the week"}
+    ],
+    worked: [
+      "🎉 Anderson's FIRST CLOSING: $44,155 on Jul 17 — full bathroom remodel scope (William Homely). Largest single closing of the week by any seller",
+      "Stephanie 3 consecutive days with a closing: Jul 21, 22, 23 — consistent execution",
+      "Julia organized the HD Portal shower glass leads (Jul 18) — operational cleanup",
+      "Julia and Otavio working on Google Sheets together Jul 22-23 — onboarding progressing",
+      "Jul 15 All Team Meeting: Mercedes officially announced as Fabrication Manager — Aldair, Gerardo, Angela, Santos, Dayana roles clarified",
+      "Chelsea rehire: trial accepted Jul 16 — leadership path deferred to admins meeting"
+    ],
+    attention: [
+      "Eveline: 2 consecutive weeks with $0 in Sales Control. Active in calls and store visits but nothing converting. Needs direct conversation — what is blocking the close?",
+      "Julia recurring blocker: Google leads calling the office are NOT being entered in JobTracker or RD Station. She flagged this 2 consecutive days (Jul 21, 22, 23). This is a system gap that needs to be resolved — not just flagged",
+      "Anderson's $44K closing was logged under M&M Bathroom Remodeling — a different company/division. Confirm with Loiny if this is tracked correctly for his commissions",
+      "Stephanie's revenue dropped vs W5 ($23K) and W6 ($21K) — $12K in W7 is below her recent average. Still 3 closings, but smaller tickets"
+    ],
+    blockers: [
+      {owner:"Eveline — Zero Revenue 2 Weeks", text:"Active in calls and Alabama store visits but 0 closings in Sales Control for 2 consecutive weeks (Jul 10-23). Pipeline rebuild hasn't converted yet. Direct check-in needed."},
+      {owner:"Google Leads — System Gap", text:"Leads calling in from Google are not being entered in JobTracker or RD Station. Julia flagged this 3 days in a row. This is an operational gap, not a Julia problem — needs a defined process and owner."},
+      {owner:"Anderson — Division Tracking", text:"First closing logged under M&M Bathroom Remodeling ($44,155). Confirm correct division tracking for commission calculation."}
+    ],
+    agents: {
+      sales: [
+        {name:"Julia", role:"SDR / Inside Sales — High Volume", status:"active",
+          kpis:[{label:"Calls (Week)",value:"115",note:"Jul 17–23",cls:"gold"},{label:"Appts Set",value:"14",note:"Recovery vs W6 (6)",cls:"green"},{label:"Leads Received",value:"14",note:"Jul 17–23"},{label:"Blocker",value:"Google Leads",note:"Not entering JT + RD",cls:"red"}],
+          progressLabel:"Weekly Volume", progressPct:88, progressNote:"Strong — blocker flagged", blocker:"⚠ Google leads not in JobTracker/RD — flagged 3 days in a row"},
+        {name:"Stephanie", role:"Sales Agent — Countertops", status:"active",
+          kpis:[{label:"Sales Closed",value:"3",note:"3 consecutive days",cls:"green"},{label:"Revenue",value:"$11,960.80",note:"Buchanan · Palencia · Valladares",cls:"amber"},{label:"Calls — Jul 17",value:"17",note:"Active start"},{label:"vs W6",value:"↓ $9.5K",note:"Smaller tickets this week",cls:"amber"}],
+          progressLabel:"Revenue Week 7", progressPct:55, progressNote:"$12K — below recent avg", blocker:null},
+        {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"critical",
+          kpis:[{label:"Calls (Week)",value:"31",note:"Jul 17–23"},{label:"Leads",value:"7",note:"Active outreach"},{label:"Sales Closed",value:"0",note:"2nd week no closing",cls:"red"},{label:"Revenue",value:"$0",note:"2 consecutive weeks",cls:"red"}],
+          progressLabel:"Revenue Trend", progressPct:0, progressNote:"$0 for 2 weeks", blocker:"🔴 2 weeks no closing — direct conversation needed", critical:true},
+        {name:"Anderson", role:"Sales Agent — Bath Remodeling", status:"active",
+          kpis:[{label:"FIRST CLOSING",value:"$44,155",note:"William Homely Jul 17",cls:"green"},{label:"Scope",value:"Full Remodel",note:"7 products/services",cls:"green"},{label:"Daily Activity",value:"3/day",note:"Leads · Appts · Visits"},{label:"Division",value:"M&M Bath",note:"Confirm commission tracking",cls:"amber"}],
+          progressLabel:"Onboarding → Active", progressPct:100, progressNote:"First closing delivered", blocker:"⚠ Confirm division tracking for commission"}
+      ],
+      ops: [
+        {name:"Mercedes", role:"Fabrication Manager — Official", status:"active",
+          kpis:[{label:"Role Announced",value:"Jul 15",note:"All Team Meeting",cls:"green"},{label:"Team Clarified",value:"5 roles",note:"Aldair, Gerardo, Angela, Santos, Dayana",cls:"green"},{label:"Authority",value:"Formal",note:"Leadership confirmed"},{label:"Sq Ft",value:"Pending",note:"No W7 KPI entry yet"}],
+          progressLabel:"Leadership Clarity", progressPct:90, progressNote:"Role officially announced", blocker:null},
+        {name:"Angela", role:"Admin / Front Desk", status:"warn",
+          kpis:[{label:"Role Clarity",value:"Defined",note:"Jul 15 meeting",cls:"green"},{label:"Reporting to",value:"Mercedes",note:"Structure clarified"},{label:"Behavior",value:"Monitoring",note:"Post-clarification period",cls:"amber"},{label:"Chelsea",value:"Returning",note:"Trial accepted Jul 16",cls:"amber"}],
+          progressLabel:"Post-Clarification", progressPct:60, progressNote:"Monitoring period", blocker:"⚠ Behavior change monitoring — first check-in week"}
+      ]
+    }
+  }
 ];
 
 let currentMeetingWeek = meetingWeeks.length - 1;
