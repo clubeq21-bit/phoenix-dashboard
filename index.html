@@ -1554,9 +1554,9 @@ const meetingWeeks = [
         {name:"Mercedes", role:"Fabrication Manager — Official", status:"active",
           kpis:[{label:"Role Announced",value:"Jul 15",note:"All Team Meeting",cls:"green"},{label:"Team Clarified",value:"5 roles",note:"Aldair, Gerardo, Angela, Santos, Dayana",cls:"green"},{label:"Authority",value:"Formal",note:"Leadership confirmed"},{label:"Sq Ft",value:"Pending",note:"No W7 KPI entry yet"}],
           progressLabel:"Leadership Clarity", progressPct:90, progressNote:"Role officially announced", blocker:null},
-        {name:"Angela", role:"Admin / Front Desk", status:"warn",
-          kpis:[{label:"Role Clarity",value:"Defined",note:"Jul 15 meeting",cls:"green"},{label:"Reporting to",value:"Mercedes",note:"Structure clarified"},{label:"Behavior",value:"Monitoring",note:"Post-clarification period",cls:"amber"},{label:"Chelsea",value:"Returning",note:"Trial accepted Jul 16",cls:"amber"}],
-          progressLabel:"Post-Clarification", progressPct:60, progressNote:"Monitoring period", blocker:"⚠ Behavior change monitoring — first check-in week"}
+        {name:"Britney", role:"Admin / Front Desk — New", status:"pending",
+          kpis:[{label:"Start Date",value:"Jul 23",note:"Joined yesterday"},{label:"KPI Sheet",value:"Pending",note:"Starting soon",cls:"amber"},{label:"Status",value:"Onboarding",note:"First week"},{label:"Angela",value:"Transitioned",note:"Left the company"}],
+          progressLabel:"Onboarding", progressPct:0, progressNote:"KPI not yet started", blocker:null, pending:true}
       ]
     }
   }
@@ -1568,7 +1568,7 @@ let currentMeetingWeek = meetingWeeks.length - 1;
 // PRESENCE FILTER — controls who's revenue/card shows in the
 // Weekly Meeting Scoreboard. Persists across week navigation.
 // ============================================================
-const ALL_PEOPLE = ["Eveline", "Stephanie", "Jessica", "Matos", "Julia", "Windson", "Mercedes", "Saul", "Angela", "Anderson"];
+const ALL_PEOPLE = ["Eveline", "Stephanie", "Jessica", "Matos", "Julia", "Windson", "Mercedes", "Saul", "Britney", "Anderson"];
 const PENDING_PEOPLE = ["Anderson"]; // onboarding, no data yet — shown distinctly
 
 let presenceState = {};
