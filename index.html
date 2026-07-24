@@ -1508,7 +1508,7 @@ const meetingWeeks = [
       {name:"Anderson", value:"$44,155.00", note:"🎉 FIRST CLOSING — William Homely Jul 17 · Full bath remodel: Cabinets, Countertops, Renovation, Shower Glass, Sinks, Tiles"},
       {name:"Stephanie", value:"$11,960.80", note:"3 closings — Buchanan $4.4K (Jul 20), Palencia $3.8K (Jul 22), Valladares $3.8K (Jul 23)"},
       {name:"Jessica (HD)", value:"$3,000.00", note:"2 closings — Keaver $1K (Jul 18), George $2K (Jul 20)"},
-      {name:"Eveline", value:"$0", note:"2 consecutive weeks without a closing in Sales Control"}
+      {name:"Eveline", value:"$2,408.10", note:"1 closing — Adrian Martinez (Jul 23) · logged today"}
     ],
     activity: [
       {label:"Total Leads", value:"21", note:"Julia (14) + Eveline (7)"},
@@ -1543,9 +1543,9 @@ const meetingWeeks = [
         {name:"Stephanie", role:"Sales Agent — Countertops", status:"active",
           kpis:[{label:"Sales Closed",value:"3",note:"3 consecutive days",cls:"green"},{label:"Revenue",value:"$11,960.80",note:"Buchanan · Palencia · Valladares",cls:"amber"},{label:"Calls — Jul 17",value:"17",note:"Active start"},{label:"vs W6",value:"↓ $9.5K",note:"Smaller tickets this week",cls:"amber"}],
           progressLabel:"Revenue Week 7", progressPct:55, progressNote:"$12K — below recent avg", blocker:null},
-        {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"critical",
-          kpis:[{label:"Calls (Week)",value:"31",note:"Jul 17–23"},{label:"Leads",value:"7",note:"Active outreach"},{label:"Sales Closed",value:"0",note:"2nd week no closing",cls:"red"},{label:"Revenue",value:"$0",note:"2 consecutive weeks",cls:"red"}],
-          progressLabel:"Revenue Trend", progressPct:0, progressNote:"$0 for 2 weeks", blocker:"🔴 2 weeks no closing — direct conversation needed", critical:true},
+        {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"warn",
+          kpis:[{label:"Calls (Week)",value:"31",note:"Jul 17–23"},{label:"Leads",value:"7",note:"Active outreach"},{label:"Sales Closed",value:"1",note:"Adrian Martinez Jul 23",cls:"green"},{label:"Revenue",value:"$2,408.10",note:"Logged today Jul 24",cls:"green"}],
+          progressLabel:"Revenue Week 7", progressPct:35, progressNote:"$2.4K — back on board", blocker:"⚠ Still below weekly average — pipeline conversation needed"},
         {name:"Anderson", role:"Sales Agent — Bath Remodeling", status:"active",
           kpis:[{label:"FIRST CLOSING",value:"$44,155",note:"William Homely Jul 17",cls:"green"},{label:"Scope",value:"Full Remodel",note:"7 products/services",cls:"green"},{label:"Daily Activity",value:"3/day",note:"Leads · Appts · Visits"},{label:"Division",value:"M&M Bath",note:"Confirm commission tracking",cls:"amber"}],
           progressLabel:"Onboarding → Active", progressPct:100, progressNote:"First closing delivered", blocker:"⚠ Confirm division tracking for commission"}
