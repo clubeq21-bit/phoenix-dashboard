@@ -1630,7 +1630,7 @@ let currentMeetingWeek = meetingWeeks.length - 1;
 // PRESENCE FILTER — controls who's revenue/card shows in the
 // Weekly Meeting Scoreboard. Persists across week navigation.
 // ============================================================
-const ALL_PEOPLE = ["Eveline", "Stephanie", "Jessica", "Matos", "Julia", "Windson", "Mercedes", "Saul", "Britney", "Anderson"];
+const ALL_PEOPLE = ["Eveline", "Stephanie", "Jessica", "Julia", "Mercedes", "Saul", "Britney", "Anderson"];
 const PENDING_PEOPLE = ["Anderson"]; // onboarding, no data yet — shown distinctly
 
 let presenceState = {};
@@ -1813,52 +1813,92 @@ function renderMeetingWeek() {
 const monthlyData = [
   {
     month: "January 2026", short: "Jan",
-    revenue: {eveline:0, stephanie:12143, jessica:0, matos:15451, windson:0, other:51628},
+    revenue: {stephanie:12143, eveline:0, jessica:0, anderson:0, other:67078},
     activity: {leads:0, calls:0, appts:0, sales:0},
-    note: "M&M Services $14.7K, Paul $36.9K — KPI sheet not yet launched",
-    total: 79533
+    note: "KPI sheet not yet launched — Stephanie only active seller. Paul $36.9K + M&M Services $14.7K in Other.",
+    total: 79221,
+    sellers: [
+      {name:"Stephanie", value:12143, pct:15},
+      {name:"Other / M&M", value:67078, pct:85}
+    ]
   },
   {
     month: "February 2026", short: "Feb",
-    revenue: {eveline:16917, stephanie:87789, jessica:51786, matos:169582, windson:0, other:12121},
+    revenue: {stephanie:87789, eveline:16917, jessica:51786, anderson:0, other:181703},
     activity: {leads:0, calls:0, appts:0, sales:0},
-    note: "Strongest month of the year — Matos $169K, Stephanie $87K, Jessica $51K",
-    total: 338195
+    note: "Best month of the year — $338K total. Matos $169.6K batch. Stephanie $87.8K. Jessica $51.8K.",
+    total: 338195,
+    sellers: [
+      {name:"Stephanie", value:87789, pct:26},
+      {name:"Jessica", value:51786, pct:15},
+      {name:"Eveline", value:16917, pct:5},
+      {name:"Other / Matos", value:181703, pct:54}
+    ]
   },
   {
     month: "March 2026", short: "Mar",
-    revenue: {eveline:32980, stephanie:78172, jessica:84837, matos:11476, windson:0, other:12352},
+    revenue: {stephanie:78172, eveline:32980, jessica:84837, anderson:0, other:23828},
     activity: {leads:0, calls:0, appts:0, sales:0},
-    note: "Jessica strongest month ($84K Shower Glass) — Matos drops to $11K",
-    total: 219817
+    note: "Jessica best month ever — $84.8K Shower Glass. Stephanie $78.2K. Eveline $33K.",
+    total: 219817,
+    sellers: [
+      {name:"Jessica", value:84837, pct:39},
+      {name:"Stephanie", value:78172, pct:36},
+      {name:"Eveline", value:32980, pct:15},
+      {name:"Other", value:23828, pct:10}
+    ]
   },
   {
     month: "April 2026", short: "Apr",
-    revenue: {eveline:52363, stephanie:81490, jessica:41324, matos:50, windson:0, other:39410},
+    revenue: {stephanie:81490, eveline:52363, jessica:41324, anderson:0, other:39460},
     activity: {leads:0, calls:0, appts:0, sales:0},
-    note: "Eveline best month ($52K) — M&M Services $39K — Matos near zero",
-    total: 214637
+    note: "Eveline best month ever — $52.4K. Stephanie $81.5K. Jessica $41.3K. Strong 3-seller month.",
+    total: 214637,
+    sellers: [
+      {name:"Stephanie", value:81490, pct:38},
+      {name:"Eveline", value:52363, pct:24},
+      {name:"Jessica", value:41324, pct:19},
+      {name:"Other / M&M", value:39460, pct:19}
+    ]
   },
   {
     month: "May 2026", short: "May",
-    revenue: {eveline:17805, stephanie:118623, jessica:67151, matos:0, windson:0, other:1310},
+    revenue: {stephanie:118623, eveline:17805, jessica:67151, anderson:0, other:1310},
     activity: {leads:8, calls:62, appts:3, sales:0},
-    note: "Stephanie best month ($118K) — Matos $0 — KPI sheet launched mid-month",
-    total: 204889
+    note: "Stephanie best month ever — $118.6K. Jessica $67.2K. Eveline $17.8K. KPI sheet launched.",
+    total: 204889,
+    sellers: [
+      {name:"Stephanie", value:118623, pct:58},
+      {name:"Jessica", value:67151, pct:33},
+      {name:"Eveline", value:17805, pct:9}
+    ]
   },
   {
     month: "June 2026", short: "Jun",
-    revenue: {eveline:21744, stephanie:73714, jessica:52732, matos:2108, windson:65, other:32781},
+    revenue: {stephanie:73714, eveline:21744, jessica:52732, anderson:0, other:34889},
     activity: {leads:192, calls:778, appts:135, sales:0},
-    note: "Matos retroactive batch $125K logged Jun 24 — Angela first appearance",
-    total: 183144
+    note: "KPI system fully live. Stephanie $73.7K. Jessica $52.7K. Eveline $21.7K. Matos $125K batch logged Jun 24.",
+    total: 183079,
+    sellers: [
+      {name:"Stephanie", value:73714, pct:40},
+      {name:"Jessica", value:52732, pct:29},
+      {name:"Eveline", value:21744, pct:12},
+      {name:"Other / Matos", value:34889, pct:19}
+    ]
   },
   {
     month: "July 2026", short: "Jul",
-    revenue: {eveline:24430, stephanie:80941, jessica:48357, matos:0, windson:0, other:44155},
-    activity: {leads:94, calls:553, appts:68, sales:0},
-    note: "W4–W8 · Anderson first closing $44.2K (Jul 17) · Stephanie 4 consecutive weeks on scoreboard · Jul 28 still open",
-    total: 197883
+    revenue: {stephanie:90004, eveline:44287, jessica:40517, anderson:70855, other:3056},
+    activity: {leads:124, calls:569, appts:72, sales:0},
+    note: "Anderson first full month — $70.9K. Stephanie $90K. Eveline $44.3K. Best month since Feb.",
+    total: 248723,
+    sellers: [
+      {name:"Stephanie", value:90004, pct:36},
+      {name:"Anderson", value:70855, pct:28},
+      {name:"Eveline", value:44287, pct:18},
+      {name:"Jessica", value:40517, pct:16},
+      {name:"Other", value:3056, pct:1}
+    ]
   }
 ];
 
