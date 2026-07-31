@@ -1588,7 +1588,7 @@ const meetingWeeks = [
     attention: [
       "Anderson $26.7K this week — combined with $44.2K in W7, he has $70.9K in July alone in his first full month",
       "Stephanie not in KPI sheet for W8 despite 4 closings — activity invisible, revenue visible",
-      "Julia Jul 26 and Jul 30 logged 0 calls — both days she was working on contracts. Productive differently, not a drop in discipline",
+      "Julia Jul 26 logged 0 calls (1 out-of-scope lead). Jul 30: 6 calls + working on 3 contracts. 60 total calls this week.",
       "Stephanie not in KPI sheet for W8 — entries are blank. Revenue is there but activity is untracked",
       "Eveline: 1 wrong service lead flagged (laminate) — HD portal cleanup may be needed"
     ],
@@ -1600,7 +1600,7 @@ const meetingWeeks = [
     agents: {
       sales: [
         {name:"Julia", role:"SDR / Inside Sales — High Volume", status:"active",
-          kpis:[{label:"Leads (Week)",value:"13",note:"Jul 24–30",cls:"gold"},{label:"Calls Made",value:"54",note:"Jul 24–30 · 0 on Jul 26+30 (contracts)",cls:"green"},{label:"Appts Set",value:"14",note:"Week total",cls:"green"},{label:"Follow-ups",value:"33",note:"Consistent pipeline management"}],
+          kpis:[{label:"Leads (Week)",value:"13",note:"Jul 24–30",cls:"gold"},{label:"Calls Made",value:"60",note:"Jul 24–30 · 0 on Jul 26 (out of scope lead)",cls:"green"},{label:"Appts Set",value:"14",note:"Week total",cls:"green"},{label:"Follow-ups",value:"33",note:"Consistent pipeline management"}],
           progressLabel:"Weekly Activity", progressPct:75, progressNote:"Solid week", blocker:"⚠ Jul 26 + Jul 30 = 0 calls — working on contracts both days"},
         {name:"Stephanie", role:"Sales Agent — Countertops", status:"active",
           kpis:[{label:"Sales Closed",value:"2",note:"Both on Jul 24",cls:"green"},{label:"Revenue",value:"$11,578.00",note:"Osborn $6K + Bach $5.6K",cls:"green"},{label:"KPI Sheet",value:"Blank",note:"No W8 entries",cls:"red"},{label:"Consistency",value:"4 weeks",note:"Always on scoreboard",cls:"green"}],
@@ -1631,7 +1631,7 @@ let currentMeetingWeek = meetingWeeks.length - 1;
 // Weekly Meeting Scoreboard. Persists across week navigation.
 // ============================================================
 const ALL_PEOPLE = ["Eveline", "Stephanie", "Jessica", "Julia", "Mercedes", "Saul", "Britney", "Anderson"];
-const PENDING_PEOPLE = ["Anderson"]; // onboarding, no data yet — shown distinctly
+const PENDING_PEOPLE = ["Britney"]; // onboarding, no data yet — shown distinctly
 
 let presenceState = {};
 ALL_PEOPLE.forEach(p => presenceState[p] = true); // everyone visible by default
