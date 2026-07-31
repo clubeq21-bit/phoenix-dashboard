@@ -803,6 +803,89 @@
     </tbody>
   </table>
 
+
+  <!-- ══ 2026 SELLER EVOLUTION ══ -->
+  <div class="section-label" style="margin-top:28px;">2026 Revenue by Seller — Monthly Evolution (Jan–Jul)</div>
+
+  <!-- HEATMAP TABLE -->
+  <div class="card" style="padding:0;overflow:hidden;margin-bottom:18px;">
+    <table style="width:100%;border-collapse:collapse;">
+      <thead>
+        <tr style="background:rgba(255,255,255,0.04);">
+          <th style="padding:10px 14px;text-align:left;font-size:10px;color:var(--cream-dim);text-transform:uppercase;letter-spacing:.8px;font-weight:600;width:120px;">Seller</th>
+          <th style="padding:10px 8px;text-align:center;font-size:10px;color:var(--cream-dim);text-transform:uppercase;letter-spacing:.8px;font-weight:600;">Jan</th>
+          <th style="padding:10px 8px;text-align:center;font-size:10px;color:var(--cream-dim);text-transform:uppercase;letter-spacing:.8px;font-weight:600;">Feb</th>
+          <th style="padding:10px 8px;text-align:center;font-size:10px;color:var(--cream-dim);text-transform:uppercase;letter-spacing:.8px;font-weight:600;">Mar</th>
+          <th style="padding:10px 8px;text-align:center;font-size:10px;color:var(--cream-dim);text-transform:uppercase;letter-spacing:.8px;font-weight:600;">Apr</th>
+          <th style="padding:10px 8px;text-align:center;font-size:10px;color:var(--cream-dim);text-transform:uppercase;letter-spacing:.8px;font-weight:600;">May</th>
+          <th style="padding:10px 8px;text-align:center;font-size:10px;color:var(--cream-dim);text-transform:uppercase;letter-spacing:.8px;font-weight:600;">Jun</th>
+          <th style="padding:10px 8px;text-align:center;font-size:10px;color:var(--cream-dim);text-transform:uppercase;letter-spacing:.8px;font-weight:600;">Jul</th>
+          <th style="padding:10px 12px;text-align:right;font-size:10px;color:var(--cream-dim);text-transform:uppercase;letter-spacing:.8px;font-weight:600;">YTD</th>
+          <th style="padding:10px 12px;text-align:center;font-size:10px;color:var(--cream-dim);text-transform:uppercase;letter-spacing:.8px;font-weight:600;">Trend</th>
+        </tr>
+      </thead>
+      <tbody id="sellerHeatmapBody"></tbody>
+    </table>
+  </div>
+
+  <!-- BAR CHART — 2026 Monthly Total with amounts on top -->
+  <div class="card" style="margin-bottom:18px;">
+    <div style="font-size:11px;color:var(--cream-dim);margin-bottom:24px;font-weight:500;text-transform:uppercase;letter-spacing:.5px;">2026 Monthly Revenue — Total with Seller Breakdown</div>
+    <div id="sellerBarChart" style="display:grid;grid-template-columns:repeat(7,1fr);gap:8px;align-items:end;height:180px;margin-bottom:8px;"></div>
+    <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:4px;margin-bottom:16px;">
+      <div style="font-size:10px;color:var(--cream-dim);text-align:center;font-weight:500;">Jan</div>
+      <div style="font-size:10px;color:var(--cream-dim);text-align:center;font-weight:500;">Feb</div>
+      <div style="font-size:10px;color:var(--cream-dim);text-align:center;font-weight:500;">Mar</div>
+      <div style="font-size:10px;color:var(--cream-dim);text-align:center;font-weight:500;">Apr</div>
+      <div style="font-size:10px;color:var(--cream-dim);text-align:center;font-weight:500;">May</div>
+      <div style="font-size:10px;color:var(--cream-dim);text-align:center;font-weight:500;">Jun</div>
+      <div style="font-size:10px;color:var(--cream-dim);text-align:center;font-weight:500;">Jul</div>
+    </div>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:6px;font-size:10px;color:var(--cream-dim)"><div style="width:10px;height:10px;background:#F5C842;border-radius:2px;"></div>Stephanie</div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:10px;color:var(--cream-dim)"><div style="width:10px;height:10px;background:#4A9EE0;border-radius:2px;"></div>Eveline</div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:10px;color:var(--cream-dim)"><div style="width:10px;height:10px;background:#5CBA8A;border-radius:2px;"></div>Jessica</div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:10px;color:var(--cream-dim)"><div style="width:10px;height:10px;background:#E08050;border-radius:2px;"></div>Anderson</div>
+    </div>
+  </div>
+
+  <!-- LINE CHART — Seller trajectories -->
+  <div class="card" style="margin-bottom:18px;">
+    <div style="font-size:11px;color:var(--cream-dim);margin-bottom:16px;font-weight:500;text-transform:uppercase;letter-spacing:.5px;">Individual Trajectories — Jan to Jul</div>
+    <svg id="sellerLineChart" width="100%" height="180" viewBox="0 0 700 180" preserveAspectRatio="none"></svg>
+    <div style="display:flex;gap:16px;margin-top:8px;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:6px;font-size:10px;color:var(--cream-dim)"><div style="width:20px;height:2px;background:#F5C842;"></div>Stephanie</div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:10px;color:var(--cream-dim)"><div style="width:20px;height:2px;background:#4A9EE0;"></div>Eveline</div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:10px;color:var(--cream-dim)"><div style="width:20px;height:2px;background:#5CBA8A;"></div>Jessica</div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:10px;color:var(--cream-dim)"><div style="width:20px;height:2px;background:#E08050;"></div>Anderson</div>
+    </div>
+  </div>
+
+  <!-- KEY STATS ROW -->
+  <div class="kpi-row kpi-row-4" style="margin-bottom:8px;">
+    <div class="kpi-card">
+      <div class="kpi-label">2026 YTD (sellers only)</div>
+      <div class="kpi-value gold">$1.14M</div>
+      <div class="kpi-sub">Stephanie + Eveline + Jessica + Anderson</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Best Seller Month Ever</div>
+      <div class="kpi-value green">$118,623</div>
+      <div class="kpi-sub">Stephanie — May 2026</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Strongest Month 2026</div>
+      <div class="kpi-value green">$248,723</div>
+      <div class="kpi-sub">July 2026 — best since Feb</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Anderson First Month</div>
+      <div class="kpi-value green">$70,855</div>
+      <div class="kpi-sub">Jul 2026 — first full month</div>
+    </div>
+  </div>
+
+
 </div>
 </div>
 
@@ -2020,6 +2103,148 @@ function switchTab(id) {
   const idx = tabs.indexOf(id);
   document.querySelectorAll('.tab')[idx].classList.add('active');
 }
+
+// ============================================================
+// ANNUAL PERFORMANCE — 2026 Seller Evolution Charts
+// ============================================================
+const seller2026 = {
+  months: ['Jan','Feb','Mar','Apr','May','Jun','Jul'],
+  sellers: [
+    { name:'Stephanie', color:'#F5C842', data:[12143,87789,78172,81490,118623,73714,90004] },
+    { name:'Eveline',   color:'#4A9EE0', data:[0,16917,32980,52363,17805,21744,44287] },
+    { name:'Jessica',   color:'#5CBA8A', data:[0,51786,84837,41324,67151,52732,40517] },
+    { name:'Anderson',  color:'#E08050', data:[0,0,0,0,0,0,70855] }
+  ]
+};
+
+function heatColor(val, max) {
+  if (val === 0) return 'background:rgba(255,255,255,0.04);color:var(--cream-dim)';
+  const pct = val / max;
+  if (pct >= 0.8) return 'background:rgba(92,186,138,0.25);color:#5CBA8A';
+  if (pct >= 0.5) return 'background:rgba(92,186,138,0.12);color:#8ed4b0';
+  if (pct >= 0.25) return 'background:rgba(245,200,66,0.12);color:#F5C842';
+  return 'background:rgba(245,200,66,0.06);color:var(--amber)';
+}
+
+function fmt(val) {
+  if (val === 0) return '—';
+  if (val >= 100000) return '$' + (val/1000).toFixed(0) + 'K';
+  if (val >= 10000) return '$' + (val/1000).toFixed(0) + 'K';
+  return '$' + (val/1000).toFixed(1) + 'K';
+}
+
+function trendArrow(data) {
+  const last3 = data.filter(v=>v>0).slice(-3);
+  if (last3.length < 2) return '<span style="color:var(--amber)">→ New</span>';
+  const avg_first = last3.slice(0,Math.floor(last3.length/2)).reduce((a,b)=>a+b,0)/Math.ceil(last3.length/2);
+  const last = last3[last3.length-1];
+  if (last > avg_first * 1.1) return '<span style="color:#5CBA8A">↑ Rising</span>';
+  if (last < avg_first * 0.9) return '<span style="color:var(--red)">↓ Falling</span>';
+  return '<span style="color:var(--amber)">→ Stable</span>';
+}
+
+function renderAnnualCharts() {
+  const { months, sellers } = seller2026;
+  const maxVal = Math.max(...sellers.flatMap(s=>s.data));
+  const monthTotals = months.map((_,i) => sellers.reduce((sum,s)=>sum+s.data[i],0));
+  const maxTotal = Math.max(...monthTotals);
+
+  // HEATMAP
+  const tbody = document.getElementById('sellerHeatmapBody');
+  if (tbody) {
+    tbody.innerHTML = sellers.map(s => {
+      const ytd = s.data.reduce((a,b)=>a+b,0);
+      const sellerMax = Math.max(...s.data);
+      const cells = s.data.map(v => {
+        const style = heatColor(v, sellerMax);
+        return `<td style="padding:8px;text-align:center;font-size:11px;font-weight:500;${style};border-top:1px solid rgba(255,255,255,0.04);">${fmt(v)}</td>`;
+      }).join('');
+      return `<tr>
+        <td style="padding:10px 14px;border-top:1px solid rgba(255,255,255,0.04);">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="width:8px;height:8px;border-radius:50%;background:${s.color};flex-shrink:0;"></div>
+            <span style="font-size:12px;font-weight:600;color:var(--cream);">${s.name}</span>
+          </div>
+        </td>
+        ${cells}
+        <td style="padding:10px 12px;text-align:right;font-size:12px;font-weight:700;color:${s.color};border-top:1px solid rgba(255,255,255,0.04);">${fmt(ytd)}</td>
+        <td style="padding:10px 12px;text-align:center;font-size:11px;border-top:1px solid rgba(255,255,255,0.04);">${trendArrow(s.data)}</td>
+      </tr>`;
+    }).join('');
+  }
+
+  // BAR CHART — stacked bars per month with total on top
+  const barChart = document.getElementById('sellerBarChart');
+  if (barChart) {
+    const maxTotalBar = Math.max(...monthTotals);
+    barChart.innerHTML = months.map((m, mi) => {
+      const total = monthTotals[mi];
+      const barH = Math.max(4, (total / maxTotalBar) * 160);
+      // Build stacked segments proportional within the bar height
+      const activeS = sellers.filter(s=>s.data[mi]>0);
+      const segments = activeS.map(s => {
+        const segH = (s.data[mi] / total) * barH;
+        return `<div style="width:100%;height:${segH.toFixed(1)}px;background:${s.color};opacity:0.9;flex-shrink:0;" title="${s.name}: ${fmt(s.data[mi])}"></div>`;
+      });
+      // Total label on top — white, bold
+      const isHighest = total === maxTotalBar;
+      const labelColor = isHighest ? '#F5C842' : 'rgba(255,255,255,0.85)';
+      return `<div style="display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:180px;position:relative;">
+        <div style="position:absolute;top:${(180-barH-22).toFixed(0)}px;width:100%;text-align:center;">
+          <div style="font-size:10px;font-weight:700;color:${labelColor};white-space:nowrap;line-height:1.2;">${fmt(total)}</div>
+        </div>
+        <div style="width:80%;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;border-radius:3px 3px 0 0;height:${barH.toFixed(1)}px;">
+          ${segments.join('')}
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  // LINE CHART SVG
+  const svg = document.getElementById('sellerLineChart');
+  if (svg) {
+    const W = 700, H = 160, PAD = 20;
+    const xStep = (W - PAD*2) / (months.length - 1);
+    const yScale = v => H - PAD - (v / maxVal) * (H - PAD*2);
+
+    let svgContent = '';
+    // Grid lines
+    [0, 0.25, 0.5, 0.75, 1].forEach(pct => {
+      const y = H - PAD - pct * (H - PAD*2);
+      svgContent += `<line x1="${PAD}" y1="${y.toFixed(1)}" x2="${W-PAD}" y2="${y.toFixed(1)}" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>`;
+      if (pct > 0) svgContent += `<text x="${PAD-4}" y="${(y+3).toFixed(1)}" font-size="8" fill="rgba(255,255,255,0.3)" text-anchor="end">${fmt(maxVal*pct)}</text>`;
+    });
+
+    // Lines per seller
+    sellers.forEach(s => {
+      const pts = s.data.map((v,i) => `${(PAD + i*xStep).toFixed(1)},${yScale(v).toFixed(1)}`).join(' ');
+      svgContent += `<polyline points="${pts}" fill="none" stroke="${s.color}" stroke-width="2" stroke-linejoin="round" opacity="0.9"/>`;
+      // Dots
+      s.data.forEach((v,i) => {
+        if (v > 0) {
+          svgContent += `<circle cx="${(PAD + i*xStep).toFixed(1)}" cy="${yScale(v).toFixed(1)}" r="3" fill="${s.color}" stroke="var(--stone)" stroke-width="1.5">
+            <title>${s.name} ${months[i]}: ${fmt(v)}</title>
+          </circle>`;
+        }
+      });
+    });
+
+    // Month labels
+    months.forEach((m,i) => {
+      svgContent += `<text x="${(PAD + i*xStep).toFixed(1)}" y="${H-2}" font-size="9" fill="rgba(255,255,255,0.4)" text-anchor="middle">${m}</text>`;
+    });
+
+    svg.innerHTML = svgContent;
+  }
+}
+
+// Render when Annual tab is clicked
+const origSwitchTab = switchTab;
+switchTab = function(id) {
+  origSwitchTab(id);
+  if (id === 'annual') setTimeout(renderAnnualCharts, 50);
+};
+
 </script>
 </body>
 </html>
