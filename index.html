@@ -1703,6 +1703,68 @@ const meetingWeeks = [
       ]
     }
   }
+,
+  {
+    eyebrow: "Week 9",
+    dates: "Aug 4 – 6, 2026",
+    revenue: [
+      {name:"Anderson", value:"$12,400.00", note:"Margaret Mathis (Aug 5) · $18,900 logged in KPI Aug 6 — pending Sales Control entry"},
+      {name:"Stephanie", value:"$5,232.90", note:"Rittenhouse $4K (Aug 4) + balance payments on Palencia, Hopkins, Osborn"},
+      {name:"Eveline", value:"$3,687.20", note:"Dwayne Savage $1.8K (Aug 3) + Zach Doss $1.9K (old pipeline Jul 4)"},
+      {name:"Jessica (HD)", value:"—", note:"No Sales Control entry yet this week"}
+    ],
+    activity: [
+      {label:"Total Leads", value:"25", note:"Julia (13) + Eveline (12) — week in progress"},
+      {label:"Calls Made", value:"95+", note:"Julia (69) + Eveline (26+) — week in progress"},
+      {label:"Appts Scheduled", value:"16", note:"Julia (8) + Eveline (8) + Anderson (8)"},
+      {label:"Week Total", value:"$21,320+", note:"Aug 4–6 · Anderson $18.9K pending Sales Control"}
+    ],
+    worked: [
+      "Anderson logged $18,900 in KPI on Aug 6 — not yet in Sales Control. If confirmed, brings W9 total to $40,220",
+      "Glendon coaching call with Anderson Aug 4 — income flow, salary vs commission expectations",
+      "Chelsea welcome call Aug 5 — Glendon initiated onboarding",
+      "Julia consistent all week: 69 calls, 13 leads, 8 appts in just 4 days",
+      "Eveline 3 sales noted in KPI (Jul 31, Aug 4, Aug 5) — Sales Control shows 2 entries so far",
+      "Eveline Aug 3: 8 leads, 9 calls, 1 store visit — highest activity day of the week"
+    ],
+    attention: [
+      "Week in progress — today is Aug 6. Revenue and activity will grow before Friday",
+      "Anderson $18,900 (Aug 6) is in his KPI sheet but not yet in Sales Control — confirm before meeting",
+      "Stephanie entries on Aug 5 are small balance payments ($101–$443) on existing jobs — not new closings. Her KPI sheet has no entries since Jul 23",
+      "Eveline flagged 3 wrong service leads + 1 duplicate on Aug 4 — HD portal cleanup needed",
+      "Julia Aug 2: 0 calls. Otherwise consistent daily volume"
+    ],
+    blockers: [
+      {owner:"Anderson — Sales Control Gap", text:"KPI shows $18,900 on Aug 6 but not yet logged in Sales Control. Confirm and log before meeting."},
+      {owner:"Eveline — Wrong Service Leads", text:"3 wrong services + 1 duplicate flagged on Aug 4. HD portal lead quality issue recurring."},
+      {owner:"Stephanie — KPI Sheet Silent", text:"No KPI entries since Jul 23. Revenue visible in Sales Control but activity completely invisible."},
+      {owner:"Chelsea — Onboarding Started", text:"Welcome call with Glendon on Aug 5. First week back — monitor integration into the system."}
+    ],
+    agents: {
+      sales: [
+        {name:"Julia", role:"SDR / Inside Sales — High Volume", status:"active",
+          kpis:[{label:"Calls (Aug 4-6)",value:"69",note:"4 days · week in progress",cls:"gold"},{label:"Leads",value:"13",note:"1 duplicate + 1 unqualified flagged"},{label:"Appts Set",value:"8",note:"Week in progress",cls:"green"},{label:"Notes",value:"2 sending photos",note:"Tuyet + Samson"}],
+          progressLabel:"Weekly Activity", progressPct:80, progressNote:"Strong pace", blocker:null},
+        {name:"Stephanie", role:"Sales Agent — Countertops", status:"warn",
+          kpis:[{label:"Revenue",value:"$5,232.90",note:"Rittenhouse $4K + balances",cls:"amber"},{label:"New Closings",value:"1",note:"Rittenhouse Aug 4",cls:"green"},{label:"KPI Sheet",value:"Blank",note:"No entries since Jul 23",cls:"red"},{label:"Balances",value:"4 entries",note:"Existing job payments Aug 5",cls:"amber"}],
+          progressLabel:"Week 9 Revenue", progressPct:30, progressNote:"$5.2K confirmed", blocker:"⚠ No KPI entries since Jul 23 — activity invisible"},
+        {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"active",
+          kpis:[{label:"Leads (Week)",value:"12",note:"Aug 3–6",cls:"gold"},{label:"Calls Made",value:"26",note:"Aug 3–6",cls:"green"},{label:"Sales in KPI",value:"3",note:"Jul 31, Aug 4, Aug 5",cls:"green"},{label:"Sales Control",value:"2 confirmed",note:"Savage + Doss $3.7K",cls:"amber"}],
+          progressLabel:"Activity Level", progressPct:70, progressNote:"Strong outreach", blocker:"⚠ 3 wrong service leads Aug 4 — HD portal quality"},
+        {name:"Anderson", role:"Sales Agent — Bath Remodeling", status:"active",
+          kpis:[{label:"KPI Revenue",value:"$31,300",note:"Mathis $12.4K + $18.9K Aug 6",cls:"green"},{label:"Sales Control",value:"$12,400",note:"Margaret Mathis confirmed",cls:"amber"},{label:"Leads (Week)",value:"9",note:"Jul 31–Aug 6"},{label:"Coaching",value:"Aug 4",note:"Income flow + commission clarity",cls:"green"}],
+          progressLabel:"August Revenue", progressPct:65, progressNote:"$12.4K confirmed + $18.9K pending", blocker:"⚠ $18,900 Aug 6 not yet in Sales Control — confirm today"}
+      ],
+      ops: [
+        {name:"Mercedes", role:"Fabrication Manager", status:"active",
+          kpis:[{label:"Role",value:"Official",note:"Since Jul 15",cls:"green"},{label:"KPI",value:"No Aug entry",note:"Last Jul 16",cls:"amber"},{label:"Team",value:"5 roles",note:"Clarified"},{label:"Status",value:"Active",note:"Fabrication running"}],
+          progressLabel:"Operations", progressPct:75, progressNote:"Running", blocker:null},
+        {name:"Britney", role:"Admin / Front Desk", status:"pending",
+          kpis:[{label:"Start",value:"Jul 23",note:"Week 3 now"},{label:"KPI Sheet",value:"Not started",note:"Still blank",cls:"red"},{label:"Chelsea",value:"Back Aug 5",note:"Welcome call done",cls:"amber"},{label:"Status",value:"Onboarding",note:"Week 3"}],
+          progressLabel:"Onboarding", progressPct:20, progressNote:"Week 3 — KPI not started", blocker:"⚠ KPI sheet still blank after 3 weeks", pending:true}
+      ]
+    }
+  }
 ];
 
 let currentMeetingWeek = meetingWeeks.length - 1;
