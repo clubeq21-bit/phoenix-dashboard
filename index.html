@@ -451,7 +451,7 @@
 <div class="tab-panel" id="tab-team">
 <div class="content">
 
-  <div class="section-label">Company Overview — Week of Aug 4–6, 2026 (in progress)</div>
+  <div class="section-label">Company Overview — Week of Aug 7, 2026</div>
   <div class="kpi-row kpi-row-5">
     <div class="kpi-card">
       <div class="kpi-label">Total Leads (Week)</div>
@@ -1699,6 +1699,69 @@ const meetingWeeks = [
       ]
     }
   }
+,
+  {
+    eyebrow: "Week 9",
+    dates: "Jul 31 – Aug 7, 2026",
+    revenue: [
+      {name:"Anderson", value:"$21,391.00", note:"Sean Headley $8.9K + Margaret Mathis $12.4K — both confirmed in Sales Control Aug 7"},
+      {name:"Jessica (HD)", value:"$10,710.00", note:"3 closings Jul 31 — Patel $2.7K · Matthews $4.8K · Parker $3.3K"},
+      {name:"Eveline", value:"$6,835.20", note:"Kate Rogers $3.1K (Jul 31) + Savage $1.8K + Doss $1.9K"},
+      {name:"Stephanie", value:"$5,232.90", note:"Rittenhouse $4K (Aug 4) + balance payments"},
+      {name:"Matos", value:"$0", note:"No new entries"}
+    ],
+    activity: [
+      {label:"Total Leads", value:"28", note:"Julia (11) + Eveline (13) + Anderson (7)"},
+      {label:"Calls Made", value:"95", note:"Julia (69) + Eveline (26)"},
+      {label:"Appts Scheduled", value:"19", note:"Julia (8) + Eveline (11) + Anderson (8)"},
+      {label:"Week Total", value:"$44,169", note:"Jul 31–Aug 7 · Anderson both closings confirmed · Jul 31 strongest day"}
+    ],
+    worked: [
+      "Anderson 2 closings both confirmed Aug 7 in Sales Control: Sean Headley $8,991 + Margaret Mathis $12,400",
+      "Jul 31 strongest day of the week: Jessica 3 closings ($10,710) + Eveline 1 ($3,148) = $13,858 in one day",
+      "Glendon coaching call with Anderson Aug 4 — income flow and salary vs commission expectations aligned",
+      "Chelsea welcome call Aug 5 — onboarding started with Glendon",
+      "Julia 69 calls across 5 days — consistent, no zero-call days except Aug 7 (contract work)",
+      "n8n automation Google Ads → RD Station built Jul 28-29 — resolves Julia's recurring lead tracking blocker"
+    ],
+    attention: [
+      "Stephanie KPI sheet blank since Jul 23 — over 2 weeks without any activity entry",
+      "Britney 3 weeks in the role, KPI sheet still not started — needs to be addressed today",
+      "Anderson Mathis appears twice in Sales Control (Aug 5 + Aug 7) — verify no duplicate payment before commissions",
+      "Eveline: 3 wrong service leads + 1 duplicate on Aug 4 — HD portal quality issue recurring",
+      "Julia Aug 7: 0 calls, worked on contracts + 1 appt — not a performance issue, operational day"
+    ],
+    blockers: [
+      {owner:"Stephanie — KPI Silent 2+ Weeks", text:"No KPI entries since Jul 23. Revenue visible in Sales Control, activity completely invisible. Pattern needs direct conversation.", resolved:false},
+      {owner:"Britney — KPI Not Started", text:"3 weeks into the role, KPI sheet still blank. Needs to be addressed in today's meeting.", resolved:false},
+      {owner:"Anderson — Duplicate SC Entry", text:"Margaret Mathis logged in Sales Control on both Aug 5 and Aug 7. Verify only one payment is being processed before commission calculation.", resolved:false},
+      {owner:"Eveline — Wrong Service Leads", text:"3 wrong service leads + 1 duplicate flagged on Aug 4. HD portal sending off-scope leads. Portal cleanup needed.", resolved:false}
+    ],
+    agents: {
+      sales: [
+        {name:"Julia", role:"SDR / Inside Sales — High Volume", status:"active",
+          kpis:[{label:"Calls (Week)",value:"69",note:"Jul 31–Aug 6",cls:"gold"},{label:"Appts Set",value:"8",note:"Week total",cls:"green"},{label:"Leads",value:"11",note:"1 unqualified + 1 unresponsive"},{label:"Aug 7",value:"0 calls",note:"Contract work day",cls:"amber"}],
+          progressLabel:"Weekly Activity", progressPct:82, progressNote:"Solid pace", blocker:null},
+        {name:"Stephanie", role:"Sales Agent — Countertops", status:"warn",
+          kpis:[{label:"Revenue (W9)",value:"$5,232.90",note:"Rittenhouse $4K + balances",cls:"amber"},{label:"New Closing",value:"1",note:"Rittenhouse Aug 4",cls:"green"},{label:"KPI Sheet",value:"Blank",note:"Since Jul 23",cls:"red"},{label:"July Final",value:"$90,004",note:"",cls:"green"}],
+          progressLabel:"KPI Activity", progressPct:5, progressNote:"Invisible — 2+ weeks blank", blocker:"⚠ No KPI entries since Jul 23"},
+        {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"active",
+          kpis:[{label:"Leads (Week)",value:"13",note:"Aug 3–6",cls:"gold"},{label:"Calls Made",value:"26",note:"Aug 3–6",cls:"green"},{label:"Sales Closed",value:"3",note:"Rogers + Savage + Doss",cls:"green"},{label:"Revenue",value:"$6,835.20",note:"Week total",cls:"green"}],
+          progressLabel:"Pipeline Activity", progressPct:68, progressNote:"Rebuilding", blocker:"⚠ 3 wrong service leads Aug 4"},
+        {name:"Anderson", role:"Sales Agent — Bath Remodeling", status:"active",
+          kpis:[{label:"W9 Revenue",value:"$21,391",note:"Headley $8.9K + Mathis $12.4K",cls:"green"},{label:"SC Confirmed",value:"✓ Both Aug 7",note:"Both in Sales Control",cls:"green"},{label:"July Final",value:"$70,855",note:"First full month",cls:"green"},{label:"Aug Total",value:"$21,391",note:"7 days in",cls:"gold"}],
+          progressLabel:"August Revenue", progressPct:85, progressNote:"$21.4K confirmed", blocker:"⚠ Mathis appears twice in SC — verify"},
+        {name:"Britney", role:"Admin / Front Desk", status:"pending",
+          kpis:[{label:"Start",value:"Jul 23",note:"Week 3"},{label:"KPI Sheet",value:"Not started",note:"Still blank",cls:"red"},{label:"Chelsea",value:"Back Aug 5",note:"Welcome call done",cls:"amber"},{label:"Status",value:"Onboarding",note:"Week 3"}],
+          progressLabel:"Onboarding", progressPct:15, progressNote:"Week 3 — KPI not started", blocker:"🔴 KPI blank after 3 weeks", pending:true}
+      ],
+      ops: [
+        {name:"Mercedes", role:"Fabrication Manager", status:"active",
+          kpis:[{label:"Role",value:"Official",note:"Since Jul 15",cls:"green"},{label:"Last KPI",value:"Jul 16",note:"No Aug entry yet",cls:"amber"},{label:"Sean Headley",value:"Fabricated",note:"Anderson W9 closing",cls:"green"},{label:"Status",value:"Active",note:"Running operations"}],
+          progressLabel:"Operations", progressPct:75, progressNote:"Active", blocker:null}
+      ]
+    }
+  }
 ];
 
 let currentMeetingWeek = meetingWeeks.length - 1;
@@ -1965,7 +2028,7 @@ const monthlyData = [
   },
   {
     month: "July 2026", short: "Jul",
-    revenue: {stephanie:90004, eveline:44287, jessica:40517, anderson:70855, other:3056},
+    revenue: {stephanie:90004, eveline:47609, jessica:40517, anderson:70855, other:3056},
     activity: {leads:124, calls:569, appts:72, sales:0},
     note: "Anderson first full month — $70.9K. Stephanie $90K. Eveline $44.3K. Best month since Feb.",
     total: 248723,
@@ -1976,8 +2039,22 @@ const monthlyData = [
       {name:"Jessica", value:40517, pct:16},
       {name:"Other", value:3056, pct:1}
     ]
+  },
+  {
+    month: "August 2026", short: "Aug",
+    revenue: {stephanie:5233, eveline:6835, jessica:10710, anderson:21391, other:0},
+    activity: {leads:28, calls:95, appts:19, sales:0},
+    note: "W9 only (Jul 31–Aug 7) · Anderson $21.4K · Jessica $10.7K (Jul 31) · Week in progress",
+    total: 44169,
+    sellers: [
+      {name:"Anderson", value:21391, pct:48},
+      {name:"Jessica", value:10710, pct:24},
+      {name:"Eveline", value:6835, pct:16},
+      {name:"Stephanie", value:5233, pct:12}
+    ]
   }
-];
+
+];;
 
 let currentMonth = monthlyData.length - 1; // default to July (current month)
 
