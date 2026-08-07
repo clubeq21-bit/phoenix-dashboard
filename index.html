@@ -1708,7 +1708,7 @@ const meetingWeeks = [
     eyebrow: "Week 9",
     dates: "Aug 4 – 6, 2026",
     revenue: [
-      {name:"Anderson", value:"$12,400.00", note:"Margaret Mathis (Aug 5) · $18,900 logged in KPI Aug 6 — pending Sales Control entry"},
+      {name:"Anderson", value:"$12,400.00", note:"Margaret Mathis (Aug 5) · $18,900 logged in KPI Aug 6 — not yet in Sales Control"},
       {name:"Stephanie", value:"$5,232.90", note:"Rittenhouse $4K (Aug 4) + balance payments on Palencia, Hopkins, Osborn"},
       {name:"Eveline", value:"$3,687.20", note:"Dwayne Savage $1.8K (Aug 3) + Zach Doss $1.9K (old pipeline Jul 4)"},
       {name:"Jessica (HD)", value:"—", note:"No Sales Control entry yet this week"}
@@ -1752,7 +1752,7 @@ const meetingWeeks = [
           kpis:[{label:"Leads (Week)",value:"12",note:"Aug 3–6",cls:"gold"},{label:"Calls Made",value:"26",note:"Aug 3–6",cls:"green"},{label:"Sales in KPI",value:"3",note:"Jul 31, Aug 4, Aug 5",cls:"green"},{label:"Sales Control",value:"2 confirmed",note:"Savage + Doss $3.7K",cls:"amber"}],
           progressLabel:"Activity Level", progressPct:70, progressNote:"Strong outreach", blocker:"⚠ 3 wrong service leads Aug 4 — HD portal quality"},
         {name:"Anderson", role:"Sales Agent — Bath Remodeling", status:"active",
-          kpis:[{label:"KPI Revenue",value:"$31,300",note:"Mathis $12.4K + $18.9K Aug 6",cls:"green"},{label:"Sales Control",value:"$12,400",note:"Margaret Mathis confirmed",cls:"amber"},{label:"Leads (Week)",value:"9",note:"Jul 31–Aug 6"},{label:"Coaching",value:"Aug 4",note:"Income flow + commission clarity",cls:"green"}],
+          kpis:[{label:"KPI Revenue",value:"$31,300",note:"Mathis $12.4K (confirmed) + $18.9K (Aug 6, KPI only)",cls:"green"},{label:"Sales Control",value:"$12,400",note:"Margaret Mathis confirmed",cls:"amber"},{label:"Leads (Week)",value:"9",note:"Jul 31–Aug 6"},{label:"Coaching",value:"Aug 4",note:"Income flow + commission clarity",cls:"green"}],
           progressLabel:"August Revenue", progressPct:65, progressNote:"$12.4K confirmed + $18.9K pending", blocker:"⚠ $18,900 Aug 6 not yet in Sales Control — confirm today"}
       ],
       ops: [
@@ -2031,16 +2031,28 @@ const monthlyData = [
   },
   {
     month: "July 2026", short: "Jul",
-    revenue: {stephanie:90004, eveline:44287, jessica:40517, anderson:70855, other:3056},
-    activity: {leads:124, calls:569, appts:72, sales:0},
-    note: "Anderson first full month — $70.9K. Stephanie $90K. Eveline $44.3K. Best month since Feb.",
-    total: 248723,
+    revenue: {stephanie:90004, eveline:47609, jessica:40517, anderson:70855, other:3056},
+    activity: {leads:124, calls:575, appts:72, sales:0},
+    note: "Anderson first full month — $70.9K. Stephanie $90K. Eveline $47.6K (4 closings inc. Debby Gorby). Best month since Feb.",
+    total: 252041,
     sellers: [
       {name:"Stephanie", value:90004, pct:36},
       {name:"Anderson", value:70855, pct:28},
-      {name:"Eveline", value:44287, pct:18},
+      {name:"Eveline", value:47609, pct:19},
       {name:"Jessica", value:40517, pct:16},
       {name:"Other", value:3056, pct:1}
+    ]
+  },
+  {
+    month: "August 2026", short: "Aug",
+    revenue: {stephanie:5233, eveline:3687, jessica:0, anderson:12400, other:0},
+    activity: {leads:25, calls:95, appts:16, sales:0},
+    note: "Week in progress (Aug 4–6 only) · Anderson $18.9K pending Sales Control entry · Chelsea onboarding started",
+    total: 21320,
+    sellers: [
+      {name:"Anderson", value:12400, pct:58},
+      {name:"Stephanie", value:5233, pct:25},
+      {name:"Eveline", value:3687, pct:17}
     ]
   }
 ];
