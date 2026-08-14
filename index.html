@@ -451,7 +451,7 @@
 <div class="tab-panel" id="tab-team">
 <div class="content">
 
-  <div class="section-label">Company Overview — Week of Aug 7, 2026</div>
+  <div class="section-label">Company Overview — Week of Aug 8–13, 2026</div>
   <div class="kpi-row kpi-row-5">
     <div class="kpi-card">
       <div class="kpi-label">Total Leads (Week)</div>
@@ -470,8 +470,8 @@
     </div>
     <div class="kpi-card">
       <div class="kpi-label">Revenue Confirmed</div>
-      <div class="kpi-value gold">$35,178+</div>
-      <div class="kpi-sub">Anderson $27.9K pending SC · KPI total $63K</div>
+      <div class="kpi-value gold">$15,681 confirmed</div>
+      <div class="kpi-sub">Eveline $14.9K · Anderson $25.8K pending SC</div>
     </div>
     <div class="kpi-card">
       <div class="kpi-label">July Final</div>
@@ -1762,6 +1762,71 @@ const meetingWeeks = [
       ]
     }
   }
+,
+  {
+    eyebrow: "Week 10",
+    dates: "Aug 8 – 13, 2026",
+    revenue: [
+      {name:"Eveline", value:"$14,900.80", note:"4 closings — Hendrix $1K · Gangaraj $7.4K · Lewis $3.8K · Lawson $2.7K · Aug 12 was her biggest single day"},
+      {name:"Anderson", value:"$0 confirmed", note:"$25,800 in KPI (Aug 10: $12.1K + Aug 11: $13.7K) — pending Sales Control entry"},
+      {name:"Jessica (HD)", value:"$780.00", note:"Kevin Williams — Shower Glass (Aug 13)"},
+      {name:"Stephanie", value:"$0", note:"No KPI entries · no Sales Control activity"},
+      {name:"Matos", value:"$0", note:"No new entries"}
+    ],
+    activity: [
+      {label:"Total Leads", value:"25", note:"Julia (18) + Eveline (7) + Anderson (6)"},
+      {label:"Calls Made", value:"88", note:"Julia (63) + Eveline (23) + Anderson (10)"},
+      {label:"Appts Scheduled", value:"16", note:"Julia (10) + Anderson (6)"},
+      {label:"Week Total", value:"$15,681 confirmed", note:"Anderson $25.8K pending SC · with KPI = $41,481"}
+    ],
+    worked: [
+      "Eveline biggest single day of the year: Aug 12 — 3 closings totaling $13,898 (Gangaraj $7.4K + Lewis $3.8K + Lawson $2.7K)",
+      "Anderson $25,800 logged in KPI across Aug 10 ($12,100) and Aug 11 ($13,700) — pending Sales Control confirmation",
+      "Julia strongest day this week: Aug 10 — 21 calls, 4 appts, 16 follow-ups in one day",
+      "Glendon Aug 11: Building new independent funnels in RD Station for Google Ads and Walk-in leads",
+      "Glendon Aug 12: Call with Grace — fabrication slab breakage concern + decision-making gap when Matos unavailable",
+      "Glendon Aug 13: Call with Rubens — RD Station funnel architecture finalized"
+    ],
+    attention: [
+      "Anderson $25,800 KPI revenue (Aug 10-11) not yet in Sales Control — confirm before citing numbers in meeting",
+      "Stephanie KPI blank since Jul 23 — now 3+ weeks without any activity entry",
+      "Britney KPI sheet header only — 4 weeks on the job, never started",
+      "Mercedes last KPI entry Jul 16 — fabrication data invisible for nearly a month",
+      "Aug 12: Fabrication slab breakage concern flagged — no decision-maker when Matos unavailable. Critical operational gap.",
+      "Julia Aug 09: 0 calls (duplicate lead day). Aug 11: 1 fake phone number + 1 Shower Glass lead in countertop pipeline"
+    ],
+    blockers: [
+      {owner:"Anderson — SC Gap", text:"KPI shows $25,800 across Aug 10-11. Neither entry in Sales Control yet. Confirm before meeting.", resolved:false},
+      {owner:"Stephanie — 3+ Weeks Silent", text:"No KPI since Jul 23. Active in Sales Control but activity completely invisible. Needs direct conversation today.", resolved:false},
+      {owner:"Britney — Never Started KPI", text:"4 weeks in. Header row only in KPI sheet. This needs to be resolved before end of week.", resolved:false},
+      {owner:"Fabrication — Decision Maker Gap", text:"Slab movement breakage risk flagged Aug 12. No clear decision-maker when Matos unavailable. Grace holding for his return. Operational risk.", resolved:false},
+      {owner:"Mercedes — KPI Dark Since Jul 16", text:"Fabrication manager with no KPI data for nearly a month. Production volume completely invisible to leadership.", resolved:false}
+    ],
+    agents: {
+      sales: [
+        {name:"Julia", role:"SDR / Inside Sales — High Volume", status:"active",
+          kpis:[{label:"Calls (Week)",value:"63",note:"Aug 8–13",cls:"gold"},{label:"Best Day",value:"Aug 10",note:"21 calls · 4 appts · 16 follow-ups",cls:"green"},{label:"Leads",value:"18",note:"1 duplicate · 1 fake phone · 1 Shower Glass"},{label:"Appts Set",value:"10",note:"Strong recovery vs W9",cls:"green"}],
+          progressLabel:"Weekly Activity", progressPct:85, progressNote:"Solid — Aug 10 standout", blocker:null},
+        {name:"Stephanie", role:"Sales Agent — Countertops", status:"critical",
+          kpis:[{label:"KPI Sheet",value:"Blank",note:"Since Jul 23 — 3+ weeks",cls:"red"},{label:"SC Activity",value:"$0",note:"No new closings",cls:"red"},{label:"Last Active",value:"Aug 5",note:"Balance payments only",cls:"red"},{label:"July Final",value:"$90,004",note:"Was strong",cls:"amber"}],
+          progressLabel:"August Revenue", progressPct:0, progressNote:"$0 — invisible", blocker:"🔴 3+ weeks no KPI · $0 in August", critical:true},
+        {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"active",
+          kpis:[{label:"Revenue (W10)",value:"$14,900.80",note:"4 closings — Aug 12 biggest day",cls:"green"},{label:"Aug 12",value:"3 closings",note:"Gangaraj $7.4K + Lewis $3.8K + Lawson $2.7K",cls:"green"},{label:"Calls (Week)",value:"23",note:"Aug 10–13"},{label:"Aug Total",value:"$21,736",note:"W9 $6.8K + W10 $14.9K",cls:"green"}],
+          progressLabel:"August Revenue", progressPct:72, progressNote:"$21.7K — strong month", blocker:null},
+        {name:"Anderson", role:"Sales Agent — Bath Remodeling", status:"warn",
+          kpis:[{label:"KPI Revenue",value:"$25,800",note:"Aug 10 $12.1K + Aug 11 $13.7K",cls:"amber"},{label:"SC Confirmed",value:"$0",note:"Pending entry — not yet logged",cls:"red"},{label:"Aug Total (KPI)",value:"$47,191",note:"W9 $21.4K + W10 $25.8K"},{label:"Leads (Week)",value:"6",note:"Aug 8–11"}],
+          progressLabel:"SC Confirmation Needed", progressPct:50, progressNote:"$25.8K pending SC", blocker:"⚠ $25,800 KPI not in Sales Control yet"}
+      ],
+      ops: [
+        {name:"Mercedes", role:"Fabrication Manager", status:"warn",
+          kpis:[{label:"Last KPI",value:"Jul 16",note:"28 days ago",cls:"red"},{label:"Fabrication",value:"Active",note:"Producing but invisible"},{label:"Concern",value:"Aug 12",note:"Slab breakage risk flagged",cls:"red"},{label:"Decision Gap",value:"Open",note:"No backup when Matos out",cls:"red"}],
+          progressLabel:"Data Visibility", progressPct:0, progressNote:"KPI dark 28 days", blocker:"🔴 No KPI since Jul 16 · slab risk open"},
+        {name:"Britney", role:"Admin / Front Desk", status:"pending",
+          kpis:[{label:"Start Date",value:"Jul 23",note:"Week 4 now"},{label:"KPI Sheet",value:"Never started",note:"Header only",cls:"red"},{label:"Week",value:"4",note:"of onboarding"},{label:"Chelsea",value:"Back Aug 5",note:"Onboarding ongoing",cls:"amber"}],
+          progressLabel:"Onboarding", progressPct:10, progressNote:"Week 4 — KPI still blank", blocker:"🔴 KPI never started after 4 weeks", pending:true}
+      ]
+    }
+  }
 ];
 
 let currentMeetingWeek = meetingWeeks.length - 1;
@@ -2042,15 +2107,15 @@ const monthlyData = [
   },
   {
     month: "August 2026", short: "Aug",
-    revenue: {stephanie:5233, eveline:6835, jessica:10710, anderson:21391, other:0},
-    activity: {leads:28, calls:95, appts:19, sales:0},
-    note: "W9 only (Jul 31–Aug 7) · Anderson $21.4K · Jessica $10.7K (Jul 31) · Week in progress",
-    total: 44169,
+    revenue: {stephanie:5233, eveline:21736, jessica:11490, anderson:21391, other:0},
+    activity: {leads:43, calls:151, appts:29, sales:0},
+    note: "W9+W10 (Jul 31–Aug 13) · Eveline $21.7K leading · Anderson $25.8K pending SC · Stephanie $0 in August",
+    total: 59850,
     sellers: [
-      {name:"Anderson", value:21391, pct:48},
-      {name:"Jessica", value:10710, pct:24},
-      {name:"Eveline", value:6835, pct:16},
-      {name:"Stephanie", value:5233, pct:12}
+      {name:"Anderson", value:21391, pct:36},
+      {name:"Eveline", value:21736, pct:36},
+      {name:"Jessica", value:11490, pct:19},
+      {name:"Stephanie", value:5233, pct:9}
     ]
   }
 
