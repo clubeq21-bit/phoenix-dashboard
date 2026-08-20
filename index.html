@@ -1827,6 +1827,74 @@ const meetingWeeks = [
       ]
     }
   }
+,
+  {
+    eyebrow: "Week 11",
+    dates: "Aug 14 – 20, 2026",
+    revenue: [
+      {name:"Jessica (HD)", value:"$13,164.00", note:"3 closings — Sung Chung $8.6K (Aug 14) · Henderlight $3.1K + Grizzelle $1.5K (Aug 20)"},
+      {name:"Stephanie", value:"$12,509.45", note:"7 closings — Tarlton $4.5K (Aug 18) · Bentley $2.3K (Aug 14) + 5 more"},
+      {name:"Eveline", value:"$5,121.80", note:"2 closings Aug 17 — Tiffany Shipp $4.3K + Faheem Siddiqui $824"},
+      {name:"Anderson", value:"$0 confirmed", note:"$25,800 KPI (Aug 10-11) still pending Sales Control entry"},
+      {name:"Matos", value:"$0", note:"No new entries"}
+    ],
+    activity: [
+      {label:"Total Leads", value:"28", note:"Julia (16) + Eveline (12)"},
+      {label:"Calls Made", value:"78", note:"Julia (54) + Eveline (24)"},
+      {label:"Appts Scheduled", value:"8", note:"Julia (6) + Eveline (2)"},
+      {label:"Week Total", value:"$30,795 confirmed", note:"+ Anderson $25.8K pending SC = $56,595"}
+    ],
+    worked: [
+      "Jessica back strong — Sung Chung $8,574 on Aug 14, her biggest single closing this month. Jessica noted she was 'getting back in the swing of things from being sick'",
+      "Stephanie ACTIVE in Sales Control — 7 closings Aug 14-20 totaling $12,509. Tarlton $4,469 on Aug 18 was the largest",
+      "Julia: Aug 17 strongest day of the week — 17 calls, 3 appts, 12 follow-ups",
+      "Eveline: Aug 17 best day — 7 leads, 10 calls, Tiffany Shipp $4,297 closing",
+      "Mercedes: first-ever Sales Control entry on Aug 18 — Meagan Coleman $600 fabrication"
+    ],
+    attention: [
+      "🚨 CRITICAL: Cutting robot broken Aug 17 — nearly ALL fabrication jobs need reschedule. Aug 18: still down, ETA extended. Aug 19: Alabama stone delivery cancelled (truck unavailable). Saturday jobs moved to next week.",
+      "Stephanie KPI sheet STILL blank since Jul 23 — now 4 weeks. 7 closings in Sales Control this week. Revenue visible, person invisible.",
+      "Anderson $25,800 KPI (Aug 10-11) still not in Sales Control — 3rd week pending confirmation",
+      "Jessica was sick this week — Aug 17 KPI notes 'getting back in the swing of things'. Aug 4: McDonough store complaint (customer hasn't received glass)",
+      "Alabama operations disrupted: stone delivery cancelled Aug 19, Fabio truck too small to cover remaining jobs"
+    ],
+    blockers: [
+      {owner:"🚨 Cutting Robot — CRITICAL", text:"Broken Aug 17. Still down Aug 18-19. Nearly all fabrication jobs rescheduled. Alabama delivery cancelled. Biggest operational disruption since July robot failure. ETA unclear.", resolved:false},
+      {owner:"Stephanie — 4 Weeks No KPI", text:"7 closings in Sales Control this week. KPI sheet blank since Jul 23 — now 28+ days. This is no longer an oversight, it is a pattern that needs a direct resolution today.", resolved:false},
+      {owner:"Anderson — SC Gap Week 3", text:"$25,800 in KPI (Aug 10-11) still not in Sales Control. Third week without confirmation. Needs to be logged before end of today.", resolved:false},
+      {owner:"Saul — Scheduling Error Aug 12", text:"Job 54820 not fabricated for install date due to scheduling mistake. Customer offered cutting board. Pattern of last-minute schedule changes causing installer confusion.", resolved:false}
+    ],
+    agents: {
+      sales: [
+        {name:"Julia", role:"SDR / Inside Sales — High Volume", status:"active",
+          kpis:[{label:"Calls (Week)",value:"54",note:"Aug 14–19",cls:"gold"},{label:"Best Day",value:"Aug 17",note:"17 calls · 3 appts · 12 FU",cls:"green"},{label:"Leads",value:"16",note:"Kristy Silver sending photos"},{label:"Appts Set",value:"6",note:"Week total"}],
+          progressLabel:"Weekly Activity", progressPct:80, progressNote:"Solid — Aug 17 standout", blocker:null},
+        {name:"Stephanie", role:"Sales Agent — Countertops", status:"warn",
+          kpis:[{label:"Revenue (W11)",value:"$12,509",note:"7 closings Aug 14–20",cls:"green"},{label:"KPI Sheet",value:"Blank",note:"Since Jul 23 — 4 weeks",cls:"red"},{label:"Aug Total",value:"$17,742",note:"W9 $5.2K + W11 $12.5K",cls:"green"},{label:"Tarlton",value:"$4,469",note:"Aug 18 — largest closing",cls:"green"}],
+          progressLabel:"KPI vs Revenue", progressPct:50, progressNote:"Active but invisible", blocker:"🔴 4 weeks no KPI — direct resolution needed today"},
+        {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"active",
+          kpis:[{label:"Revenue (W11)",value:"$5,121.80",note:"Shipp $4.3K + Siddiqui $824",cls:"green"},{label:"Leads",value:"12",note:"Aug 14–19",cls:"gold"},{label:"Calls",value:"24",note:"Aug 14–19"},{label:"Aug Total",value:"$26,858",note:"W9+W10+W11",cls:"green"}],
+          progressLabel:"August Revenue", progressPct:78, progressNote:"$26.9K — strong month", blocker:null},
+        {name:"Jessica", role:"Sales Agent — Shower Glass", status:"active",
+          kpis:[{label:"Revenue (W11)",value:"$13,164",note:"Sung Chung $8.6K was biggest",cls:"green"},{label:"Closings",value:"3",note:"Aug 14 + 2 on Aug 20",cls:"green"},{label:"KPI Aug 17",value:"Back active",note:"8 leads, 3 quotes",cls:"amber"},{label:"Note",value:"Was sick",note:"Getting back in swing",cls:"amber"}],
+          progressLabel:"August Revenue", progressPct:72, progressNote:"Strong return", blocker:null},
+        {name:"Anderson", role:"Sales Agent — Bath Remodeling", status:"warn",
+          kpis:[{label:"KPI Revenue",value:"$25,800",note:"Aug 10-11 — week 3 pending SC",cls:"amber"},{label:"SC Confirmed",value:"$0",note:"No new SC entries",cls:"red"},{label:"Last KPI",value:"Aug 11",note:"No entries since"},{label:"Aug Total (KPI)",value:"$47,191",note:"W9+W10 KPI"}],
+          progressLabel:"SC Confirmation Needed", progressPct:30, progressNote:"3 weeks pending", blocker:"🔴 $25,800 KPI not in SC — 3rd week"}
+      ],
+      ops: [
+        {name:"Mercedes", role:"Fabrication Manager", status:"warn",
+          kpis:[{label:"First SC Entry",value:"Aug 18",note:"Meagan Coleman $600",cls:"green"},{label:"Robot",value:"🚨 Broken",note:"Aug 17–19+ — most jobs rescheduled",cls:"red"},{label:"Alabama",value:"Disrupted",note:"Delivery cancelled Aug 19",cls:"red"},{label:"KPI",value:"Jul 16",note:"Still no Aug KPI entry",cls:"red"}],
+          progressLabel:"Operational Status", progressPct:20, progressNote:"Robot crisis active", blocker:"🚨 Robot down — mass reschedules — KPI still dark"},
+        {name:"Saul", role:"Installation Coordinator", status:"warn",
+          kpis:[{label:"Robot Crisis",value:"Aug 17-19",note:"All jobs rescheduled",cls:"red"},{label:"Alabama",value:"Cancelled",note:"Stone delivery Aug 19",cls:"red"},{label:"Error Aug 12",value:"54820",note:"Job not fabricated for install",cls:"amber"},{label:"Last Update",value:"Aug 19",note:"Active this week",cls:"green"}],
+          progressLabel:"Installation Status", progressPct:15, progressNote:"Robot crisis disrupting all ops", blocker:"🔴 Robot down — Saturday jobs pushed to next week"},
+        {name:"Britney", role:"Admin / Front Desk", status:"pending",
+          kpis:[{label:"Start Date",value:"Jul 23",note:"Week 5"},{label:"KPI Sheet",value:"Never started",note:"Still blank",cls:"red"},{label:"Week",value:"5",note:"of onboarding"},{label:"Status",value:"Onboarding",note:"No data yet"}],
+          progressLabel:"Onboarding", progressPct:10, progressNote:"Week 5 — KPI still blank", blocker:"🔴 KPI never started — 5 weeks", pending:true}
+      ]
+    }
+  }
 ];
 
 let currentMeetingWeek = meetingWeeks.length - 1;
@@ -2107,15 +2175,16 @@ const monthlyData = [
   },
   {
     month: "August 2026", short: "Aug",
-    revenue: {stephanie:5233, eveline:21736, jessica:11490, anderson:21391, other:0},
-    activity: {leads:43, calls:151, appts:29, sales:0},
-    note: "W9+W10 (Jul 31–Aug 13) · Eveline $21.7K leading · Anderson $25.8K pending SC · Stephanie $0 in August",
-    total: 59850,
+    revenue: {stephanie:17742, eveline:26858, jessica:13944, anderson:21391, other:600},
+    activity: {leads:71, calls:229, appts:37, sales:0},
+    note: "W9+W10+W11 · Eveline leading $26.9K · Stephanie back $17.7K · Robot crisis Aug 17-19 · Anderson $25.8K pending SC",
+    total: 80535,
     sellers: [
-      {name:"Anderson", value:21391, pct:36},
-      {name:"Eveline", value:21736, pct:36},
-      {name:"Jessica", value:11490, pct:19},
-      {name:"Stephanie", value:5233, pct:9}
+      {name:"Eveline", value:26858, pct:33},
+      {name:"Stephanie", value:17742, pct:22},
+      {name:"Anderson", value:21391, pct:27},
+      {name:"Jessica", value:13944, pct:17},
+      {name:"Other", value:600, pct:1}
     ]
   }
 
