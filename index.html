@@ -1896,6 +1896,69 @@ const meetingWeeks = [
       ]
     }
   }
+,
+  {
+    eyebrow: "Week 12",
+    dates: "Aug 21 – 27, 2026",
+    revenue: [
+      {name:"Stephanie", value:"$23,047.00", note:"4 closings — Parrish $14,168 (Aug 26) · Albright $4,940 · Limbacher $3,940 (Aug 21)"},
+      {name:"Jessica (HD)", value:"$8,529.93", note:"5 closings — 3 on Aug 21 (Rogers $1.7K · Zappasodi $1.2K · Martin $2.4K) + 2 more"},
+      {name:"Eveline", value:"$5,070.50", note:"Noura Koudsi $5,070 (Aug 24)"},
+      {name:"Matos", value:"$0", note:"No new entries"}
+    ],
+    activity: [
+      {label:"Total Leads", value:"28", note:"Julia (19) + Eveline (9)"},
+      {label:"Calls Made", value:"90", note:"Julia (46) + Eveline (44)"},
+      {label:"Appts Scheduled", value:"14", note:"Julia (13) + Eveline (1)"},
+      {label:"Week Total", value:"$36,647", note:"Stephanie $23K led by Parrish $14.2K · week in progress"}
+    ],
+    worked: [
+      "Stephanie back strong — Parrish $14,168 on Aug 26 is the largest single closing of the week. Total $23,047 this week.",
+      "Jessica consistent: 5 closings including 3 on Aug 21 alone. Strong Shower Glass pipeline.",
+      "Glendon Aug 24: quick call with all new sales agents to align week expectations",
+      "Glendon Aug 25-26: 1:1 onboarding calls with Chelsea + Sheylla (new sales rep joining)",
+      "Julia Aug 24: strongest day of the week — 13 calls, 4 appts, 11 follow-ups",
+      "Eveline consistent: 44 calls, 9 leads, Noura Koudsi $5,070 closing on Aug 24"
+    ],
+    attention: [
+      "Sheylla — new sales rep starting onboarding this week. Glendon conducting 1:1s Aug 25-26.",
+      "Stephanie KPI sheet still blank since Jul 23 — 5 weeks. She closed $23K this week with zero activity logged.",
+      "Mercedes KPI last entry Jul 16 — 6 weeks of invisible fabrication operations.",
+      "Britney KPI never started — now week 6 of onboarding.",
+      "Chelsea KPI header only — still not started.",
+      "Julia Aug 21 + Aug 23: 0 calls both days. Aug 22: 10 calls but 1 Shower Glass lead in CT pipeline (flag)."
+    ],
+    blockers: [
+      {owner:"Stephanie — 5 Weeks No KPI", text:"Closed $23,047 this week. KPI blank since Jul 23. Revenue visible, activity invisible. This needs to be the last week this is mentioned.", resolved:false},
+      {owner:"Sheylla — New Sales Rep", text:"Starting onboarding this week. Glendon conducting 1:1s. KPI sheet not yet started. Watch for first entries next week.", resolved:false},
+      {owner:"Mercedes — 6 Weeks No KPI", text:"Fabrication manager with zero KPI data since Jul 16. Production volume completely invisible to leadership.", resolved:false},
+      {owner:"Chelsea + Britney — KPI Never Started", text:"Both in onboarding weeks. Chelsea (Week 4) and Britney (Week 6) still have blank KPI sheets.", resolved:false}
+    ],
+    agents: {
+      sales: [
+        {name:"Julia", role:"SDR / Inside Sales — High Volume", status:"active",
+          kpis:[{label:"Calls (Week)",value:"46",note:"Aug 21–27",cls:"gold"},{label:"Best Day",value:"Aug 24",note:"13 calls · 4 appts · 11 FU",cls:"green"},{label:"Leads",value:"19",note:"1 SG lead in CT pipeline flagged"},{label:"Appts Set",value:"13",note:"Week total",cls:"green"}],
+          progressLabel:"Weekly Activity", progressPct:78, progressNote:"Solid", blocker:null},
+        {name:"Stephanie", role:"Sales Agent — Countertops", status:"warn",
+          kpis:[{label:"Revenue (W12)",value:"$23,047",note:"Parrish $14.2K · Albright $4.9K · Limbacher $3.9K",cls:"green"},{label:"KPI Sheet",value:"Blank",note:"Since Jul 23 — 5 weeks",cls:"red"},{label:"Aug Total",value:"$40,789",note:"W9+W11+W12",cls:"green"},{label:"Parrish",value:"$14,168",note:"Aug 26 — biggest closing",cls:"green"}],
+          progressLabel:"Revenue vs Visibility", progressPct:60, progressNote:"$40.8K Aug — activity invisible", blocker:"🔴 5 weeks no KPI — must resolve today"},
+        {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"active",
+          kpis:[{label:"Revenue (W12)",value:"$5,070.50",note:"Noura Koudsi Aug 24",cls:"green"},{label:"Calls",value:"44",note:"Aug 21–27",cls:"gold"},{label:"Leads",value:"9",note:"Aug 21–27"},{label:"Aug Total",value:"$31,929",note:"W9+W10+W11+W12",cls:"green"}],
+          progressLabel:"August Revenue", progressPct:82, progressNote:"$31.9K — best month of year", blocker:null},
+        {name:"Chelsea", role:"Sales Agent — Onboarding", status:"pending",
+          kpis:[{label:"Onboarding",value:"Week 4",note:"1:1 with Glendon Aug 25"},{label:"KPI Sheet",value:"Not started",note:"Still blank",cls:"red"},{label:"Sheylla",value:"Also joining",note:"New rep Aug 25-26"},{label:"Status",value:"Learning",note:"No sales yet"}],
+          progressLabel:"Onboarding", progressPct:30, progressNote:"Week 4 — 1:1 done", blocker:"⚠ KPI still blank — week 4", pending:true}
+      ],
+      ops: [
+        {name:"Mercedes", role:"Fabrication Manager", status:"warn",
+          kpis:[{label:"Last KPI",value:"Jul 16",note:"6 weeks ago",cls:"red"},{label:"Robot",value:"Status?",note:"Was broken Aug 17-19",cls:"amber"},{label:"First SC",value:"Aug 18",note:"Meagan Coleman $600",cls:"green"},{label:"Status",value:"Active",note:"Producing but invisible"}],
+          progressLabel:"Data Visibility", progressPct:5, progressNote:"6 weeks dark", blocker:"🔴 KPI dark 6 weeks"},
+        {name:"Britney", role:"Admin / Front Desk", status:"pending",
+          kpis:[{label:"Start Date",value:"Jul 23",note:"Week 6"},{label:"KPI Sheet",value:"Never started",note:"Still blank",cls:"red"},{label:"Week",value:"6",note:"of onboarding"},{label:"Status",value:"Onboarding",note:"No data"}],
+          progressLabel:"Onboarding", progressPct:10, progressNote:"Week 6 — KPI blank", blocker:"🔴 KPI never started — 6 weeks", pending:true}
+      ]
+    }
+  }
 ];
 
 let currentMeetingWeek = meetingWeeks.length - 1;
@@ -2176,16 +2239,15 @@ const monthlyData = [
   },
   {
     month: "August 2026", short: "Aug",
-    revenue: {stephanie:17742, eveline:26858, jessica:13944, anderson:0, other:600},
-    activity: {leads:71, calls:229, appts:37, sales:0},
-    note: "W9+W10+W11 · Eveline leading $26.9K · Stephanie back $17.7K · Robot crisis Aug 17-19 · Anderson left Aug 15 · Chelsea onboarding",
-    total: 59144,
+    revenue: {stephanie:40789, eveline:31929, jessica:22474, anderson:0, other:1500},
+    activity: {leads:99, calls:319, appts:51, sales:0},
+    note: "W9–W12 · Eveline $31.9K best month ever · Stephanie $40.8K · Sheylla joining · Robot crisis resolved",
+    total: 96692,
     sellers: [
-      {name:"Eveline", value:26858, pct:33},
-      {name:"Stephanie", value:17742, pct:22},
-      {name:"Chelsea", value:21391, pct:27},
-      {name:"Jessica", value:13944, pct:17},
-      {name:"Other", value:600, pct:1}
+      {name:"Stephanie", value:40789, pct:42},
+      {name:"Eveline", value:31929, pct:33},
+      {name:"Jessica", value:22474, pct:23},
+      {name:"Other", value:1500, pct:2}
     ]
   }
 
