@@ -2164,110 +2164,71 @@ function renderMeetingWeek() {
 const monthlyData = [
   {
     month: "January 2026", short: "Jan",
-    revenue: {stephanie:12143, eveline:0, jessica:0, anderson:0, other:67078},
+    revenue: {stephanie:12143, eveline:0, jessica:0, anderson:0, other:67079},
     activity: {leads:0, calls:0, appts:0, sales:0},
-    note: "KPI sheet not yet launched — Stephanie only active seller. Paul $36.9K + M&M Services $14.7K in Other.",
-    total: 79221,
-    sellers: [
-      {name:"Stephanie", value:12143, pct:15},
-      {name:"Other / M&M", value:67078, pct:85}
-    ]
+    note: "KPI sheet not yet launched. Matos $15.5K + Paul $36.9K in Other.",
+    total: 79222,
+    sellers: [{name:"Stephanie",value:12143,pct:15},{name:"Other/Matos",value:67079,pct:85}]
   },
   {
     month: "February 2026", short: "Feb",
     revenue: {stephanie:87789, eveline:16917, jessica:51786, anderson:0, other:181703},
     activity: {leads:0, calls:0, appts:0, sales:0},
-    note: "Best month of the year — $338K total. Matos $169.6K batch. Stephanie $87.8K. Jessica $51.8K.",
+    note: "Best month of the year — Matos $169K + Stephanie $87.8K + Jessica $51.8K.",
     total: 338195,
-    sellers: [
-      {name:"Stephanie", value:87789, pct:26},
-      {name:"Jessica", value:51786, pct:15},
-      {name:"Eveline", value:16917, pct:5},
-      {name:"Other / Matos", value:181703, pct:54}
-    ]
+    sellers: [{name:"Stephanie",value:87789,pct:26},{name:"Jessica",value:51786,pct:15},{name:"Eveline",value:16917,pct:5},{name:"Other/Matos",value:181703,pct:54}]
   },
   {
     month: "March 2026", short: "Mar",
-    revenue: {stephanie:78172, eveline:32980, jessica:84837, anderson:0, other:23828},
+    revenue: {stephanie:78172, eveline:32980, jessica:84837, anderson:0, other:11481},
     activity: {leads:0, calls:0, appts:0, sales:0},
     note: "Jessica best month ever — $84.8K Shower Glass. Stephanie $78.2K. Eveline $33K.",
-    total: 219817,
-    sellers: [
-      {name:"Jessica", value:84837, pct:39},
-      {name:"Stephanie", value:78172, pct:36},
-      {name:"Eveline", value:32980, pct:15},
-      {name:"Other", value:23828, pct:10}
-    ]
+    total: 207470,
+    sellers: [{name:"Jessica",value:84837,pct:41},{name:"Stephanie",value:78172,pct:38},{name:"Eveline",value:32980,pct:16},{name:"Other",value:11481,pct:5}]
   },
   {
     month: "April 2026", short: "Apr",
     revenue: {stephanie:81490, eveline:52363, jessica:41324, anderson:0, other:39460},
     activity: {leads:0, calls:0, appts:0, sales:0},
-    note: "Eveline best month ever — $52.4K. Stephanie $81.5K. Jessica $41.3K. Strong 3-seller month.",
+    note: "Eveline best month (at the time) — $52.4K. Stephanie $81.5K. Strong 3-seller month.",
     total: 214637,
-    sellers: [
-      {name:"Stephanie", value:81490, pct:38},
-      {name:"Eveline", value:52363, pct:24},
-      {name:"Jessica", value:41324, pct:19},
-      {name:"Other / M&M", value:39460, pct:19}
-    ]
+    sellers: [{name:"Stephanie",value:81490,pct:38},{name:"Eveline",value:52363,pct:24},{name:"Jessica",value:41324,pct:19},{name:"Other/M&M",value:39460,pct:19}]
   },
   {
     month: "May 2026", short: "May",
     revenue: {stephanie:118623, eveline:17805, jessica:67151, anderson:0, other:1310},
     activity: {leads:8, calls:62, appts:3, sales:0},
-    note: "Stephanie best month ever — $118.6K. Jessica $67.2K. Eveline $17.8K. KPI sheet launched.",
+    note: "Stephanie best month ever — $118.6K. Jessica $67.2K. KPI sheet launched.",
     total: 204889,
-    sellers: [
-      {name:"Stephanie", value:118623, pct:58},
-      {name:"Jessica", value:67151, pct:33},
-      {name:"Eveline", value:17805, pct:9}
-    ]
+    sellers: [{name:"Stephanie",value:118623,pct:58},{name:"Jessica",value:67151,pct:33},{name:"Eveline",value:17805,pct:9}]
   },
   {
     month: "June 2026", short: "Jun",
-    revenue: {stephanie:73714, eveline:21744, jessica:52732, anderson:0, other:34889},
+    revenue: {stephanie:73714, eveline:21744, jessica:52732, anderson:0, other:34954},
     activity: {leads:192, calls:778, appts:135, sales:0},
-    note: "KPI system fully live. Stephanie $73.7K. Jessica $52.7K. Eveline $21.7K. Matos $125K batch logged Jun 24.",
-    total: 183079,
-    sellers: [
-      {name:"Stephanie", value:73714, pct:40},
-      {name:"Jessica", value:52732, pct:29},
-      {name:"Eveline", value:21744, pct:12},
-      {name:"Other / Matos", value:34889, pct:19}
-    ]
+    note: "Stephanie $73.7K. Jessica $52.7K. Angela $20.2K last month. Matos $125K batch Jun 24.",
+    total: 183144,
+    sellers: [{name:"Stephanie",value:73714,pct:40},{name:"Jessica",value:52732,pct:29},{name:"Eveline",value:21744,pct:12},{name:"Other",value:34954,pct:19}]
   },
   {
     month: "July 2026", short: "Jul",
-    revenue: {stephanie:90004, eveline:47609, jessica:40517, anderson:70855, other:3056},
-    activity: {leads:124, calls:569, appts:72, sales:0},
-    note: "Anderson first full month — $70.9K. Stephanie $90K. Eveline $44.3K. Best month since Feb.",
-    total: 248723,
-    sellers: [
-      {name:"Stephanie", value:90004, pct:36},
-      {name:"Chelsea", value:70855, pct:28},
-      {name:"Eveline", value:44287, pct:18},
-      {name:"Jessica", value:40517, pct:16},
-      {name:"Other", value:3056, pct:1}
-    ]
+    revenue: {stephanie:90004, eveline:50757, jessica:51227, anderson:21391, other:5203},
+    activity: {leads:124, calls:575, appts:72, sales:0},
+    note: "Anderson first full month $21.4K. Eveline $50.8K — strongest since April. Jessica $51.2K.",
+    total: 218582,
+    sellers: [{name:"Stephanie",value:90004,pct:41},{name:"Jessica",value:51227,pct:23},{name:"Eveline",value:50757,pct:23},{name:"Anderson",value:21391,pct:10},{name:"Other",value:5203,pct:3}]
   },
   {
     month: "August 2026", short: "Aug",
-    revenue: {stephanie:40789, eveline:31929, jessica:22474, anderson:0, other:1500},
+    revenue: {stephanie:60100, eveline:17652, jessica:27409, anderson:24808, other:8470},
     activity: {leads:99, calls:319, appts:51, sales:0},
-    note: "W9–W12 · Eveline $31.9K best month ever · Stephanie $40.8K · Sheylla joining · Robot crisis resolved",
-    total: 96692,
-    sellers: [
-      {name:"Stephanie", value:40789, pct:42},
-      {name:"Eveline", value:31929, pct:33},
-      {name:"Jessica", value:22474, pct:23},
-      {name:"Other", value:1500, pct:2}
-    ]
+    note: "Month in progress (thru Aug 27) · Stephanie $60.1K leads · Anderson $24.8K (left Aug 15) · Robot crisis Aug 17-19 · Sheylla joining",
+    total: 138439,
+    sellers: [{name:"Stephanie",value:60100,pct:43},{name:"Anderson",value:24808,pct:18},{name:"Jessica",value:27409,pct:20},{name:"Eveline",value:17652,pct:13},{name:"Other",value:8470,pct:6}]
   }
+];
 
-];;
-
-let currentMonth = monthlyData.length - 1; // default to July (current month)
+let currentMonth = monthlyData.length - 1; // default to August
 
 function changeMonth(delta) {
   const next = currentMonth + delta;
@@ -2280,7 +2241,6 @@ function changeMonth(delta) {
 function renderMonthly() {
   const el = document.getElementById('monthlyContent');
   if (!el) return;
-  const m = monthlyData[currentMonth];
   const eyebrow = document.getElementById('monthEyebrow');
   const label = document.getElementById('monthLabel');
   if (eyebrow) eyebrow.textContent = `2026 — ${currentMonth + 1} of ${monthlyData.length}`;
@@ -2392,10 +2352,10 @@ function switchTab(id) {
 const seller2026 = {
   months: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug'],
   sellers: [
-    { name:'Stephanie', color:'#F5C842', data:[12143,87789,78172,81490,118623,73714,90004,40789] },
-    { name:'Eveline',   color:'#4A9EE0', data:[0,16917,32980,52363,17805,21744,47609,31929] },
-    { name:'Jessica',   color:'#5CBA8A', data:[0,51786,84837,41324,67151,52732,40517,22474] },
-    { name:'Anderson',  color:'#E08050', data:[0,0,0,0,0,0,70855,21391] }
+    { name:'Stephanie', color:'#F5C842', data:[12143,87789,78172,81490,118623,73714,90004,60100] },
+    { name:'Eveline',   color:'#4A9EE0', data:[0,16917,32980,52363,17805,21744,50757,17652] },
+    { name:'Jessica',   color:'#5CBA8A', data:[0,51786,84837,41324,67151,52732,51227,27409] },
+    { name:'Anderson',  color:'#E08050', data:[0,0,0,0,0,0,21391,24808] }
   ]
 };
 
