@@ -2243,6 +2243,8 @@ function renderMonthly() {
   if (!el) return;
   if (!monthlyData || monthlyData.length === 0) return;
   if (typeof currentMonth === 'undefined' || currentMonth < 0 || currentMonth >= monthlyData.length) return;
+  const m = monthlyData[currentMonth];
+  if (!m) return;
   const eyebrow = document.getElementById('monthEyebrow');
   const label = document.getElementById('monthLabel');
   if (eyebrow) eyebrow.textContent = `2026 — ${currentMonth + 1} of ${monthlyData.length}`;
