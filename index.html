@@ -1973,6 +1973,74 @@ const meetingWeeks = [
       ]
     }
   }
+,
+  {
+    eyebrow: "Week 13",
+    dates: "Aug 28 – 31, 2026",
+    revenue: [
+      {name:"Stephanie", value:"$4,120.00", note:"Job 55257 (Aug 28) — month closing strong"},
+      {name:"Jessica (HD)", value:"$3,935.00", note:"2 closings Aug 28 — Sharon $2.2K + closing $1.7K"},
+      {name:"Eveline", value:"$0", note:"No new entries Aug 28-31"},
+      {name:"Matos", value:"$0", note:"No new entries"}
+    ],
+    activity: [
+      {label:"August FINAL", value:"$168,848", note:"Full month confirmed — best sellers month since February"},
+      {label:"Stephanie Aug", value:"$64,220", note:"Leads August despite robot crisis"},
+      {label:"Anderson Aug", value:"$33,791", note:"Left Aug 15 — closings logged after departure"},
+      {label:"Week Total", value:"$8,055", note:"Last days of August — month now closed"}
+    ],
+    worked: [
+      "AGOSTO FECHADO: $168,848 total — best month since February ($338K)",
+      "Stephanie fechou agosto com $64,220 — forte apesar do robot quebrado e KPI em branco",
+      "Jessica: $31,344 em agosto — voltou forte na última semana com 2 closings em Aug 28",
+      "Eveline: $28,780 em agosto — segundo melhor mês da carreira dela",
+      "Anderson: $33,791 — closings continuaram chegando após sua saída em Aug 15",
+      "Sheylla e Chelsea em onboarding — setembro começa com novo time sendo formado"
+    ],
+    attention: [
+      "Stephanie KPI blank desde Jul 23 — fechou $64K em agosto sem registrar uma linha de atividade. Setembro começa com esse padrão precisando mudar.",
+      "Bath Remodeling pipeline descoberto — Anderson saiu, Chelsea e Sheylla ainda em onboarding. Quem fecha esse gap em setembro?",
+      "Mercedes KPI dark desde Jul 16 — fabricação completamente invisível há 6 semanas.",
+      "Robot quebrou duas vezes em agosto (Jul e Aug 17-19). Plano de manutenção preventiva para setembro?",
+      "Britney e Chelsea: KPI nunca iniciado. Setembro é o prazo final."
+    ],
+    blockers: [
+      {owner:"Stephanie — KPI 5+ Semanas Blank", text:"$64,220 em agosto. Zero entradas no KPI desde Jul 23. Setembro começa hoje — primeira entrada precisa acontecer no primeiro dia.", resolved:false},
+      {owner:"Bath Remodeling — Pipeline Descoberto", text:"Anderson saiu Aug 15. Chelsea e Sheylla em onboarding. Quem cobre o pipeline de Bath Remodeling em setembro?", resolved:false},
+      {owner:"Robot — Manutenção Preventiva", text:"Duas quebras em dois meses (Jul e Aug 17-19). Cada quebra causa reschedules em massa. Plano de manutenção precisa existir antes da próxima quebra.", resolved:false},
+      {owner:"KPI — Britney + Chelsea + Mercedes", text:"Três pessoas em funções diferentes, todas com KPI dark ou nunca iniciado. Setembro não pode começar assim.", resolved:false}
+    ],
+    agents: {
+      sales: [
+        {name:"Julia", role:"SDR / Inside Sales — High Volume", status:"active",
+          kpis:[{label:"Agosto Total",value:"Completing",note:"Final entries pending"},{label:"Leads Aug",value:"~70",note:"Full month estimate",cls:"gold"},{label:"Calls Aug",value:"~350",note:"Full month estimate"},{label:"Status",value:"Active",note:"Onboarding Sheylla + Chelsea"}],
+          progressLabel:"August Performance", progressPct:85, progressNote:"Consistent all month", blocker:null},
+        {name:"Stephanie", role:"Sales Agent — Countertops", status:"warn",
+          kpis:[{label:"August FINAL",value:"$64,220",note:"Leads the month",cls:"green"},{label:"KPI Sheet",value:"Blank",note:"Since Jul 23 — 5+ weeks",cls:"red"},{label:"YTD",value:"$606,155",note:"",cls:"green"},{label:"September",value:"Day 1",note:"KPI must restart today",cls:"amber"}],
+          progressLabel:"August Revenue", progressPct:85, progressNote:"$64.2K — activity invisible", blocker:"🔴 5+ weeks no KPI — September starts today"},
+        {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"active",
+          kpis:[{label:"August FINAL",value:"$28,780",note:"2nd best month ever",cls:"green"},{label:"YTD",value:"$221,346",note:"",cls:"green"},{label:"Best Day",value:"Aug 12",note:"3 closings $13,898",cls:"green"},{label:"September",value:"Pipeline?",note:"What’s ready to close?",cls:"amber"}],
+          progressLabel:"August Revenue", progressPct:78, progressNote:"$28.8K — strong month", blocker:null},
+        {name:"Jessica", role:"Sales Agent — Shower Glass", status:"active",
+          kpis:[{label:"August FINAL",value:"$31,344",note:"Closed strong Aug 28",cls:"green"},{label:"YTD",value:"$380,401",note:"",cls:"green"},{label:"Aug 28",value:"2 closings",note:"$3,935 last day of month",cls:"green"},{label:"September",value:"Ready",note:"Pipeline solid",cls:"green"}],
+          progressLabel:"August Revenue", progressPct:72, progressNote:"$31.3K — recovered well", blocker:null},
+        {name:"Chelsea", role:"Sales Agent — Onboarding Week 4", status:"pending",
+          kpis:[{label:"Onboarding",value:"Week 4",note:"1:1 with Glendon done"},{label:"KPI",value:"Never started",note:"",cls:"red"},{label:"September",value:"Week 5",note:"Must start KPI Day 1"},{label:"Status",value:"Learning",note:"No sales yet"}],
+          progressLabel:"Onboarding", progressPct:35, progressNote:"Week 4 — KPI must start Sep 1", blocker:"🔴 KPI never started — Sep 1 is the deadline", pending:true},
+        {name:"Sheylla", role:"Sales Agent — Onboarding Week 1", status:"pending",
+          kpis:[{label:"Started",value:"Aug 25",note:"1:1 with Glendon Aug 26"},{label:"KPI",value:"Setting up",note:"Week 1",cls:"amber"},{label:"September",value:"Week 2",note:"First full week"},{label:"Status",value:"Onboarding",note:"New rep"}],
+          progressLabel:"Onboarding", progressPct:10, progressNote:"Week 1 — new rep", blocker:null, pending:true}
+      ],
+      ops: [
+        {name:"Mercedes", role:"Fabrication Manager", status:"warn",
+          kpis:[{label:"Last KPI",value:"Jul 16",note:"6+ weeks",cls:"red"},{label:"Aug SC",value:"$600",note:"Meagan Coleman",cls:"green"},{label:"Robot",value:"Fixed?",note:"Was broken Aug 17-19",cls:"amber"},{label:"September",value:"KPI restart",note:"Needed urgently"}],
+          progressLabel:"Visibility", progressPct:5, progressNote:"6+ weeks dark", blocker:"🔴 KPI dark 6+ weeks — Sep 1 restart needed"},
+        {name:"Britney", role:"Admin / Front Desk", status:"pending",
+          kpis:[{label:"Start",value:"Jul 23",note:"Week 6"},{label:"KPI",value:"Never started",note:"",cls:"red"},{label:"September",value:"Week 7",note:"Final deadline"},{label:"Status",value:"Onboarding",note:"Admin role"}],
+          progressLabel:"Onboarding", progressPct:10, progressNote:"Week 6 — KPI never started", blocker:"🔴 Sep 1 is final deadline for KPI", pending:true}
+      ]
+    }
+  }
 ];
 
 let currentMeetingWeek = meetingWeeks.length - 1;
@@ -2220,11 +2288,17 @@ const monthlyData = [
   },
   {
     month: "August 2026", short: "Aug",
-    revenue: {stephanie:60100, eveline:37310, jessica:27409, anderson:24808, other:8470},
-    activity: {leads:99, calls:319, appts:51, sales:0},
-    note: "Month in progress (thru Aug 27) · Stephanie $60.1K leads · Anderson $24.8K (left Aug 15) · Robot crisis Aug 17-19 · Sheylla joining",
-    total: 158097,
-    sellers: [{name:"Stephanie",value:60100,pct:43},{name:"Anderson",value:24808,pct:18},{name:"Jessica",value:27409,pct:20},{name:"Eveline",value:17652,pct:13},{name:"Other",value:8470,pct:6}]
+    revenue: {stephanie:64220, eveline:28780, jessica:31344, anderson:33791, other:10713},
+    activity: {leads:70, calls:350, appts:55, sales:0},
+    note: "FINAL · Stephanie $64.2K leads · Anderson $33.8K (left Aug 15) · Eveline $28.8K 2nd best month · Robot crisis Aug 17-19",
+    total: 168848,
+    sellers: [
+      {name:"Stephanie", value:64220, pct:38},
+      {name:"Anderson", value:33791, pct:20},
+      {name:"Jessica", value:31344, pct:19},
+      {name:"Eveline", value:28780, pct:17},
+      {name:"Other", value:10713, pct:6}
+    ]
   }
 ];
 
@@ -2356,10 +2430,10 @@ function switchTab(id) {
 const seller2026 = {
   months: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug'],
   sellers: [
-    { name:'Stephanie', color:'#F5C842', data:[12143,87789,78172,81490,118623,73714,90004,60100] },
-    { name:'Eveline',   color:'#4A9EE0', data:[0,16917,32980,52363,17805,21744,50757,37310] },
-    { name:'Jessica',   color:'#5CBA8A', data:[0,51786,84837,41324,67151,52732,51227,27409] },
-    { name:'Anderson',  color:'#E08050', data:[0,0,0,0,0,0,21391,24808] }
+    { name:'Stephanie', color:'#F5C842', data:[12143,87789,78172,81490,118623,73714,90004,64220] },
+    { name:'Eveline',   color:'#4A9EE0', data:[0,16917,32980,52363,17805,21744,50757,28780] },
+    { name:'Jessica',   color:'#5CBA8A', data:[0,51786,84837,41324,67151,52732,51227,31344] },
+    { name:'Anderson',  color:'#E08050', data:[0,0,0,0,0,0,21391,33791] }
   ]
 };
 
