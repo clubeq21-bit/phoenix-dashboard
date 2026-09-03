@@ -451,7 +451,7 @@
 <div class="tab-panel" id="tab-team">
 <div class="content">
 
-  <div class="section-label">Company Overview — Week of Aug 21–27, 2026</div>
+  <div class="section-label">Company Overview — Sep 1–3, 2026 (week in progress)</div>
   <div class="kpi-row kpi-row-5">
     <div class="kpi-card">
       <div class="kpi-label">Total Leads (Week)</div>
@@ -465,13 +465,13 @@
     </div>
     <div class="kpi-card">
       <div class="kpi-label">Revenue Confirmed</div>
-      <div class="kpi-value gold">$36,647</div>
-      <div class="kpi-sub">Stephanie $23K + Jessica $8.5K + Eveline $5.1K</div>
+      <div class="kpi-value gold">$27,194</div>
+      <div class="kpi-sub">Stephanie $24.5K in 3 days · week just started</div>
     </div>
     <div class="kpi-card">
       <div class="kpi-label">August Total</div>
-      <div class="kpi-value green">$96,692</div>
-      <div class="kpi-sub">W9–W12 confirmed · best month of 2026</div>
+      <div class="kpi-value green">$168,848</div>
+      <div class="kpi-sub">August FINAL · best month since February</div>
     </div>
     <div class="kpi-card">
       <div class="kpi-label">New This Week</div>
@@ -2041,6 +2041,73 @@ const meetingWeeks = [
       ]
     }
   }
+,
+  {
+    eyebrow: "Week 14",
+    dates: "Sep 1 – 3, 2026",
+    revenue: [
+      {name:"Stephanie", value:"$24,544.34", note:"6 closings Sep 1–3 — 55264 CT+Faucet $6.8K (Sep 1) · 55266 $5.9K (Sep 1) · 55283 $4.7K (Sep 2) · 2 more Sep 3"},
+      {name:"Jessica (HD)", value:"$2,650.00", note:"3627 Shower Glass (Sep 2)"},
+      {name:"Eveline", value:"$0 confirmed", note:"1 sale in KPI Sep 1 — not yet in Sales Control"},
+      {name:"Matos", value:"$0", note:"No new entries"}
+    ],
+    activity: [
+      {label:"Total Leads", value:"7", note:"Julia (7) — Sep 1-2 only"},
+      {label:"Calls Made", value:"52", note:"Julia (27) + Eveline (26) — Sep 1-2"},
+      {label:"Appts Scheduled", value:"7", note:"Julia (7) — Sep 1-2"},
+      {label:"Week Total", value:"$27,194", note:"Week just started — Sep 1-3 only · Stephanie strong open"}
+    ],
+    worked: [
+      "Stephanie opened September with 6 closings in 3 days — $24,544. Strongest 3-day start to any month this year.",
+      "Glendon Sep 2: Leadership sync with Loiny covering RD Station automation, fabrication SOPs, Stephanie behavior, Fulvio meeting, new KPI model",
+      "Glendon Sep 2: 1:1 with Stephanie + Loiny — KPI gap 5 weeks addressed directly. Behavior affecting team environment raised. Stephanie reinforced as team reference standard.",
+      "Julia Sep 1: 13 calls, 5 appts — strong first day of month. Sep 2: 14 calls, 2 appts.",
+      "Eveline Sep 1: 15 calls, 1 appt, 1 sale (not yet in Sales Control). Sep 2: 11 calls.",
+      "3 unqualified leads Sep 1 (service not offered) — Julia flagged. Lead quality conversation continuing."
+    ],
+    attention: [
+      "Stephanie KPI still blank since Jul 23 — but 1:1 happened Sep 2 with Loiny + Glendon. Monitor if entries start appearing this week.",
+      "Eveline sale Sep 1 not yet in Sales Control — confirm logging",
+      "Chelsea KPI never started — Week 5 of onboarding, header only",
+      "Sheylla KPI — Week 2, check if she started filling",
+      "3 unqualified leads Sep 1 (Julia) — service not offered. Portal cleanup still needed."
+    ],
+    blockers: [
+      {owner:"Stephanie — KPI Gap Addressed", text:"1:1 Sep 2 with Glendon + Loiny. KPI blank since Jul 23 raised directly. Monitor for first entries this week.", resolved:false},
+      {owner:"Eveline — Sep 1 Sale Pending SC", text:"1 sale logged in KPI Sep 1 not yet in Sales Control. Confirm logging.", resolved:false},
+      {owner:"Lead Quality — Unqualified Leads", text:"3 unqualified leads Sep 1 (service not offered). Julia flagged. HD portal cleanup still pending.", resolved:false}
+    ],
+    agents: {
+      sales: [
+        {name:"Julia", role:"SDR / Inside Sales — High Volume", status:"active",
+          kpis:[{label:"Calls (Sep 1-2)",value:"27",note:"Strong start",cls:"gold"},{label:"Appts Set",value:"7",note:"Sep 1-2",cls:"green"},{label:"Leads",value:"7",note:"3 unqualified Sep 1"},{label:"Best Day",value:"Sep 1",note:"13 calls · 5 appts",cls:"green"}],
+          progressLabel:"Week Activity", progressPct:82, progressNote:"Strong start to September", blocker:null},
+        {name:"Stephanie", role:"Sales Agent — Countertops", status:"warn",
+          kpis:[{label:"Sep Revenue",value:"$24,544",note:"6 closings Sep 1–3",cls:"green"},{label:"1:1 Sep 2",value:"Done",note:"Glendon + Loiny — KPI addressed",cls:"amber"},{label:"KPI Sheet",value:"Still blank",note:"Watch for entries this week",cls:"red"},{label:"Aug Final",value:"$64,220",note:"Led August",cls:"green"}],
+          progressLabel:"September Start", progressPct:70, progressNote:"$24.5K in 3 days", blocker:"⚠ KPI addressed in 1:1 — monitor for entries"},
+        {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"active",
+          kpis:[{label:"Calls (Sep 1-2)",value:"26",note:"Active start",cls:"gold"},{label:"Sep 1 Sale",value:"1",note:"Pending Sales Control",cls:"amber"},{label:"Aug Final",value:"$28,780",note:"9 closings",cls:"green"},{label:"Status",value:"Active",note:"Building pipeline"}],
+          progressLabel:"September Start", progressPct:60, progressNote:"Active — sale pending SC", blocker:null},
+        {name:"Jessica", role:"Sales Agent — Shower Glass", status:"active",
+          kpis:[{label:"Sep Revenue",value:"$2,650",note:"3627 SG Sep 2",cls:"green"},{label:"Aug Final",value:"$31,344",note:"9 closings",cls:"green"},{label:"Status",value:"Active",note:"Pipeline continuing"},{label:"YTD",value:"$397,925",note:"",cls:"green"}],
+          progressLabel:"September Start", progressPct:40, progressNote:"$2.7K — week just started", blocker:null},
+        {name:"Chelsea", role:"Sales Agent — Onboarding Week 5", status:"pending",
+          kpis:[{label:"Onboarding",value:"Week 5",note:"1:1 with Glendon done"},{label:"KPI Sheet",value:"Never started",note:"Header only",cls:"red"},{label:"September",value:"Must start",note:"Week 5 = final deadline"},{label:"Status",value:"Learning",note:"No sales yet"}],
+          progressLabel:"Onboarding", progressPct:40, progressNote:"Week 5 — KPI deadline today", blocker:"🔴 KPI never started — Sep is the deadline", pending:true},
+        {name:"Sheylla", role:"Sales Agent — Onboarding Week 2", status:"pending",
+          kpis:[{label:"Started",value:"Aug 25",note:"1:1 with Glendon done"},{label:"KPI Sheet",value:"Week 2",note:"Check entries",cls:"amber"},{label:"September",value:"Week 2",note:"First full month"},{label:"Status",value:"Onboarding",note:"Building knowledge"}],
+          progressLabel:"Onboarding", progressPct:20, progressNote:"Week 2 — monitoring", blocker:null, pending:true}
+      ],
+      ops: [
+        {name:"Mercedes", role:"Fabrication Manager", status:"warn",
+          kpis:[{label:"Last KPI",value:"Jul 16",note:"7+ weeks",cls:"red"},{label:"Robot",value:"Status?",note:"Was broken Aug 17-19",cls:"amber"},{label:"Fabrication SOPs",value:"In progress",note:"Discussed Sep 2 with Loiny",cls:"amber"},{label:"Sep",value:"KPI restart",note:"Needed urgently"}],
+          progressLabel:"Visibility", progressPct:5, progressNote:"7+ weeks dark", blocker:"🔴 KPI dark 7+ weeks — Sep restart critical"},
+        {name:"Britney", role:"Admin / Front Desk", status:"pending",
+          kpis:[{label:"Start",value:"Jul 23",note:"Week 7"},{label:"KPI Sheet",value:"Never started",note:"",cls:"red"},{label:"Week",value:"7",note:"of onboarding"},{label:"Status",value:"Admin",note:"No KPI ever"}],
+          progressLabel:"Onboarding", progressPct:10, progressNote:"Week 7 — KPI never started", blocker:"🔴 Sep 1 was final deadline", pending:true}
+      ]
+    }
+  }
 ];
 
 let currentMeetingWeek = meetingWeeks.length - 1;
@@ -2294,7 +2361,19 @@ const monthlyData = [
     total: 168848,
     sellers: [{name:"Stephanie",value:64220,pct:38},{name:"Anderson",value:33791,pct:20},{name:"Jessica",value:31344,pct:19},{name:"Eveline",value:28780,pct:17},{name:"Other",value:10713,pct:6}]
   }
-];
+,
+  {
+    month: "September 2026", short: "Sep",
+    revenue: {stephanie:24544, eveline:0, jessica:2650, anderson:0, other:3161},
+    activity: {leads:7, calls:52, appts:7, sales:0},
+    note: "Sep 1–3 only · Stephanie $24.5K strong start · Glendon 1:1 Stephanie + Loiny · KPI gap addressed",
+    total: 30355,
+    sellers: [
+      {name:"Stephanie", value:24544, pct:81},
+      {name:"Jessica", value:2650, pct:9},
+      {name:"Other/M&M", value:3161, pct:10}
+    ]
+  }];
 
 let currentMonth = monthlyData.length - 1; // default to August
 
@@ -2422,12 +2501,12 @@ function switchTab(id) {
 // ANNUAL PERFORMANCE — 2026 Seller Evolution Charts
 // ============================================================
 const seller2026 = {
-  months: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug'],
+  months: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep'],
   sellers: [
-    { name:'Stephanie', color:'#F5C842', data:[12143,87789,78172,81490,118623,73714,90004,64220] },
-    { name:'Eveline',   color:'#4A9EE0', data:[0,21726,41952,52363,26780,41092,53124,28780] },
-    { name:'Jessica',   color:'#5CBA8A', data:[0,51786,84837,46319,79680,52732,51227,31344] },
-    { name:'Anderson',  color:'#E08050', data:[0,0,0,0,0,0,70855,33791] }
+    { name:'Stephanie', color:'#F5C842', data:[12143,87789,78172,81490,118623,73714,90004,64220,24544] },
+    { name:'Eveline',   color:'#4A9EE0', data:[0,21726,41952,52363,26780,41092,53124,28780,0] },
+    { name:'Jessica',   color:'#5CBA8A', data:[0,51786,84837,46319,79680,52732,51227,31344,2650] },
+    { name:'Anderson',  color:'#E08050', data:[0,0,0,0,0,0,70855,33791,0] }
   ]
 };
 
