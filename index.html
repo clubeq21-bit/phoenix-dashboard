@@ -2672,6 +2672,144 @@ const meetingWeeks = [
       ]
     }
   }
+,
+  {
+    eyebrow: "Week 16",
+    dates: "Sep 11 – 17, 2026",
+    revenue: [
+      {name:"Jarvis Holley", value:"$58,864.00", note:"Sep 16 — Randy $35,991 (full reno) · Jack $12,882 · Wendell $9,991 — 3 closings em um dia"},
+      {name:"Jessica (HD)", value:"$17,575.00", note:"9 closings Sep 11–16 — Shower Glass consistente"},
+      {name:"Eveline", value:"$1,975.20", note:"2 closings Sep 14 — Alabama HD leads"},
+      {name:"Stephanie", value:"$2,294.00", note:"55340 Countertops Sep 14"}
+    ],
+    activity: [
+      {label:"Week Total", value:"$80,708", note:"Jarvis $58.9K lidera · Jessica 9 closings SG"},
+      {label:"Jarvis Sep 16", value:"$58,864", note:"Primeiro dia de vendas — 3 closings em um dia"},
+      {label:"Jessica Closings", value:"9", note:"Sep 11–16 — Shower Glass pipeline forte"},
+      {label:"SDR Scorecard", value:"Para em Sep 11", note:"Julia e Otavio sem entradas Sep 12–17"}
+    ],
+    worked: [
+      "Jarvis primeira venda: Sep 16 — Randy $35,991 (maior closing individual do mês) + Jack $12,882 + Wendell $9,991 = $58,864 em um único dia",
+      "Jessica: 9 closings Sep 11–16 — Shower Glass consistente. Maior semana de setembro em volume de closings.",
+      "Showerglass scorecard Sep 11-16: Sep 11 $8,215 (HD portal issue) · Sep 14 $1,390 · Sep 15 $5,360 · Sep 16 $3,075 (material not received)",
+      "Eveline: 2 closings Sep 14 Alabama — F60516120 $405 + F62016969 $1,570",
+      "Stephanie: 55340 CT Sep 14 $2,294"
+    ],
+    attention: [
+      "SDR scorecard para em Sep 11 — Julia e Otavio sem entradas Sep 12-17. 6 dias sem visibilidade.",
+      "Showerglass Sep 17: entries incompletas. Sep 18-22: MISSING.",
+      "Jarvis scorecard 90-Day: $58.9K no primeiro dia sem nenhuma entrada no scorecard. Acesso recebido agora.",
+      "Chelsea: nenhuma entrada na Sales Control desde Sep 10. Duas semanas sem atividade visível."
+    ],
+    blockers: [
+      {owner:"SDR — Para Sep 11", text:"SDR Team Scorecard tem dados Sep 5-11. Sep 12-17 sem entradas. Julia e Otavio precisam retomar.", resolved:false},
+      {owner:"Jarvis — Scorecard Vazio", text:"$58,864 no primeiro dia de vendas. Zero entradas no scorecard 90-Day. Acesso recebido agora.", resolved:false},
+      {owner:"Showerglass — Sep 17 Incompleto", text:"Sep 16 blocker: material not being received. Sep 17 entries incompletas.", resolved:false},
+      {owner:"Chelsea — 2 Semanas Sem SC", text:"Debut $28,748 em Sep 10. Sem novas entradas Sep 11-17. O que está no pipeline?", resolved:false}
+    ],
+    agents: {
+      sales: [
+        {name:"Jarvis", role:"Sales Agent — Bath Remodeling", status:"active",
+          kpis:[{label:"Sep 16",value:"$58,864",note:"Primeiro dia de vendas",cls:"green"},{label:"Randy",value:"$35,991",note:"Maior closing do mês",cls:"green"},{label:"Scorecard",value:"Vazio",note:"Acesso recebido agora",cls:"amber"},{label:"Status",value:"Active",note:"Bath Remodeling"}],
+          progressLabel:"September Revenue", progressPct:100, progressNote:"$58.9K no primeiro dia", blocker:"⚠ Scorecard 90-Day vazio — preencher a partir de hoje"},
+        {name:"Jessica", role:"Sales Agent — Shower Glass", status:"active",
+          kpis:[{label:"W16 Revenue",value:"$17,575",note:"9 closings",cls:"green"},{label:"Sep Total",value:"$25,246",note:"Sep 1–17",cls:"green"},{label:"Scorecard",value:"Ativo ✅",note:"Sep 8–16 preenchido"},{label:"YTD",value:"$405,596+",note:"",cls:"green"}],
+          progressLabel:"September Revenue", progressPct:75, progressNote:"$25.2K", blocker:null},
+        {name:"Stephanie", role:"Sales Agent — Countertops", status:"active",
+          kpis:[{label:"W16 Revenue",value:"$2,294",note:"55340 Sep 14",cls:"amber"},{label:"Sep Total",value:"$33,713",note:"Sep 1–17",cls:"green"},{label:"Scorecard",value:"Vazio",note:"Acesso recebido agora",cls:"amber"},{label:"YTD",value:"$639,868+",note:"",cls:"green"}],
+          progressLabel:"September Revenue", progressPct:65, progressNote:"$33.7K", blocker:"⚠ Scorecard 30-Day vazio — preencher a partir de hoje"},
+        {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"active",
+          kpis:[{label:"W16 Revenue",value:"$1,975",note:"2 closings Sep 14",cls:"amber"},{label:"Sep Total",value:"$16,743",note:"Sep 1–17",cls:"green"},{label:"Alabama",value:"Ativo",note:"HD leads convertendo"},{label:"Scorecard",value:"SDR Team",note:"Pendente Chrome",cls:"amber"}],
+          progressLabel:"September Revenue", progressPct:45, progressNote:"$16.7K", blocker:null},
+        {name:"Chelsea", role:"Sales Agent — Active", status:"warn",
+          kpis:[{label:"Sep Total",value:"$28,748",note:"Sep 10 debut",cls:"green"},{label:"Sep 11-17",value:"$0",note:"Sem entradas",cls:"red"},{label:"Scorecard",value:"Vazio",note:"Acesso recebido agora",cls:"amber"},{label:"Status",value:"Monitorar",note:"2 semanas sem SC",cls:"red"}],
+          progressLabel:"Post-Debut Activity", progressPct:20, progressNote:"2 semanas sem SC", blocker:"🔴 2 semanas sem SC — verificar pipeline"},
+        {name:"Julia", role:"SDR — Inside Sales", status:"warn",
+          kpis:[{label:"Scorecard",value:"Para Sep 11",note:"6 dias sem entradas",cls:"red"},{label:"Sep 11 SG",value:"3 appts",note:"100% FU conv",cls:"green"},{label:"Sep 11 Bath",value:"10 appts",note:"10 calls",cls:"green"},{label:"Status",value:"Retomar",note:"Segunda-feira",cls:"amber"}],
+          progressLabel:"SDR Scorecard", progressPct:40, progressNote:"Para em Sep 11", blocker:"🔴 SDR scorecard parou Sep 11"}
+      ],
+      ops: [
+        {name:"Mercedes", role:"Fabrication Manager", status:"warn",
+          kpis:[{label:"Last KPI",value:"Jul 16",note:"9+ semanas",cls:"red"},{label:"Scorecard",value:"Sem acesso",note:""},{label:"SOPs",value:"Em andamento",note:""},{label:"Visibilidade",value:"Dark",note:"",cls:"red"}],
+          progressLabel:"Visibilidade", progressPct:5, progressNote:"9+ semanas dark", blocker:"🔴 KPI dark 9+ semanas"},
+        {name:"Saulo", role:"Scheduling & Field Coordination", status:"warn",
+          kpis:[{label:"Scorecard",value:"Vazio",note:"Lançado Sep 17",cls:"red"},{label:"GA Capacity",value:"770 SF/sem",note:"Pre-set",cls:"amber"},{label:"AL Capacity",value:"360 SF/sem",note:"Pre-set",cls:"amber"},{label:"Acesso",value:"Recebido",note:"Preencher a partir de hoje",cls:"green"}],
+          progressLabel:"Scheduling Scorecard", progressPct:0, progressNote:"Vazio desde Sep 17", blocker:"🔴 Zero entradas desde o lançamento"},
+        {name:"Britney", role:"Ops Data Control & Audit", status:"active",
+          kpis:[{label:"Scorecard",value:"Ativo ✅",note:"Sep 21",cls:"green"},{label:"Exceptions",value:"5",note:"PO/Material Sep 21",cls:"amber"},{label:"Slabs",value:"2",note:"Traceable"},{label:"Jobs Audited",value:"1",note:"Review request sent",cls:"green"}],
+          progressLabel:"30-Day Ops Scorecard", progressPct:35, progressNote:"Primeira entrada Sep 21", blocker:null}
+      ]
+    }
+  },
+  {
+    eyebrow: "Week 17",
+    dates: "Sep 18 – 22, 2026 (em andamento)",
+    revenue: [
+      {name:"Jarvis Holley", value:"$31,064.00", note:"3 closings Sep 20 — Kumar $26,482 · Janet Johnson $2,691 · Linda Reece $1,891"},
+      {name:"Stephanie", value:"$13,534.00", note:"55341 CT $12,268 + Accessories $1,266 (Sep 22)"},
+      {name:"Jessica (HD)", value:"$5,140.00", note:"3659 $1,840 (Sep 18) + 3677 $3,300 (Sep 22)"},
+      {name:"M&M Services", value:"$360.00", note:"Fabricação Sep 22"}
+    ],
+    activity: [
+      {label:"Semana Total", value:"$50,098", note:"Semana em andamento — Sep 18–22"},
+      {label:"Setembro Total", value:"~$212,000", note:"Sep 1–22 confirmado — Jarvis $89.9K + Stephanie $47.2K + Jessica $30.4K"},
+      {label:"Jarvis Sep Total", value:"$89,919", note:"Sep 16 + Sep 20 confirmados"},
+      {label:"Dias Restantes", value:"8", note:"Sep 23–30 — fechar forte"}
+    ],
+    worked: [
+      "Jarvis Sep 20: Kumar $26,482 (Renovation + SG + Flooring) foi o maior closing do dia",
+      "Stephanie Sep 22: 55341 CT $12,268 + Accessories $1,266 — fechamento forte na sexta",
+      "Jessica Sep 18: 3659 $1,840 | Sep 22: 3677 $3,300 — pipeline Shower Glass consistente",
+      "Britney Ops Sep 21: primeira entrada — 5 exceptions PO/Material · 2 slabs traceable · 1 job auditado",
+      "Saulo e Britney receberam acesso aos scorecards esta semana"
+    ],
+    attention: [
+      "Jarvis $89,919 em setembro — primeiro mês. Scorecard 90-Day ainda vazio. Primeira semana com acesso.",
+      "Chelsea: zero SC desde Sep 10. Duas semanas sem atividade visível.",
+      "Sheylla: sem entradas visíveis em setembro inteiro.",
+      "Showerglass Sep 18-22: MISSING — 5 dias sem preenchimento.",
+      "SDR parou Sep 11 — Julia e Otavio precisam retomar imediatamente."
+    ],
+    blockers: [
+      {owner:"Chelsea — 2 Semanas Sem SC", text:"Debut $28,748 em Sep 10. Zero SC Sep 11-22. Verificar pipeline direto.", resolved:false},
+      {owner:"Showerglass Sep 18-22 — MISSING", text:"5 dias sem preenchimento no scorecard. Jessica ou Paul precisam preencher retroativamente.", resolved:false},
+      {owner:"SDR Sep 12-22 — Parado", text:"10 dias sem entradas. Julia e Otavio precisam retomar na segunda-feira.", resolved:false},
+      {owner:"Sheylla — Setembro Inteiro Sem Atividade", text:"Week 4+ de onboarding. Zero SC entries em setembro. Quando é a primeira venda esperada?", resolved:false}
+    ],
+    agents: {
+      sales: [
+        {name:"Jarvis", role:"Sales Agent — Bath Remodeling", status:"active",
+          kpis:[{label:"Sep Total",value:"$89,919",note:"Sep 16 + Sep 20",cls:"green"},{label:"Sep 20",value:"$31,064",note:"3 closings",cls:"green"},{label:"Maior Closing",value:"$35,991",note:"Randy Sep 16",cls:"green"},{label:"Scorecard",value:"Acesso recebido",note:"Preencher agora",cls:"amber"}],
+          progressLabel:"Setembro — Primeiro Mês", progressPct:100, progressNote:"$89.9K confirmado", blocker:"⚠ Scorecard vazio — preencher a partir de hoje"},
+        {name:"Stephanie", role:"Sales Agent — Countertops", status:"active",
+          kpis:[{label:"Sep Total",value:"$47,247",note:"Sep 1–22",cls:"green"},{label:"Sep 22",value:"$13,534",note:"Fechamento forte",cls:"green"},{label:"Scorecard",value:"Acesso recebido",note:"Preencher agora",cls:"amber"},{label:"YTD",value:"$653,402",note:"",cls:"green"}],
+          progressLabel:"September Revenue", progressPct:78, progressNote:"$47.2K", blocker:"⚠ Scorecard 30-Day vazio — preencher agora"},
+        {name:"Jessica", role:"Sales Agent — Shower Glass", status:"active",
+          kpis:[{label:"Sep Total",value:"$30,386",note:"Sep 1–22",cls:"green"},{label:"W17",value:"$5,140",note:"Sep 18 + 22",cls:"green"},{label:"Scorecard",value:"Ativo ✅",note:"Sep 8–17 preenchido"},{label:"YTD",value:"$405,596+",note:"",cls:"green"}],
+          progressLabel:"September Revenue", progressPct:82, progressNote:"$30.4K", blocker:"⚠ Sep 18-22 MISSING no scorecard"},
+        {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"active",
+          kpis:[{label:"Sep Total",value:"$16,743",note:"Sep 1–22",cls:"green"},{label:"W17",value:"$0",note:"Sem novas entradas"},{label:"Alabama",value:"Pipeline",note:"Building"},{label:"Scorecard",value:"SDR Team",note:"Pendente",cls:"amber"}],
+          progressLabel:"September Revenue", progressPct:45, progressNote:"$16.7K", blocker:null},
+        {name:"Chelsea", role:"Sales Agent — Active", status:"warn",
+          kpis:[{label:"Sep Total",value:"$28,748",note:"Sep 10 apenas",cls:"green"},{label:"Sep 11-22",value:"$0",note:"Sem entradas",cls:"red"},{label:"Scorecard",value:"Acesso recebido",note:"Preencher agora",cls:"amber"},{label:"Status",value:"Verificar",note:"2 semanas sem SC",cls:"red"}],
+          progressLabel:"Post-Debut Activity", progressPct:20, progressNote:"2 semanas sem SC", blocker:"🔴 2 semanas sem SC — verificar pipeline"},
+        {name:"Sheylla", role:"Sales Agent — Onboarding", status:"pending",
+          kpis:[{label:"Setembro",value:"$0",note:"Sem SC entries",cls:"red"},{label:"Onboarding",value:"Week 4+",note:""},{label:"Scorecard",value:"Vazio",note:"",cls:"red"},{label:"Status",value:"Aprendendo",note:""}],
+          progressLabel:"Onboarding", progressPct:30, progressNote:"Sem vendas ainda", blocker:"⚠ Setembro inteiro sem atividade visível", pending:true}
+      ],
+      ops: [
+        {name:"Mercedes", role:"Fabrication Manager", status:"warn",
+          kpis:[{label:"Last KPI",value:"Jul 16",note:"9+ semanas",cls:"red"},{label:"Scorecard",value:"Sem acesso",note:""},{label:"SOPs",value:"Em andamento",note:""},{label:"Visibilidade",value:"Dark",note:"",cls:"red"}],
+          progressLabel:"Visibilidade", progressPct:5, progressNote:"9+ semanas dark", blocker:"🔴 KPI dark 9+ semanas"},
+        {name:"Saulo", role:"Scheduling & Field Coordination", status:"warn",
+          kpis:[{label:"Scorecard",value:"Acesso recebido",note:"Preencher agora",cls:"amber"},{label:"GA Capacity",value:"770 SF/sem",note:"Target pre-set",cls:"amber"},{label:"AL Capacity",value:"360 SF/sem",note:"Target pre-set",cls:"amber"},{label:"7-Day Board",value:"Vazio",note:"",cls:"red"}],
+          progressLabel:"Scheduling Scorecard", progressPct:5, progressNote:"Acesso recebido — começar hoje", blocker:"🔴 Zero entradas desde o lançamento"},
+        {name:"Britney", role:"Ops Data Control & Audit", status:"active",
+          kpis:[{label:"Scorecard",value:"Ativo ✅",note:"Sep 21",cls:"green"},{label:"Exceptions",value:"5",note:"PO/Material Sep 21",cls:"amber"},{label:"Slabs",value:"2",note:"Traceable"},{label:"Jobs Audited",value:"1",note:"Review request sent",cls:"green"}],
+          progressLabel:"30-Day Ops Scorecard", progressPct:35, progressNote:"Primeira entrada Sep 21", blocker:null}
+      ]
+    }
+  }
 ];
 
 let currentMeetingWeek = meetingWeeks.length - 1;
@@ -2928,7 +3066,7 @@ const monthlyData = [
 ,
   {
     month: "September 2026", short: "Sep",
-    revenue: {stephanie:24544, eveline:0, jessica:2650, anderson:0, other:3161},
+    revenue: {stephanie:47247, eveline:16743, jessica:30386, anderson:0, other:118167},
     activity: {leads:7, calls:52, appts:7, sales:0},
     note: "Sep 1–3 only · Stephanie $24.5K strong start · Glendon 1:1 Stephanie + Loiny · KPI gap addressed",
     total: 30355,
@@ -3068,9 +3206,9 @@ function switchTab(id) {
 const seller2026 = {
   months: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep'],
   sellers: [
-    { name:'Stephanie', color:'#F5C842', data:[12143,87789,78172,81490,118623,73714,90004,64220,31419] },
-    { name:'Eveline',   color:'#4A9EE0', data:[0,21726,41952,52363,26780,41092,53124,28780,14768] },
-    { name:'Jessica',   color:'#5CBA8A', data:[0,51786,84837,46319,79680,52732,51227,31344,7671] },
+    { name:'Stephanie', color:'#F5C842', data:[12143,87789,78172,81490,118623,73714,90004,64220,47247] },
+    { name:'Eveline',   color:'#4A9EE0', data:[0,21726,41952,52363,26780,41092,53124,28780,16743] },
+    { name:'Jessica',   color:'#5CBA8A', data:[0,51786,84837,46319,79680,52732,51227,31344,30386] },
     { name:'Anderson',  color:'#E08050', data:[0,0,0,0,0,0,70855,33791,0] }
   ]
 };
