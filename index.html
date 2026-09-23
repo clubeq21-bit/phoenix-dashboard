@@ -1431,8 +1431,8 @@
         <div style="font-size:11px;color:var(--cream-dim);margin-top:2px;">Senior Sales Consultant — Bath Remodeling · MM Stone Design + Phoenix Stone Design</div>
       </div>
       <div style="text-align:right;">
-        <div style="font-size:22px;font-weight:700;color:#E08050;">$68,855</div>
-        <div style="font-size:10px;color:var(--cream-dim);">Sep debut (Sep 8–9)</div>
+        <div style="font-size:22px;font-weight:700;color:#E08050;">$89,919</div>
+        <div style="font-size:10px;color:var(--cream-dim);">Sep 16-20 confirmed in SC</div>
       </div>
     </div>
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px;">
@@ -1460,7 +1460,7 @@
     <div style="height:4px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;">
       <div style="height:100%;width:100%;background:#E08050;border-radius:2px;"></div>
     </div>
-    <div style="font-size:10px;color:var(--cream-dim);margin-top:4px;">$68,855 in first 2 days · Largest single week debut in company history</div>
+    <div style="font-size:10px;color:var(--cream-dim);margin-top:4px;">First SC entry Sep 16 · 3 closings Sep 16 ($58.9K) + 3 closings Sep 20 ($31K) = $89,919 total</div>
   </div>
 
   <!-- CHELSEA -->
@@ -2598,7 +2598,7 @@ const meetingWeeks = [
     eyebrow: "Week 15",
     dates: "Sep 4 – 10, 2026",
     revenue: [
-      {name:"Jarvis Holley", value:"$68,855.00", note:"🎆 New seller — Sep 8: $41,364 (4 closings) · Sep 9: $27,491 (full remodel) — Bath Remodeling"},
+      {name:"Jarvis Holley", value:"$0", note:"First Sales Control entry: Sep 16 — no entries Sep 8-9 confirmed in SC"},
       {name:"Chelsea Foster", value:"$28,747.64", note:"🎉 First closing ever! Sep 10 — 4 closings incl. $17,991 full renovation"},
       {name:"Eveline", value:"$14,768.20", note:"3 closings Sep 4 — $3.8K + $5.4K + $5.5K in one day"},
       {name:"Stephanie", value:"$6,875.00", note:"55300 $1.2K (Sep 8) + 55321 $5.7K (Sep 9)"},
@@ -2611,7 +2611,7 @@ const meetingWeeks = [
       {label:"Week Total (Sales Control)", value:"$124,121", note:"Jarvis $68.9K + Chelsea $28.7K debut · New scorecard system launched"}
     ],
     worked: [
-      "🎆 Jarvis Holley debut: $68,855 in 2 days (Sep 8-9) — Bath Remodeling full scope. Largest single week by any new seller.",
+      "Jarvis first Sales Control entry: Sep 16 — 3 closings ($58,864). Sep 8-9 had no SC entries confirmed.",
       "🎉 Chelsea Foster first closing: $28,747 on Sep 10 — 4 closings including $17,991 full renovation. First month, first week with sales.",
       "Eveline: 3 closings on Sep 4 alone — $14,768 in one day. Strong start to the month.",
       "Glendon Sep 4 — All Team Meeting: HD Annual Review debrief. 12.22% conversion gap identified. In-home visits mandatory. Buy-now promotions. Weekly training Tue/Thu.",
@@ -2653,7 +2653,7 @@ const meetingWeeks = [
           kpis:[{label:"FIRST WEEK",value:"$28,747.64",note:"4 closings Sep 10",cls:"green"},{label:"Biggest",value:"$17,991",note:"Full renovation",cls:"green"},{label:"KPI",value:"Checked Sep 4",note:"Active",cls:"green"},{label:"Status",value:"🎉 Active",note:"First sales week"}],
           progressLabel:"September Revenue", progressPct:90, progressNote:"$28.7K first week!", blocker:null},
         {name:"Jarvis", role:"Sales Agent — Bath Remodeling", status:"active",
-          kpis:[{label:"Sep Revenue",value:"$68,855",note:"Sep 8–9 debut",cls:"green"},{label:"Sep 8",value:"$41,364",note:"4 closings in one day",cls:"green"},{label:"Sep 9",value:"$27,491",note:"Full remodel",cls:"green"},{label:"Role",value:"New — confirm",note:"Anderson replacement?",cls:"amber"}],
+          kpis:[{label:"Sep Revenue",value:"$68,855",note:"Sep 8–9 debut",cls:"green"},{label:"Sep 16",value:"$58,864",note:"3 closings — first SC entry",cls:"green"},{label:"Sep 20",value:"$31,064",note:"3 more closings",cls:"green"},{label:"Role",value:"New — confirm",note:"Anderson replacement?",cls:"amber"}],
           progressLabel:"September Debut", progressPct:100, progressNote:"$68.9K — historic debut", blocker:"⚠ Confirm role + KPI setup needed"},
         {name:"Sheylla", role:"Sales Agent — Onboarding Week 3", status:"pending",
           kpis:[{label:"Week",value:"3",note:"of onboarding"},{label:"KPI",value:"Header only",note:"Never started",cls:"red"},{label:"Sales",value:"0",note:"Still onboarding"},{label:"Status",value:"Learning",note:""}],
@@ -2663,9 +2663,12 @@ const meetingWeeks = [
         {name:"Mercedes", role:"Fabrication Manager", status:"warn",
           kpis:[{label:"Last KPI",value:"Jul 16",note:"8+ weeks",cls:"red"},{label:"SOPs",value:"In progress",note:"Discussed Sep 2",cls:"amber"},{label:"Robot",value:"Sep status?",note:""},{label:"Visibility",value:"Dark",note:"8+ weeks no data",cls:"red"}],
           progressLabel:"Visibility", progressPct:5, progressNote:"8+ weeks dark", blocker:"🔴 KPI dark 8+ weeks"},
-        {name:"Britney", role:"Admin — Week 7", status:"pending",
+        {name:"Britney", role:"Ops Data Control & Audit", status:"active",
           kpis:[{label:"Week",value:"7"},{label:"KPI",value:"Never started",note:"",cls:"red"},{label:"Start",value:"Jul 23"},{label:"Status",value:"Admin",note:""}],
-          progressLabel:"Onboarding", progressPct:10, progressNote:"Week 7 — KPI never started", blocker:"🔴 KPI never started", pending:true}
+          progressLabel:"Onboarding", progressPct:10, progressNote:"Week 7 — KPI never started", blocker:"🔴 KPI never started", pending:true},
+        {name:"Saulo", role:"Scheduling & Field Coordination", status:"warn",
+          kpis:[{label:"Scorecard",value:"Blank",note:"Sep 17+ all empty",cls:"red"},{label:"GA Capacity",value:"770 SF",note:"Pre-set weekly target",cls:"amber"},{label:"AL Capacity",value:"360 SF",note:"Pre-set weekly target",cls:"amber"},{label:"7-Day Board",value:"Empty",note:"No jobs entered",cls:"red"}],
+          progressLabel:"Scheduling Scorecard", progressPct:0, progressNote:"Launched Sep 17 — zero entries", blocker:"🔴 Blank since launch Sep 17"}
       ]
     }
   }
