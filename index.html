@@ -406,6 +406,7 @@
   <div class="tab" onclick="switchTab('annual')">Annual Performance</div>
   <div class="tab" onclick="switchTab('stores')">HD Stores</div>
   <div class="tab" onclick="switchTab('sellers')">Individual Reports</div>
+  <div class="tab" onclick="switchTab('pipeline')">Pipeline Performance</div>
 </div>
 
 <!-- ══════════════════════════════════════════════════
@@ -451,461 +452,246 @@
 <div class="tab-panel" id="tab-team">
 <div class="content">
 
-  <div class="section-label">Company Overview — Setembro FINAL (Sep 1–30, 2026)</div>
+  <div class="section-label">Company Overview — Week 19 · Oct 1–6, 2026</div>
   <div class="kpi-row kpi-row-5">
     <div class="kpi-card">
-      <div class="kpi-label">Sales Control Revenue</div>
-      <div class="kpi-value gold">$124,121</div>
-      <div class="kpi-sub">Jarvis $68.9K + Chelsea $28.7K + Eveline $14.8K</div>
+      <div class="kpi-label">Revenue (Week)</div>
+      <div class="kpi-value gold">$7,500</div>
+      <div class="kpi-sub">Eveline $5,140 · Jessica $2,360</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-label">SDR — Total Leads</div>
-      <div class="kpi-value gold">52</div>
-      <div class="kpi-sub">Julia (47) + Otavio (5 appts) · Sep 4–10</div>
+      <div class="kpi-label">SDR Leads (Week)</div>
+      <div class="kpi-value">36</div>
+      <div class="kpi-sub">Julia 28 · Otavio 8</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-label">SDR — Total Appts</div>
+      <div class="kpi-label">Appts Set</div>
       <div class="kpi-value green">35</div>
-      <div class="kpi-sub">Julia (30) + Otavio (5) · Bath Reno + Shower Glass</div>
+      <div class="kpi-sub">44.4% Lead→Appt conv.</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-label">Showerglass Revenue</div>
-      <div class="kpi-value green">$2,795 sold</div>
-      <div class="kpi-sub">$3,312 installed · Sep 9-10</div>
+      <div class="kpi-label">FU Appts</div>
+      <div class="kpi-value">16</div>
+      <div class="kpi-sub">18.0% FU conv. · 89 FU calls</div>
     </div>
     <div class="kpi-card">
       <div class="kpi-label">Scorecards Active</div>
-      <div class="kpi-value amber">3 of 9</div>
-      <div class="kpi-sub">SDR ✅ · Showerglass ✅ · Glendon ✅ · 6 ainda em branco</div>
+      <div class="kpi-value red">2/7</div>
+      <div class="kpi-sub">Jarvis · Chelsea · Sheylla · Saulo · Britney blank</div>
     </div>
   </div>
 
-  <!-- SDR SCORECARD -->
-  <div class="section-label">SDR Team Scorecard — Sep 5–10</div>
-  <div class="card" style="padding:0;overflow:hidden;margin-bottom:18px;">
-    <table style="width:100%;border-collapse:collapse;">
-      <thead>
-        <tr style="background:rgba(255,255,255,0.06);">
-          <th style="padding:8px 12px;text-align:left;font-size:10px;color:var(--cream-dim);text-transform:uppercase;">Date</th>
-          <th style="padding:8px;text-align:center;font-size:10px;color:var(--cream-dim);text-transform:uppercase;">SDR</th>
-          <th style="padding:8px;text-align:center;font-size:10px;color:var(--cream-dim);text-transform:uppercase;">Dept</th>
-          <th style="padding:8px;text-align:center;font-size:10px;color:var(--cream-dim);text-transform:uppercase;">Leads</th>
-          <th style="padding:8px;text-align:center;font-size:10px;color:var(--cream-dim);text-transform:uppercase;">Calls</th>
-          <th style="padding:8px;text-align:center;font-size:10px;color:var(--cream-dim);text-transform:uppercase;">Qualified</th>
-          <th style="padding:8px;text-align:center;font-size:10px;color:var(--cream-dim);text-transform:uppercase;">Appts</th>
-          <th style="padding:8px;text-align:center;font-size:10px;color:var(--cream-dim);text-transform:uppercase;">Conv%</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr style="border-top:1px solid rgba(255,255,255,0.06);">
-          <td style="padding:7px 12px;font-size:11px;color:var(--cream-dim);">Sep 5</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--cream);">Julia</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--cream-dim);">Bath Reno</td>
-          <td style="padding:7px;text-align:center;font-size:11px;font-weight:600;color:var(--cream);">1</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--cream);">8</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:#5CBA8A;">3</td>
-          <td style="padding:7px;text-align:center;font-size:11px;font-weight:700;color:#5CBA8A;">3</td>
-          <td style="padding:7px;text-align:center;font-size:11px;font-weight:700;color:#5CBA8A;">100%</td>
-        </tr>
-        <tr style="border-top:1px solid rgba(255,255,255,0.04);background:rgba(255,255,255,0.02);">
-          <td style="padding:7px 12px;font-size:11px;color:var(--cream-dim);">Sep 8</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--cream);">Julia</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--cream-dim);">Bath Reno</td>
-          <td style="padding:7px;text-align:center;font-size:11px;font-weight:600;color:var(--cream);">13</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--cream);">15</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:#5CBA8A;">7</td>
-          <td style="padding:7px;text-align:center;font-size:11px;font-weight:700;color:#5CBA8A;">7</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:#F5C842;">53.8%</td>
-        </tr>
-        <tr style="border-top:1px solid rgba(255,255,255,0.04);">
-          <td style="padding:7px 12px;font-size:11px;color:var(--cream-dim);">Sep 8</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--cream);">Julia</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--cream-dim);">Shower Glass</td>
-          <td style="padding:7px;text-align:center;font-size:11px;font-weight:600;color:var(--cream);">16</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--cream);">21</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:#5CBA8A;">7</td>
-          <td style="padding:7px;text-align:center;font-size:11px;font-weight:700;color:#5CBA8A;">7</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:#F5C842;">43.8%</td>
-        </tr>
-        <tr style="border-top:1px solid rgba(255,255,255,0.04);background:rgba(255,255,255,0.02);">
-          <td style="padding:7px 12px;font-size:11px;color:var(--cream-dim);">Sep 9</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--cream);">Julia</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--cream-dim);">Bath Reno</td>
-          <td style="padding:7px;text-align:center;font-size:11px;font-weight:600;color:var(--cream);">8</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--cream);">10</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:#5CBA8A;">5</td>
-          <td style="padding:7px;text-align:center;font-size:11px;font-weight:700;color:#5CBA8A;">7</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:#5CBA8A;">62.5%</td>
-        </tr>
-        <tr style="border-top:1px solid rgba(255,255,255,0.04);">
-          <td style="padding:7px 12px;font-size:11px;color:var(--cream-dim);">Sep 9</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--cream);">Otavio</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--cream-dim);">Bath Reno</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--cream-dim);">0</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--cream);">4</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:#5CBA8A;">4</td>
-          <td style="padding:7px;text-align:center;font-size:11px;font-weight:700;color:#5CBA8A;">4</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--cream-dim);">—</td>
-        </tr>
-        <tr style="border-top:1px solid rgba(255,255,255,0.04);background:rgba(255,255,255,0.02);">
-          <td style="padding:7px 12px;font-size:11px;color:var(--cream-dim);">Sep 10</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--cream);">Julia</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--cream-dim);">Bath Reno</td>
-          <td style="padding:7px;text-align:center;font-size:11px;font-weight:600;color:var(--cream);">3</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--cream);">17</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:#5CBA8A;">4</td>
-          <td style="padding:7px;text-align:center;font-size:11px;font-weight:700;color:#5CBA8A;">4</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:#5CBA8A;">66.7%</td>
-        </tr>
-        <tr style="border-top:1px solid rgba(255,255,255,0.04);">
-          <td style="padding:7px 12px;font-size:11px;color:var(--cream-dim);">Sep 10</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--cream);">Otavio</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--cream-dim);">Bath Reno</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--cream-dim);">0</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--cream);">5</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:#5CBA8A;">1</td>
-          <td style="padding:7px;text-align:center;font-size:11px;font-weight:700;color:#5CBA8A;">1</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--cream-dim);">—</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- SHOWERGLASS SCORECARD -->
-  <div class="section-label">Showerglass Department Scorecard — Sep 8–10</div>
-  <div class="card" style="padding:0;overflow:hidden;margin-bottom:18px;">
-    <table style="width:100%;border-collapse:collapse;">
-      <thead>
-        <tr style="background:rgba(255,255,255,0.06);">
-          <th style="padding:8px 12px;text-align:left;font-size:10px;color:var(--cream-dim);text-transform:uppercase;">Date</th>
-          <th style="padding:8px;text-align:center;font-size:10px;color:var(--cream-dim);text-transform:uppercase;">Appts Assigned</th>
-          <th style="padding:8px;text-align:center;font-size:10px;color:var(--cream-dim);text-transform:uppercase;">Completed</th>
-          <th style="padding:8px;text-align:center;font-size:10px;color:var(--cream-dim);text-transform:uppercase;">Quotes</th>
-          <th style="padding:8px;text-align:center;font-size:10px;color:var(--cream-dim);text-transform:uppercase;">Sales Closed</th>
-          <th style="padding:8px;text-align:center;font-size:10px;color:var(--cream-dim);text-transform:uppercase;">Revenue Sold</th>
-          <th style="padding:8px;text-align:center;font-size:10px;color:var(--cream-dim);text-transform:uppercase;">Close Rate</th>
-          <th style="padding:8px;text-align:center;font-size:10px;color:var(--cream-dim);text-transform:uppercase;">Installed</th>
-          <th style="padding:8px 12px;text-align:left;font-size:10px;color:var(--cream-dim);text-transform:uppercase;">Blocker/Note</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr style="border-top:1px solid rgba(255,255,255,0.06);">
-          <td style="padding:7px 12px;font-size:11px;color:var(--cream-dim);">Sep 8</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--cream);">3</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--amber);">0</td>
-          <td style="padding:7px;text-align:center;font-size:11px;">3</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--amber);">0</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--amber);">$0</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--amber);">0%</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--amber);">$0</td>
-          <td style="padding:7px 12px;font-size:10px;color:var(--amber);">Material not ordered — impacted installs</td>
-        </tr>
-        <tr style="border-top:1px solid rgba(255,255,255,0.04);background:rgba(255,255,255,0.02);">
-          <td style="padding:7px 12px;font-size:11px;color:var(--cream-dim);">Sep 9</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--cream);">3</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:#5CBA8A;">3</td>
-          <td style="padding:7px;text-align:center;font-size:11px;">3</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:#5CBA8A;">1</td>
-          <td style="padding:7px;text-align:center;font-size:11px;font-weight:700;color:#5CBA8A;">$1,370</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:#F5C842;">33.3%</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:#5CBA8A;">$3,312</td>
-          <td style="padding:7px 12px;font-size:10px;color:var(--cream-dim);">Customers not looking for upgrades</td>
-        </tr>
-        <tr style="border-top:1px solid rgba(255,255,255,0.04);">
-          <td style="padding:7px 12px;font-size:11px;color:var(--cream-dim);">Sep 10</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--cream-dim);">—</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--cream-dim);">—</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--cream-dim);">—</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:#5CBA8A;">1</td>
-          <td style="padding:7px;text-align:center;font-size:11px;font-weight:700;color:#5CBA8A;">$1,425</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--cream-dim);">—</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--cream-dim);">$0</td>
-          <td style="padding:7px 12px;font-size:10px;color:var(--cream-dim);">1 store visit · 1 install scheduled</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- SCORECARD STATUS -->
-  <div class="section-label">Scorecard Status — Week 15</div>
-  <div class="kpi-row kpi-row-4" style="margin-bottom:18px;">
-    <div class="kpi-card" style="border:1px solid rgba(92,186,138,0.3);">
-      <div class="kpi-label">SDR Team</div>
-      <div class="kpi-value green" style="font-size:18px;">✅ Active</div>
-      <div class="kpi-sub">Julia + Otavio · Sep 5–10</div>
-    </div>
-    <div class="kpi-card" style="border:1px solid rgba(92,186,138,0.3);">
-      <div class="kpi-label">Showerglass Dept</div>
-      <div class="kpi-value green" style="font-size:18px;">✅ Active</div>
-      <div class="kpi-sub">Jessica + Paul · Sep 8–10</div>
-    </div>
-    <div class="kpi-card" style="border:1px solid rgba(245,200,66,0.3);">
-      <div class="kpi-label">Stephanie + Jarvis</div>
-      <div class="kpi-value amber" style="font-size:18px;">⚠ Blank</div>
-      <div class="kpi-sub">30-Day scorecards · First week</div>
-    </div>
-    <div class="kpi-card" style="border:1px solid rgba(245,200,66,0.3);">
-      <div class="kpi-label">Glendon + Grace + Valeria</div>
-      <div class="kpi-value amber" style="font-size:18px;">⚠ Blank</div>
-      <div class="kpi-sub">Leadership + Ops + Finance · First week</div>
-    </div>
-  </div>
-
-  <!-- SALES TEAM -->
-  <div class="section-label">Sales Team — Revenue (Sales Control)</div>
+  <!-- Sales Team -->
+  <div class="section-label">Sales Team</div>
   <div class="seller-grid">
 
+    <!-- Eveline -->
     <div class="seller-card">
       <div class="seller-header">
-        <div><div class="seller-name">Jarvis Holley</div><div class="seller-role">Senior Sales Consultant — Bath Remodeling</div></div>
+        <div>
+          <div class="seller-name">Eveline Erbert</div>
+          <div class="seller-role">SDR / Sales — Alabama + GA</div>
+        </div>
         <div class="status-dot active"></div>
       </div>
       <div class="seller-stats">
-        <div class="stat-box"><div class="stat-label">Sep Revenue</div><div class="stat-val text-green">$68,855</div></div>
-        <div class="stat-box"><div class="stat-label">Sep 8</div><div class="stat-val text-green">$41,364</div></div>
-        <div class="stat-box"><div class="stat-label">Sep 9</div><div class="stat-val text-green">$27,491</div></div>
-        <div class="stat-box"><div class="stat-label">Scorecard</div><div class="stat-val text-amber">Blank</div></div>
+        <div class="stat-box"><div class="stat-label">Revenue (Oct)</div><div class="stat-val text-green">$5,140</div></div>
+        <div class="stat-box"><div class="stat-label">YTD</div><div class="stat-val text-gold">$287,700</div></div>
+        <div class="stat-box"><div class="stat-label">Product</div><div class="stat-val">Countertops</div></div>
+        <div class="stat-box"><div class="stat-label">Status</div><div class="stat-val text-green">✓ Active</div></div>
       </div>
       <div class="progress-wrap">
-        <div class="progress-label"><span>Scorecard</span><span class="text-amber">Fill Sep 8-10 entries</span></div>
-        <div class="progress-track"><div class="progress-fill amber" style="width:0%"></div></div>
+        <div class="progress-label"><span>Opening October</span><span class="text-green">On Track</span></div>
+        <div class="progress-track"><div class="progress-fill green" style="width:68%"></div></div>
       </div>
     </div>
 
+    <!-- Jessica -->
     <div class="seller-card">
       <div class="seller-header">
-        <div><div class="seller-name">Chelsea Foster</div><div class="seller-role">Sales Agent — First Week Active</div></div>
+        <div>
+          <div class="seller-name">Jessica Wolfe</div>
+          <div class="seller-role">Sales — Shower Glass</div>
+        </div>
         <div class="status-dot active"></div>
       </div>
       <div class="seller-stats">
-        <div class="stat-box"><div class="stat-label">Sep Revenue</div><div class="stat-val text-green">$28,748</div></div>
-        <div class="stat-box"><div class="stat-label">Sep 10</div><div class="stat-val text-green">4 closings</div></div>
-        <div class="stat-box"><div class="stat-label">Biggest</div><div class="stat-val text-green">$17,991</div></div>
-        <div class="stat-box"><div class="stat-label">Scorecard</div><div class="stat-val text-amber">Blank</div></div>
+        <div class="stat-box"><div class="stat-label">Revenue (Oct)</div><div class="stat-val text-green">$2,360</div></div>
+        <div class="stat-box"><div class="stat-label">YTD</div><div class="stat-val text-gold">$448,857</div></div>
+        <div class="stat-box"><div class="stat-label">Closings</div><div class="stat-val">2</div></div>
+        <div class="stat-box"><div class="stat-label">Scorecard</div><div class="stat-val text-red">⚠ Blank</div></div>
       </div>
       <div class="progress-wrap">
-        <div class="progress-label"><span>First Sales Week</span><span class="text-green">$28.7K debut</span></div>
-        <div class="progress-track"><div class="progress-fill green" style="width:90%"></div></div>
+        <div class="progress-label"><span>Opening October</span><span class="text-green">Active</span></div>
+        <div class="progress-track"><div class="progress-fill green" style="width:55%"></div></div>
       </div>
     </div>
 
+    <!-- Jarvis -->
     <div class="seller-card">
       <div class="seller-header">
-        <div><div class="seller-name">Stephanie</div><div class="seller-role">Sales Agent — Countertops</div></div>
+        <div>
+          <div class="seller-name">Jarvis Holley</div>
+          <div class="seller-role">Senior Sales — Bath Remodeling</div>
+        </div>
         <div class="status-dot warn"></div>
       </div>
       <div class="seller-stats">
-        <div class="stat-box"><div class="stat-label">Sep Revenue</div><div class="stat-val text-green">$6,875</div></div>
-        <div class="stat-box"><div class="stat-label">Scorecard</div><div class="stat-val text-red">Blank</div></div>
-        <div class="stat-box"><div class="stat-label">Sep Total</div><div class="stat-val text-green">$31,419</div></div>
-        <div class="stat-box"><div class="stat-label">YTD</div><div class="stat-val">$637,574</div></div>
+        <div class="stat-box"><div class="stat-label">Revenue (Oct)</div><div class="stat-val text-amber">$0</div></div>
+        <div class="stat-box"><div class="stat-label">Sep Final</div><div class="stat-val text-gold">$158,783</div></div>
+        <div class="stat-box"><div class="stat-label">Scorecard</div><div class="stat-val text-red">BLANK</div></div>
+        <div class="stat-box"><div class="stat-label">90-Day Plan</div><div class="stat-val text-red">No entries</div></div>
       </div>
       <div class="progress-wrap">
-        <div class="progress-label"><span>Scorecard</span><span class="text-red">Fill daily — first week</span></div>
+        <div class="progress-label"><span>90-Day Scorecard</span><span class="text-red">Zero Entries</span></div>
         <div class="progress-track"><div class="progress-fill red" style="width:0%"></div></div>
       </div>
     </div>
 
+    <!-- Chelsea -->
     <div class="seller-card">
       <div class="seller-header">
-        <div><div class="seller-name">Eveline</div><div class="seller-role">SDR / Sales — Alabama + GA</div></div>
+        <div>
+          <div class="seller-name">Chelsea Foster</div>
+          <div class="seller-role">Sales — Countertops</div>
+        </div>
+        <div class="status-dot warn"></div>
+      </div>
+      <div class="seller-stats">
+        <div class="stat-box"><div class="stat-label">Revenue (Oct)</div><div class="stat-val text-amber">$0</div></div>
+        <div class="stat-box"><div class="stat-label">Sep Debut</div><div class="stat-val">$28,748</div></div>
+        <div class="stat-box"><div class="stat-label">Scorecard</div><div class="stat-val text-red">BLANK</div></div>
+        <div class="stat-box"><div class="stat-label">Weeks Silent</div><div class="stat-val text-red">4+</div></div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-label"><span>Oct Activity</span><span class="text-red">No Entries</span></div>
+        <div class="progress-track"><div class="progress-fill red" style="width:0%"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SDR Team -->
+  <div class="section-label">SDR Team — Oct 1–6, 2026</div>
+  <div class="seller-grid">
+
+    <!-- Julia -->
+    <div class="seller-card">
+      <div class="seller-header">
+        <div>
+          <div class="seller-name">Julia</div>
+          <div class="seller-role">SDR — Bath Reno + Shower Glass</div>
+        </div>
         <div class="status-dot active"></div>
       </div>
       <div class="seller-stats">
-        <div class="stat-box"><div class="stat-label">Sep Revenue</div><div class="stat-val text-green">$14,768</div></div>
-        <div class="stat-box"><div class="stat-label">Sep 4</div><div class="stat-val text-green">3 closings</div></div>
-        <div class="stat-box"><div class="stat-label">Sep Total</div><div class="stat-val text-green">$14,768</div></div>
-        <div class="stat-box"><div class="stat-label">Scorecard</div><div class="stat-val text-amber">Pending</div></div>
+        <div class="stat-box"><div class="stat-label">Leads</div><div class="stat-val">28</div></div>
+        <div class="stat-box"><div class="stat-label">Calls</div><div class="stat-val text-gold">83</div></div>
+        <div class="stat-box"><div class="stat-label">Appts Set</div><div class="stat-val text-green">28</div></div>
+        <div class="stat-box"><div class="stat-label">FU Appts</div><div class="stat-val text-green">12</div></div>
       </div>
       <div class="progress-wrap">
-        <div class="progress-label"><span>September</span><span class="text-green">Active</span></div>
-        <div class="progress-track"><div class="progress-fill green" style="width:65%"></div></div>
+        <div class="progress-label"><span>Bath Reno conv. 87.5%</span><span class="text-green">Best Rate</span></div>
+        <div class="progress-track"><div class="progress-fill green" style="width:88%"></div></div>
       </div>
     </div>
 
+    <!-- Otavio -->
     <div class="seller-card">
       <div class="seller-header">
-        <div><div class="seller-name">Jessica</div><div class="seller-role">Showerglass — Scorecard Active</div></div>
+        <div>
+          <div class="seller-name">Otavio</div>
+          <div class="seller-role">SDR — Countertops (joined Sep 22)</div>
+        </div>
         <div class="status-dot active"></div>
       </div>
       <div class="seller-stats">
-        <div class="stat-box"><div class="stat-label">SG Revenue Sold</div><div class="stat-val text-green">$2,795</div></div>
-        <div class="stat-box"><div class="stat-label">Revenue Installed</div><div class="stat-val text-green">$3,312</div></div>
-        <div class="stat-box"><div class="stat-label">Close Rate</div><div class="stat-val text-amber">33.3%</div></div>
-        <div class="stat-box"><div class="stat-label">Scorecard</div><div class="stat-val text-green">Active ✅</div></div>
+        <div class="stat-box"><div class="stat-label">Leads</div><div class="stat-val">8</div></div>
+        <div class="stat-box"><div class="stat-label">Calls</div><div class="stat-val text-gold">38</div></div>
+        <div class="stat-box"><div class="stat-label">Appts Set</div><div class="stat-val text-green">7</div></div>
+        <div class="stat-box"><div class="stat-label">FU Appts</div><div class="stat-val">4</div></div>
       </div>
       <div class="progress-wrap">
-        <div class="progress-label"><span>Showerglass Scorecard</span><span class="text-green">Sep 8–10 filled</span></div>
-        <div class="progress-track"><div class="progress-fill green" style="width:80%"></div></div>
+        <div class="progress-label"><span>Countertops conv. 37.5%</span><span class="text-amber">Building</span></div>
+        <div class="progress-track"><div class="progress-fill amber" style="width:38%"></div></div>
       </div>
     </div>
+  </div>
 
-    <div class="seller-card" style="border:1px dashed var(--amber);background:transparent;">
+  <!-- Operations -->
+  <div class="section-label">Operations & Support</div>
+  <div class="seller-grid">
+    <div class="seller-card">
+      <div class="seller-header">
+        <div><div class="seller-name">Saulo</div><div class="seller-role">Scheduling & Field Coordination</div></div>
+        <div class="status-dot warn"></div>
+      </div>
+      <div class="seller-stats">
+        <div class="stat-box"><div class="stat-label">Scorecard</div><div class="stat-val text-red">BLANK</div></div>
+        <div class="stat-box"><div class="stat-label">Access Since</div><div class="stat-val">3 wks</div></div>
+        <div class="stat-box"><div class="stat-label">Entries</div><div class="stat-val text-red">Zero</div></div>
+        <div class="stat-box"><div class="stat-label">Status</div><div class="stat-val text-amber">⚠ Action Needed</div></div>
+      </div>
+    </div>
+    <div class="seller-card">
+      <div class="seller-header">
+        <div><div class="seller-name">Britney</div><div class="seller-role">Ops Data Control & Audit</div></div>
+        <div class="status-dot warn"></div>
+      </div>
+      <div class="seller-stats">
+        <div class="stat-box"><div class="stat-label">Last Entry</div><div class="stat-val text-amber">Sep 21</div></div>
+        <div class="stat-box"><div class="stat-label">Oct Status</div><div class="stat-val text-red">BLANK</div></div>
+        <div class="stat-box"><div class="stat-label">Jobs Pending</div><div class="stat-val text-red">Update Needed</div></div>
+        <div class="stat-box"><div class="stat-label">Action</div><div class="stat-val text-amber">Resume ASAP</div></div>
+      </div>
+    </div>
+    <div class="seller-card">
       <div class="seller-header">
         <div><div class="seller-name">Sheylla</div><div class="seller-role">Procurement Control Center</div></div>
-        <div class="status-dot" style="background:var(--amber);"></div>
+        <div class="status-dot active"></div>
       </div>
       <div class="seller-stats">
-        <div class="stat-box"><div class="stat-label">Week</div><div class="stat-val">3</div></div>
-        <div class="stat-box"><div class="stat-label">Scorecard</div><div class="stat-val text-red">Empty</div></div>
-        <div class="stat-box"><div class="stat-label">Sales</div><div class="stat-val">0</div></div>
-        <div class="stat-box"><div class="stat-label">Status</div><div class="stat-val text-amber">Learning</div></div>
-      </div>
-      <div class="progress-wrap">
-        <div class="progress-label"><span>Onboarding</span><span class="text-amber">Week 3</span></div>
-        <div class="progress-track"><div class="progress-fill amber" style="width:25%"></div></div>
+        <div class="stat-box"><div class="stat-label">Role</div><div class="stat-val">Procurement</div></div>
+        <div class="stat-box"><div class="stat-label">SG Material</div><div class="stat-val text-red">Critical</div></div>
+        <div class="stat-box"><div class="stat-label">Blocker</div><div class="stat-val text-red">Not Ordered</div></div>
+        <div class="stat-box"><div class="stat-label">Impact</div><div class="stat-val text-red">Lost Revenue</div></div>
       </div>
     </div>
-
   </div>
 
-<!-- SDR WEEK 18 -->
-  <div class="section-label">SDR Team Scorecard — Sep 22–23 (Week 18)</div>
-  <div class="card" style="padding:0;overflow:hidden;margin-bottom:18px;">
-    <table style="width:100%;border-collapse:collapse;">
-      <thead>
-        <tr style="background:rgba(255,255,255,0.06);">
-          <th style="padding:8px 12px;text-align:left;font-size:10px;color:var(--cream-dim);text-transform:uppercase;">Data</th>
-          <th style="padding:8px;text-align:center;font-size:10px;color:var(--cream-dim);text-transform:uppercase;">SDR</th>
-          <th style="padding:8px;text-align:center;font-size:10px;color:var(--cream-dim);text-transform:uppercase;">Dept</th>
-          <th style="padding:8px;text-align:center;font-size:10px;color:var(--cream-dim);text-transform:uppercase;">Leads</th>
-          <th style="padding:8px;text-align:center;font-size:10px;color:var(--cream-dim);text-transform:uppercase;">Calls</th>
-          <th style="padding:8px;text-align:center;font-size:10px;color:var(--cream-dim);text-transform:uppercase;">Appts</th>
-          <th style="padding:8px;text-align:center;font-size:10px;color:var(--cream-dim);text-transform:uppercase;">Conv%</th>
-          <th style="padding:8px 12px;text-align:left;font-size:10px;color:var(--cream-dim);text-transform:uppercase;">Note</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr style="border-top:1px solid rgba(255,255,255,0.06);">
-          <td style="padding:7px 12px;font-size:11px;color:var(--cream-dim);">Sep 22</td>
-          <td style="padding:7px;text-align:center;font-size:11px;">Julia</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--cream-dim);">Bath Reno</td>
-          <td style="padding:7px;text-align:center;font-size:11px;font-weight:600;">3</td>
-          <td style="padding:7px;text-align:center;font-size:11px;">13</td>
-          <td style="padding:7px;text-align:center;font-size:11px;font-weight:700;color:#5CBA8A;">3</td>
-          <td style="padding:7px;text-align:center;font-size:11px;font-weight:700;color:#5CBA8A;">100%</td>
-          <td style="padding:7px 12px;font-size:10px;color:var(--cream-dim);">Perfeito</td>
-        </tr>
-        <tr style="border-top:1px solid rgba(255,255,255,0.04);background:rgba(255,255,255,0.02);">
-          <td style="padding:7px 12px;font-size:11px;color:var(--cream-dim);">Sep 22</td>
-          <td style="padding:7px;text-align:center;font-size:11px;">Julia</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--cream-dim);">Shower Glass</td>
-          <td style="padding:7px;text-align:center;font-size:11px;font-weight:600;">3</td>
-          <td style="padding:7px;text-align:center;font-size:11px;">7</td>
-          <td style="padding:7px;text-align:center;font-size:11px;font-weight:700;color:#F5C842;">1</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:#F5C842;">33.3%</td>
-          <td style="padding:7px 12px;font-size:10px;color:var(--cream-dim);">2 unqualified</td>
-        </tr>
-        <tr style="border-top:1px solid rgba(255,255,255,0.04);">
-          <td style="padding:7px 12px;font-size:11px;color:var(--cream-dim);">Sep 22</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:#F5C842;">Otavio</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--amber);">Countertops 🆕</td>
-          <td style="padding:7px;text-align:center;font-size:11px;font-weight:600;">4</td>
-          <td style="padding:7px;text-align:center;font-size:11px;">8</td>
-          <td style="padding:7px;text-align:center;font-size:11px;font-weight:700;color:#5CBA8A;">2</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:#5CBA8A;">50%</td>
-          <td style="padding:7px 12px;font-size:10px;color:var(--amber);">Novo dept + 17 leads antigos trabalhados</td>
-        </tr>
-        <tr style="border-top:1px solid rgba(255,255,255,0.04);background:rgba(255,255,255,0.02);">
-          <td style="padding:7px 12px;font-size:11px;color:var(--cream-dim);">Sep 23</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:#F5C842;">Otavio</td>
-          <td style="padding:7px;text-align:center;font-size:11px;color:var(--cream-dim);">Countertops</td>
-          <td style="padding:7px;text-align:center;font-size:11px;font-weight:600;">1</td>
-          <td style="padding:7px;text-align:center;font-size:11px;">5</td>
-          <td style="padding:7px;text-align:center;font-size:11px;font-weight:700;color:#5CBA8A;">3</td>
-          <td style="padding:7px;text-align:center;font-size:11px;font-weight:700;color:#5CBA8A;">100%</td>
-          <td style="padding:7px 12px;font-size:10px;color:var(--cream-dim);">POs + voicemails Saulo/Grazie</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- SHOWERGLASS WEEK 18 -->
-  <div class="section-label">Showerglass Scorecard — Sep 22–29 (Fechamento de Setembro)</div>
-  <div class="card" style="padding:0;overflow:hidden;margin-bottom:18px;">
-    <table style="width:100%;border-collapse:collapse;">
-      <thead>
-        <tr style="background:rgba(255,255,255,0.06);">
-          <th style="padding:8px 12px;text-align:left;font-size:10px;color:var(--cream-dim);text-transform:uppercase;">Data</th>
-          <th style="padding:8px;text-align:center;font-size:10px;color:var(--cream-dim);text-transform:uppercase;">Appts</th>
-          <th style="padding:8px;text-align:center;font-size:10px;color:var(--cream-dim);text-transform:uppercase;">Closed</th>
-          <th style="padding:8px;text-align:center;font-size:10px;color:var(--cream-dim);text-transform:uppercase;">Revenue</th>
-          <th style="padding:8px;text-align:center;font-size:10px;color:var(--cream-dim);text-transform:uppercase;">Installs</th>
-          <th style="padding:8px;text-align:center;font-size:10px;color:var(--cream-dim);text-transform:uppercase;">HD Portal</th>
-          <th style="padding:8px 12px;text-align:left;font-size:10px;color:var(--cream-dim);text-transform:uppercase;">Blocker</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr style="border-top:1px solid rgba(255,255,255,0.06);">
-          <td style="padding:6px 12px;font-size:11px;color:var(--cream-dim);">Sep 22</td>
-          <td style="padding:6px;text-align:center;font-size:11px;">4</td>
-          <td style="padding:6px;text-align:center;font-size:11px;color:#5CBA8A;">1</td>
-          <td style="padding:6px;text-align:center;font-size:11px;font-weight:700;color:#5CBA8A;">$3,300</td>
-          <td style="padding:6px;text-align:center;font-size:11px;">2</td>
-          <td style="padding:6px;text-align:center;font-size:11px;color:#5CBA8A;">YES</td>
-          <td style="padding:6px 12px;font-size:10px;color:var(--amber);">Install = bath remodel, custo desconhecido</td>
-        </tr>
-        <tr style="border-top:1px solid rgba(255,255,255,0.04);background:rgba(255,255,255,0.02);">
-          <td style="padding:6px 12px;font-size:11px;color:var(--cream-dim);">Sep 23</td>
-          <td style="padding:6px;text-align:center;font-size:11px;">3</td>
-          <td style="padding:6px;text-align:center;font-size:11px;color:var(--cream-dim);">0</td>
-          <td style="padding:6px;text-align:center;font-size:11px;color:var(--cream-dim);">$0</td>
-          <td style="padding:6px;text-align:center;font-size:11px;">0</td>
-          <td style="padding:6px;text-align:center;font-size:11px;color:#5CBA8A;">YES</td>
-          <td style="padding:6px 12px;font-size:10px;color:var(--cream-dim);">—</td>
-        </tr>
-        <tr style="border-top:1px solid rgba(255,255,255,0.04);">
-          <td style="padding:6px 12px;font-size:11px;color:var(--cream-dim);">Sep 24</td>
-          <td style="padding:6px;text-align:center;font-size:11px;">1</td>
-          <td style="padding:6px;text-align:center;font-size:11px;color:#5CBA8A;">1</td>
-          <td style="padding:6px;text-align:center;font-size:11px;font-weight:700;color:#5CBA8A;">$1,400</td>
-          <td style="padding:6px;text-align:center;font-size:11px;">2</td>
-          <td style="padding:6px;text-align:center;font-size:11px;color:#5CBA8A;">YES</td>
-          <td style="padding:6px 12px;font-size:10px;color:var(--amber);">Installs = bath remodels, custo desconhecido</td>
-        </tr>
-        <tr style="border-top:1px solid rgba(255,255,255,0.04);background:rgba(255,255,255,0.02);">
-          <td style="padding:6px 12px;font-size:11px;color:var(--cream-dim);">Sep 25</td>
-          <td style="padding:6px;text-align:center;font-size:11px;">2</td>
-          <td style="padding:6px;text-align:center;font-size:11px;color:var(--cream-dim);">0</td>
-          <td style="padding:6px;text-align:center;font-size:11px;color:var(--cream-dim);">$0</td>
-          <td style="padding:6px;text-align:center;font-size:11px;">1</td>
-          <td style="padding:6px;text-align:center;font-size:11px;color:#5CBA8A;">YES</td>
-          <td style="padding:6px 12px;font-size:10px;color:var(--amber);">Installs = bath remodels, custo desconhecido</td>
-        </tr>
-        <tr style="border-top:1px solid rgba(255,255,255,0.04);">
-          <td style="padding:6px 12px;font-size:11px;color:var(--cream-dim);">Sep 28</td>
-          <td style="padding:6px;text-align:center;font-size:11px;">1</td>
-          <td style="padding:6px;text-align:center;font-size:11px;color:#5CBA8A;">1</td>
-          <td style="padding:6px;text-align:center;font-size:11px;font-weight:700;color:#5CBA8A;">$2,220</td>
-          <td style="padding:6px;text-align:center;font-size:11px;">3</td>
-          <td style="padding:6px;text-align:center;font-size:11px;color:#5CBA8A;">YES</td>
-          <td style="padding:6px 12px;font-size:10px;color:var(--amber);">Installs = bath remodels, custo desconhecido</td>
-        </tr>
-        <tr style="border-top:1px solid rgba(255,255,255,0.04);background:rgba(255,255,255,0.02);">
-          <td style="padding:6px 12px;font-size:11px;color:var(--cream-dim);">Sep 29</td>
-          <td style="padding:6px;text-align:center;font-size:11px;">1</td>
-          <td style="padding:6px;text-align:center;font-size:11px;color:#5CBA8A;">2</td>
-          <td style="padding:6px;text-align:center;font-size:11px;font-weight:700;color:#5CBA8A;">$5,580</td>
-          <td style="padding:6px;text-align:center;font-size:11px;">1 ($2,512)</td>
-          <td style="padding:6px;text-align:center;font-size:11px;color:#5CBA8A;">YES</td>
-          <td style="padding:6px 12px;font-size:10px;color:var(--amber);">Maioria do tempo com Coral</td>
-        </tr>
-        <tr style="border-top:1px solid rgba(255,255,255,0.04);">
-          <td style="padding:6px 12px;font-size:11px;color:var(--red);">Sep 30</td>
-          <td style="padding:6px;text-align:center;font-size:11px;color:var(--red);">—</td>
-          <td style="padding:6px;text-align:center;font-size:11px;color:var(--red);">—</td>
-          <td style="padding:6px;text-align:center;font-size:11px;color:var(--red);">$0</td>
-          <td style="padding:6px;text-align:center;font-size:11px;color:var(--red);">—</td>
-          <td style="padding:6px;text-align:center;font-size:11px;color:var(--red);">MISSING</td>
-          <td style="padding:6px 12px;font-size:10px;color:var(--red);">Não preenchido — preencher retroativamente</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div style="margin-top:24px;">
-  <div class="card-title">Leadership Note — New Scorecard System</div>
-      <div style="font-size:13px;color:var(--cream);line-height:1.6;font-style:italic;">"We now track through scorecards, not just Sales Control. SDR Team and Showerglass filled this week — that’s the standard. Stephanie, Jarvis, Chelsea: your scorecard is your voice in this system. Fill it daily."</div>
+  <!-- Key Alerts -->
+  <div class="section-label">Leadership Notes — Oct 6</div>
+  <div class="grid-2">
+    <div>
+      <div class="alert-card red">
+        <div class="alert-icon">🔴</div>
+        <div>
+          <div class="alert-title" style="color:var(--red)">Shower Glass — Material Blocker (4 days)</div>
+          <div class="alert-body">Jessica is closing deals but Shower Glass material is not being received or ordered. Revenue being blocked at delivery. Sheylla must resolve this week.</div>
+        </div>
+      </div>
+      <div class="alert-card red">
+        <div class="alert-icon">🔴</div>
+        <div>
+          <div class="alert-title" style="color:var(--red)">Jarvis + Chelsea — Zero Scorecard Entries</div>
+          <div class="alert-body">Both senior sellers have zero entries in October. 90-Day plan for Jarvis completely blank. Direct conversation required before next meeting.</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="alert-card green">
+        <div class="alert-icon">✓</div>
+        <div>
+          <div class="alert-title" style="color:var(--green)">Eveline + Jessica — Opening October Strong</div>
+          <div class="alert-body">Both sellers generating revenue in Week 1 of October. Eveline $5,140 in Countertops. Jessica $2,360 across 2 Shower Glass closings.</div>
+        </div>
+      </div>
+      <div class="alert-card amber">
+        <div class="alert-icon">⚠</div>
+        <div>
+          <div class="alert-title" style="color:var(--amber)">SDR New Scorecard — Strong Oct Start</div>
+          <div class="alert-body">Julia hitting 87.5% Bath Reno conversion. Otavio ramping on Countertops. New SDR link active and scorecard filling consistently.</div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -3025,6 +2811,136 @@ const meetingWeeks = [
       ]
     }
   }
+  ,
+  {
+    eyebrow: "Week 19",
+    dates: "Oct 1–6, 2026 — Opening October",
+    revenue: [
+      {name:"Eveline Erbert", value:"$5,140", note:"Countertops · Oct 5 closing"},
+      {name:"Jessica Wolfe", value:"$2,360", note:"SG Job 3708 $1,135 (Oct 5) + Job 3710 $1,225 (Oct 6)"},
+      {name:"Jarvis Holley", value:"$0", note:"No Sales Control entries Oct 1–6"},
+      {name:"Chelsea Foster", value:"$0", note:"No Sales Control entries Oct 1–6"}
+    ],
+    activity: [
+      {label:"Week Revenue", value:"$7,500", note:"Eveline + Jessica — 2 active sellers opening October"},
+      {label:"SDR Leads", value:"36", note:"Julia 28 (Bath Reno 8 + SG 20) · Otavio 8 (Countertops)"},
+      {label:"Appts Set", value:"35", note:"44.4% Lead→Appt conversion · Julia Bath Reno 87.5%"},
+      {label:"FU Appts", value:"16", note:"18.0% FU conversion · 89 follow-up calls made"}
+    ],
+    worked: [
+      "Eveline opened October with $5,140 Countertops closing on Oct 5. First revenue of the month.",
+      "Jessica closed 2 Shower Glass jobs: Job 3708 $1,135 (Oct 5) + Job 3710 $1,225 (Oct 6) = $2,360.",
+      "Julia hitting 87.5% Bath Reno lead→appt conversion in Week 1 of October. Best rate on the team.",
+      "SDR new scorecard (new link) active and being filled consistently — Oct 1–6 data complete.",
+      "Otavio onboarding into Countertops SDR role after migrating Sep 22. 38 calls, 7 appts in first Oct week."
+    ],
+    attention: [
+      "Jarvis 90-Day scorecard completely blank — zero entries Oct 1–6. Direct conversation required before meeting.",
+      "Chelsea 4+ consecutive weeks with no scorecard entries and no revenue. Status unclear — needs check-in.",
+      "Showerglass scorecard has revenue (Jessica closing) but scorecard entries still blank for Oct 1–6.",
+      "Shower Glass material not being received/ordered — Jessica's closings blocked at delivery 4 days straight.",
+      "Saulo Scheduling scorecard: 3 weeks with access, zero entries entered.",
+      "Britney Ops scorecard: last entry Sep 21. October completely blank — jobs need audit update.",
+      "Otavio Oct 1: lead texted STOP and blocked number. Oct 2: 3 cancelled/unresponsive."
+    ],
+    blockers: [
+      "🔴 Shower Glass material — not being ordered/received. Jessica closing but delivery blocked. Owner: Sheylla.",
+      "🔴 Jarvis 90-Day scorecard blank — accountability gap in first full month.",
+      "🔴 Chelsea no visible activity — 4+ weeks. Pipeline ownership of Countertops unclear post-Stephanie."
+    ],
+    scorecardFlags: [
+      {person:"Jarvis Holley", category:"Sales", type:"red", note:"90-Day scorecard blank — zero entries Oct 1–6", blocker:"Must fill before next meeting"},
+      {person:"Chelsea Foster", category:"Sales", type:"red", note:"4+ weeks no scorecard entries and no revenue", blocker:"Direct conversation required"},
+      {person:"Jessica Wolfe", category:"Sales", type:"amber", note:"Revenue active ($2,360) but scorecard not filled", blocker:"Fill Oct 1–6 retroactively"},
+      {person:"SDR Team", category:"SDR", type:"green", note:"New scorecard link active — Oct 1–6 data complete", blocker:null},
+      {person:"Saulo", category:"Ops", type:"amber", note:"3 weeks access · zero entries in Scheduling scorecard", blocker:"Accountability conversation needed"},
+      {person:"Britney", category:"Ops", type:"amber", note:"Last entry Sep 21 — October completely blank", blocker:"Resume daily input immediately"},
+      {person:"Eveline Erbert", category:"Sales", type:"green", note:"$5,140 Countertops — opening October with revenue", blocker:null}
+    ],
+    agents: [
+      {name:"Eveline Erbert", role:"SDR / Sales — Alabama + GA", status:"active",
+        kpis:[
+          {label:"Revenue (Oct)",value:"$5,140",note:"Countertops closing Oct 5",cls:"green"},
+          {label:"YTD",value:"$287,700",note:"Jan–Oct 6",cls:"gold"},
+          {label:"SDR Leads",value:"—",note:"Scorecard not submitted",cls:""},
+          {label:"Status",value:"Active ✓",note:"Generating revenue",cls:"green"}
+        ],
+        progressLabel:"October Opening", progressPct:68, progressNote:"On track", blocker:null},
+
+      {name:"Jessica Wolfe", role:"Sales — Shower Glass", status:"active",
+        kpis:[
+          {label:"Revenue (Oct)",value:"$2,360",note:"Jobs 3708 + 3710",cls:"green"},
+          {label:"YTD",value:"$448,857",note:"Jan–Oct 6",cls:"gold"},
+          {label:"Closings",value:"2",note:"Oct 5 + Oct 6",cls:"green"},
+          {label:"Scorecard",value:"BLANK",note:"Fill retroactively",cls:"red"}
+        ],
+        progressLabel:"October Opening", progressPct:55, progressNote:"Active — scorecard needed", blocker:"Showerglass scorecard not filled Oct 1–6"},
+
+      {name:"Jarvis Holley", role:"Senior Sales — Bath Remodeling", status:"warn",
+        kpis:[
+          {label:"Revenue (Oct)",value:"$0",note:"No SC entries",cls:"amber"},
+          {label:"Sep Final",value:"$158,783",note:"First full month",cls:"gold"},
+          {label:"90-Day Plan",value:"BLANK",note:"Zero entries Oct 1–6",cls:"red"},
+          {label:"Scorecard",value:"BLANK",note:"Must fill now",cls:"red"}
+        ],
+        progressLabel:"90-Day Scorecard", progressPct:0, progressNote:"Zero entries — action required", blocker:"90-Day scorecard completely blank — direct conversation"},
+
+      {name:"Chelsea Foster", role:"Sales — Countertops", status:"warn",
+        kpis:[
+          {label:"Revenue (Oct)",value:"$0",note:"No entries",cls:"red"},
+          {label:"Sep Debut",value:"$28,748",note:"Sep 10 debut",cls:""},
+          {label:"Scorecard",value:"BLANK",note:"4+ weeks silent",cls:"red"},
+          {label:"Status",value:"Unknown",note:"No contact visible",cls:"amber"}
+        ],
+        progressLabel:"October Activity", progressPct:0, progressNote:"No entries — 4+ weeks", blocker:"4+ consecutive weeks no activity or scorecard — status conversation needed"},
+
+      {name:"Julia", role:"SDR — Bath Reno + Shower Glass", status:"active",
+        kpis:[
+          {label:"Leads (Oct W1)",value:"28",note:"Bath Reno 8 + SG 20",cls:"gold"},
+          {label:"Calls Made",value:"83",note:"Oct 1–6",cls:"gold"},
+          {label:"Appts Set",value:"28",note:"Bath Reno 87.5% conv.",cls:"green"},
+          {label:"FU Appts",value:"12",note:"Oct 5 SG: 60% FU conv.",cls:"green"}
+        ],
+        progressLabel:"SDR Performance", progressPct:88, progressNote:"Best conversion rate on team", blocker:null},
+
+      {name:"Otavio", role:"SDR — Countertops (joined Sep 22)", status:"active",
+        kpis:[
+          {label:"Leads (Oct W1)",value:"8",note:"Countertops",cls:""},
+          {label:"Calls Made",value:"38",note:"Oct 1–6",cls:"gold"},
+          {label:"Appts Set",value:"7",note:"37.5% conv.",cls:"green"},
+          {label:"FU Appts",value:"4",note:"12.9% FU conv.",cls:""}
+        ],
+        progressLabel:"SDR Ramp", progressPct:38, progressNote:"Building — first full Oct week", blocker:null}
+    ],
+    ops: [
+      {name:"Saulo", role:"Scheduling & Field Coordination", status:"warn",
+        kpis:[
+          {label:"Scorecard",value:"BLANK",note:"3 weeks access, zero entries",cls:"red"},
+          {label:"Access Since",value:"3 weeks",note:"Has access",cls:"amber"},
+          {label:"Entries",value:"Zero",note:"No data entered",cls:"red"},
+          {label:"Action",value:"Required",note:"Accountability talk",cls:"amber"}
+        ],
+        progressLabel:"Scheduling Scorecard", progressPct:0, progressNote:"Zero entries — accountability needed", blocker:"3 weeks with access, zero entries — direct conversation required"},
+
+      {name:"Britney", role:"Ops Data Control & Audit", status:"warn",
+        kpis:[
+          {label:"Last Entry",value:"Sep 21",note:"Over 2 weeks ago",cls:"amber"},
+          {label:"Oct Status",value:"BLANK",note:"October not started",cls:"red"},
+          {label:"Jobs",value:"Pending",note:"Audit update needed",cls:"red"},
+          {label:"Action",value:"Resume Now",note:"Daily input required",cls:"amber"}
+        ],
+        progressLabel:"Ops Scorecard", progressPct:20, progressNote:"Last entry Sep 21 — resume Oct", blocker:"October completely blank — jobs need audit update"},
+
+      {name:"Sheylla", role:"Procurement Control Center", status:"active",
+        kpis:[
+          {label:"Role",value:"Procurement",note:"Not a seller",cls:""},
+          {label:"SG Material",value:"CRITICAL",note:"Not ordered/received",cls:"red"},
+          {label:"Blocker",value:"4 days",note:"Consecutive delivery issue",cls:"red"},
+          {label:"Impact",value:"Lost Revenue",note:"Jessica closing but blocked",cls:"red"}
+        ],
+        progressLabel:"Material Procurement", progressPct:10, progressNote:"Critical blocker — SG material missing", blocker:"Shower Glass material not ordered — blocking Jessica deliveries for 4 consecutive days"}
+    ]
+  }
 ];
 
 let currentMeetingWeek = meetingWeeks.length - 1;
@@ -3410,10 +3326,88 @@ function switchTab(id) {
   document.getElementById('tab-' + id).classList.add('active');
   if (id === 'exec') renderMonthly();
   if (id === 'annual') setTimeout(renderAnnualCharts, 50);
-  const tabs = ['weekly','team','exec','annual','stores','sellers'];
+  if (id === 'pipeline') setTimeout(() => renderSDRTable(document.getElementById('sdr-month-select').value), 50);
+  const tabs = ['weekly','team','exec','annual','stores','sellers','pipeline'];
   const idx = tabs.indexOf(id);
   document.querySelectorAll('.tab')[idx].classList.add('active');
 }
+
+// ── SDR TABLE DATA ──
+const sdrData = {
+  'sep': {
+    label: 'September 2026 — Full Month',
+    rows: [
+      {name:'Julia / Bath Reno',    leads:81,  calls:184, appts:43, conv:'53.1%', convCls:'green', fuCalls:90,  fuAppts:16, fuConv:'17.8%'},
+      {name:'Julia / Shower Glass', leads:87,  calls:133, appts:40, conv:'46.0%', convCls:'green', fuCalls:51,  fuAppts:13, fuConv:'25.5%'},
+      {name:'Otavio / Countertops', leads:70,  calls:174, appts:40, conv:'57.1%', convCls:'green', fuCalls:104, fuAppts:16, fuConv:'15.4%'},
+    ],
+    total: {leads:238, calls:491, appts:123, conv:'51.7%', convCls:'green', fuCalls:245, fuAppts:45, fuConv:'18.4%'}
+  },
+  'oct-w1': {
+    label: 'October 2026 — Week 1 (Oct 1–6)',
+    rows: [
+      {name:'Julia / Bath Reno',    leads:21, calls:44, appts:8,  conv:'38.1%', convCls:'amber', fuCalls:24, fuAppts:3, fuConv:'12.5%'},
+      {name:'Julia / Shower Glass', leads:24, calls:39, appts:11, conv:'45.8%', convCls:'green', fuCalls:16, fuAppts:6, fuConv:'37.5%'},
+      {name:'Otavio / Countertops', leads:13, calls:29, appts:8,  conv:'61.5%', convCls:'green', fuCalls:16, fuAppts:1, fuConv:'6.2%'},
+    ],
+    total: {leads:58, calls:112, appts:27, conv:'46.6%', convCls:'green', fuCalls:56, fuAppts:10, fuConv:'17.9%'}
+  }
+};
+
+function renderSDRTable(key) {
+  const d = sdrData[key];
+  if (!d) return;
+  const clsMap = {green:'#1a3a2a', amber:'#2a2a1a', red:'#2a1a1a'};
+  const txtMap = {green:'var(--green)', amber:'var(--amber)', red:'var(--red)'};
+  function badge(val, cls) {
+    return `<span style="background:${clsMap[cls]||clsMap.green};color:${txtMap[cls]||txtMap.green};border-radius:4px;padding:2px 8px;font-weight:600;">${val}</span>`;
+  }
+  const rowsHtml = d.rows.map(r => `
+    <tr style="border-bottom:1px solid var(--border);">
+      <td style="padding:8px 10px;color:var(--cream);">${r.name}</td>
+      <td style="text-align:right;padding:8px;color:var(--gold);">${r.leads}</td>
+      <td style="text-align:right;padding:8px;">${r.calls}</td>
+      <td style="text-align:right;padding:8px;color:var(--green);">${r.appts}</td>
+      <td style="text-align:right;padding:8px;">${badge(r.conv, r.convCls)}</td>
+      <td style="text-align:right;padding:8px;">${r.fuCalls}</td>
+      <td style="text-align:right;padding:8px;">${r.fuAppts}</td>
+      <td style="text-align:right;padding:8px;">${r.fuConv}</td>
+    </tr>`).join('');
+  const t = d.total;
+  document.getElementById('sdr-table-container').innerHTML = `
+    <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="border-bottom:1px solid var(--border);color:var(--muted);">
+            <th style="text-align:left;padding:6px 10px;">SDR / Dept</th>
+            <th style="text-align:right;padding:6px 8px;">Leads</th>
+            <th style="text-align:right;padding:6px 8px;">Calls</th>
+            <th style="text-align:right;padding:6px 8px;">Appts Set</th>
+            <th style="text-align:right;padding:6px 8px;">Lead→Appt</th>
+            <th style="text-align:right;padding:6px 8px;">FU Calls</th>
+            <th style="text-align:right;padding:6px 8px;">FU Appts</th>
+            <th style="text-align:right;padding:6px 8px;">FU Conv.</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rowsHtml}
+          <tr style="font-weight:700;background:var(--surface2);">
+            <td style="padding:8px 10px;color:var(--gold);">TOTAL</td>
+            <td style="text-align:right;padding:8px;color:var(--gold);">${t.leads}</td>
+            <td style="text-align:right;padding:8px;">${t.calls}</td>
+            <td style="text-align:right;padding:8px;color:var(--green);">${t.appts}</td>
+            <td style="text-align:right;padding:8px;">${badge(t.conv, t.convCls)}</td>
+            <td style="text-align:right;padding:8px;">${t.fuCalls}</td>
+            <td style="text-align:right;padding:8px;">${t.fuAppts}</td>
+            <td style="text-align:right;padding:8px;">${t.fuConv}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>`;
+}
+
+// Init SDR table on load
+document.addEventListener('DOMContentLoaded', () => renderSDRTable('oct-w1'));
 
 // ============================================================
 // ANNUAL PERFORMANCE — 2026 Seller Evolution Charts
@@ -3557,5 +3551,307 @@ switchTab = function(id) {
 };
 
 </script>
+
+<!-- ══════════════════════════════════════════════════
+     PIPELINE PERFORMANCE TAB
+═══════════════════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-pipeline">
+<div class="content">
+
+  <div class="section-label">SDR Performance — Lead → Appointment Conversion</div>
+
+  <!-- SDR MONTH DROPDOWN -->
+  <div class="card" style="margin-bottom:20px;padding:16px 20px;">
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px;flex-wrap:wrap;">
+      <div class="card-title" style="margin:0;">SDR Funnel</div>
+      <select id="sdr-month-select" onchange="renderSDRTable(this.value)"
+        style="background:var(--surface2);border:1px solid var(--border);color:var(--cream);padding:6px 12px;border-radius:6px;font-size:13px;cursor:pointer;">
+        <option value="oct-w1">October 2026 — Week 1 (Oct 1–6)</option>
+        <option value="sep">September 2026 — Full Month</option>
+      </select>
+    </div>
+    <div id="sdr-table-container"></div>
+  </div>
+
+  <!-- SALES REP FULL FUNNEL -->
+  <div class="section-label">Sales Rep Full Funnel — Appt → Close → Revenue</div>
+
+  <!-- JESSICA -->
+  <div class="card" style="margin-bottom:16px;padding:16px 20px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px;">
+      <div class="card-title" style="margin:0;">Jessica Wolfe — Shower Glass</div>
+      <span style="font-size:11px;background:var(--surface2);color:var(--green);padding:4px 10px;border-radius:12px;">Data Available: Sep 2026 →</span>
+    </div>
+    <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="border-bottom:1px solid var(--border);color:var(--muted);">
+            <th style="text-align:left;padding:6px 10px;">Period</th>
+            <th style="text-align:right;padding:6px 8px;">Appts Set</th>
+            <th style="text-align:right;padding:6px 8px;">Visits Done</th>
+            <th style="text-align:right;padding:6px 8px;">Show Rate</th>
+            <th style="text-align:right;padding:6px 8px;">Closings</th>
+            <th style="text-align:right;padding:6px 8px;">Close Rate</th>
+            <th style="text-align:right;padding:6px 8px;">Revenue</th>
+            <th style="text-align:right;padding:6px 8px;">Avg Deal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:8px 10px;color:var(--cream);">September 2026</td>
+            <td style="text-align:right;padding:8px;color:var(--gold);">53</td>
+            <td style="text-align:right;padding:8px;">40</td>
+            <td style="text-align:right;padding:8px;color:var(--green);font-weight:600;">75.5%</td>
+            <td style="text-align:right;padding:8px;color:var(--green);">24</td>
+            <td style="text-align:right;padding:8px;"><span style="background:#1a3a2a;color:var(--green);border-radius:4px;padding:2px 8px;font-weight:600;">47.5%</span></td>
+            <td style="text-align:right;padding:8px;color:var(--green);">$47,576</td>
+            <td style="text-align:right;padding:8px;">$1,982</td>
+          </tr>
+          <tr>
+            <td style="padding:8px 10px;color:var(--cream);">Oct W1 (1–6)</td>
+            <td style="text-align:right;padding:8px;color:var(--gold);">17</td>
+            <td style="text-align:right;padding:8px;">13</td>
+            <td style="text-align:right;padding:8px;color:var(--green);font-weight:600;">76.5%</td>
+            <td style="text-align:right;padding:8px;color:var(--amber);">2</td>
+            <td style="text-align:right;padding:8px;"><span style="background:#2a2a1a;color:var(--amber);border-radius:4px;padding:2px 8px;font-weight:600;">15.4%</span></td>
+            <td style="text-align:right;padding:8px;">$2,360</td>
+            <td style="text-align:right;padding:8px;">$1,180</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:10px;font-size:12px;color:var(--muted);font-style:italic;">
+      ⚠ Oct close rate early — most visits happened Oct 5–6. Pipeline still building.
+    </div>
+  </div>
+
+  <!-- EVELINE -->
+  <div class="card" style="margin-bottom:16px;padding:16px 20px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px;">
+      <div class="card-title" style="margin:0;">Eveline Erbert — Countertops</div>
+      <span style="font-size:11px;background:var(--surface2);color:var(--amber);padding:4px 10px;border-radius:12px;">Closings only — no appt/visit scorecard</span>
+    </div>
+    <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="border-bottom:1px solid var(--border);color:var(--muted);">
+            <th style="text-align:left;padding:6px 10px;">Period</th>
+            <th style="text-align:right;padding:6px 8px;">Closings</th>
+            <th style="text-align:right;padding:6px 8px;">Revenue</th>
+            <th style="text-align:right;padding:6px 8px;">Avg Deal</th>
+            <th style="text-align:right;padding:6px 8px;">Appts→Close</th>
+            <th style="text-align:right;padding:6px 8px;">Leads Recv.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:8px 10px;color:var(--cream);">Feb 2026</td>
+            <td style="text-align:right;padding:8px;color:var(--green);">6</td>
+            <td style="text-align:right;padding:8px;">—</td>
+            <td style="text-align:right;padding:8px;">~$4,010</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:8px 10px;color:var(--cream);">Mar 2026</td>
+            <td style="text-align:right;padding:8px;color:var(--green);">9</td>
+            <td style="text-align:right;padding:8px;">—</td>
+            <td style="text-align:right;padding:8px;">~$4,010</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:8px 10px;color:var(--cream);">Apr 2026</td>
+            <td style="text-align:right;padding:8px;color:var(--green);">13</td>
+            <td style="text-align:right;padding:8px;">—</td>
+            <td style="text-align:right;padding:8px;">~$4,010</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:8px 10px;color:var(--cream);">May 2026</td>
+            <td style="text-align:right;padding:8px;color:var(--amber);">6</td>
+            <td style="text-align:right;padding:8px;">—</td>
+            <td style="text-align:right;padding:8px;">~$4,010</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:8px 10px;color:var(--cream);">Jun 2026</td>
+            <td style="text-align:right;padding:8px;color:var(--green);">8</td>
+            <td style="text-align:right;padding:8px;">—</td>
+            <td style="text-align:right;padding:8px;">~$4,010</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:8px 10px;color:var(--cream);">Jul 2026</td>
+            <td style="text-align:right;padding:8px;color:var(--green);">15</td>
+            <td style="text-align:right;padding:8px;">—</td>
+            <td style="text-align:right;padding:8px;">~$4,010</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:8px 10px;color:var(--cream);">Aug 2026</td>
+            <td style="text-align:right;padding:8px;color:var(--green);">10</td>
+            <td style="text-align:right;padding:8px;">$28,780</td>
+            <td style="text-align:right;padding:8px;">$2,878</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:8px 10px;color:var(--cream);">Sep 2026</td>
+            <td style="text-align:right;padding:8px;color:var(--green);">7</td>
+            <td style="text-align:right;padding:8px;">—</td>
+            <td style="text-align:right;padding:8px;">~$4,010</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+          </tr>
+          <tr style="font-weight:700;background:var(--surface2);">
+            <td style="padding:8px 10px;color:var(--gold);">Oct W1 (1–6)</td>
+            <td style="text-align:right;padding:8px;color:var(--green);">1</td>
+            <td style="text-align:right;padding:8px;">$5,140</td>
+            <td style="text-align:right;padding:8px;color:var(--green);">$5,140</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:10px;font-size:12px;color:var(--muted);">
+      ⚠ Eveline manages her own leads — no SDR scorecard assigned. To unlock full funnel: activate her personal scorecard.
+    </div>
+  </div>
+
+  <!-- JARVIS -->
+  <div class="card" style="margin-bottom:16px;padding:16px 20px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px;">
+      <div class="card-title" style="margin:0;">Jarvis Holley — Bath Remodeling</div>
+      <span style="font-size:11px;background:var(--surface2);color:var(--red);padding:4px 10px;border-radius:12px;">🔴 90-Day scorecard blank — closings only</span>
+    </div>
+    <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="border-bottom:1px solid var(--border);color:var(--muted);">
+            <th style="text-align:left;padding:6px 10px;">Period</th>
+            <th style="text-align:right;padding:6px 8px;">Closings</th>
+            <th style="text-align:right;padding:6px 8px;">Revenue</th>
+            <th style="text-align:right;padding:6px 8px;">Avg Deal</th>
+            <th style="text-align:right;padding:6px 8px;">Appts Set</th>
+            <th style="text-align:right;padding:6px 8px;">Appt→Close</th>
+            <th style="text-align:right;padding:6px 8px;">Leads Recv.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:8px 10px;color:var(--cream);">Sep 2026 (debut)</td>
+            <td style="text-align:right;padding:8px;color:var(--green);font-weight:700;">11</td>
+            <td style="text-align:right;padding:8px;color:var(--green);">$158,783</td>
+            <td style="text-align:right;padding:8px;color:var(--gold);font-weight:700;">$14,434</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+          </tr>
+          <tr>
+            <td style="padding:8px 10px;color:var(--cream);">Oct W1 (1–6)</td>
+            <td style="text-align:right;padding:8px;color:var(--red);">0</td>
+            <td style="text-align:right;padding:8px;color:var(--red);">$0</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);">—</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:10px;font-size:12px;color:var(--muted);">
+      ⚠ Highest avg deal in the company ($14,434). Zero pipeline visibility without 90-Day scorecard. Critical gap.
+    </div>
+  </div>
+
+  <!-- CHELSEA -->
+  <div class="card" style="margin-bottom:24px;padding:16px 20px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px;">
+      <div class="card-title" style="margin:0;">Chelsea Foster — Countertops</div>
+      <span style="font-size:11px;background:var(--surface2);color:var(--red);padding:4px 10px;border-radius:12px;">🔴 30-Day scorecard blank — closings only</span>
+    </div>
+    <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="border-bottom:1px solid var(--border);color:var(--muted);">
+            <th style="text-align:left;padding:6px 10px;">Period</th>
+            <th style="text-align:right;padding:6px 8px;">Closings</th>
+            <th style="text-align:right;padding:6px 8px;">Revenue</th>
+            <th style="text-align:right;padding:6px 8px;">Avg Deal</th>
+            <th style="text-align:right;padding:6px 8px;">Appts Set</th>
+            <th style="text-align:right;padding:6px 8px;">Appt→Close</th>
+            <th style="text-align:right;padding:6px 8px;">Leads Recv.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:8px 10px;color:var(--cream);">Sep 2026 (debut)</td>
+            <td style="text-align:right;padding:8px;color:var(--green);font-weight:700;">4</td>
+            <td style="text-align:right;padding:8px;color:var(--green);">$28,748</td>
+            <td style="text-align:right;padding:8px;color:var(--gold);font-weight:700;">$7,187</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+          </tr>
+          <tr>
+            <td style="padding:8px 10px;color:var(--cream);">Oct W1 (1–6)</td>
+            <td style="text-align:right;padding:8px;color:var(--red);">0</td>
+            <td style="text-align:right;padding:8px;color:var(--red);">$0</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);">—</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:10px;font-size:12px;color:var(--muted);">
+      ⚠ $7,187 avg deal — 4 closings in debut month. Strong potential. Pipeline unknown without scorecard.
+    </div>
+  </div>
+
+  <!-- DATA GAPS -->
+  <div class="section-label">Data Gaps — What We Cannot Measure Yet</div>
+  <div class="grid-2">
+    <div class="alert-card amber">
+      <div class="alert-icon">⚠</div>
+      <div>
+        <div class="alert-title" style="color:var(--amber)">Jarvis — 90-Day Scorecard Blank</div>
+        <div class="alert-body">11 closings Sep = $158,783 but zero pipeline visibility. Appt rate, show rate, close rate: unknown.</div>
+      </div>
+    </div>
+    <div class="alert-card amber">
+      <div class="alert-icon">⚠</div>
+      <div>
+        <div class="alert-title" style="color:var(--amber)">Chelsea — 30-Day Scorecard Blank</div>
+        <div class="alert-body">4 closings Sep = $28,748. Avg deal $7,187. No lead, appt or visit data captured.</div>
+      </div>
+    </div>
+    <div class="alert-card amber">
+      <div class="alert-icon">⚠</div>
+      <div>
+        <div class="alert-title" style="color:var(--amber)">Eveline — No SDR Scorecard</div>
+        <div class="alert-body">Does her own prospecting. No conversion rate trackable until personal scorecard is activated.</div>
+      </div>
+    </div>
+    <div class="alert-card red">
+      <div class="alert-icon">🔴</div>
+      <div>
+        <div class="alert-title" style="color:var(--red)">SG Scorecard: Sep 2026 Onward Only</div>
+        <div class="alert-body">Jessica's visits/close rate data only from Sep when scorecard started. Pre-Sep: closings from Sales Control only.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+
 </body>
 </html>
