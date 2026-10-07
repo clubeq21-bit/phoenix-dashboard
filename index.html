@@ -3326,7 +3326,12 @@ function switchTab(id) {
   document.getElementById('tab-' + id).classList.add('active');
   if (id === 'exec') renderMonthly();
   if (id === 'annual') setTimeout(renderAnnualCharts, 50);
-  if (id === 'pipeline') setTimeout(() => renderSDRTable(document.getElementById('sdr-month-select').value), 50);
+  if (id === 'pipeline') setTimeout(() => {
+          renderSDRTable(document.getElementById('sdr-month-select').value);
+          renderEvelineTable(document.getElementById('eveline-month-select').value);
+          renderJarvisTable(document.getElementById('jarvis-month-select').value);
+          renderChelseaTable(document.getElementById('chelsea-month-select').value);
+        }, 50);
   const tabs = ['weekly','team','exec','annual','stores','sellers','pipeline'];
   const idx = tabs.indexOf(id);
   document.querySelectorAll('.tab')[idx].classList.add('active');
@@ -3407,7 +3412,140 @@ function renderSDRTable(key) {
 }
 
 // Init SDR table on load
-document.addEventListener('DOMContentLoaded', () => renderSDRTable('oct-w1'));
+document.addEventListener('DOMContentLoaded', () => {
+  renderSDRTable('oct-w1');
+  renderEvelineTable('oct-w1');
+  renderJarvisTable('oct-w1');
+  renderChelseaTable('oct-w1');
+});
+
+// ── EVELINE DATA ──────────────────────────────────────────
+const evelineData = {
+  'oct-w1': { label:'October 2026 — Week 1 (Oct 1–7)', closings:1, revenue:'$5,140', avg:'$5,140', note:'Oct W1 — 1 closing CT' },
+  'sep':    { label:'September 2026',                   closings:7, revenue:'—',      avg:'~$4,010', note:'7 closings — avg est.' },
+  'aug':    { label:'August 2026',                      closings:10,revenue:'$28,780',avg:'$2,878',  note:'10 closings' },
+  'jul':    { label:'July 2026',                        closings:15,revenue:'—',      avg:'~$4,010', note:'15 closings — avg est.' },
+  'jun':    { label:'June 2026',                        closings:8, revenue:'—',      avg:'~$4,010', note:'8 closings — avg est.' },
+  'may':    { label:'May 2026',                         closings:6, revenue:'—',      avg:'~$4,010', note:'6 closings — avg est.' },
+  'apr':    { label:'April 2026',                       closings:13,revenue:'—',      avg:'~$4,010', note:'13 closings — best month' },
+  'mar':    { label:'March 2026',                       closings:9, revenue:'—',      avg:'~$4,010', note:'9 closings' },
+  'feb':    { label:'February 2026',                    closings:6, revenue:'—',      avg:'~$4,010', note:'6 closings' },
+};
+
+function renderEvelineTable(key) {
+  const d = evelineData[key];
+  if (!d) return;
+  const isOct = key === 'oct-w1';
+  const clsC = d.closings >= 8 ? 'var(--green)' : d.closings >= 5 ? 'var(--amber)' : 'var(--red)';
+  document.getElementById('eveline-table-container').innerHTML = `
+    <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="border-bottom:1px solid var(--border);color:var(--muted);">
+            <th style="text-align:left;padding:6px 10px;">Period</th>
+            <th style="text-align:right;padding:6px 8px;">Closings</th>
+            <th style="text-align:right;padding:6px 8px;">Revenue</th>
+            <th style="text-align:right;padding:6px 8px;">Avg Deal</th>
+            <th style="text-align:right;padding:6px 8px;">Appts→Close</th>
+            <th style="text-align:right;padding:6px 8px;">Leads Recv.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="${isOct ? 'font-weight:700;background:var(--surface2);' : ''}">
+            <td style="padding:8px 10px;color:${isOct ? 'var(--gold)' : 'var(--cream)'};">${d.label}</td>
+            <td style="text-align:right;padding:8px;color:${clsC};font-weight:${isOct?'700':'400'};">${d.closings}</td>
+            <td style="text-align:right;padding:8px;">${d.revenue}</td>
+            <td style="text-align:right;padding:8px;">${d.avg}</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:6px;font-size:11px;color:var(--muted);">${d.note}</div>`;
+}
+
+// ── JARVIS DATA ───────────────────────────────────────────
+const jarvisData = {
+  'oct-w1': { label:'October 2026 — Week 1 (Oct 1–7)', closings:0,  revenue:'$0',       avg:'—',      revCls:'var(--red)',   note:'⚠ 0 closings so far — scorecard still blank' },
+  'sep':    { label:'September 2026 (debut)',           closings:11, revenue:'$158,783', avg:'$14,434', revCls:'var(--green)', note:'Debut month — $158K · highest avg deal in company' },
+};
+
+function renderJarvisTable(key) {
+  const d = jarvisData[key];
+  if (!d) return;
+  const isOct = key === 'oct-w1';
+  const clsC = d.closings === 0 ? 'var(--red)' : 'var(--green)';
+  document.getElementById('jarvis-table-container').innerHTML = `
+    <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="border-bottom:1px solid var(--border);color:var(--muted);">
+            <th style="text-align:left;padding:6px 10px;">Period</th>
+            <th style="text-align:right;padding:6px 8px;">Closings</th>
+            <th style="text-align:right;padding:6px 8px;">Revenue</th>
+            <th style="text-align:right;padding:6px 8px;">Avg Deal</th>
+            <th style="text-align:right;padding:6px 8px;">Appts Set</th>
+            <th style="text-align:right;padding:6px 8px;">Appt→Close</th>
+            <th style="text-align:right;padding:6px 8px;">Leads Recv.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="${isOct ? 'font-weight:700;background:var(--surface2);' : ''}">
+            <td style="padding:8px 10px;color:${isOct ? 'var(--gold)' : 'var(--cream)'};">${d.label}</td>
+            <td style="text-align:right;padding:8px;color:${clsC};font-weight:700;">${d.closings}</td>
+            <td style="text-align:right;padding:8px;color:${d.revCls};">${d.revenue}</td>
+            <td style="text-align:right;padding:8px;color:${d.closings > 0 ? 'var(--gold)' : 'var(--muted)'};">${d.avg}</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:6px;font-size:11px;color:var(--muted);">${d.note}</div>`;
+}
+
+// ── CHELSEA DATA ──────────────────────────────────────────
+const chelseaData = {
+  'oct-w1': { label:'October 2026 — Week 1 (Oct 1–7)', closings:0, revenue:'$0',      avg:'—',      revCls:'var(--red)',   note:'⚠ 0 closings so far — scorecard still blank' },
+  'sep':    { label:'September 2026 (debut)',           closings:4, revenue:'$28,748', avg:'$7,187', revCls:'var(--green)', note:'Debut month — $28.7K · $7,187 avg deal' },
+};
+
+function renderChelseaTable(key) {
+  const d = chelseaData[key];
+  if (!d) return;
+  const isOct = key === 'oct-w1';
+  const clsC = d.closings === 0 ? 'var(--red)' : 'var(--green)';
+  document.getElementById('chelsea-table-container').innerHTML = `
+    <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="border-bottom:1px solid var(--border);color:var(--muted);">
+            <th style="text-align:left;padding:6px 10px;">Period</th>
+            <th style="text-align:right;padding:6px 8px;">Closings</th>
+            <th style="text-align:right;padding:6px 8px;">Revenue</th>
+            <th style="text-align:right;padding:6px 8px;">Avg Deal</th>
+            <th style="text-align:right;padding:6px 8px;">Appts Set</th>
+            <th style="text-align:right;padding:6px 8px;">Appt→Close</th>
+            <th style="text-align:right;padding:6px 8px;">Leads Recv.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="${isOct ? 'font-weight:700;background:var(--surface2);' : ''}">
+            <td style="padding:8px 10px;color:${isOct ? 'var(--gold)' : 'var(--cream)'};">${d.label}</td>
+            <td style="text-align:right;padding:8px;color:${clsC};font-weight:700;">${d.closings}</td>
+            <td style="text-align:right;padding:8px;color:${d.revCls};">${d.revenue}</td>
+            <td style="text-align:right;padding:8px;color:${d.closings > 0 ? 'var(--gold)' : 'var(--muted)'};">${d.avg}</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:6px;font-size:11px;color:var(--muted);">${d.note}</div>`;
+}
 
 // ============================================================
 // ANNUAL PERFORMANCE — 2026 Seller Evolution Charts
@@ -3629,96 +3767,22 @@ switchTab = function(id) {
   <div class="card" style="margin-bottom:16px;padding:16px 20px;">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px;">
       <div class="card-title" style="margin:0;">Eveline Erbert — Countertops</div>
-      <span style="font-size:11px;background:var(--surface2);color:var(--amber);padding:4px 10px;border-radius:12px;">Closings only — no appt/visit scorecard</span>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+        <span style="font-size:11px;background:var(--surface2);color:var(--amber);padding:4px 10px;border-radius:12px;">Closings only — no appt/visit scorecard</span>
+        <select id="eveline-month-select" onchange="renderEvelineTable(this.value)" style="background:var(--surface2);color:var(--cream);border:1px solid var(--border);border-radius:6px;padding:4px 10px;font-size:12px;cursor:pointer;">
+          <option value="oct-w1">October 2026 — Week 1 (Oct 1–7)</option>
+          <option value="sep">September 2026</option>
+          <option value="aug">August 2026</option>
+          <option value="jul">July 2026</option>
+          <option value="jun">June 2026</option>
+          <option value="may">May 2026</option>
+          <option value="apr">April 2026</option>
+          <option value="mar">March 2026</option>
+          <option value="feb">February 2026</option>
+        </select>
+      </div>
     </div>
-    <div style="overflow-x:auto;">
-      <table style="width:100%;border-collapse:collapse;font-size:13px;">
-        <thead>
-          <tr style="border-bottom:1px solid var(--border);color:var(--muted);">
-            <th style="text-align:left;padding:6px 10px;">Period</th>
-            <th style="text-align:right;padding:6px 8px;">Closings</th>
-            <th style="text-align:right;padding:6px 8px;">Revenue</th>
-            <th style="text-align:right;padding:6px 8px;">Avg Deal</th>
-            <th style="text-align:right;padding:6px 8px;">Appts→Close</th>
-            <th style="text-align:right;padding:6px 8px;">Leads Recv.</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr style="border-bottom:1px solid var(--border);">
-            <td style="padding:8px 10px;color:var(--cream);">Feb 2026</td>
-            <td style="text-align:right;padding:8px;color:var(--green);">6</td>
-            <td style="text-align:right;padding:8px;">—</td>
-            <td style="text-align:right;padding:8px;">~$4,010</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
-          </tr>
-          <tr style="border-bottom:1px solid var(--border);">
-            <td style="padding:8px 10px;color:var(--cream);">Mar 2026</td>
-            <td style="text-align:right;padding:8px;color:var(--green);">9</td>
-            <td style="text-align:right;padding:8px;">—</td>
-            <td style="text-align:right;padding:8px;">~$4,010</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
-          </tr>
-          <tr style="border-bottom:1px solid var(--border);">
-            <td style="padding:8px 10px;color:var(--cream);">Apr 2026</td>
-            <td style="text-align:right;padding:8px;color:var(--green);">13</td>
-            <td style="text-align:right;padding:8px;">—</td>
-            <td style="text-align:right;padding:8px;">~$4,010</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
-          </tr>
-          <tr style="border-bottom:1px solid var(--border);">
-            <td style="padding:8px 10px;color:var(--cream);">May 2026</td>
-            <td style="text-align:right;padding:8px;color:var(--amber);">6</td>
-            <td style="text-align:right;padding:8px;">—</td>
-            <td style="text-align:right;padding:8px;">~$4,010</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
-          </tr>
-          <tr style="border-bottom:1px solid var(--border);">
-            <td style="padding:8px 10px;color:var(--cream);">Jun 2026</td>
-            <td style="text-align:right;padding:8px;color:var(--green);">8</td>
-            <td style="text-align:right;padding:8px;">—</td>
-            <td style="text-align:right;padding:8px;">~$4,010</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
-          </tr>
-          <tr style="border-bottom:1px solid var(--border);">
-            <td style="padding:8px 10px;color:var(--cream);">Jul 2026</td>
-            <td style="text-align:right;padding:8px;color:var(--green);">15</td>
-            <td style="text-align:right;padding:8px;">—</td>
-            <td style="text-align:right;padding:8px;">~$4,010</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
-          </tr>
-          <tr style="border-bottom:1px solid var(--border);">
-            <td style="padding:8px 10px;color:var(--cream);">Aug 2026</td>
-            <td style="text-align:right;padding:8px;color:var(--green);">10</td>
-            <td style="text-align:right;padding:8px;">$28,780</td>
-            <td style="text-align:right;padding:8px;">$2,878</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
-          </tr>
-          <tr style="border-bottom:1px solid var(--border);">
-            <td style="padding:8px 10px;color:var(--cream);">Sep 2026</td>
-            <td style="text-align:right;padding:8px;color:var(--green);">7</td>
-            <td style="text-align:right;padding:8px;">—</td>
-            <td style="text-align:right;padding:8px;">~$4,010</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
-          </tr>
-          <tr style="font-weight:700;background:var(--surface2);">
-            <td style="padding:8px 10px;color:var(--gold);">Oct W1 (1–6)</td>
-            <td style="text-align:right;padding:8px;color:var(--green);">1</td>
-            <td style="text-align:right;padding:8px;">$5,140</td>
-            <td style="text-align:right;padding:8px;color:var(--green);">$5,140</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <div id="eveline-table-container"></div>
     <div style="margin-top:10px;font-size:12px;color:var(--muted);">
       ⚠ Eveline manages her own leads — no SDR scorecard assigned. To unlock full funnel: activate her personal scorecard.
     </div>
@@ -3728,43 +3792,15 @@ switchTab = function(id) {
   <div class="card" style="margin-bottom:16px;padding:16px 20px;">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px;">
       <div class="card-title" style="margin:0;">Jarvis Holley — Bath Remodeling</div>
-      <span style="font-size:11px;background:var(--surface2);color:var(--red);padding:4px 10px;border-radius:12px;">🔴 90-Day scorecard blank — closings only</span>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+        <span style="font-size:11px;background:var(--surface2);color:var(--red);padding:4px 10px;border-radius:12px;">🔴 90-Day scorecard blank — closings only</span>
+        <select id="jarvis-month-select" onchange="renderJarvisTable(this.value)" style="background:var(--surface2);color:var(--cream);border:1px solid var(--border);border-radius:6px;padding:4px 10px;font-size:12px;cursor:pointer;">
+          <option value="oct-w1">October 2026 — Week 1 (Oct 1–7)</option>
+          <option value="sep">September 2026 (debut)</option>
+        </select>
+      </div>
     </div>
-    <div style="overflow-x:auto;">
-      <table style="width:100%;border-collapse:collapse;font-size:13px;">
-        <thead>
-          <tr style="border-bottom:1px solid var(--border);color:var(--muted);">
-            <th style="text-align:left;padding:6px 10px;">Period</th>
-            <th style="text-align:right;padding:6px 8px;">Closings</th>
-            <th style="text-align:right;padding:6px 8px;">Revenue</th>
-            <th style="text-align:right;padding:6px 8px;">Avg Deal</th>
-            <th style="text-align:right;padding:6px 8px;">Appts Set</th>
-            <th style="text-align:right;padding:6px 8px;">Appt→Close</th>
-            <th style="text-align:right;padding:6px 8px;">Leads Recv.</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr style="border-bottom:1px solid var(--border);">
-            <td style="padding:8px 10px;color:var(--cream);">Sep 2026 (debut)</td>
-            <td style="text-align:right;padding:8px;color:var(--green);font-weight:700;">11</td>
-            <td style="text-align:right;padding:8px;color:var(--green);">$158,783</td>
-            <td style="text-align:right;padding:8px;color:var(--gold);font-weight:700;">$14,434</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
-          </tr>
-          <tr>
-            <td style="padding:8px 10px;color:var(--cream);">Oct W1 (1–6)</td>
-            <td style="text-align:right;padding:8px;color:var(--red);">0</td>
-            <td style="text-align:right;padding:8px;color:var(--red);">$0</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);">—</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <div id="jarvis-table-container"></div>
     <div style="margin-top:10px;font-size:12px;color:var(--muted);">
       ⚠ Highest avg deal in the company ($14,434). Zero pipeline visibility without 90-Day scorecard. Critical gap.
     </div>
@@ -3774,43 +3810,15 @@ switchTab = function(id) {
   <div class="card" style="margin-bottom:24px;padding:16px 20px;">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px;">
       <div class="card-title" style="margin:0;">Chelsea Foster — Countertops</div>
-      <span style="font-size:11px;background:var(--surface2);color:var(--red);padding:4px 10px;border-radius:12px;">🔴 30-Day scorecard blank — closings only</span>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+        <span style="font-size:11px;background:var(--surface2);color:var(--red);padding:4px 10px;border-radius:12px;">🔴 30-Day scorecard blank — closings only</span>
+        <select id="chelsea-month-select" onchange="renderChelseaTable(this.value)" style="background:var(--surface2);color:var(--cream);border:1px solid var(--border);border-radius:6px;padding:4px 10px;font-size:12px;cursor:pointer;">
+          <option value="oct-w1">October 2026 — Week 1 (Oct 1–7)</option>
+          <option value="sep">September 2026 (debut)</option>
+        </select>
+      </div>
     </div>
-    <div style="overflow-x:auto;">
-      <table style="width:100%;border-collapse:collapse;font-size:13px;">
-        <thead>
-          <tr style="border-bottom:1px solid var(--border);color:var(--muted);">
-            <th style="text-align:left;padding:6px 10px;">Period</th>
-            <th style="text-align:right;padding:6px 8px;">Closings</th>
-            <th style="text-align:right;padding:6px 8px;">Revenue</th>
-            <th style="text-align:right;padding:6px 8px;">Avg Deal</th>
-            <th style="text-align:right;padding:6px 8px;">Appts Set</th>
-            <th style="text-align:right;padding:6px 8px;">Appt→Close</th>
-            <th style="text-align:right;padding:6px 8px;">Leads Recv.</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr style="border-bottom:1px solid var(--border);">
-            <td style="padding:8px 10px;color:var(--cream);">Sep 2026 (debut)</td>
-            <td style="text-align:right;padding:8px;color:var(--green);font-weight:700;">4</td>
-            <td style="text-align:right;padding:8px;color:var(--green);">$28,748</td>
-            <td style="text-align:right;padding:8px;color:var(--gold);font-weight:700;">$7,187</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
-          </tr>
-          <tr>
-            <td style="padding:8px 10px;color:var(--cream);">Oct W1 (1–6)</td>
-            <td style="text-align:right;padding:8px;color:var(--red);">0</td>
-            <td style="text-align:right;padding:8px;color:var(--red);">$0</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);">—</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <div id="chelsea-table-container"></div>
     <div style="margin-top:10px;font-size:12px;color:var(--muted);">
       ⚠ $7,187 avg deal — 4 closings in debut month. Strong potential. Pipeline unknown without scorecard.
     </div>
