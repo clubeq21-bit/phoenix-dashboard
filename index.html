@@ -452,7 +452,7 @@
 <div class="tab-panel" id="tab-team">
 <div class="content">
 
-  <div class="section-label">Company Overview — Week 19 · Oct 1–6, 2026</div>
+  <div class="section-label">Company Overview — Week 19 · Oct 1–7, 2026 · Sales Meeting</div>
   <div class="kpi-row kpi-row-5">
     <div class="kpi-card">
       <div class="kpi-label">Revenue (Week)</div>
@@ -571,7 +571,7 @@
   </div>
 
   <!-- SDR Team -->
-  <div class="section-label">SDR Team — Oct 1–6, 2026</div>
+  <div class="section-label">SDR Team — Oct 1–7, 2026</div>
   <div class="seller-grid">
 
     <!-- Julia -->
@@ -2814,7 +2814,7 @@ const meetingWeeks = [
   ,
   {
     eyebrow: "Week 19",
-    dates: "Oct 1–6, 2026 — Opening October",
+    dates: "Oct 1–7, 2026 — Sales Meeting · Oct 7",
     revenue: [
       {name:"Eveline Erbert", value:"$5,140", note:"Countertops · Oct 5 closing"},
       {name:"Jessica Wolfe", value:"$2,360", note:"SG Job 3708 $1,135 (Oct 5) + Job 3710 $1,225 (Oct 6)"},
@@ -3344,13 +3344,13 @@ const sdrData = {
     total: {leads:238, calls:491, appts:123, conv:'51.7%', convCls:'green', fuCalls:245, fuAppts:45, fuConv:'18.4%'}
   },
   'oct-w1': {
-    label: 'October 2026 — Week 1 (Oct 1–6)',
+    label: 'October 2026 — Week 1 (Oct 1–7)',
     rows: [
-      {name:'Julia / Bath Reno',    leads:21, calls:44, appts:8,  conv:'38.1%', convCls:'amber', fuCalls:24, fuAppts:3, fuConv:'12.5%'},
-      {name:'Julia / Shower Glass', leads:24, calls:39, appts:11, conv:'45.8%', convCls:'green', fuCalls:16, fuAppts:6, fuConv:'37.5%'},
+      {name:'Julia / Bath Reno',    leads:22, calls:44, appts:8,  conv:'36.4%', convCls:'amber', fuCalls:24, fuAppts:3, fuConv:'12.5%'},
+      {name:'Julia / Shower Glass', leads:27, calls:39, appts:11, conv:'40.7%', convCls:'amber', fuCalls:16, fuAppts:6, fuConv:'37.5%'},
       {name:'Otavio / Countertops', leads:13, calls:29, appts:8,  conv:'61.5%', convCls:'green', fuCalls:16, fuAppts:1, fuConv:'6.2%'},
     ],
-    total: {leads:58, calls:112, appts:27, conv:'46.6%', convCls:'green', fuCalls:56, fuAppts:10, fuConv:'17.9%'}
+    total: {leads:62, calls:112, appts:27, conv:'43.5%', convCls:'green', fuCalls:56, fuAppts:10, fuConv:'17.9%'}
   }
 };
 
@@ -3566,7 +3566,7 @@ switchTab = function(id) {
       <div class="card-title" style="margin:0;">SDR Funnel</div>
       <select id="sdr-month-select" onchange="renderSDRTable(this.value)"
         style="background:var(--surface2);border:1px solid var(--border);color:var(--cream);padding:6px 12px;border-radius:6px;font-size:13px;cursor:pointer;">
-        <option value="oct-w1">October 2026 — Week 1 (Oct 1–6)</option>
+        <option value="oct-w1">October 2026 — Week 1 (Oct 1–7)</option>
         <option value="sep">September 2026 — Full Month</option>
       </select>
     </div>
