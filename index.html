@@ -452,7 +452,7 @@
 <div class="tab-panel" id="tab-team">
 <div class="content">
 
-  <div class="section-label">Company Overview — Week 20 · Oct 8–13, 2026 · Sales Meeting</div>
+  <div class="section-label">Company Overview — Week 21 · Oct 14–18, 2026 · Sales Meeting</div>
   <div class="kpi-row kpi-row-5">
     <div class="kpi-card">
       <div class="kpi-label">Revenue (Week)</div>
@@ -3067,6 +3067,133 @@ const meetingWeeks = [
         progressLabel:"Material Procurement", progressPct:50, progressNote:"Monitor SG material status", blocker:null}
     ]
   }
+  ,
+  {
+    eyebrow: "Week 21",
+    dates: "Oct 14–18, 2026 — Sales Meeting · Oct 20",
+    revenue: [
+      {name:"Eveline Erbert",  value:"$0",      note:"No closings logged Oct 14–18"},
+      {name:"Jessica Wolfe",   value:"$1,375",  note:"1 closing — Shower Glass"},
+      {name:"Jarvis Holley",   value:"—",       note:"Left the company Oct 14, 2026"},
+      {name:"Chelsea Foster",  value:"$0",      note:"Scorecard blank Oct 14–18"}
+    ],
+    activity: [
+      {label:"Week Revenue",  value:"$1,375", note:"Jessica 1 closing SG — only rep logged"},
+      {label:"SDR Leads",     value:"30",     note:"Julia BR 7 · SG 12 · Otavio CT 11"},
+      {label:"Appts Set",     value:"8",      note:"26.7% Lead→Appt — lower volume week"},
+      {label:"FU Appts",      value:"18",     note:"42.9% FU conversion · 42 follow-up calls"}
+    ],
+    worked: [
+      "Jessica Wolfe logged 1 closing ($1,375) — only rep with visible revenue for Oct 14–18.",
+      "SDR team active: 30 leads, 70 calls, 8 appts set across all 3 lines.",
+      "Otavio Countertops: 11 leads, 4 appts (36.4%) — FU pipeline building (9 FU appts).",
+      "Follow-up calls strong: 42 FU calls generated 18 FU appts (42.9% conversion).",
+      "Jarvis Holley departed Oct 14 — Bath Remodeling territory now open."
+    ],
+    attention: [
+      "Jarvis left Oct 14 — Bath Remodeling territory unassigned. Coverage plan needed.",
+      "SDR conversion dropped to 26.7% (from 66.7% W2) — shorter week, lower lead volume.",
+      "Eveline no closings Oct 14–18 — consecutive weeks with $0 revenue.",
+      "Chelsea scorecard blank for 6+ consecutive weeks — status and commitment unclear.",
+      "Revenue exposure: only 1 rep (Jessica) logged closings this week."
+    ],
+    blockers: [
+      "🔴 Jarvis departure — Bath Remodeling territory uncovered. Immediate replacement or redistribution needed.",
+      "🔴 Chelsea 6+ weeks no activity — direct leadership conversation required.",
+      "🟡 Eveline 2 consecutive weeks $0 — pipeline check needed.",
+      "🟡 SDR volume down this week — short week effect or structural drop?"
+    ],
+    scorecardFlags: [
+      {person:"Jarvis Holley",   category:"Sales", type:"red",   note:"Left company Oct 14 — territory open",             blocker:"Replacement or redistribution plan required"},
+      {person:"Chelsea Foster",  category:"Sales", type:"red",   note:"6+ weeks no scorecard entries and no revenue",      blocker:"Direct conversation — commitment or exit"},
+      {person:"Eveline Erbert",  category:"Sales", type:"amber", note:"No closings Oct 14–18 — 2 weeks $0",               blocker:"Pipeline review this week"},
+      {person:"Jessica Wolfe",   category:"Sales", type:"green", note:"1 closing $1,375 — only active revenue this week",  blocker:null},
+      {person:"SDR Team",        category:"SDR",   type:"amber", note:"26.7% lead→appt — lower volume short week",         blocker:null}
+    ],
+    agents: [
+      {name:"Eveline Erbert", role:"SDR / Sales — Alabama + GA", status:"warn",
+        kpis:[
+          {label:"Revenue (Oct W3)",value:"$0",    note:"No closings Oct 14–18",  cls:"red"},
+          {label:"Oct Total",       value:"$5,140",note:"W1 closing only",         cls:"gold"},
+          {label:"SDR Leads",       value:"—",     note:"Scorecard not submitted", cls:""},
+          {label:"Status",          value:"Active",note:"2 weeks $0 — check in",  cls:"amber"}
+        ],
+        progressLabel:"October W3", progressPct:30, progressNote:"2 consecutive weeks no closings", blocker:"2 consecutive weeks $0 — pipeline review needed"},
+
+      {name:"Jessica Wolfe", role:"Sales — Shower Glass", status:"active",
+        kpis:[
+          {label:"Revenue (Oct W3)",value:"$1,375",note:"1 closing SG",             cls:"green"},
+          {label:"Oct W1 Total",    value:"$2,360",note:"Jobs 3708 + 3710",         cls:"green"},
+          {label:"Oct Running",     value:"$3,735",note:"W1 + W3 combined",         cls:"gold"},
+          {label:"Status",          value:"Active",note:"Consistent revenue",        cls:"green"}
+        ],
+        progressLabel:"October W3", progressPct:55, progressNote:"1 closing — building momentum", blocker:null},
+
+      {name:"Jarvis Holley", role:"Senior Sales — Bath Remodeling", status:"inactive",
+        kpis:[
+          {label:"Status",       value:"DEPARTED",  note:"Left Oct 14, 2026",     cls:"red"},
+          {label:"Sep Final",    value:"$158,783",  note:"Best month — company record", cls:"gold"},
+          {label:"Oct Revenue",  value:"$0",        note:"No closings before departure", cls:"red"},
+          {label:"Territory",    value:"OPEN",      note:"Bath Remodeling uncovered", cls:"red"}
+        ],
+        progressLabel:"Territory Status", progressPct:0, progressNote:"Departed — territory open", blocker:"Bath Remodeling territory needs coverage plan immediately"},
+
+      {name:"Chelsea Foster", role:"Sales — Countertops", status:"warn",
+        kpis:[
+          {label:"Revenue (Oct W3)",value:"$0",      note:"No entries",          cls:"red"},
+          {label:"Sep Debut",       value:"$28,748", note:"Sep 10 debut",        cls:""},
+          {label:"Scorecard",       value:"BLANK",   note:"6+ weeks silent",     cls:"red"},
+          {label:"Status",          value:"Unknown", note:"No contact visible",  cls:"amber"}
+        ],
+        progressLabel:"October Activity", progressPct:0, progressNote:"6+ weeks no activity", blocker:"6+ consecutive weeks no activity — escalate: commitment or exit conversation"},
+
+      {name:"Julia", role:"SDR — Bath Reno + Shower Glass", status:"active",
+        kpis:[
+          {label:"Leads (Oct W3)", value:"19",  note:"Bath Reno 7 + SG 12",    cls:"gold"},
+          {label:"Calls Made",     value:"47",  note:"Oct 14–18",               cls:"gold"},
+          {label:"Appts Set",      value:"4",   note:"BR 28.6% + SG 16.7%",    cls:"amber"},
+          {label:"FU Appts",       value:"9",   note:"FU: 12 calls→3 + 22 calls→6", cls:"amber"}
+        ],
+        progressLabel:"SDR Performance", progressPct:55, progressNote:"Lower conv. this week — shorter cycle", blocker:null},
+
+      {name:"Otavio", role:"SDR — Countertops", status:"active",
+        kpis:[
+          {label:"Leads (Oct W3)", value:"11",  note:"Countertops",                  cls:"gold"},
+          {label:"Calls Made",     value:"23",  note:"Oct 14–18",                    cls:"gold"},
+          {label:"Appts Set",      value:"4",   note:"36.4% conv.",                  cls:"amber"},
+          {label:"FU Appts",       value:"9",   note:"8 FU calls → 9 appts (112.5%)", cls:"green"}
+        ],
+        progressLabel:"SDR Ramp", progressPct:65, progressNote:"Strong FU rate — 112.5% FU conversion", blocker:null}
+    ],
+    ops: [
+      {name:"Saulo", role:"Scheduling & Field Coordination", status:"warn",
+        kpis:[
+          {label:"Scorecard",    value:"BLANK",     note:"Continued blank Oct 14–18", cls:"red"},
+          {label:"Access Since", value:"5+ weeks",  note:"Has access",                cls:"amber"},
+          {label:"Entries",      value:"Zero",      note:"No data entered",           cls:"red"},
+          {label:"Action",       value:"Required",  note:"Accountability talk",       cls:"amber"}
+        ],
+        progressLabel:"Scheduling Scorecard", progressPct:0, progressNote:"Zero entries — accountability needed", blocker:"5+ weeks with access, zero entries — escalate"},
+
+      {name:"Britney", role:"Ops Data Control & Audit", status:"warn",
+        kpis:[
+          {label:"Last Entry",  value:"Sep 21",  note:"4+ weeks ago",           cls:"red"},
+          {label:"Oct Status",  value:"BLANK",   note:"October not started",    cls:"red"},
+          {label:"Jobs",        value:"Pending", note:"Audit update needed",    cls:"red"},
+          {label:"Action",      value:"Resume",  note:"Daily input required",   cls:"amber"}
+        ],
+        progressLabel:"Ops Scorecard", progressPct:5, progressNote:"Last entry Sep 21 — Oct completely blank", blocker:"October completely blank — jobs need audit update"},
+
+      {name:"Sheylla", role:"Procurement Control Center", status:"active",
+        kpis:[
+          {label:"Role",       value:"Procurement", note:"Not a seller",            cls:""},
+          {label:"SG Material",value:"Monitor",     note:"Status unclear this week",cls:"amber"},
+          {label:"CT Orders",  value:"Active",      note:"Countertops pipeline",    cls:"green"},
+          {label:"Impact",     value:"Tracking",    note:"SDR active — orders incoming", cls:"amber"}
+        ],
+        progressLabel:"Material Procurement", progressPct:50, progressNote:"Monitor SG material status", blocker:null}
+    ]
+  }
 ];
 
 let currentMeetingWeek = meetingWeeks.length - 1;
@@ -3491,6 +3618,15 @@ const sdrData = {
       {name:'Otavio / Countertops', leads:19, calls:27, appts:14, conv:'73.7%', convCls:'green', fuCalls:13, fuAppts:8,  fuConv:'61.5%'},
     ],
     total: {leads:48, calls:78, appts:32, conv:'66.7%', convCls:'green', fuCalls:25, fuAppts:35, fuConv:'140%'}
+  },
+  'oct-w3': {
+    label: 'October 2026 — Week 3 (Oct 14–18)',
+    rows: [
+      {name:'Julia / Bath Reno',    leads:7,  calls:18, appts:2, conv:'28.6%', convCls:'amber', fuCalls:12, fuAppts:3, fuConv:'25.0%'},
+      {name:'Julia / Shower Glass', leads:12, calls:29, appts:2, conv:'16.7%', convCls:'amber', fuCalls:22, fuAppts:6, fuConv:'27.3%'},
+      {name:'Otavio / Countertops', leads:11, calls:23, appts:4, conv:'36.4%', convCls:'amber', fuCalls:8,  fuAppts:9, fuConv:'112.5%'},
+    ],
+    total: {leads:30, calls:70, appts:8, conv:'26.7%', convCls:'amber', fuCalls:42, fuAppts:18, fuConv:'42.9%'}
   }
 };
 
@@ -3548,14 +3684,15 @@ function renderSDRTable(key) {
 
 // Init SDR table on load
 document.addEventListener('DOMContentLoaded', () => {
-  renderSDRTable('oct-w2');
-  renderEvelineTable('oct-w2');
-  renderJarvisTable('oct-w2');
-  renderChelseaTable('oct-w2');
+  renderSDRTable('oct-w3');
+  renderEvelineTable('oct-w3');
+  renderJarvisTable('oct-w3');
+  renderChelseaTable('oct-w3');
 });
 
 // ── EVELINE DATA ──────────────────────────────────────────
 const evelineData = {
+  'oct-w3': { label:'October 2026 — Week 3 (Oct 14–18)', closings:0, revenue:'$0', avg:'—', revCls:'var(--red)', note:'⚠ No closings logged Oct 14–18' },
   'oct-w2': { label:'October 2026 — Week 2 (Oct 8–13)', closings:0, revenue:'$0', avg:'—', revCls:'var(--red)', note:'⚠ No closings logged Oct 8–13' },
   'oct-w1': { label:'October 2026 — Week 1 (Oct 1–7)', closings:1, revenue:'$5,140', avg:'$5,140', note:'Oct W1 — 1 closing CT' },
   'sep':    { label:'September 2026',                   closings:7, revenue:'—',      avg:'~$4,010', note:'7 closings — avg est.' },
@@ -3603,6 +3740,7 @@ function renderEvelineTable(key) {
 
 // ── JARVIS DATA ───────────────────────────────────────────
 const jarvisData = {
+  'oct-w3': { label:'October 2026 — Week 3 (Oct 14–18)', closings:0, revenue:'$0', avg:'—', revCls:'var(--red)', note:'⚠ Jarvis left the company Oct 14, 2026 — inactive' },
   'oct-w2': { label:'October 2026 — Week 2 (Oct 8–13)', closings:0, revenue:'$0', avg:'—', revCls:'var(--red)', note:'⚠ 0 closings — scorecard blank Oct 8–13' },
   'oct-w1': { label:'October 2026 — Week 1 (Oct 1–7)', closings:0,  revenue:'$0',       avg:'—',      revCls:'var(--red)',   note:'⚠ 0 closings so far — scorecard still blank' },
   'sep':    { label:'September 2026 (debut)',           closings:11, revenue:'$158,783', avg:'$14,434', revCls:'var(--green)', note:'Debut month — $158K · highest avg deal in company' },
@@ -3645,6 +3783,7 @@ function renderJarvisTable(key) {
 
 // ── CHELSEA DATA ──────────────────────────────────────────
 const chelseaData = {
+  'oct-w3': { label:'October 2026 — Week 3 (Oct 14–18)', closings:0, revenue:'$0', avg:'—', revCls:'var(--red)', note:'⚠ 0 closings — scorecard blank Oct 14–18' },
   'oct-w2': { label:'October 2026 — Week 2 (Oct 8–13)', closings:0, revenue:'$0', avg:'—', revCls:'var(--red)', note:'⚠ 0 closings — scorecard blank Oct 8–13' },
   'oct-w1': { label:'October 2026 — Week 1 (Oct 1–7)', closings:0, revenue:'$0',      avg:'—',      revCls:'var(--red)',   note:'⚠ 0 closings so far — scorecard still blank' },
   'sep':    { label:'September 2026 (debut)',           closings:4, revenue:'$28,748', avg:'$7,187', revCls:'var(--green)', note:'Debut month — $28.7K · $7,187 avg deal' },
@@ -3842,7 +3981,8 @@ switchTab = function(id) {
       <div class="card-title" style="margin:0;">SDR Funnel</div>
       <select id="sdr-month-select" onchange="renderSDRTable(this.value)"
         style="background:var(--surface2);border:1px solid var(--border);color:var(--cream);padding:6px 12px;border-radius:6px;font-size:13px;cursor:pointer;">
-        <option value="oct-w2" selected>October 2026 — Week 2 (Oct 8–13)</option>
+        <option value="oct-w3" selected>October 2026 — Week 3 (Oct 14–18)</option>
+        <option value="oct-w2">October 2026 — Week 2 (Oct 8–13)</option>
         <option value="oct-w1">October 2026 — Week 1 (Oct 1–7)</option>
         <option value="sep">September 2026 — Full Month</option>
       </select>
@@ -3909,7 +4049,8 @@ switchTab = function(id) {
       <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
         <span style="font-size:11px;background:var(--surface2);color:var(--amber);padding:4px 10px;border-radius:12px;">Closings only — no appt/visit scorecard</span>
         <select id="eveline-month-select" onchange="renderEvelineTable(this.value)" style="background:var(--surface2);color:var(--cream);border:1px solid var(--border);border-radius:6px;padding:4px 10px;font-size:12px;cursor:pointer;">
-          <option value="oct-w2" selected>October 2026 — Week 2 (Oct 8–13)</option>
+          <option value="oct-w3" selected>October 2026 — Week 3 (Oct 14–18)</option>
+          <option value="oct-w2">October 2026 — Week 2 (Oct 8–13)</option>
           <option value="oct-w1">October 2026 — Week 1 (Oct 1–7)</option>
           <option value="sep">September 2026</option>
           <option value="aug">August 2026</option>
@@ -3935,7 +4076,8 @@ switchTab = function(id) {
       <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
         <span style="font-size:11px;background:var(--surface2);color:var(--red);padding:4px 10px;border-radius:12px;">🔴 90-Day scorecard blank — closings only</span>
         <select id="jarvis-month-select" onchange="renderJarvisTable(this.value)" style="background:var(--surface2);color:var(--cream);border:1px solid var(--border);border-radius:6px;padding:4px 10px;font-size:12px;cursor:pointer;">
-          <option value="oct-w2" selected>October 2026 — Week 2 (Oct 8–13)</option>
+          <option value="oct-w3" selected>October 2026 — Week 3 (Oct 14–18)</option>
+          <option value="oct-w2">October 2026 — Week 2 (Oct 8–13)</option>
           <option value="oct-w1">October 2026 — Week 1 (Oct 1–7)</option>
           <option value="sep">September 2026 (debut)</option>
         </select>
@@ -3954,7 +4096,8 @@ switchTab = function(id) {
       <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
         <span style="font-size:11px;background:var(--surface2);color:var(--red);padding:4px 10px;border-radius:12px;">🔴 30-Day scorecard blank — closings only</span>
         <select id="chelsea-month-select" onchange="renderChelseaTable(this.value)" style="background:var(--surface2);color:var(--cream);border:1px solid var(--border);border-radius:6px;padding:4px 10px;font-size:12px;cursor:pointer;">
-          <option value="oct-w2" selected>October 2026 — Week 2 (Oct 8–13)</option>
+          <option value="oct-w3" selected>October 2026 — Week 3 (Oct 14–18)</option>
+          <option value="oct-w2">October 2026 — Week 2 (Oct 8–13)</option>
           <option value="oct-w1">October 2026 — Week 1 (Oct 1–7)</option>
           <option value="sep">September 2026 (debut)</option>
         </select>
