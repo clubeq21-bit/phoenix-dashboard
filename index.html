@@ -3072,62 +3072,61 @@ const meetingWeeks = [
     eyebrow: "Week 21",
     dates: "Oct 14–18, 2026 — Sales Meeting · Oct 20",
     revenue: [
-      {name:"Eveline Erbert",  value:"$0",      note:"No closings logged Oct 14–18"},
-      {name:"Jessica Wolfe",   value:"$1,375",  note:"1 closing — Shower Glass"},
+      {name:"Eveline Erbert",  value:"$12,144", note:"3 closings — Steven Thomas $5,810 · Leisha Boulware $3,211 · Donald Sowers $3,123"},
+      {name:"Jessica Wolfe",   value:"$3,895",  note:"3 closings — Andria Jackson $1,375 · Rhonda Touton $1,395 · Chavez Tyler $1,125"},
       {name:"Jarvis Holley",   value:"—",       note:"Left the company Oct 14, 2026"},
       {name:"Chelsea Foster",  value:"$0",      note:"Scorecard blank Oct 14–18"}
     ],
     activity: [
-      {label:"Week Revenue",  value:"$1,375", note:"Jessica 1 closing SG — only rep logged"},
-      {label:"SDR Leads",     value:"30",     note:"Julia BR 7 · SG 12 · Otavio CT 11"},
-      {label:"Appts Set",     value:"8",      note:"26.7% Lead→Appt — lower volume week"},
-      {label:"FU Appts",      value:"18",     note:"42.9% FU conversion · 42 follow-up calls"}
+      {label:"Week Revenue",  value:"$16,039", note:"Eveline $12,144 · Jessica $3,895"},
+      {label:"SDR Leads",     value:"30",      note:"Julia BR 7 · SG 12 · Otavio CT 11"},
+      {label:"Appts Set",     value:"8",       note:"26.7% Lead→Appt — lower volume week"},
+      {label:"FU Appts",      value:"18",      note:"42.9% FU conversion · 42 follow-up calls"}
     ],
     worked: [
-      "Jessica Wolfe logged 1 closing ($1,375) — only rep with visible revenue for Oct 14–18.",
+      "Eveline Erbert: 3 closings, $12,144 — strong week despite lower SDR volume.",
+      "Jessica Wolfe: 3 closings, $3,895 — consistent SG performance.",
+      "Combined week revenue: $16,039 from 6 closings across 2 reps.",
       "SDR team active: 30 leads, 70 calls, 8 appts set across all 3 lines.",
-      "Otavio Countertops: 11 leads, 4 appts (36.4%) — FU pipeline building (9 FU appts).",
-      "Follow-up calls strong: 42 FU calls generated 18 FU appts (42.9% conversion).",
+      "Otavio FU pipeline: 9 FU appts from 8 calls (112.5%) — strong conversion.",
       "Jarvis Holley departed Oct 14 — Bath Remodeling territory now open."
     ],
     attention: [
       "Jarvis left Oct 14 — Bath Remodeling territory unassigned. Coverage plan needed.",
       "SDR conversion dropped to 26.7% (from 66.7% W2) — shorter week, lower lead volume.",
-      "Eveline no closings Oct 14–18 — consecutive weeks with $0 revenue.",
       "Chelsea scorecard blank for 6+ consecutive weeks — status and commitment unclear.",
-      "Revenue exposure: only 1 rep (Jessica) logged closings this week."
+      "Revenue concentrated in 2 reps — closing coverage gap needs structural fix."
     ],
     blockers: [
       "🔴 Jarvis departure — Bath Remodeling territory uncovered. Immediate replacement or redistribution needed.",
       "🔴 Chelsea 6+ weeks no activity — direct leadership conversation required.",
-      "🟡 Eveline 2 consecutive weeks $0 — pipeline check needed.",
       "🟡 SDR volume down this week — short week effect or structural drop?"
     ],
     scorecardFlags: [
-      {person:"Jarvis Holley",   category:"Sales", type:"red",   note:"Left company Oct 14 — territory open",             blocker:"Replacement or redistribution plan required"},
-      {person:"Chelsea Foster",  category:"Sales", type:"red",   note:"6+ weeks no scorecard entries and no revenue",      blocker:"Direct conversation — commitment or exit"},
-      {person:"Eveline Erbert",  category:"Sales", type:"amber", note:"No closings Oct 14–18 — 2 weeks $0",               blocker:"Pipeline review this week"},
-      {person:"Jessica Wolfe",   category:"Sales", type:"green", note:"1 closing $1,375 — only active revenue this week",  blocker:null},
-      {person:"SDR Team",        category:"SDR",   type:"amber", note:"26.7% lead→appt — lower volume short week",         blocker:null}
+      {person:"Jarvis Holley",   category:"Sales", type:"red",   note:"Left company Oct 14 — territory open",              blocker:"Replacement or redistribution plan required"},
+      {person:"Chelsea Foster",  category:"Sales", type:"red",   note:"6+ weeks no scorecard entries and no revenue",       blocker:"Direct conversation — commitment or exit"},
+      {person:"Eveline Erbert",  category:"Sales", type:"green", note:"3 closings $12,144 — strong week",                   blocker:null},
+      {person:"Jessica Wolfe",   category:"Sales", type:"green", note:"3 closings $3,895 — consistent SG performance",      blocker:null},
+      {person:"SDR Team",        category:"SDR",   type:"amber", note:"26.7% lead→appt — lower volume short week",          blocker:null}
     ],
     agents: [
-      {name:"Eveline Erbert", role:"SDR / Sales — Alabama + GA", status:"warn",
+      {name:"Eveline Erbert", role:"SDR / Sales — Alabama + GA", status:"active",
         kpis:[
-          {label:"Revenue (Oct W3)",value:"$0",    note:"No closings Oct 14–18",  cls:"red"},
-          {label:"Oct Total",       value:"$5,140",note:"W1 closing only",         cls:"gold"},
-          {label:"SDR Leads",       value:"—",     note:"Scorecard not submitted", cls:""},
-          {label:"Status",          value:"Active",note:"2 weeks $0 — check in",  cls:"amber"}
+          {label:"Revenue (Oct W3)",value:"$12,144",note:"3 closings CT",           cls:"green"},
+          {label:"Oct Total",       value:"$17,284",note:"W1 $5,140 + W3 $12,144", cls:"gold"},
+          {label:"Avg Deal (W3)",   value:"$4,048", note:"Steven $5,810 · Leisha $3,211 · Donald $3,123", cls:"gold"},
+          {label:"Status",          value:"Active", note:"Strong comeback week",    cls:"green"}
         ],
-        progressLabel:"October W3", progressPct:30, progressNote:"2 consecutive weeks no closings", blocker:"2 consecutive weeks $0 — pipeline review needed"},
+        progressLabel:"October W3", progressPct:75, progressNote:"3 closings — $12,144 revenue", blocker:null},
 
       {name:"Jessica Wolfe", role:"Sales — Shower Glass", status:"active",
         kpis:[
-          {label:"Revenue (Oct W3)",value:"$1,375",note:"1 closing SG",             cls:"green"},
-          {label:"Oct W1 Total",    value:"$2,360",note:"Jobs 3708 + 3710",         cls:"green"},
-          {label:"Oct Running",     value:"$3,735",note:"W1 + W3 combined",         cls:"gold"},
-          {label:"Status",          value:"Active",note:"Consistent revenue",        cls:"green"}
+          {label:"Revenue (Oct W3)",value:"$3,895", note:"3 closings SG",            cls:"green"},
+          {label:"Oct W1 Total",    value:"$2,360", note:"Jobs 3708 + 3710",          cls:"green"},
+          {label:"Oct Running",     value:"$6,255", note:"W1 + W3 combined",          cls:"gold"},
+          {label:"Avg Deal (W3)",   value:"$1,298", note:"Andria · Rhonda · Chavez",  cls:"amber"}
         ],
-        progressLabel:"October W3", progressPct:55, progressNote:"1 closing — building momentum", blocker:null},
+        progressLabel:"October W3", progressPct:65, progressNote:"3 closings — consistent SG revenue", blocker:null},
 
       {name:"Jarvis Holley", role:"Senior Sales — Bath Remodeling", status:"inactive",
         kpis:[
@@ -3692,7 +3691,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ── EVELINE DATA ──────────────────────────────────────────
 const evelineData = {
-  'oct-w3': { label:'October 2026 — Week 3 (Oct 14–18)', closings:0, revenue:'$0', avg:'—', revCls:'var(--red)', note:'⚠ No closings logged Oct 14–18' },
+  'oct-w3': { label:'October 2026 — Week 3 (Oct 14–18)', closings:3, revenue:'$12,144', avg:'$4,048', revCls:'var(--green)', note:'3 closings — Steven Thomas $5,810 · Leisha Boulware $3,211 · Donald Sowers $3,123' },
   'oct-w2': { label:'October 2026 — Week 2 (Oct 8–13)', closings:0, revenue:'$0', avg:'—', revCls:'var(--red)', note:'⚠ No closings logged Oct 8–13' },
   'oct-w1': { label:'October 2026 — Week 1 (Oct 1–7)', closings:1, revenue:'$5,140', avg:'$5,140', note:'Oct W1 — 1 closing CT' },
   'sep':    { label:'September 2026',                   closings:7, revenue:'—',      avg:'~$4,010', note:'7 closings — avg est.' },
@@ -3783,7 +3782,7 @@ function renderJarvisTable(key) {
 
 // ── CHELSEA DATA ──────────────────────────────────────────
 const chelseaData = {
-  'oct-w3': { label:'October 2026 — Week 3 (Oct 14–18)', closings:0, revenue:'$0', avg:'—', revCls:'var(--red)', note:'⚠ 0 closings — scorecard blank Oct 14–18' },
+  'oct-w3': { label:'October 2026 — Week 3 (Oct 14–18)', closings:3, revenue:'$3,895', avg:'$1,298', revCls:'var(--green)', note:'3 closings — Andria Jackson $1,375 · Rhonda Touton $1,395 · Chavez Tyler $1,125' },
   'oct-w2': { label:'October 2026 — Week 2 (Oct 8–13)', closings:0, revenue:'$0', avg:'—', revCls:'var(--red)', note:'⚠ 0 closings — scorecard blank Oct 8–13' },
   'oct-w1': { label:'October 2026 — Week 1 (Oct 1–7)', closings:0, revenue:'$0',      avg:'—',      revCls:'var(--red)',   note:'⚠ 0 closings so far — scorecard still blank' },
   'sep':    { label:'September 2026 (debut)',           closings:4, revenue:'$28,748', avg:'$7,187', revCls:'var(--green)', note:'Debut month — $28.7K · $7,187 avg deal' },
