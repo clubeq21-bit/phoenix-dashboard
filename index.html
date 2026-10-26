@@ -264,6 +264,9 @@
   .stat-box { background: var(--bg); border-radius: 5px; padding: 8px 10px; }
   .stat-label { font-size: 9px; text-transform: uppercase; letter-spacing: .6px; color: var(--cream-faint); margin-bottom: 3px; }
   .stat-val { font-size: 16px; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+  .seller-toggle-btn { background: rgba(255,255,255,0.07); color: var(--cream-dim); border: 1px solid var(--border); border-radius: 20px; padding: 3px 10px; font-size: 10px; cursor: pointer; transition: all .2s; }
+  .seller-toggle-btn.active-toggle { background: var(--green); color: #000; border-color: var(--green); font-weight: 700; }
+  .progress-fill.gold { background: var(--gold); }
 
   /* ── MONTH TREND ── */
   .month-trend { display: flex; gap: 3px; margin-top: 10px; }
@@ -443,11 +446,28 @@
   </div>
 
   <!-- Sales Team -->
-  <div class="section-label">Sales Team</div>
-  <div class="seller-grid">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+    <div class="section-label" style="margin-bottom:0;">Sales Team</div>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <select id="team-week-select" onchange="updateSellerCards(this.value)" style="background:var(--surface2);color:var(--cream);border:1px solid var(--border);border-radius:6px;padding:4px 8px;font-size:11px;cursor:pointer;">
+        <option value="oct-w4">Oct 21–25</option>
+        <option value="oct-w3">Oct 14–18</option>
+        <option value="oct-w2">Oct 8–13</option>
+        <option value="oct-w1">Oct 1–7</option>
+        <option value="sep">September</option>
+      </select>
+      <div id="seller-toggle-bar" style="display:flex;gap:5px;flex-wrap:wrap;">
+        <button onclick="toggleSeller('eveline')" id="btn-eveline" class="seller-toggle-btn active-toggle">Eveline</button>
+        <button onclick="toggleSeller('jessica')" id="btn-jessica" class="seller-toggle-btn active-toggle">Jessica</button>
+        <button onclick="toggleSeller('chelsea')" id="btn-chelsea" class="seller-toggle-btn active-toggle">Chelsea</button>
+        <button onclick="toggleSeller('matos')" id="btn-matos" class="seller-toggle-btn active-toggle">Matos</button>
+      </div>
+    </div>
+  </div>
+  <div class="seller-grid" id="seller-grid-team">
 
     <!-- Eveline -->
-    <div class="seller-card">
+    <div class="seller-card" id="card-eveline">
       <div class="seller-header">
         <div>
           <div class="seller-name">Eveline Erbert</div>
@@ -455,11 +475,17 @@
         </div>
         <div class="status-dot active"></div>
       </div>
-      <div class="seller-stats">
+      <div class="seller-stats" id="eveline-stats">
         <div class="stat-box"><div class="stat-label">Revenue (Oct)</div><div class="stat-val text-green">$12,167</div></div>
         <div class="stat-box"><div class="stat-label">YTD</div><div class="stat-val text-gold">$300,427</div></div>
         <div class="stat-box"><div class="stat-label">Avg Deal</div><div class="stat-val text-green">$6,084</div></div>
-        <div class="stat-box"><div class="stat-label">Closings (Oct)</div><div class="stat-val text-green">2</div></div>
+        <div class="stat-box"><div class="stat-label">Closings</div><div class="stat-val text-green">2</div></div>
+      </div>
+      <div class="seller-stats" style="margin-top:6px;border-top:1px solid var(--border);padding-top:6px;" id="eveline-conv">
+        <div class="stat-box"><div class="stat-label">Leads (Own)</div><div class="stat-val">—</div></div>
+        <div class="stat-box"><div class="stat-label">Appts</div><div class="stat-val">—</div></div>
+        <div class="stat-box"><div class="stat-label">Conv %</div><div class="stat-val text-amber">Own prospecting</div></div>
+        <div class="stat-box"><div class="stat-label">Scorecard</div><div class="stat-val text-amber">SDR Team</div></div>
       </div>
       <div class="progress-wrap">
         <div class="progress-label"><span>Opening October</span><span class="text-green">On Track</span></div>
@@ -468,7 +494,7 @@
     </div>
 
     <!-- Jessica -->
-    <div class="seller-card">
+    <div class="seller-card" id="card-jessica">
       <div class="seller-header">
         <div>
           <div class="seller-name">Jessica Wolfe</div>
@@ -476,11 +502,17 @@
         </div>
         <div class="status-dot active"></div>
       </div>
-      <div class="seller-stats">
+      <div class="seller-stats" id="jessica-stats">
         <div class="stat-box"><div class="stat-label">Revenue (Oct)</div><div class="stat-val text-green">$3,765</div></div>
         <div class="stat-box"><div class="stat-label">YTD</div><div class="stat-val text-gold">$452,622</div></div>
-        <div class="stat-box"><div class="stat-label">Closings (Oct)</div><div class="stat-val text-green">2</div></div>
+        <div class="stat-box"><div class="stat-label">Closings</div><div class="stat-val text-green">2</div></div>
         <div class="stat-box"><div class="stat-label">Avg Deal</div><div class="stat-val text-gold">$1,883</div></div>
+      </div>
+      <div class="seller-stats" style="margin-top:6px;border-top:1px solid var(--border);padding-top:6px;" id="jessica-conv">
+        <div class="stat-box"><div class="stat-label">Leads (W4)</div><div class="stat-val text-amber">Scorecard W1 only</div></div>
+        <div class="stat-box"><div class="stat-label">Appts</div><div class="stat-val text-red">—</div></div>
+        <div class="stat-box"><div class="stat-label">Conv %</div><div class="stat-val text-red">No data W2–W4</div></div>
+        <div class="stat-box"><div class="stat-label">Scorecard</div><div class="stat-val text-amber">⚠ Gap Oct</div></div>
       </div>
       <div class="progress-wrap">
         <div class="progress-label"><span>Opening October</span><span class="text-green">Active</span></div>
@@ -488,9 +520,8 @@
       </div>
     </div>
 
-
     <!-- Chelsea -->
-    <div class="seller-card">
+    <div class="seller-card" id="card-chelsea">
       <div class="seller-header">
         <div>
           <div class="seller-name">Chelsea Foster</div>
@@ -498,15 +529,48 @@
         </div>
         <div class="status-dot warn"></div>
       </div>
-      <div class="seller-stats">
+      <div class="seller-stats" id="chelsea-stats">
         <div class="stat-box"><div class="stat-label">Revenue (Oct)</div><div class="stat-val text-amber">$0</div></div>
         <div class="stat-box"><div class="stat-label">Sep Debut</div><div class="stat-val">$28,748</div></div>
-        <div class="stat-box"><div class="stat-label">Closings (Oct)</div><div class="stat-val text-red">0</div></div>
-        <div class="stat-box"><div class="stat-label">Conv Rate</div><div class="stat-val text-red">N/A</div></div>
+        <div class="stat-box"><div class="stat-label">Closings</div><div class="stat-val text-red">0</div></div>
+        <div class="stat-box"><div class="stat-label">Oct W3</div><div class="stat-val text-green">$3,895</div></div>
+      </div>
+      <div class="seller-stats" style="margin-top:6px;border-top:1px solid var(--border);padding-top:6px;" id="chelsea-conv">
+        <div class="stat-box"><div class="stat-label">Leads</div><div class="stat-val text-red">—</div></div>
+        <div class="stat-box"><div class="stat-label">Appts</div><div class="stat-val text-red">—</div></div>
+        <div class="stat-box"><div class="stat-label">Conv %</div><div class="stat-val text-red">Scorecard Blank</div></div>
+        <div class="stat-box"><div class="stat-label">Action</div><div class="stat-val text-amber">⚠ Fill Scorecard</div></div>
       </div>
       <div class="progress-wrap">
-        <div class="progress-label"><span>Oct Activity</span><span class="text-red">No Entries</span></div>
+        <div class="progress-label"><span>Oct Activity</span><span class="text-red">No Scorecard Entries</span></div>
         <div class="progress-track"><div class="progress-fill red" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <!-- Matos -->
+    <div class="seller-card" id="card-matos">
+      <div class="seller-header">
+        <div>
+          <div class="seller-name">Matos</div>
+          <div class="seller-role">Owner / Sales — Phoenix Stone Design</div>
+        </div>
+        <div class="status-dot active"></div>
+      </div>
+      <div class="seller-stats" id="matos-stats">
+        <div class="stat-box"><div class="stat-label">Revenue (Oct)</div><div class="stat-val text-gold">Tracking</div></div>
+        <div class="stat-box"><div class="stat-label">Role</div><div class="stat-val">Owner + Sales</div></div>
+        <div class="stat-box"><div class="stat-label">Status</div><div class="stat-val text-green">Active — Selling</div></div>
+        <div class="stat-box"><div class="stat-label">Scorecard</div><div class="stat-val text-amber">Manual Track</div></div>
+      </div>
+      <div class="seller-stats" style="margin-top:6px;border-top:1px solid var(--border);padding-top:6px;" id="matos-conv">
+        <div class="stat-box"><div class="stat-label">Leads</div><div class="stat-val text-amber">—</div></div>
+        <div class="stat-box"><div class="stat-label">Appts</div><div class="stat-val text-amber">—</div></div>
+        <div class="stat-box"><div class="stat-label">Conv %</div><div class="stat-val text-amber">No Scorecard</div></div>
+        <div class="stat-box"><div class="stat-label">Action</div><div class="stat-val text-amber">Add to SC</div></div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-label"><span>October — Back Selling</span><span class="text-gold">Confirm Revenue</span></div>
+        <div class="progress-track"><div class="progress-fill gold" style="width:50%"></div></div>
       </div>
     </div>
   </div>
@@ -1072,46 +1136,6 @@
 
   <div class="section-label">Individual Performance — YTD 2026</div>
 
-  <!-- STEPHANIE -->
-  <div class="card" style="margin-bottom:16px;">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
-      <div>
-        <div style="font-size:16px;font-weight:700;color:var(--cream);">Stephanie Eisenhart</div>
-        <div style="font-size:11px;color:var(--cream-dim);margin-top:2px;">Sales Agent — Countertops · Phoenix Stone Design</div>
-      </div>
-      <div style="text-align:right;">
-        <div style="font-size:22px;font-weight:700;color:#F5C842;">$653,402</div>
-        <div style="font-size:10px;color:var(--cream-dim);">YTD through Sep 30</div>
-      </div>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px;">
-      <div style="background:rgba(255,255,255,0.04);border-radius:6px;padding:10px;text-align:center;">
-        <div style="font-size:10px;color:var(--cream-dim);margin-bottom:4px;">Best Month</div>
-        <div style="font-size:14px;font-weight:700;color:#5CBA8A;">$118,623</div>
-        <div style="font-size:10px;color:var(--cream-dim);">May 2026</div>
-      </div>
-      <div style="background:rgba(255,255,255,0.04);border-radius:6px;padding:10px;text-align:center;">
-        <div style="font-size:10px;color:var(--cream-dim);margin-bottom:4px;">August Final</div>
-        <div style="font-size:14px;font-weight:700;color:#F5C842;">$64,220</div>
-        <div style="font-size:10px;color:var(--cream-dim);">Leads the month</div>
-      </div>
-      <div style="background:rgba(255,255,255,0.04);border-radius:6px;padding:10px;text-align:center;">
-        <div style="font-size:10px;color:var(--cream-dim);margin-bottom:4px;">September</div>
-        <div style="font-size:14px;font-weight:700;color:#F5C842;">$47,247</div>
-        <div style="font-size:10px;color:var(--cream-dim);">Sep FINAL</div>
-      </div>
-      <div style="background:rgba(255,255,255,0.04);border-radius:6px;padding:10px;text-align:center;">
-        <div style="font-size:10px;color:var(--cream-dim);margin-bottom:4px;">Scorecard</div>
-        <div style="font-size:14px;font-weight:700;color:var(--amber);">30-Day</div>
-        <div style="font-size:10px;color:var(--cream-dim);">Fill daily</div>
-      </div>
-    </div>
-    <div style="height:4px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;">
-      <div style="height:100%;width:85%;background:#F5C842;border-radius:2px;"></div>
-    </div>
-    <div style="font-size:10px;color:var(--cream-dim);margin-top:4px;">$637,574 of estimated $750K annual pace</div>
-  </div>
-
   <!-- EVELINE -->
   <div class="card" style="margin-bottom:16px;">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
@@ -1198,39 +1222,126 @@
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
       <div>
         <div style="font-size:16px;font-weight:700;color:var(--cream);">Chelsea Foster</div>
-        <div style="font-size:11px;color:var(--cream-dim);margin-top:2px;">Sales Agent — Onboarding · Week 5</div>
+        <div style="font-size:11px;color:var(--cream-dim);margin-top:2px;">Sales Agent — Countertops · Phoenix Stone Design</div>
       </div>
       <div style="text-align:right;">
-        <div style="font-size:22px;font-weight:700;color:#5CBA8A;">$28,748</div>
-        <div style="font-size:10px;color:var(--cream-dim);">First week of sales (Sep 10)</div>
+        <div style="font-size:22px;font-weight:700;color:#5CBA8A;">$32,643</div>
+        <div style="font-size:10px;color:var(--cream-dim);">YTD through Oct 25</div>
       </div>
     </div>
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px;">
       <div style="background:rgba(255,255,255,0.04);border-radius:6px;padding:10px;text-align:center;">
-        <div style="font-size:10px;color:var(--cream-dim);margin-bottom:4px;">Sep 10</div>
-        <div style="font-size:14px;font-weight:700;color:#5CBA8A;">4 closings</div>
-        <div style="font-size:10px;color:var(--cream-dim);">First day ever</div>
+        <div style="font-size:10px;color:var(--cream-dim);margin-bottom:4px;">Sep Debut</div>
+        <div style="font-size:14px;font-weight:700;color:#5CBA8A;">$28,748</div>
+        <div style="font-size:10px;color:var(--cream-dim);">4 closings — Sep 10</div>
       </div>
       <div style="background:rgba(255,255,255,0.04);border-radius:6px;padding:10px;text-align:center;">
-        <div style="font-size:10px;color:var(--cream-dim);margin-bottom:4px;">Biggest</div>
-        <div style="font-size:14px;font-weight:700;color:#5CBA8A;">$17,991</div>
-        <div style="font-size:10px;color:var(--cream-dim);">Full renovation</div>
+        <div style="font-size:10px;color:var(--cream-dim);margin-bottom:4px;">Oct W3</div>
+        <div style="font-size:14px;font-weight:700;color:#5CBA8A;">$3,895</div>
+        <div style="font-size:10px;color:var(--cream-dim);">3 closings</div>
       </div>
       <div style="background:rgba(255,255,255,0.04);border-radius:6px;padding:10px;text-align:center;">
-        <div style="font-size:10px;color:var(--cream-dim);margin-bottom:4px;">Onboarding</div>
-        <div style="font-size:14px;font-weight:700;color:#F5C842;">Week 5</div>
-        <div style="font-size:10px;color:var(--cream-dim);">Active seller now</div>
+        <div style="font-size:10px;color:var(--cream-dim);margin-bottom:4px;">Oct W4</div>
+        <div style="font-size:14px;font-weight:700;color:var(--amber);">$0</div>
+        <div style="font-size:10px;color:var(--cream-dim);">No closings</div>
       </div>
       <div style="background:rgba(255,255,255,0.04);border-radius:6px;padding:10px;text-align:center;">
         <div style="font-size:10px;color:var(--cream-dim);margin-bottom:4px;">Scorecard</div>
-        <div style="font-size:14px;font-weight:700;color:var(--amber);">30-Day</div>
-        <div style="font-size:10px;color:var(--cream-dim);">Start filling</div>
+        <div style="font-size:14px;font-weight:700;color:var(--red);">⚠ Blank Oct</div>
+        <div style="font-size:10px;color:var(--cream-dim);">Action needed</div>
       </div>
     </div>
     <div style="height:4px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;">
-      <div style="height:100%;width:90%;background:#5CBA8A;border-radius:2px;"></div>
+      <div style="height:100%;width:20%;background:#5CBA8A;border-radius:2px;"></div>
     </div>
-    <div style="font-size:10px;color:var(--cream-dim);margin-top:4px;">$28,748 in first sales day · Exceptional debut for a Week 5 onboarding</div>
+    <div style="font-size:10px;color:var(--cream-dim);margin-top:4px;">$32,643 YTD · Strong Sep debut · Oct scorecard blank — needs direct conversation</div>
+  </div>
+
+  <!-- DIVIDER: INATIVOS -->
+  <div style="display:flex;align-items:center;gap:10px;margin:24px 0 16px;">
+    <div style="height:1px;flex:1;background:var(--border);"></div>
+    <div style="font-size:10px;color:var(--cream-dim);text-transform:uppercase;letter-spacing:1px;">Former Team Members</div>
+    <div style="height:1px;flex:1;background:var(--border);"></div>
+  </div>
+
+  <!-- JARVIS (INATIVO) -->
+  <div class="card" style="margin-bottom:16px;opacity:0.75;border-color:rgba(255,255,255,0.08);">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+      <div>
+        <div style="font-size:16px;font-weight:700;color:var(--cream-dim);">Jarvis <span style="font-size:11px;background:rgba(255,255,255,0.08);border-radius:4px;padding:2px 6px;margin-left:6px;vertical-align:middle;">Left Oct 14</span></div>
+        <div style="font-size:11px;color:var(--cream-dim);margin-top:2px;">Sales Agent — Bath Remodeling · M&M Stone Design</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:22px;font-weight:700;color:var(--cream-dim);">$158,783</div>
+        <div style="font-size:10px;color:var(--cream-dim);">Sep 2026 only (debut month)</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px;">
+      <div style="background:rgba(255,255,255,0.03);border-radius:6px;padding:10px;text-align:center;">
+        <div style="font-size:10px;color:var(--cream-dim);margin-bottom:4px;">Sep Total</div>
+        <div style="font-size:14px;font-weight:700;color:var(--gold);">$158,783</div>
+        <div style="font-size:10px;color:var(--cream-dim);">Debut month</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.03);border-radius:6px;padding:10px;text-align:center;">
+        <div style="font-size:10px;color:var(--cream-dim);margin-bottom:4px;">Closings</div>
+        <div style="font-size:14px;font-weight:700;color:var(--gold);">11</div>
+        <div style="font-size:10px;color:var(--cream-dim);">Sep 2026</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.03);border-radius:6px;padding:10px;text-align:center;">
+        <div style="font-size:10px;color:var(--cream-dim);margin-bottom:4px;">Avg Deal</div>
+        <div style="font-size:14px;font-weight:700;color:var(--gold);">$14,434</div>
+        <div style="font-size:10px;color:var(--cream-dim);">Highest in company</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.03);border-radius:6px;padding:10px;text-align:center;">
+        <div style="font-size:10px;color:var(--cream-dim);margin-bottom:4px;">Oct Closings</div>
+        <div style="font-size:14px;font-weight:700;color:var(--red);">0</div>
+        <div style="font-size:10px;color:var(--cream-dim);">Left Oct 14</div>
+      </div>
+    </div>
+    <div style="height:4px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden;">
+      <div style="height:100%;width:100%;background:rgba(245,200,66,0.3);border-radius:2px;"></div>
+    </div>
+    <div style="font-size:10px;color:var(--cream-dim);margin-top:4px;">Left company Oct 14, 2026 · $158,783 in debut month Sep · Highest avg deal in company history ($14,434) · No scorecard activity Oct</div>
+  </div>
+
+  <!-- STEPHANIE (INATIVA) -->
+  <div class="card" style="margin-bottom:16px;opacity:0.75;border-color:rgba(255,255,255,0.08);">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+      <div>
+        <div style="font-size:16px;font-weight:700;color:var(--cream-dim);">Stephanie Eisenhart <span style="font-size:11px;background:rgba(255,255,255,0.08);border-radius:4px;padding:2px 6px;margin-left:6px;vertical-align:middle;">Left Sep 30</span></div>
+        <div style="font-size:11px;color:var(--cream-dim);margin-top:2px;">Sales Agent — Countertops · Phoenix Stone Design</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:22px;font-weight:700;color:var(--cream-dim);">$653,402</div>
+        <div style="font-size:10px;color:var(--cream-dim);">YTD through Sep 30</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px;">
+      <div style="background:rgba(255,255,255,0.03);border-radius:6px;padding:10px;text-align:center;">
+        <div style="font-size:10px;color:var(--cream-dim);margin-bottom:4px;">Best Month</div>
+        <div style="font-size:14px;font-weight:700;color:var(--gold);">$118,623</div>
+        <div style="font-size:10px;color:var(--cream-dim);">May 2026</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.03);border-radius:6px;padding:10px;text-align:center;">
+        <div style="font-size:10px;color:var(--cream-dim);margin-bottom:4px;">August</div>
+        <div style="font-size:14px;font-weight:700;color:var(--gold);">$64,220</div>
+        <div style="font-size:10px;color:var(--cream-dim);">Final month</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.03);border-radius:6px;padding:10px;text-align:center;">
+        <div style="font-size:10px;color:var(--cream-dim);margin-bottom:4px;">September</div>
+        <div style="font-size:14px;font-weight:700;color:var(--gold);">$47,247</div>
+        <div style="font-size:10px;color:var(--cream-dim);">Sep FINAL</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.03);border-radius:6px;padding:10px;text-align:center;">
+        <div style="font-size:10px;color:var(--cream-dim);margin-bottom:4px;">Pace</div>
+        <div style="font-size:14px;font-weight:700;color:var(--gold);">$750K+</div>
+        <div style="font-size:10px;color:var(--cream-dim);">Annual estimate</div>
+      </div>
+    </div>
+    <div style="height:4px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden;">
+      <div style="height:100%;width:85%;background:rgba(245,200,66,0.3);border-radius:2px;"></div>
+    </div>
+    <div style="font-size:10px;color:var(--cream-dim);margin-top:4px;">Left company Sep 30, 2026 · $653,402 YTD · Best month May $118,623 · Most consistent seller Jan–Sep</div>
   </div>
 
 </div>
@@ -3368,17 +3479,32 @@ const monthlyData = [
   {
     month: "September 2026", short: "Sep",
     revenue: {stephanie:47247, eveline:16743, jessica:40901, anderson:0, other:192831},
-    activity: {leads:7, calls:52, appts:7, sales:0},
-    note: "Sep 1–3 only · Stephanie $24.5K strong start · Glendon 1:1 Stephanie + Loiny · KPI gap addressed",
-    total: 30355,
+    activity: {leads:238, calls:491, appts:123, sales:0},
+    note: "FINAL · Stephanie $47.2K · Jessica $40.9K · Eveline $16.7K · Jarvis debut $158.8K · Chelsea debut $28.7K · Total $297K+",
+    total: 297722,
     sellers: [
-      {name:"Stephanie", value:24544, pct:81},
-      {name:"Jessica", value:2650, pct:9},
-      {name:"Other/M&M", value:3161, pct:10}
+      {name:"Jarvis (Debut)", value:158783, pct:53},
+      {name:"Stephanie", value:47247, pct:16},
+      {name:"Jessica", value:40901, pct:14},
+      {name:"Chelsea (Debut)", value:28748, pct:10},
+      {name:"Eveline", value:16743, pct:6},
+      {name:"Other", value:5300, pct:1}
+    ]
+  },
+  {
+    month: "October 2026", short: "Oct",
+    revenue: {stephanie:0, eveline:29451, jessica:3765, anderson:0, other:3895},
+    activity: {leads:100, calls:273, appts:72, sales:0},
+    note: "WTD Oct 21–25 · Eveline $29.4K (6 closings across 4 wks) · Chelsea W3 $3.9K · Jessica $3.8K · Jarvis left Oct 14",
+    total: 37111,
+    sellers: [
+      {name:"Eveline", value:29451, pct:79},
+      {name:"Jessica", value:3765, pct:10},
+      {name:"Chelsea", value:3895, pct:11}
     ]
   }];
 
-let currentMonth = monthlyData.length - 1; // default to August
+let currentMonth = monthlyData.length - 1; // default to latest month
 
 function changeMonth(delta) {
   const next = currentMonth + delta;
@@ -3489,6 +3615,80 @@ function renderMonthly() {
 renderPresenceChips();
 renderMeetingWeek();
 renderMonthly();
+
+// ── SELLER TOGGLE & WEEK SELECTOR ──
+function toggleSeller(name) {
+  const card = document.getElementById('card-' + name);
+  const btn  = document.getElementById('btn-' + name);
+  if (!card) return;
+  const hidden = card.style.display === 'none';
+  card.style.display = hidden ? '' : 'none';
+  btn.classList.toggle('active-toggle', hidden);
+}
+
+function updateSellerCards(week) {
+  // Eveline data per week
+  const evelineWk = {
+    'oct-w4': {rev:'$12,167', ytd:'$300,427', cls:'2',  avg:'$6,084',  prog:68, label:'Oct 21–25 · On Track'},
+    'oct-w3': {rev:'$12,144', ytd:'$288,260', cls:'3',  avg:'$4,048',  prog:55, label:'Oct 14–18 · Strong'},
+    'oct-w2': {rev:'$0',      ytd:'$276,116', cls:'0',  avg:'—',        prog:0,  label:'Oct 8–13 · No closings'},
+    'oct-w1': {rev:'$5,140',  ytd:'$276,116', cls:'1',  avg:'$5,140',  prog:20, label:'Oct 1–7 · 1 closing'},
+    'sep':    {rev:'$16,743', ytd:'$276,116', cls:'5',  avg:'$3,349',  prog:45, label:'September FINAL'},
+  };
+  const jessicaWk = {
+    'oct-w4': {rev:'$3,765',  ytd:'$452,622', cls:'2',  avg:'$1,883',  prog:55, label:'Oct 21–25 · Active'},
+    'oct-w3': {rev:'$0',      ytd:'$448,857', cls:'0',  avg:'—',        prog:0,  label:'Oct 14–18 · No closings'},
+    'oct-w2': {rev:'$0',      ytd:'$448,857', cls:'0',  avg:'—',        prog:0,  label:'Oct 8–13 · No closings'},
+    'oct-w1': {rev:'$0',      ytd:'$448,857', cls:'0',  avg:'—',        prog:0,  label:'Oct 1–7 · No data W1'},
+    'sep':    {rev:'$40,901', ytd:'$448,857', cls:'?',  avg:'—',        prog:70, label:'Sep FINAL'},
+  };
+  const chelseaWk = {
+    'oct-w4': {rev:'$0',      ytd:'$32,643',  cls:'0',  avg:'—',        prog:0,  label:'Oct 21–25 · No closings'},
+    'oct-w3': {rev:'$3,895',  ytd:'$32,643',  cls:'3',  avg:'$1,298',  prog:30, label:'Oct 14–18 · 3 closings'},
+    'oct-w2': {rev:'$0',      ytd:'$28,748',  cls:'0',  avg:'—',        prog:0,  label:'Oct 8–13 · Scorecard blank'},
+    'oct-w1': {rev:'$0',      ytd:'$28,748',  cls:'0',  avg:'—',        prog:0,  label:'Oct 1–7 · Scorecard blank'},
+    'sep':    {rev:'$28,748', ytd:'$28,748',  cls:'4',  avg:'$7,187',  prog:90, label:'Sep Debut · 4 closings'},
+  };
+
+  const ev = evelineWk[week] || evelineWk['oct-w4'];
+  const js = jessicaWk[week] || jessicaWk['oct-w4'];
+  const ch = chelseaWk[week] || chelseaWk['oct-w4'];
+  const wLabel = {
+    'oct-w4':'Oct 21–25','oct-w3':'Oct 14–18','oct-w2':'Oct 8–13','oct-w1':'Oct 1–7','sep':'September'
+  }[week] || week;
+
+  // Update Eveline card
+  const es = document.getElementById('eveline-stats');
+  if (es) es.innerHTML = `
+    <div class="stat-box"><div class="stat-label">Revenue (${wLabel})</div><div class="stat-val ${ev.rev==='$0'?'text-red':'text-green'}">${ev.rev}</div></div>
+    <div class="stat-box"><div class="stat-label">YTD</div><div class="stat-val text-gold">${ev.ytd}</div></div>
+    <div class="stat-box"><div class="stat-label">Avg Deal</div><div class="stat-val text-green">${ev.avg}</div></div>
+    <div class="stat-box"><div class="stat-label">Closings</div><div class="stat-val ${ev.cls==='0'?'text-red':'text-green'}">${ev.cls}</div></div>`;
+  const ep = document.querySelector('#card-eveline .progress-fill');
+  if (ep) { ep.style.width = ev.prog + '%'; ep.className = 'progress-fill ' + (ev.prog > 40 ? 'green' : 'red'); }
+  const el = document.querySelector('#card-eveline .progress-label span:last-child');
+  if (el) el.textContent = ev.label;
+
+  // Update Jessica card
+  const jss = document.getElementById('jessica-stats');
+  if (jss) jss.innerHTML = `
+    <div class="stat-box"><div class="stat-label">Revenue (${wLabel})</div><div class="stat-val ${js.rev==='$0'?'text-amber':'text-green'}">${js.rev}</div></div>
+    <div class="stat-box"><div class="stat-label">YTD</div><div class="stat-val text-gold">${js.ytd}</div></div>
+    <div class="stat-box"><div class="stat-label">Closings</div><div class="stat-val ${js.cls==='0'?'text-amber':'text-green'}">${js.cls}</div></div>
+    <div class="stat-box"><div class="stat-label">Avg Deal</div><div class="stat-val text-gold">${js.avg}</div></div>`;
+  const jp = document.querySelector('#card-jessica .progress-fill');
+  if (jp) { jp.style.width = js.prog + '%'; jp.className = 'progress-fill ' + (js.prog > 30 ? 'green' : 'amber'); }
+
+  // Update Chelsea card
+  const cs = document.getElementById('chelsea-stats');
+  if (cs) cs.innerHTML = `
+    <div class="stat-box"><div class="stat-label">Revenue (${wLabel})</div><div class="stat-val ${ch.rev==='$0'?'text-red':'text-green'}">${ch.rev}</div></div>
+    <div class="stat-box"><div class="stat-label">YTD</div><div class="stat-val text-gold">${ch.ytd}</div></div>
+    <div class="stat-box"><div class="stat-label">Closings</div><div class="stat-val ${ch.cls==='0'?'text-red':'text-green'}">${ch.cls}</div></div>
+    <div class="stat-box"><div class="stat-label">Avg Deal</div><div class="stat-val text-gold">${ch.avg}</div></div>`;
+  const cp = document.querySelector('#card-chelsea .progress-fill');
+  if (cp) { cp.style.width = ch.prog + '%'; cp.className = 'progress-fill ' + (ch.prog > 20 ? 'green' : 'red'); }
+}
 
 function switchTab(id) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
