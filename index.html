@@ -1389,5 +1389,2504 @@
 </div>
 
 
+<script>
+// ============================================================
+// WEEKLY MEETING SCOREBOARD — combines MM KPI sheet (activity)
+// with Sales Control (revenue) for each week on record.
+// ============================================================
+const meetingWeeks = [
+  {
+    eyebrow: "Week 1",
+    dates: "Jun 1 – 5, 2026",
+    revenue: [
+      {name:"Eveline", value:"$14,514.20", note:"3 closings — Willis $7.8K, Dickson $2.2K, Amerson $4.5K"},
+      {name:"Stephanie", value:"$25,058.00", note:"6 closings — Holmes $12K, Walker $4.5K + 4 more"},
+      {name:"Jessica (HD)", value:"$7,875.00", note:"3 closings — Pryor, Slack, Adedeji"},
+      {name:"Matos", value:"$0", note:"No closings logged"},
+      {name:"Chelsea", value:"—", note:"Onboarding — not yet on Sales Control"}
+    ],
+    activity: [
+      {label:"Total Leads", value:"59", note:"Eveline (9) + Julia (40) + Stephanie (10)"},
+      {label:"Appts Scheduled", value:"43", note:"Eveline (4) + Julia (26) + Stephanie (13)"},
+      {label:"Sales Closed", value:"4", note:"Stephanie — Jun 1–4"},
+      {label:"Sq Ft Fabricated", value:"350", note:"Mercedes, Jun 3 entry"}
+    ],
+    worked: [
+      "First full week using the KPI sheet across the sales team",
+      "Stephanie closed $25K across 6 sales — strongest revenue week of the period",
+      "Eveline closed $14.5K across 3 sales, led by a $7.8K closing with Kristen Willis",
+      "Julia held 100+ calls/day — strongest activity volume on the team"
+    ],
+    attention: [
+      "Stephanie's KPI sheet has gaps — missing visit and store-visit columns",
+      "Saul and Grace flagged as focused on a different department — scope needs clarity",
+      "Daily logging still inconsistent — numbers not yet trend-reliable",
+      "Matos logged $0 in Sales Control this week — first sign of the pattern that continues into Week 2"
+    ],
+    blockers: [
+      {owner:"Team — Process", text:"KPI sheets just launched. Several columns inconsistently filled across agents."}
+    ],
+    agents: {
+      sales: [
+        {name:"Julia", role:"SDR / Inside Sales — High Volume", status:"active",
+          kpis:[{label:"Calls Made",value:"170",note:"Week total",cls:"gold"},{label:"Leads Received",value:"38",note:"This week"},{label:"Appts Scheduled",value:"19",note:"Week total",cls:"green"},{label:"Revenue",value:"—",note:"No direct sales role",cls:""}],
+          progressLabel:"Weekly Activity", progressPct:92, progressNote:"Strong", blocker:null},
+        {name:"Stephanie", role:"Sales Agent — Countertops", status:"warn",
+          kpis:[{label:"Closings (Week)",value:"6",note:"Per Sales Control",cls:"green"},{label:"Calls Made",value:"99",note:"Week 1 total",cls:"gold"},{label:"Customer Visits",value:"6",note:"Completed"},{label:"Revenue",value:"$25,058.00",note:"Holmes $12K + 5 more",cls:"green"}],
+          progressLabel:"Data Completeness", progressPct:40, progressNote:"Gaps in visits cols", blocker:"⚠ Missing visit/store columns"},
+        {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"active",
+          kpis:[{label:"Leads (Week)",value:"11",note:"Jun 1–4"},{label:"Calls Made",value:"6",note:"Jun 1–4",cls:"gold"},{label:"Alabama Visits",value:"3",note:"Store visits"},{label:"Revenue",value:"$14,514.20",note:"3 closings, incl. Willis $7.8K",cls:"green"}],
+          progressLabel:"Jun Goal — $42K", progressPct:12, progressNote:"12%", blocker:"⚠ 1 duplicate / wrong service lead"},
+        {name:"Chelsea", role:"Sales Agent — Onboarding", status:"pending",
+          kpis:[{label:"Leads (Week)",value:"—",note:"No data yet"},{label:"Calls Made",value:"—",note:"No data yet"},{label:"Sales Closed",value:"—",note:"No data yet"},{label:"Revenue",value:"—",note:"Not yet on Sales Control"}],
+          progressLabel:"Onboarding Status", progressPct:0, progressNote:"Pending KPI sheet data", blocker:null, pending:true},
+        {name:"Windson", role:"Sales Agent", status:"pending",
+          kpis:[{label:"Leads (Week)",value:"—",note:"Not yet on KPI sheet"},{label:"Calls Made",value:"—",note:"Not yet on KPI sheet"},{label:"Sales Closed",value:"—",note:"Not yet on KPI sheet"},{label:"Revenue",value:"—",note:"Not yet on Sales Control"}],
+          progressLabel:"KPI Sheet Status", progressPct:0, progressNote:"Not yet started", blocker:null, pending:true}
+      ],
+      ops: [
+        {name:"Mercedes", role:"Fabrication Manager", status:"active",
+          kpis:[{label:"Sq Ft (Week)",value:"350",note:"Jun 3 entry",cls:"gold"},{label:"HD Orders",value:"7",note:"Jun 3 — HD + ED Granite"},{label:"Estimates",value:"4",note:"Windson renovation",cls:"green"},{label:"Layouts",value:"3",note:"Robot cut + cabinet"}],
+          progressLabel:"Production Issues", progressPct:0, progressNote:"None logged", blocker:null},
+        {name:"Saul", role:"Installation Coordinator", status:"warn",
+          kpis:[{label:"First Calls",value:"—",note:"No data yet"},{label:"Installs",value:"—",note:"No data yet"},{label:"FAB POs",value:"—",note:"No data yet"},{label:"Status",value:"Onboarding",note:"Sheet just launched",cls:"amber"}],
+          progressLabel:"Sheet Adoption", progressPct:15, progressNote:"Just started", blocker:"⚠ Flagged as focused on other dept"},
+        {name:"Angela", role:"Admin / Front Desk", status:"active",
+          kpis:[{label:"Calls Handled",value:"—",note:"Sheet starting"},{label:"Templates",value:"—",note:"Sheet starting"},{label:"Fab Orders",value:"—",note:"Sheet starting"},{label:"Systems",value:"Setup",note:"JT/QB/RD",cls:"green"}],
+          progressLabel:"Sheet Adoption", progressPct:15, progressNote:"Just started", blocker:null}
+      ]
+    }
+  },
+  {
+    eyebrow: "Week 2",
+    dates: "Jun 8 – 12, 2026",
+    revenue: [
+      {name:"Eveline", value:"$2,495.80", note:"1 closing — Olivia Thompson"},
+      {name:"Stephanie", value:"$12,130.00", note:"3 closings — Francis $7K, James $4.08K, Hanifan $1.04K"},
+      {name:"Jessica (HD)", value:"$13,203.00", note:"6 closings, Shower Glass — Jun 8–12"},
+      {name:"Matos", value:"$0", note:"No closings logged"},
+      {name:"Chelsea", value:"—", note:"Onboarding — not yet on Sales Control"}
+    ],
+    activity: [
+      {label:"Total Leads", value:"38", note:"Eveline (10) + Julia (28) — Stephanie's leads field untracked since Jun 8"},
+      {label:"Appts Scheduled", value:"32", note:"Eveline (3) + Julia (29) — Stephanie's field untracked since Jun 8"},
+      {label:"Sales Closed", value:"5", note:"Stephanie (3) + Eveline (2)"},
+      {label:"Sq Ft Fabricated", value:"320+", note:"Mercedes, week peak Jun 9"}
+    ],
+    worked: [
+      "Julia delivered her strongest week: 150 calls, 28 appointments scheduled",
+      "Jessica led revenue this week with $13.2K across 6 Shower Glass closings",
+      "Stephanie closed $12.1K across 3 sales, led by a $7K closing with Francis",
+      "Mercedes hit a 320 sq ft fabrication day — best of the period so far",
+      "Glendon ran the first full All-Team Meeting focused on KPI continuance"
+    ],
+    attention: [
+      "Eveline's revenue dropped to $2.5K (1 closing) from $14.5K the prior week — worth checking in on directly",
+      "Matos is at $0 against a $100K June goal — the largest single revenue risk in the company",
+      "Saul flagged a major communication breakdown: decisions between templater, customer and Matos not reaching him",
+      "3 jobs had zero information in MM Jobs system, causing downstream issues",
+      "Backsplash fabricated and installed before customer confirmation — required removal",
+      "Sales team needs to clean up the Home Depot Portal (flagged Jun 12)",
+      "Parallel conversations are consuming Matos's time with minor issues when he's in the office"
+    ],
+    blockers: [
+      {owner:"Saul — Installation", text:"Backsplash fabricated and installed before customer confirmation. Removal required."},
+      {owner:"Saul — Fabrication Error", text:"Backsplash cut 4\" wrong height on PO 54565. Reschedule needed."},
+      {owner:"Mercedes — Material Quality", text:"Taj Mahal slabs from supplier have a bowing defect. Supplier notified via Valeria."},
+      {owner:"Matos — Revenue Critical", text:"$0 closed against $100K June goal. Needs direct leadership conversation."}
+    ],
+    agents: {
+      sales: [
+        {name:"Julia", role:"SDR / Inside Sales — High Volume", status:"active",
+          kpis:[{label:"Calls (Week)",value:"150",note:"Mon–Fri",cls:"gold"},{label:"Appts Set",value:"28",note:"Week total",cls:"green"},{label:"Leads Received",value:"27",note:"This week"},{label:"Follow-Ups",value:"97",note:"This week"}],
+          progressLabel:"Weekly Activity", progressPct:92, progressNote:"Strong", blocker:null},
+        {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"active",
+          kpis:[{label:"Calls Made",value:"21",note:"+ 23 SDR for Steph",cls:"gold"},{label:"Sales Closed",value:"1",note:"Per Sales Control",cls:"green"},{label:"Leads (Week)",value:"9",note:"Jun 8–11"},{label:"Revenue",value:"$2,495.80",note:"Olivia Thompson",cls:"amber"}],
+          progressLabel:"Jun Goal — $42K", progressPct:49, progressNote:"49%", blocker:null},
+        {name:"Stephanie", role:"Sales Agent — Countertops", status:"active",
+          kpis:[{label:"Closings (Week)",value:"3",note:"Per Sales Control",cls:"green"},{label:"Visits Done",value:"7",note:"Completed"},{label:"Pending",value:"14",note:"Proposals",cls:"amber"},{label:"Revenue",value:"$12,130.00",note:"Francis $7K + 2 more",cls:"amber"}],
+          progressLabel:"Jun Goal — $72K", progressPct:48, progressNote:"48%", blocker:null},
+        {name:"Chelsea", role:"Sales Agent — Onboarding", status:"pending",
+          kpis:[{label:"Leads (Week)",value:"—",note:"No data yet"},{label:"Calls Made",value:"—",note:"No data yet"},{label:"Sales Closed",value:"—",note:"No data yet"},{label:"Revenue",value:"—",note:"Not yet on Sales Control"}],
+          progressLabel:"Onboarding Status", progressPct:0, progressNote:"Pending KPI sheet data", blocker:null, pending:true},
+        {name:"Windson", role:"Sales Agent", status:"pending",
+          kpis:[{label:"Leads (Week)",value:"—",note:"Not yet on KPI sheet"},{label:"Calls Made",value:"—",note:"Not yet on KPI sheet"},{label:"Sales Closed",value:"—",note:"Not yet on KPI sheet"},{label:"Revenue",value:"—",note:"Not yet on Sales Control"}],
+          progressLabel:"KPI Sheet Status", progressPct:0, progressNote:"Not yet started", blocker:null, pending:true}
+      ],
+      ops: [
+        {name:"Mercedes", role:"Fabrication Manager", status:"active",
+          kpis:[{label:"Sq Ft (Week)",value:"320+",note:"Jun 9 peak",cls:"gold"},{label:"Layouts",value:"18",note:"This week"},{label:"Estimates",value:"9",note:"Sent"},{label:"Issues",value:"2",note:"Active",cls:"amber"}],
+          progressLabel:"Production Issues", progressPct:30, progressNote:"2 active", blocker:"⚠ Taj Mahal slab bowing defect"},
+        {name:"Saul", role:"Installation Coordinator", status:"warn",
+          kpis:[{label:"Installs (Week)",value:"11",note:"This week"},{label:"Completed",value:"8",note:"This week",cls:"green"},{label:"Reschedules",value:"3",note:"Material breakage",cls:"amber"},{label:"Fab Errors",value:"4",note:"Week of Jun 8–9",cls:"red"}],
+          progressLabel:"Install Issues", progressPct:80, progressNote:"Critical", blocker:"🔴 BS fabricated before customer confirmation"},
+        {name:"Angela", role:"Admin / Front Desk", status:"active",
+          kpis:[{label:"Calls Handled",value:"43",note:"Jun 8–10",cls:"gold"},{label:"Templates",value:"30",note:"Jun 8–10"},{label:"Fab Orders",value:"8",note:"This week"},{label:"Sales Assisted",value:"2",note:"Jun 9–10",cls:"green"}],
+          progressLabel:"Systems Updated", progressPct:100, progressNote:"JT/QB/RD", blocker:null}
+      ]
+    }
+  },
+  {
+    eyebrow: "Week 3",
+    dates: "Jun 22 – 25, 2026",
+    revenue: [
+      {name:"Eveline", value:"$17,506.40", note:"2 closings — Christine Cooley $2.6K, Carol Allen $14.9K"},
+      {name:"Stephanie", value:"$5,449.00", note:"2 closings — Lampert $3.97K, Reimold $1.48K"},
+      {name:"Jessica (HD)", value:"$4,675.00", note:"3 closings, Shower Glass — Jun 22, 23, 25"},
+      {name:"Matos", value:"$125,553.24", note:"14 entries logged Jun 24 — Patillo Manor lot + commercial batch"},
+      {name:"Chelsea", value:"—", note:"Onboarding — not yet on Sales Control"}
+    ],
+    activity: [
+      {label:"Total Leads", value:"20", note:"Eveline (6) + Julia (14) — Stephanie's leads field untracked since Jun 8"},
+      {label:"Appts Scheduled", value:"18", note:"Julia, Jun 22–25"},
+      {label:"Sales Closed", value:"2", note:"Stephanie 2 · Eveline 0"},
+      {label:"Sq Ft Fabricated", value:"654", note:"Mercedes, Jun 24 — all-time high"}
+    ],
+    worked: [
+      "Mercedes hit an all-time fabrication high: 654 sq ft on Jun 24",
+      "Julia held strong volume: 120 calls, 18 appointments across 4 days",
+      "Stephanie closed 2 sales despite a dip in call volume on Jun 24",
+      "Angela kept JT/QB systems updated every single day this week",
+      "Matos logged $125.5K across 14 closings on Jun 24 — largest single-day revenue entry on record (Patillo Manor lot + commercial batch)",
+      "Eveline closed 2 sales totaling $17.5K, led by a $14.9K closing with Carol Allen — strong week despite her own KPI sheet showing 0 in the daily activity log"
+    ],
+    attention: [
+      "Windson has not logged a single entry since Jun 19 — 6 days of silence on the dashboard",
+      "Eveline's KPI activity sheet shows 0 sales closed this week, but Sales Control shows 2 real closings ($17.5K) — her own daily log isn't reflecting her actual results",
+      "Week 2 install blockers (Saul's fab errors, Taj Mahal slab defect) still show no resolution update",
+      "Matos's $125.5K was logged in a single batch on Jun 24, not spread across the week — worth confirming these are new closings and not backlogged paperwork catching up",
+      "Stephanie's call volume cratered on Jun 24 (2 calls) — worth asking about directly"
+    ],
+    blockers: [
+      {owner:"Mercedes — Material Quality", text:"Taj Mahal slab bowing defect — still open, no resolution logged."},
+      {owner:"Saul — Fabrication Error", text:"PO 54565 wrong-height cut — status unconfirmed."},
+      {owner:"Windson — Ownership", text:"No KPI entries for 6 consecutive days. Central topic for Friday's meeting."},
+      {owner:"Eveline — Reporting Gap", text:"Daily KPI sheet shows 0 sales closed, but Sales Control confirms 2 real closings worth $17.5K. Sheet isn't being updated after a sale closes."}
+    ],
+    agents: {
+      sales: [
+        {name:"Julia", role:"SDR / Inside Sales — High Volume", status:"active",
+          kpis:[{label:"Calls (Week)",value:"120",note:"Mon–Thu",cls:"gold"},{label:"Appts Set",value:"18",note:"Week total",cls:"green"},{label:"Leads Received",value:"11",note:"This week"},{label:"Follow-Ups",value:"69",note:"This week"}],
+          progressLabel:"Notes", progressPct:70, progressNote:"Complex estimate flagged", blocker:null},
+        {name:"Stephanie", role:"Sales Agent — Countertops", status:"warn",
+          kpis:[{label:"Calls — Jun 22",value:"28",note:"Strong open",cls:"gold"},{label:"Calls — Jun 24",value:"2",note:"Sharp dip",cls:"red"},{label:"Sales Closed",value:"2",note:"This week",cls:"green"},{label:"Revenue",value:"$5,449.00",note:"Lampert + Reimold",cls:"green"}],
+          progressLabel:"Sales Closed This Week", progressPct:50, progressNote:"2", blocker:"⚠ Jun 24 call volume cratered"},
+        {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"warn",
+          kpis:[{label:"Leads (Week)",value:"6",note:"Jun 22–25",cls:"amber"},{label:"Calls Made",value:"4",note:"Jun 22–25"},{label:"Sales Closed",value:"2",note:"Per Sales Control",cls:"green"},{label:"Revenue",value:"$17,506.40",note:"Cooley $2.6K + Allen $14.9K",cls:"green"}],
+          progressLabel:"Lead Volume", progressPct:25, progressNote:"Down vs prior weeks", blocker:"⚠ KPI sheet shows 0 sales — Sales Control shows 2 ($17.5K)"},
+        {name:"Chelsea", role:"Sales Agent — Onboarding", status:"pending",
+          kpis:[{label:"Leads (Week)",value:"—",note:"No data yet"},{label:"Calls Made",value:"—",note:"No data yet"},{label:"Sales Closed",value:"—",note:"No data yet"},{label:"Revenue",value:"—",note:"Not yet on Sales Control"}],
+          progressLabel:"Onboarding Status", progressPct:0, progressNote:"Pending KPI sheet data", blocker:null, pending:true},
+        {name:"Windson", role:"Sales Agent", status:"critical",
+          kpis:[{label:"Leads (Week)",value:"—",note:"No entries logged"},{label:"Calls Made",value:"—",note:"No entries logged"},{label:"Sales Closed",value:"—",note:"No entries logged"},{label:"Days Silent",value:"6",note:"Since Jun 19",cls:"red"}],
+          progressLabel:"KPI Sheet Status", progressPct:0, progressNote:"6 days no update", blocker:"🔴 No entries since Jun 19 — central topic for Friday's meeting", critical:true}
+      ],
+      ops: [
+        {name:"Mercedes", role:"Fabrication Manager", status:"active",
+          kpis:[{label:"Sq Ft Fabricated",value:"654",note:"Jun 24 · all-time high",cls:"gold"},{label:"HD Orders",value:"11",note:"Jun 24"},{label:"Slabs Ordered",value:"2",note:"TME, Jun 24",cls:"green"},{label:"Renovation/Layout",value:"2",note:"Matos + MM"}],
+          progressLabel:"Production Trend", progressPct:100, progressNote:"↑ vs prior weeks", blocker:"⚠ Taj Mahal slab bowing defect (open)"},
+        {name:"Saul", role:"Installation Coordinator", status:"warn",
+          kpis:[{label:"Installs Confirmed",value:"8",note:"Jun 4–5 (stale)"},{label:"Rescheduled",value:"3",note:"Material breakage",cls:"amber"},{label:"FAB POs",value:"9",note:"Jun 4–5 (stale)"},{label:"Fab Errors",value:"4",note:"No new update",cls:"red"}],
+          progressLabel:"Data Freshness", progressPct:20, progressNote:"No update since Jun 12", blocker:"🔴 No new entries — status unconfirmed"},
+        {name:"Angela", role:"Admin / Front Desk", status:"active",
+          kpis:[{label:"Calls Answered",value:"20",note:"Jun 22–25",cls:"gold"},{label:"Templates",value:"30",note:"Jun 22–25"},{label:"Fab Orders",value:"22",note:"Jun 22–25"},{label:"Sales Assisted",value:"0",note:"No closes",cls:"amber"}],
+          progressLabel:"Systems Updated", progressPct:100, progressNote:"JT/QB — every day", blocker:null}
+      ]
+    }
+  },
+  {
+    eyebrow: "Week 4",
+    dates: "Jun 26 – Jul 2, 2026",
+    revenue: [
+      {name:"Eveline", value:"$0", note:"No new closings in Sales Control Jun 26–Jul 2"},
+      {name:"Stephanie", value:"$14,262.00", note:"Reynolds $7.8K (Jun 26) + Marki $6.4K (Jun 29)"},
+      {name:"Jessica (HD)", value:"$17,590.00", note:"6 closings Jun 26–Jul 1 — Shower Glass + Cabinets"},
+      {name:"Matos", value:"$0", note:"No new entries after Jun 24 batch"},
+      {name:"Windson", value:"$19,700.00", note:"2 closings Jun 24 — retroactively logged this week"},
+      {name:"Chelsea", value:"—", note:"Onboarding — not yet on Sales Control"}
+    ],
+    activity: [
+      {label:"Total Leads", value:"10", note:"Eveline (3) + Julia (10) — Stephanie/Windson untracked"},
+      {label:"Appts Scheduled", value:"13", note:"Julia (10) + Eveline (3)"},
+      {label:"Sales Closed", value:"4", note:"Stephanie (2) + Windson (2 retroactive)"},
+      {label:"Sq Ft Fabricated", value:"Pending", note:"Mercedes — no Week 4 entry yet"}
+    ],
+    worked: [
+      "Windson retroactively filled his KPI sheet — 6/22–6/25 entries logged, including 2 closings worth $19,700 on Jun 24",
+      "Stephanie closed $14.2K across 2 sales (Reynolds Jun 26, Marki Jun 29)",
+      "Jessica delivered her strongest revenue week: $17.6K across 6 closings Jun 26–Jul 1",
+      "Julia maintained consistent volume through the week: 98 calls, 10 appointments Jun 26–Jul 1",
+      "Anderson showing consistent onboarding progress: 3–4 leads/appts/visits per day, asking questions about RD Station, QuickBooks, HD Portal",
+      "Eveline returned to activity Jun 29–Jul 1 after a quiet Jun 26"
+    ],
+    attention: [
+      "Windson's $19,700 in sales was never visible until he retroactively filled the sheet — this is the ownership gap in reverse: he was selling but not recording",
+      "Eveline had zero activity on Jun 26 and no closings this entire period — worth a direct check-in before the meeting",
+      "Matos has no new Sales Control entries since the Jun 24 batch — second consecutive week of $0 logged",
+      "Mercedes KPI has no Week 4 entry yet — fabrication data gap",
+      "Angela's Sales Assisted dropped to 0 — no sales closed in her presence this week",
+      "Stephanie's call volume is inconsistent: 34 calls on Jun 29, 0 on Jun 26 — pattern needs attention"
+    ],
+    blockers: [
+      {owner:"Windson — Reporting Gap (Resolved)", text:"Retroactively filled KPI sheet for Jun 22–25. 2 sales closed Jun 24 ($19,700) were invisible until now. Pattern: selling but not recording in real time.", resolved:true},
+      {owner:"Eveline — Activity Gap", text:"Zero activity logged on Jun 26. No new closings in Sales Control Jun 26–Jul 2. KPI sheet shows zero calls on 06/26."},
+      {owner:"Matos — Revenue Visibility", text:"No new entries in Sales Control after Jun 24 batch ($125K). Two consecutive weeks without logged closings."},
+      {owner:"Mercedes — Data Gap", text:"No KPI entry for Week 4 yet. Fabrication volume unknown for Jun 26–Jul 2."}
+    ],
+    agents: {
+      sales: [
+        {name:"Julia", role:"SDR / Inside Sales — High Volume", status:"active",
+          kpis:[{label:"Calls (Week)",value:"98",note:"Jun 26–Jul 1",cls:"gold"},{label:"Appts Set",value:"10",note:"Week total",cls:"green"},{label:"Leads Received",value:"10",note:"Jun 26–Jul 1"},{label:"Notes",value:"HD Work",note:"Cleared HD system backlog Jun 27",cls:"amber"}],
+          progressLabel:"Weekly Activity", progressPct:88, progressNote:"Strong, consistent", blocker:null},
+        {name:"Stephanie", role:"Sales Agent — Countertops", status:"active",
+          kpis:[{label:"Calls — Jun 29",value:"34",note:"Strong rebound",cls:"gold"},{label:"Sales — Jun 26",value:"1",note:"Reynolds $7.8K",cls:"green"},{label:"Sales — Jun 29",value:"1",note:"Marki $6.4K",cls:"green"},{label:"Revenue",value:"$14,262.00",note:"2 closings Jun 26+29",cls:"green"}],
+          progressLabel:"Revenue Week 4", progressPct:70, progressNote:"$14.2K", blocker:"⚠ Jun 26 — no calls logged"},
+        {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"warn",
+          kpis:[{label:"Leads (Jun 29-Jul1)",value:"6",note:"Back in action"},{label:"Calls Made",value:"6",note:"Jun 29–Jul 1"},{label:"Sales Closed",value:"0",note:"No closings",cls:"red"},{label:"Revenue",value:"$0",note:"No Sales Control entry",cls:"red"}],
+          progressLabel:"Lead Volume", progressPct:30, progressNote:"Zero activity Jun 26", blocker:"⚠ Jun 26 zero activity — KPI sheet blank"},
+        {name:"Windson", role:"Sales Agent", status:"active",
+          kpis:[{label:"Leads 6/22–25",value:"9",note:"Retroactively logged"},{label:"Calls 6/22–25",value:"21",note:"Retroactively logged"},{label:"Sales Closed",value:"2",note:"Jun 24 — $19,700",cls:"green"},{label:"Revenue",value:"$19,700.00",note:"2 closings retroactive",cls:"green"}],
+          progressLabel:"Revenue Week 4", progressPct:85, progressNote:"$19.7K — retroactive", blocker:"⚠ Logged late — not real-time. Revenue was invisible until filled."},
+        {name:"Chelsea", role:"Sales Agent — Onboarding", status:"partial",
+          kpis:[{label:"Leads/Day",value:"3–4",note:"Jun 22–26",cls:"amber"},{label:"Appts/Day",value:"3–4",note:"Consistent"},{label:"Training Q's",value:"3",note:"RD, QB, HD Portal"},{label:"Sales Closed",value:"0",note:"Still onboarding"}],
+          progressLabel:"Onboarding Progress", progressPct:50, progressNote:"Consistent daily activity", blocker:"⚠ RD Station + QuickBooks questions — needs training"}
+      ],
+      ops: [
+        {name:"Mercedes", role:"Fabrication Manager", status:"warn",
+          kpis:[{label:"Sq Ft Fabricated",value:"Pending",note:"No Week 4 entry",cls:"amber"},{label:"Last Entry",value:"Jun 24",note:"654 sq ft"},{label:"HD Orders",value:"Pending",note:"No data"},{label:"Issues",value:"Open",note:"Taj Mahal defect",cls:"red"}],
+          progressLabel:"Data Entry", progressPct:0, progressNote:"No Week 4 data", blocker:"⚠ No KPI entry for Week 4 yet"},
+        {name:"Saul", role:"Installation Coordinator", status:"warn",
+          kpis:[{label:"Last Update",value:"Jun 12",note:"Still stale",cls:"red"},{label:"Fab Errors",value:"Open",note:"PO 54565"},{label:"Status",value:"Unknown",note:"No new entries",cls:"red"},{label:"Reschedules",value:"Open",note:"From Week 2",cls:"amber"}],
+          progressLabel:"Data Freshness", progressPct:10, progressNote:"Stale — Jun 12 last entry", blocker:"🔴 3 weeks without KPI update"},
+        {name:"Angela", role:"Admin / Front Desk", status:"active",
+          kpis:[{label:"Status",value:"Active",note:"Jun 22–25 complete",cls:"green"},{label:"Templates",value:"30",note:"Jun 22–25"},{label:"Fab Orders",value:"22",note:"Jun 22–25"},{label:"Sales Assisted",value:"0",note:"Week 4 pending",cls:"amber"}],
+          progressLabel:"Week 4 Data", progressPct:50, progressNote:"Partial", blocker:null}
+      ]
+    }
+  }
+,
+  {
+    eyebrow: "Week 5",
+    dates: "Jul 3 – 9, 2026",
+    revenue: [
+      {name:"Eveline", value:"$16,282.20", note:"5 closings — Begg $3K, Cotney $2.8K, Roller $3.3K, Branch $1.7K, Unan $5.6K"},
+      {name:"Stephanie", value:"$22,979.60", note:"6 closings — Monk $11K (Jul 8), Wilson $5.8K (Jul 6) + 4 more"},
+      {name:"Jessica (HD)", value:"$15,675.50", note:"7 closings Shower Glass — 4 on Jul 3, Dietrich Jul 6, Liburd + West Jul 9"},
+      {name:"Matos", value:"$0", note:"No new entries this week"},
+      {name:"Windson", value:"$0", note:"No new entries this week"},
+      {name:"Chelsea", value:"—", note:"Onboarding — not yet on Sales Control"}
+    ],
+    activity: [
+      {label:"Total Leads", value:"26", note:"Julia (19) + Eveline (7)"},
+      {label:"Appts Scheduled", value:"24", note:"Julia (14) + Eveline (10)"},
+      {label:"Sales Closed", value:"11", note:"Stephanie (4 days) + Eveline (5) + Jessica (7 Shower Glass)"},
+      {label:"Sq Ft Fabricated", value:"Pending", note:"Mercedes — no Week 5 entry yet"}
+    ],
+    worked: [
+      "Stephanie delivered her strongest single week: $22,979 across 6 closings — led by Monk $11K on Jul 8",
+      "Eveline rebounded with 5 closings totaling $16,282 — best revenue week since Week 1",
+      "Jessica consistent: 7 Shower Glass closings, $15,675",
+      "Julia strongest day of the month: 30 calls + 7 appts on Jul 9 alone",
+      "Glendon ran 1:1 with Mercedes on fabrication leadership (Jul 8)",
+      "Glendon completed Windson DISC preparation (Jul 7)",
+      "Anderson active and consistent: 3–5 leads/appts per day",
+      "Julia training Otavio this week — contracts and onboarding"
+    ],
+    attention: [
+      "Angela — recurring attitude issue flagged by Glendon on Jul 8: missed SIM update caused a cutting error",
+      "Matos — no new Sales Control entries for 2 consecutive weeks",
+      "Windson — no new KPI entries or Sales Control entries this week (last entry was Jun 25)",
+      "Eveline — 7/2 zero activity and 7/3 duplicated leads flagged; KPI calls very low vs closings (5 calls, 5 sales — suggests closes coming from pipeline not new outreach)",
+      "Stephanie call volume inconsistent: 12 calls on Jul 7 vs 19 on Jul 9 — pattern worth watching",
+      "Mercedes KPI still has no Week 5 entry"
+    ],
+    blockers: [
+      {owner:"Angela — Attitude / Process", text:"Recurring attitude issue noted by Glendon Jul 8. Missed SIM update caused a cutting error in fabrication. Pattern needs direct leadership conversation."},
+      {owner:"Matos — Revenue Visibility", text:"No new Sales Control entries for 2+ weeks. Pattern since Jun 24 batch."},
+      {owner:"Windson — Silence", text:"No KPI entries or Sales Control entries since Jun 25. No DISC or update this week beyond Glendon's preparation."},
+      {owner:"Mercedes — Data Gap", text:"No KPI entry for Week 5. Fabrication volume unknown."}
+    ],
+    agents: {
+      sales: [
+        {name:"Julia", role:"SDR / Inside Sales — High Volume", status:"active",
+          kpis:[{label:"Calls (Week)",value:"132",note:"Jul 3–9",cls:"gold"},{label:"Appts Set",value:"14",note:"Week total",cls:"green"},{label:"Leads Received",value:"19",note:"Jul 3–9"},{label:"Best Day",value:"Jul 9",note:"30 calls · 7 appts",cls:"green"}],
+          progressLabel:"Weekly Volume", progressPct:95, progressNote:"Strongest week of July", blocker:null},
+        {name:"Stephanie", role:"Sales Agent — Countertops", status:"active",
+          kpis:[{label:"Calls (Week)",value:"62",note:"Jul 6–9",cls:"gold"},{label:"Sales Closed",value:"6",note:"Per Sales Control",cls:"green"},{label:"Best Sale",value:"$11,078",note:"Monk — Jul 8",cls:"green"},{label:"Revenue",value:"$22,979.60",note:"Best week of the month",cls:"green"}],
+          progressLabel:"Revenue Week 5", progressPct:92, progressNote:"$23K", blocker:null},
+        {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"active",
+          kpis:[{label:"Leads (Week)",value:"7",note:"Jul 3–9"},{label:"Calls Made",value:"5",note:"Low vs closings",cls:"amber"},{label:"Sales Closed",value:"5",note:"Per Sales Control",cls:"green"},{label:"Revenue",value:"$16,282.20",note:"Begg · Cotney · Roller · Branch · Unan",cls:"green"}],
+          progressLabel:"Revenue Week 5", progressPct:78, progressNote:"$16.3K rebound", blocker:"⚠ 5 calls but 5 closes — pipeline closes, not new outreach"},
+        {name:"Windson", role:"Sales Agent", status:"critical",
+          kpis:[{label:"Last Entry",value:"Jun 25",note:"2 weeks ago",cls:"red"},{label:"Sales (Week)",value:"0",note:"Nothing logged"},{label:"Calls (Week)",value:"0",note:"Nothing logged"},{label:"Revenue",value:"$0",note:"No Sales Control entry",cls:"red"}],
+          progressLabel:"KPI Sheet Status", progressPct:0, progressNote:"Silent since Jun 25", blocker:"🔴 2 weeks no entries — needs direct conversation", critical:true},
+        {name:"Chelsea", role:"Sales Agent — Onboarding", status:"partial",
+          kpis:[{label:"Leads/Day",value:"2–5",note:"Jul 6–7",cls:"amber"},{label:"Appts/Day",value:"2–5",note:"Consistent"},{label:"Status",value:"Active",note:"Training with Julia"},{label:"Sales",value:"0",note:"Still onboarding"}],
+          progressLabel:"Onboarding Progress", progressPct:60, progressNote:"Training with Julia", blocker:null, pending:true}
+      ],
+      ops: [
+        {name:"Mercedes", role:"Fabrication Manager", status:"warn",
+          kpis:[{label:"KPI Entry",value:"Pending",note:"No Week 5 data",cls:"amber"},{label:"Leadership 1:1",value:"Jul 8",note:"With Glendon",cls:"green"},{label:"Blocker",value:"Open",note:"Angela attitude + SIM error",cls:"red"},{label:"Last Sq Ft",value:"654",note:"Jun 24 — all-time high"}],
+          progressLabel:"Data Entry", progressPct:0, progressNote:"No Week 5 data", blocker:"⚠ No KPI entry + Angela SIM error caused cutting mistake"},
+        {name:"Angela", role:"Admin / Front Desk", status:"warn",
+          kpis:[{label:"Status",value:"Active",note:"But flagged",cls:"amber"},{label:"Issue",value:"Attitude",note:"Recurring — Jul 8",cls:"red"},{label:"SIM Update",value:"Missed",note:"Caused cutting error",cls:"red"},{label:"Pattern",value:"Recurring",note:"Glendon flagged",cls:"red"}],
+          progressLabel:"Leadership Flag", progressPct:20, progressNote:"Needs direct conversation", blocker:"🔴 Recurring attitude + missed SIM update → cutting error"},
+        {name:"Saul", role:"Installation Coordinator", status:"warn",
+          kpis:[{label:"Last Update",value:"Jun 12",note:"Still stale",cls:"red"},{label:"Status",value:"Unknown",note:"No new entries",cls:"red"},{label:"Fab Errors",value:"Open",note:"PO 54565"},{label:"Week 5",value:"No data",note:"",cls:"red"}],
+          progressLabel:"Data Freshness", progressPct:5, progressNote:"4 weeks without update", blocker:"🔴 4 weeks without KPI update"}
+      ]
+    }
+  }
+,
+  {
+    eyebrow: "Week 6",
+    dates: "Jul 10 – 16, 2026",
+    revenue: [
+      {name:"Eveline", value:"$3,617.80", note:"1 closing — Kay Nelson (Jul 16) · week in progress"},
+      {name:"Stephanie", value:"$21,464.90", note:"3 closings — Hicks $15.9K (Jul 14), Vinson $2K, Berry $3.5K"},
+      {name:"Jessica (HD)", value:"$5,744.75", note:"3 closings Shower Glass — Billings, Krupa (Jul 15), Walker (Jul 16)"},
+      {name:"Chelsea", value:"—", note:"Onboarding — not yet on Sales Control"}
+    ],
+    activity: [
+      {label:"Total Leads", value:"22", note:"Julia (13) + Eveline (9)"},
+      {label:"Appts Scheduled", value:"6", note:"Julia — week in progress"},
+      {label:"Sales Closed", value:"7", note:"Stephanie (3) + Jessica (3) + Eveline (1) · week in progress"},
+      {label:"Julia Best Day", value:"42 calls", note:"Jul 14 — highest single day ever recorded"}
+    ],
+    worked: [
+      "Julia recorded her highest single day ever: 42 calls on Jul 14",
+      "Stephanie back-to-back strong weeks: $22.9K (W5) + $21.5K (W6) — most consistent 2-week stretch of the year",
+      "Glendon ran the W5 debrief meeting Jul 10 using What/So What/Now What framework — Loiny co-facilitated",
+      "Stephanie offered to mentor — key cultural moment flagged by Glendon",
+      "Angela role clarified post-meeting — payroll issue raised and resolved",
+      "Anderson consistent all week: 3 leads/appts/visits per day Jul 10-14",
+      "Eveline active in Alabama: 4 store visits Jul 16, building pipeline"
+    ],
+    attention: [
+      "Week still in progress (today Jul 16) — revenue and activity will grow before Friday",
+      "Eveline: only 1 closing so far this week despite high call volume (9+ calls) — pipeline from W5 may have been exhausted",
+      "Julia: 170 calls but only 6 appts — conversion from call to appointment dropped vs W5 (14 appts from 132 calls)",
+      "Stephanie: Hicks $15,931 on Jul 14 was a single large closing — worth asking what made that sale happen",
+      "Anderson: still no sales — onboarding progressing but first closing not yet happened"
+    ],
+    blockers: [
+      {owner:"Angela — Role Clarity", text:"Role clarified post Jul 10 meeting. Payroll issue resolved. Follow up needed to confirm behavior change is holding.", resolved:false},
+      {owner:"Eveline — Pipeline Risk", text:"W5 closings came from old pipeline. W6 showing only 1 close so far. Alabama store visits Jul 16 suggest she's building new pipeline — watch next week."},
+      {owner:"Anderson — First Closing", text:"Consistent activity but no revenue yet. Julia training him. First closing expected soon — worth setting a target date."}
+    ],
+    agents: {
+      sales: [
+        {name:"Julia", role:"SDR / Inside Sales — High Volume", status:"active",
+          kpis:[{label:"Calls (Week)",value:"170",note:"Jul 10–16 · record pace",cls:"gold"},{label:"Best Day",value:"42 calls",note:"Jul 14 — all-time high",cls:"green"},{label:"Appts Set",value:"6",note:"Week in progress"},{label:"Leads Received",value:"13",note:"Jul 10–16"}],
+          progressLabel:"Weekly Volume", progressPct:100, progressNote:"Record week for calls", blocker:null},
+        {name:"Stephanie", role:"Sales Agent — Countertops", status:"active",
+          kpis:[{label:"Sales Closed",value:"3",note:"Per Sales Control",cls:"green"},{label:"Hicks Closing",value:"$15,931",note:"Jul 14 — largest of week",cls:"green"},{label:"Calls — Jul 15",value:"12",note:"Active"},{label:"Revenue",value:"$21,464.90",note:"2nd consecutive $20K+ week",cls:"green"}],
+          progressLabel:"Revenue Week 6", progressPct:88, progressNote:"$21.5K", blocker:null},
+        {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"warn",
+          kpis:[{label:"Calls (Week)",value:"22+",note:"Jul 10–16"},{label:"Store Visits",value:"4",note:"Jul 16 — Alabama",cls:"amber"},{label:"Sales Closed",value:"1",note:"Kay Nelson $3.6K",cls:"amber"},{label:"Revenue",value:"$3,617.80",note:"Week in progress",cls:"amber"}],
+          progressLabel:"Pipeline Status", progressPct:30, progressNote:"Building new pipeline", blocker:"⚠ W5 pipeline exhausted — rebuilding via store visits"},
+        {name:"Chelsea", role:"Sales Agent — Onboarding", status:"partial",
+          kpis:[{label:"Leads/Day",value:"3",note:"Jul 10–14",cls:"amber"},{label:"Appts/Day",value:"3",note:"Consistent"},{label:"Visits/Day",value:"3",note:"Consistent"},{label:"Sales",value:"0",note:"First closing pending"}],
+          progressLabel:"Onboarding Progress", progressPct:70, progressNote:"Ready for first close", blocker:"⚠ First closing not yet happened — needs target date", pending:true}
+      ],
+      ops: [
+        {name:"Mercedes", role:"Fabrication Manager", status:"active",
+          kpis:[{label:"Meeting",value:"Jul 10",note:"W5 debrief attended"},{label:"Angela Role",value:"Clarified",note:"Post Jul 10 meeting",cls:"green"},{label:"Payroll",value:"Resolved",note:"Issue raised + closed",cls:"green"},{label:"Sq Ft",value:"Pending",note:"No W6 KPI entry yet"}],
+          progressLabel:"Leadership Actions", progressPct:70, progressNote:"Role + payroll resolved", blocker:null},
+        {name:"Angela", role:"Admin / Front Desk", status:"warn",
+          kpis:[{label:"Role Clarity",value:"Defined",note:"Post Jul 10 meeting",cls:"amber"},{label:"Payroll",value:"Resolved",note:"Jul 10",cls:"green"},{label:"Behavior",value:"Monitor",note:"Follow-up needed",cls:"amber"},{label:"Pattern",value:"Watch",note:"Too early to confirm change",cls:"amber"}],
+          progressLabel:"Behavior Change", progressPct:50, progressNote:"Clarified — monitoring", blocker:"⚠ Role clarified Jul 10 — confirm behavior change is holding"}
+      ]
+    }
+  }
+,
+  {
+    eyebrow: "Week 7",
+    dates: "Jul 17 – 23, 2026",
+    revenue: [
+      {name:"Chelsea", value:"$44,155.00", note:"🎉 FIRST CLOSING — William Homely Jul 17 · Full bath remodel: Cabinets, Countertops, Renovation, Shower Glass, Sinks, Tiles"},
+      {name:"Stephanie", value:"$11,960.80", note:"3 closings — Buchanan $4.4K (Jul 20), Palencia $3.8K (Jul 22), Valladares $3.8K (Jul 23)"},
+      {name:"Jessica (HD)", value:"$3,000.00", note:"2 closings — Keaver $1K (Jul 18), George $2K (Jul 20)"},
+      {name:"Eveline", value:"$2,408.10", note:"1 closing — Adrian Martinez (Jul 23) · logged today"}
+    ],
+    activity: [
+      {label:"Total Leads", value:"21", note:"Julia (14) + Eveline (7)"},
+      {label:"Appts Scheduled", value:"14", note:"Julia — strong recovery vs W6"},
+      {label:"Sales Closed", value:"6", note:"Anderson (1) + Stephanie (3) + Jessica (2)"},
+      {label:"Week Total", value:"$59,115", note:"Anderson $44K carried the week"}
+    ],
+    worked: [
+      "🎉 Anderson's FIRST CLOSING: $44,155 on Jul 17 — full bathroom remodel scope (William Homely). Largest single closing of the week by any seller",
+      "Stephanie 3 consecutive days with a closing: Jul 21, 22, 23 — consistent execution",
+      "Julia organized the HD Portal shower glass leads (Jul 18) — operational cleanup",
+      "Julia and Otavio working on Google Sheets together Jul 22-23 — onboarding progressing",
+      "Jul 15 All Team Meeting: Mercedes officially announced as Fabrication Manager — Aldair, Gerardo, Angela, Santos, Dayana roles clarified",
+      "Chelsea rehire: trial accepted Jul 16 — leadership path deferred to admins meeting"
+    ],
+    attention: [
+      "Eveline: 2 consecutive weeks with $0 in Sales Control. Active in calls and store visits but nothing converting. Needs direct conversation — what is blocking the close?",
+      "Julia recurring blocker: Google leads calling the office are NOT being entered in JobTracker or RD Station. She flagged this 2 consecutive days (Jul 21, 22, 23). This is a system gap that needs to be resolved — not just flagged",
+      "Anderson's $44K closing was logged under M&M Bathroom Remodeling — a different company/division. Confirm with Loiny if this is tracked correctly for his commissions",
+      "Stephanie's revenue dropped vs W5 ($23K) and W6 ($21K) — $12K in W7 is below her recent average. Still 3 closings, but smaller tickets"
+    ],
+    blockers: [
+      {owner:"Eveline — Zero Revenue 2 Weeks", text:"Active in calls and Alabama store visits but 0 closings in Sales Control for 2 consecutive weeks (Jul 10-23). Pipeline rebuild hasn't converted yet. Direct check-in needed."},
+      {owner:"Google Leads — System Gap", text:"Leads calling in from Google are not being entered in JobTracker or RD Station. Julia flagged this 3 days in a row. This is an operational gap, not a Julia problem — needs a defined process and owner."},
+      {owner:"Anderson — Division Tracking", text:"First closing logged under M&M Bathroom Remodeling ($44,155). Confirm correct division tracking for commission calculation."}
+    ],
+    agents: {
+      sales: [
+        {name:"Julia", role:"SDR / Inside Sales — High Volume", status:"active",
+          kpis:[{label:"Calls (Week)",value:"115",note:"Jul 17–23",cls:"gold"},{label:"Appts Set",value:"14",note:"Recovery vs W6 (6)",cls:"green"},{label:"Leads Received",value:"14",note:"Jul 17–23"},{label:"Blocker",value:"Google Leads",note:"Not entering JT + RD",cls:"red"}],
+          progressLabel:"Weekly Volume", progressPct:88, progressNote:"Strong — blocker flagged", blocker:"⚠ Google leads not in JobTracker/RD — flagged 3 days in a row"},
+        {name:"Stephanie", role:"Sales Agent — Countertops", status:"active",
+          kpis:[{label:"Sales Closed",value:"3",note:"3 consecutive days",cls:"green"},{label:"Revenue",value:"$11,960.80",note:"Buchanan · Palencia · Valladares",cls:"amber"},{label:"Calls — Jul 17",value:"17",note:"Active start"},{label:"vs W6",value:"↓ $9.5K",note:"Smaller tickets this week",cls:"amber"}],
+          progressLabel:"Revenue Week 7", progressPct:55, progressNote:"$12K — below recent avg", blocker:null},
+        {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"warn",
+          kpis:[{label:"Calls (Week)",value:"31",note:"Jul 17–23"},{label:"Leads",value:"7",note:"Active outreach"},{label:"Sales Closed",value:"1",note:"Adrian Martinez Jul 23",cls:"green"},{label:"Revenue",value:"$2,408.10",note:"Logged today Jul 24",cls:"green"}],
+          progressLabel:"Revenue Week 7", progressPct:35, progressNote:"$2.4K — back on board", blocker:"⚠ Still below weekly average — pipeline conversation needed"},
+        {name:"Chelsea", role:"Sales Agent — Bath Remodeling", status:"active",
+          kpis:[{label:"FIRST CLOSING",value:"$44,155",note:"William Homely Jul 17",cls:"green"},{label:"Scope",value:"Full Remodel",note:"7 products/services",cls:"green"},{label:"Daily Activity",value:"3/day",note:"Leads · Appts · Visits"},{label:"Division",value:"M&M Bath",note:"Confirm commission tracking",cls:"amber"}],
+          progressLabel:"Onboarding → Active", progressPct:100, progressNote:"First closing delivered", blocker:"⚠ Confirm division tracking for commission"}
+      ],
+      ops: [
+        {name:"Mercedes", role:"Fabrication Manager — Official", status:"active",
+          kpis:[{label:"Role Announced",value:"Jul 15",note:"All Team Meeting",cls:"green"},{label:"Team Clarified",value:"5 roles",note:"Aldair, Gerardo, Angela, Santos, Dayana",cls:"green"},{label:"Authority",value:"Formal",note:"Leadership confirmed"},{label:"Sq Ft",value:"Pending",note:"No W7 KPI entry yet"}],
+          progressLabel:"Leadership Clarity", progressPct:90, progressNote:"Role officially announced", blocker:null},
+        {name:"Britney", role:"Admin / Front Desk — New", status:"pending",
+          kpis:[{label:"Start Date",value:"Jul 23",note:"Joined yesterday"},{label:"KPI Sheet",value:"Pending",note:"Starting soon",cls:"amber"},{label:"Status",value:"Onboarding",note:"First week"},{label:"Angela",value:"Transitioned",note:"Left the company"}],
+          progressLabel:"Onboarding", progressPct:0, progressNote:"KPI not yet started", blocker:null, pending:true}
+      ]
+    }
+  }
+,
+  {
+    eyebrow: "Week 8",
+    dates: "Jul 24 – 30, 2026",
+    revenue: [
+      {name:"Chelsea", value:"$26,700.00", note:"3 closings — Leo Fortune $9.5K (Jul 29) · Joe Whittemore $14.8K (Jul 30) · Pete Sburlescu $2.4K"},
+      {name:"Stephanie", value:"$25,137.35", note:"4 closings — Hopkins $7.4K + Baker $6.2K (Jul 29) · Osborn $6K + Bach $5.6K (Jul 24)"},
+      {name:"Jessica (HD)", value:"$7,141.45", note:"3 closings — Al Rhodes $2.2K, Fran Hector $1.35K, Brian & Liz Dixon $3.6K"},
+      {name:"Eveline", value:"$11,686.80", note:"3 closings — Michael Harden $2.3K · Chike Ilorah $2.4K · Ernest Rouse $7K (Jul 30)"}
+    ],
+    activity: [
+      {label:"Total Leads", value:"30", note:"Julia (13) + Eveline (17) + Anderson (9)"},
+      {label:"Appts Scheduled", value:"22", note:"Julia (13) + Anderson (8) + Eveline (1)"},
+      {label:"Sales Closed", value:"10", note:"Anderson (3) + Stephanie (4) + Jessica (3) + Eveline (2)"},
+      {label:"Week Total", value:"$70,665", note:"Jul 24–30 · Final week of July · Eveline 3 closings"}
+    ],
+    worked: [
+      "Anderson 3 closings in 2 days: Leo Fortune $9.5K (Jul 29) + Joe Whittemore $14.8K (Jul 30) + Pete Sburlescu $2.4K — $26.7K in back-to-back days",
+      "Stephanie 4 closings this week: Osborn + Bach on Jul 24, Hopkins + Baker on Jul 29 — $25.1K total",
+      "Eveline 3 closings: Harden $2.3K + Ilorah $2.4K + Ernest Rouse $7K — $11.7K this week, strongest since W5",
+      "Anderson back in action Jul 27-28: 4 leads, 3 calls, 4 appts, 4 visits on Jul 28 alone",
+      "Julia and Otavio continuing Google Sheets work — David Fowler + Mingo + Kashfia sending photos",
+      "Eveline flagged 1 wrong service lead (laminate) on Jul 27 — good system hygiene"
+      ,"Glendon Jul 28-29: built n8n automation connecting Google Ads → RD Station — directly resolves the recurring Julia blocker about Google leads not entering systems"
+    ],
+    attention: [
+      "Anderson $26.7K this week — combined with $44.2K in W7, he has $70.9K in July alone in his first full month",
+      "Stephanie not in KPI sheet for W8 despite 4 closings — activity invisible, revenue visible",
+      "Julia Jul 26 logged 0 calls (1 out-of-scope lead). Jul 30: 6 calls + working on 3 contracts. 60 total calls this week.",
+      "Stephanie not in KPI sheet for W8 — entries are blank. Revenue is there but activity is untracked",
+      "Eveline: 1 wrong service lead flagged (laminate) — HD portal cleanup may be needed"
+    ],
+    blockers: [
+      {owner:"Google Leads — Still Open", text:"Julia flagged again this week. Leads calling from Google not entering JobTracker/RD Station. No owner assigned yet. This is a recurring unresolved blocker."},
+      {owner:"Anderson — Second Closing", text:"11 days since first closing ($44K on Jul 17). Active in KPI but no new Sales Control entry. Pipeline needs to convert soon."},
+      {owner:"Stephanie — KPI Gap", text:"No KPI entries for W8 despite 2 Sales Control closings on Jul 24. Revenue visible, activity invisible."}
+    ],
+    agents: {
+      sales: [
+        {name:"Julia", role:"SDR / Inside Sales — High Volume", status:"active",
+          kpis:[{label:"Leads (Week)",value:"13",note:"Jul 24–30",cls:"gold"},{label:"Calls Made",value:"60",note:"Jul 24–30 · 0 on Jul 26 (out of scope lead)",cls:"green"},{label:"Appts Set",value:"14",note:"Week total",cls:"green"},{label:"Follow-ups",value:"33",note:"Consistent pipeline management"}],
+          progressLabel:"Weekly Activity", progressPct:75, progressNote:"Solid week", blocker:"⚠ Jul 26 + Jul 30 = 0 calls — working on contracts both days"},
+        {name:"Stephanie", role:"Sales Agent — Countertops", status:"active",
+          kpis:[{label:"Sales Closed",value:"2",note:"Both on Jul 24",cls:"green"},{label:"Revenue",value:"$11,578.00",note:"Osborn $6K + Bach $5.6K",cls:"green"},{label:"KPI Sheet",value:"Blank",note:"No W8 entries",cls:"red"},{label:"Consistency",value:"4 weeks",note:"Always on scoreboard",cls:"green"}],
+          progressLabel:"Revenue Week 8", progressPct:55, progressNote:"$11.6K", blocker:"⚠ No KPI entries this week despite 2 closings"},
+        {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"active",
+          kpis:[{label:"Leads (Week)",value:"12",note:"Highest in weeks",cls:"green"},{label:"Calls Made",value:"19",note:"Jul 24–28",cls:"gold"},{label:"Sales Closed",value:"3",note:"Harden · Ilorah · Ernest Rouse $7K",cls:"green"},{label:"Revenue",value:"$11,686.80",note:"Best week since W5",cls:"green"}],
+          progressLabel:"Lead Volume", progressPct:60, progressNote:"Rebuilding pipeline", blocker:null},
+        {name:"Chelsea", role:"Sales Agent — Bath Remodeling", status:"active",
+          kpis:[{label:"W8 Closings",value:"3",note:"Leo Fortune · Whittemore · Sburlescu",cls:"green"},{label:"W8 Revenue",value:"$26,700",note:"Jul 29–30",cls:"green"},{label:"July Total",value:"$70,855",note:"$44.2K W7 + $26.7K W8",cls:"green"},{label:"Leads (Week)",value:"9",note:"Jul 27–30",cls:"gold"}],
+          progressLabel:"July Performance", progressPct:100, progressNote:"$70.9K in first full month", blocker:null}
+      ],
+      ops: [
+        {name:"Mercedes", role:"Fabrication Manager", status:"active",
+          kpis:[{label:"Role",value:"Official",note:"Since Jul 15",cls:"green"},{label:"Fabrication",value:"Active",note:"Eddie, Quigley, Fischer logged Jul 27"},{label:"Sq Ft",value:"Pending",note:"No KPI entry W8"},{label:"Team",value:"5 roles",note:"Clarified"}],
+          progressLabel:"Operations", progressPct:80, progressNote:"Running smoothly", blocker:null},
+        {name:"Britney", role:"Admin / Front Desk — New", status:"pending",
+          kpis:[{label:"Start Date",value:"Jul 23",note:"Week 2"},{label:"KPI Sheet",value:"Pending",note:"Not yet started",cls:"amber"},{label:"Status",value:"Onboarding",note:"Second week"},{label:"System",value:"Learning",note:"JobTracker + RD"}],
+          progressLabel:"Onboarding", progressPct:15, progressNote:"Week 2", blocker:null, pending:true}
+      ]
+    }
+  }
+,
+  {
+    eyebrow: "Week 9",
+    dates: "Jul 31 – Aug 7, 2026",
+    revenue: [
+      {name:"Chelsea", value:"$21,391.00", note:"Sean Headley $8.9K + Margaret Mathis $12.4K — both confirmed in Sales Control Aug 7"},
+      {name:"Jessica (HD)", value:"$10,710.00", note:"3 closings Jul 31 — Patel $2.7K · Matthews $4.8K · Parker $3.3K"},
+      {name:"Eveline", value:"$6,835.20", note:"Kate Rogers $3.1K (Jul 31) + Savage $1.8K + Doss $1.9K"},
+      {name:"Stephanie", value:"$5,232.90", note:"Rittenhouse $4K (Aug 4) + balance payments"},
+      {name:"Matos", value:"$0", note:"No new entries"}
+    ],
+    activity: [
+      {label:"Total Leads", value:"28", note:"Julia (11) + Eveline (13) + Anderson (7)"},
+      {label:"Calls Made", value:"95", note:"Julia (69) + Eveline (26)"},
+      {label:"Appts Scheduled", value:"19", note:"Julia (8) + Eveline (11) + Anderson (8)"},
+      {label:"Week Total", value:"$44,169", note:"Jul 31–Aug 7 · Anderson both closings confirmed · Jul 31 strongest day"}
+    ],
+    worked: [
+      "Anderson 2 closings both confirmed Aug 7 in Sales Control: Sean Headley $8,991 + Margaret Mathis $12,400",
+      "Jul 31 strongest day of the week: Jessica 3 closings ($10,710) + Eveline 1 ($3,148) = $13,858 in one day",
+      "Glendon coaching call with Anderson Aug 4 — income flow and salary vs commission expectations aligned",
+      "Chelsea welcome call Aug 5 — onboarding started with Glendon",
+      "Julia 69 calls across 5 days — consistent, no zero-call days except Aug 7 (contract work)",
+      "n8n automation Google Ads → RD Station built Jul 28-29 — resolves Julia's recurring lead tracking blocker"
+    ],
+    attention: [
+      "Stephanie KPI sheet blank since Jul 23 — over 2 weeks without any activity entry",
+      "Britney 3 weeks in the role, KPI sheet still not started — needs to be addressed today",
+      "Anderson Mathis appears twice in Sales Control (Aug 5 + Aug 7) — verify no duplicate payment before commissions",
+      "Eveline: 3 wrong service leads + 1 duplicate on Aug 4 — HD portal quality issue recurring",
+      "Julia Aug 7: 0 calls, worked on contracts + 1 appt — not a performance issue, operational day"
+    ],
+    blockers: [
+      {owner:"Stephanie — KPI Silent 2+ Weeks", text:"No KPI entries since Jul 23. Revenue visible in Sales Control, activity completely invisible. Pattern needs direct conversation.", resolved:false},
+      {owner:"Britney — KPI Not Started", text:"3 weeks into the role, KPI sheet still blank. Needs to be addressed in today's meeting.", resolved:false},
+      {owner:"Anderson — Duplicate SC Entry", text:"Margaret Mathis logged in Sales Control on both Aug 5 and Aug 7. Verify only one payment is being processed before commission calculation.", resolved:false},
+      {owner:"Eveline — Wrong Service Leads", text:"3 wrong service leads + 1 duplicate flagged on Aug 4. HD portal sending off-scope leads. Portal cleanup needed.", resolved:false}
+    ],
+    agents: {
+      sales: [
+        {name:"Julia", role:"SDR / Inside Sales — High Volume", status:"active",
+          kpis:[{label:"Calls (Week)",value:"69",note:"Jul 31–Aug 6",cls:"gold"},{label:"Appts Set",value:"8",note:"Week total",cls:"green"},{label:"Leads",value:"11",note:"1 unqualified + 1 unresponsive"},{label:"Aug 7",value:"0 calls",note:"Contract work day",cls:"amber"}],
+          progressLabel:"Weekly Activity", progressPct:82, progressNote:"Solid pace", blocker:null},
+        {name:"Stephanie", role:"Sales Agent — Countertops", status:"warn",
+          kpis:[{label:"Revenue (W9)",value:"$5,232.90",note:"Rittenhouse $4K + balances",cls:"amber"},{label:"New Closing",value:"1",note:"Rittenhouse Aug 4",cls:"green"},{label:"KPI Sheet",value:"Blank",note:"Since Jul 23",cls:"red"},{label:"July Final",value:"$90,004",note:"",cls:"green"}],
+          progressLabel:"KPI Activity", progressPct:5, progressNote:"Invisible — 2+ weeks blank", blocker:"⚠ No KPI entries since Jul 23"},
+        {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"active",
+          kpis:[{label:"Leads (Week)",value:"13",note:"Aug 3–6",cls:"gold"},{label:"Calls Made",value:"26",note:"Aug 3–6",cls:"green"},{label:"Sales Closed",value:"3",note:"Rogers + Savage + Doss",cls:"green"},{label:"Revenue",value:"$6,835.20",note:"Week total",cls:"green"}],
+          progressLabel:"Pipeline Activity", progressPct:68, progressNote:"Rebuilding", blocker:"⚠ 3 wrong service leads Aug 4"},
+        {name:"Chelsea", role:"Sales Agent — Bath Remodeling", status:"active",
+          kpis:[{label:"W9 Revenue",value:"$21,391",note:"Headley $8.9K + Mathis $12.4K",cls:"green"},{label:"SC Confirmed",value:"✓ Both Aug 7",note:"Both in Sales Control",cls:"green"},{label:"July Final",value:"$70,855",note:"First full month",cls:"green"},{label:"Aug Total",value:"$21,391",note:"7 days in",cls:"gold"}],
+          progressLabel:"August Revenue", progressPct:85, progressNote:"$21.4K confirmed", blocker:"⚠ Mathis appears twice in SC — verify"},
+        {name:"Britney", role:"Admin / Front Desk", status:"pending",
+          kpis:[{label:"Start",value:"Jul 23",note:"Week 3"},{label:"KPI Sheet",value:"Not started",note:"Still blank",cls:"red"},{label:"Chelsea",value:"Back Aug 5",note:"Welcome call done",cls:"amber"},{label:"Status",value:"Onboarding",note:"Week 3"}],
+          progressLabel:"Onboarding", progressPct:15, progressNote:"Week 3 — KPI not started", blocker:"🔴 KPI blank after 3 weeks", pending:true}
+      ],
+      ops: [
+        {name:"Mercedes", role:"Fabrication Manager", status:"active",
+          kpis:[{label:"Role",value:"Official",note:"Since Jul 15",cls:"green"},{label:"Last KPI",value:"Jul 16",note:"No Aug entry yet",cls:"amber"},{label:"Sean Headley",value:"Fabricated",note:"Anderson W9 closing",cls:"green"},{label:"Status",value:"Active",note:"Running operations"}],
+          progressLabel:"Operations", progressPct:75, progressNote:"Active", blocker:null}
+      ]
+    }
+  }
+,
+  {
+    eyebrow: "Week 10",
+    dates: "Aug 8 – 13, 2026",
+    revenue: [
+      {name:"Eveline", value:"$14,900.80", note:"4 closings — Hendrix $1K · Gangaraj $7.4K · Lewis $3.8K · Lawson $2.7K · Aug 12 was her biggest single day"},
+      {name:"Chelsea", value:"$0 confirmed", note:"$25,800 in KPI (Aug 10: $12.1K + Aug 11: $13.7K) — pending Sales Control entry"},
+      {name:"Jessica (HD)", value:"$780.00", note:"Kevin Williams — Shower Glass (Aug 13)"},
+      {name:"Stephanie", value:"$0", note:"No KPI entries · no Sales Control activity"},
+      {name:"Matos", value:"$0", note:"No new entries"}
+    ],
+    activity: [
+      {label:"Total Leads", value:"25", note:"Julia (18) + Eveline (7) + Anderson (6)"},
+      {label:"Calls Made", value:"88", note:"Julia (63) + Eveline (23) + Anderson (10)"},
+      {label:"Appts Scheduled", value:"16", note:"Julia (10) + Anderson (6)"},
+      {label:"Week Total", value:"$15,681 confirmed", note:"Anderson $25.8K pending SC · with KPI = $41,481"}
+    ],
+    worked: [
+      "Eveline biggest single day of the year: Aug 12 — 3 closings totaling $13,898 (Gangaraj $7.4K + Lewis $3.8K + Lawson $2.7K)",
+      "Chelsea entering Week 2 of onboarding — Anderson left Aug 15",
+      "Julia strongest day this week: Aug 10 — 21 calls, 4 appts, 16 follow-ups in one day",
+      "Glendon Aug 11: Building new independent funnels in RD Station for Google Ads and Walk-in leads",
+      "Glendon Aug 12: Call with Grace — fabrication slab breakage concern + decision-making gap when Matos unavailable",
+      "Glendon Aug 13: Call with Rubens — RD Station funnel architecture finalized"
+    ],
+    attention: [
+      "Anderson $25,800 KPI revenue (Aug 10-11) not yet in Sales Control — confirm before citing numbers in meeting",
+      "Stephanie KPI blank since Jul 23 — now 3+ weeks without any activity entry",
+      "Britney KPI sheet header only — 4 weeks on the job, never started",
+      "Mercedes last KPI entry Jul 16 — fabrication data invisible for nearly a month",
+      "Aug 12: Fabrication slab breakage concern flagged — no decision-maker when Matos unavailable. Critical operational gap.",
+      "Julia Aug 09: 0 calls (duplicate lead day). Aug 11: 1 fake phone number + 1 Shower Glass lead in countertop pipeline"
+    ],
+    blockers: [
+      {owner:"Anderson — SC Gap", text:"KPI shows $25,800 across Aug 10-11. Neither entry in Sales Control yet. Confirm before meeting.", resolved:false},
+      {owner:"Stephanie — 3+ Weeks Silent", text:"No KPI since Jul 23. Active in Sales Control but activity completely invisible. Needs direct conversation today.", resolved:false},
+      {owner:"Britney — Never Started KPI", text:"4 weeks in. Header row only in KPI sheet. This needs to be resolved before end of week.", resolved:false},
+      {owner:"Fabrication — Decision Maker Gap", text:"Slab movement breakage risk flagged Aug 12. No clear decision-maker when Matos unavailable. Grace holding for his return. Operational risk.", resolved:false},
+      {owner:"Mercedes — KPI Dark Since Jul 16", text:"Fabrication manager with no KPI data for nearly a month. Production volume completely invisible to leadership.", resolved:false}
+    ],
+    agents: {
+      sales: [
+        {name:"Julia", role:"SDR / Inside Sales — High Volume", status:"active",
+          kpis:[{label:"Calls (Week)",value:"63",note:"Aug 8–13",cls:"gold"},{label:"Best Day",value:"Aug 10",note:"21 calls · 4 appts · 16 follow-ups",cls:"green"},{label:"Leads",value:"18",note:"1 duplicate · 1 fake phone · 1 Shower Glass"},{label:"Appts Set",value:"10",note:"Strong recovery vs W9",cls:"green"}],
+          progressLabel:"Weekly Activity", progressPct:85, progressNote:"Solid — Aug 10 standout", blocker:null},
+        {name:"Stephanie", role:"Sales Agent — Countertops", status:"critical",
+          kpis:[{label:"KPI Sheet",value:"Blank",note:"Since Jul 23 — 3+ weeks",cls:"red"},{label:"SC Activity",value:"$0",note:"No new closings",cls:"red"},{label:"Last Active",value:"Aug 5",note:"Balance payments only",cls:"red"},{label:"July Final",value:"$90,004",note:"Was strong",cls:"amber"}],
+          progressLabel:"August Revenue", progressPct:0, progressNote:"$0 — invisible", blocker:"🔴 3+ weeks no KPI · $0 in August", critical:true},
+        {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"active",
+          kpis:[{label:"Revenue (W10)",value:"$14,900.80",note:"4 closings — Aug 12 biggest day",cls:"green"},{label:"Aug 12",value:"3 closings",note:"Gangaraj $7.4K + Lewis $3.8K + Lawson $2.7K",cls:"green"},{label:"Calls (Week)",value:"23",note:"Aug 10–13"},{label:"Aug Total",value:"$21,736",note:"W9 $6.8K + W10 $14.9K",cls:"green"}],
+          progressLabel:"August Revenue", progressPct:72, progressNote:"$21.7K — strong month", blocker:null},
+        {name:"Chelsea", role:"Sales Agent — Bath Remodeling", status:"warn",
+          kpis:[{label:"KPI Revenue",value:"$25,800",note:"Aug 10 $12.1K + Aug 11 $13.7K",cls:"amber"},{label:"SC Confirmed",value:"$0",note:"Pending entry — not yet logged",cls:"red"},{label:"Aug Total (KPI)",value:"$47,191",note:"W9 $21.4K + W10 $25.8K"},{label:"Leads (Week)",value:"6",note:"Aug 8–11"}],
+          progressLabel:"SC Confirmation Needed", progressPct:50, progressNote:"$25.8K pending SC", blocker:"⚠ $25,800 KPI not in Sales Control yet"}
+      ],
+      ops: [
+        {name:"Mercedes", role:"Fabrication Manager", status:"warn",
+          kpis:[{label:"Last KPI",value:"Jul 16",note:"28 days ago",cls:"red"},{label:"Fabrication",value:"Active",note:"Producing but invisible"},{label:"Concern",value:"Aug 12",note:"Slab breakage risk flagged",cls:"red"},{label:"Decision Gap",value:"Open",note:"No backup when Matos out",cls:"red"}],
+          progressLabel:"Data Visibility", progressPct:0, progressNote:"KPI dark 28 days", blocker:"🔴 No KPI since Jul 16 · slab risk open"},
+        {name:"Britney", role:"Admin / Front Desk", status:"pending",
+          kpis:[{label:"Start Date",value:"Jul 23",note:"Week 4 now"},{label:"KPI Sheet",value:"Never started",note:"Header only",cls:"red"},{label:"Week",value:"4",note:"of onboarding"},{label:"Chelsea",value:"Back Aug 5",note:"Onboarding ongoing",cls:"amber"}],
+          progressLabel:"Onboarding", progressPct:10, progressNote:"Week 4 — KPI still blank", blocker:"🔴 KPI never started after 4 weeks", pending:true}
+      ]
+    }
+  }
+,
+  {
+    eyebrow: "Week 11",
+    dates: "Aug 14 – 20, 2026",
+    revenue: [
+      {name:"Jessica (HD)", value:"$13,164.00", note:"3 closings — Sung Chung $8.6K (Aug 14) · Henderlight $3.1K + Grizzelle $1.5K (Aug 20)"},
+      {name:"Stephanie", value:"$12,509.45", note:"7 closings — Tarlton $4.5K (Aug 18) · Bentley $2.3K (Aug 14) + 5 more"},
+      {name:"Eveline", value:"$5,121.80", note:"2 closings Aug 17 — Tiffany Shipp $4.3K + Faheem Siddiqui $824"},
+      {name:"Chelsea", value:"$0 confirmed", note:"$25,800 KPI (Aug 10-11) still pending Sales Control entry"},
+      {name:"Mercedes", value:"$600.00", note:"Meagan Coleman (Aug 18) — Fabrication · first Sales Control entry ever"},
+      {name:"Matos", value:"$0", note:"No new entries"}
+    ],
+    activity: [
+      {label:"Total Leads", value:"28", note:"Julia (16) + Eveline (12)"},
+      {label:"Calls Made", value:"78", note:"Julia (54) + Eveline (24)"},
+      {label:"Appts Scheduled", value:"8", note:"Julia (6) + Eveline (2)"},
+      {label:"Week Total", value:"$31,395", note:"Jessica $13.2K + Stephanie $12.5K + Eveline $5.1K + Mercedes $600"}
+    ],
+    worked: [
+      "Jessica back strong — Sung Chung $8,574 on Aug 14, her biggest single closing this month. Jessica noted she was 'getting back in the swing of things from being sick'",
+      "Stephanie ACTIVE in Sales Control — 7 closings Aug 14-20 totaling $12,509. Tarlton $4,469 on Aug 18 was the largest",
+      "Julia: Aug 17 strongest day of the week — 17 calls, 3 appts, 12 follow-ups",
+      "Eveline: Aug 17 best day — 7 leads, 10 calls, Tiffany Shipp $4,297 closing",
+      "Mercedes: first-ever Sales Control entry on Aug 18 — Meagan Coleman $600 fabrication"
+    ],
+    attention: [
+      "🚨 CRITICAL: Cutting robot broken Aug 17 — nearly ALL fabrication jobs need reschedule. Aug 18: still down, ETA extended. Aug 19: Alabama stone delivery cancelled (truck unavailable). Saturday jobs moved to next week.",
+      "Stephanie KPI sheet STILL blank since Jul 23 — now 4 weeks. 7 closings in Sales Control this week. Revenue visible, person invisible.",
+      "Chelsea onboarding — starting Week 2. Anderson left the company Aug 15.",
+      "Jessica was sick this week — Aug 17 KPI notes 'getting back in the swing of things'. Aug 4: McDonough store complaint (customer hasn't received glass)",
+      "Alabama operations disrupted: stone delivery cancelled Aug 19, Fabio truck too small to cover remaining jobs"
+    ],
+    blockers: [
+      {owner:"🚨 Cutting Robot — CRITICAL", text:"Broken Aug 17. Still down Aug 18-19. Nearly all fabrication jobs rescheduled. Alabama delivery cancelled. Biggest operational disruption since July robot failure. ETA unclear.", resolved:false},
+      {owner:"Stephanie — 4 Weeks No KPI", text:"7 closings in Sales Control this week. KPI sheet blank since Jul 23 — now 28+ days. This is no longer an oversight, it is a pattern that needs a direct resolution today.", resolved:false},
+      {owner:"Chelsea — Onboarding", text:"Chelsea started Aug 5. Anderson left Aug 15. Chelsea now filling the sales role. Week 2 of onboarding.", resolved:false},
+      {owner:"Saul — Scheduling Error Aug 12", text:"Job 54820 not fabricated for install date due to scheduling mistake. Customer offered cutting board. Pattern of last-minute schedule changes causing installer confusion.", resolved:false}
+    ],
+    agents: {
+      sales: [
+        {name:"Julia", role:"SDR / Inside Sales — High Volume", status:"active",
+          kpis:[{label:"Calls (Week)",value:"54",note:"Aug 14–19",cls:"gold"},{label:"Best Day",value:"Aug 17",note:"17 calls · 3 appts · 12 FU",cls:"green"},{label:"Leads",value:"16",note:"Kristy Silver sending photos"},{label:"Appts Set",value:"6",note:"Week total"}],
+          progressLabel:"Weekly Activity", progressPct:80, progressNote:"Solid — Aug 17 standout", blocker:null},
+        {name:"Stephanie", role:"Sales Agent — Countertops", status:"warn",
+          kpis:[{label:"Revenue (W11)",value:"$12,509",note:"7 closings Aug 14–20",cls:"green"},{label:"KPI Sheet",value:"Blank",note:"Since Jul 23 — 4 weeks",cls:"red"},{label:"Aug Total",value:"$17,742",note:"W9 $5.2K + W11 $12.5K",cls:"green"},{label:"Tarlton",value:"$4,469",note:"Aug 18 — largest closing",cls:"green"}],
+          progressLabel:"KPI vs Revenue", progressPct:50, progressNote:"Active but invisible", blocker:"🔴 4 weeks no KPI — direct resolution needed today"},
+        {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"active",
+          kpis:[{label:"Revenue (W11)",value:"$5,121.80",note:"Shipp $4.3K + Siddiqui $824",cls:"green"},{label:"Leads",value:"12",note:"Aug 14–19",cls:"gold"},{label:"Calls",value:"24",note:"Aug 14–19"},{label:"Aug Total",value:"$26,858",note:"W9+W10+W11",cls:"green"}],
+          progressLabel:"August Revenue", progressPct:78, progressNote:"$26.9K — strong month", blocker:null},
+        {name:"Jessica", role:"Sales Agent — Shower Glass", status:"active",
+          kpis:[{label:"Revenue (W11)",value:"$13,164",note:"Sung Chung $8.6K was biggest",cls:"green"},{label:"Closings",value:"3",note:"Aug 14 + 2 on Aug 20",cls:"green"},{label:"KPI Aug 17",value:"Back active",note:"8 leads, 3 quotes",cls:"amber"},{label:"Note",value:"Was sick",note:"Getting back in swing",cls:"amber"}],
+          progressLabel:"August Revenue", progressPct:72, progressNote:"Strong return", blocker:null},
+        {name:"Chelsea", role:"Sales Agent — Bath Remodeling", status:"warn",
+          kpis:[{label:"KPI Revenue",value:"$25,800",note:"Aug 10-11 — week 3 pending SC",cls:"amber"},{label:"SC Confirmed",value:"$0",note:"No new SC entries",cls:"red"},{label:"Last KPI",value:"Aug 11",note:"No entries since"},{label:"Aug Total (KPI)",value:"$47,191",note:"W9+W10 KPI"}],
+          progressLabel:"SC Confirmation Needed", progressPct:30, progressNote:"3 weeks pending", blocker:"🔴 $25,800 KPI not in SC — 3rd week"}
+      ],
+      ops: [
+        {name:"Mercedes", role:"Fabrication Manager", status:"warn",
+          kpis:[{label:"First SC Entry",value:"Aug 18",note:"Meagan Coleman $600",cls:"green"},{label:"Robot",value:"🚨 Broken",note:"Aug 17–19+ — most jobs rescheduled",cls:"red"},{label:"Alabama",value:"Disrupted",note:"Delivery cancelled Aug 19",cls:"red"},{label:"KPI",value:"Jul 16",note:"Still no Aug KPI entry",cls:"red"}],
+          progressLabel:"Operational Status", progressPct:20, progressNote:"Robot crisis active", blocker:"🚨 Robot down — mass reschedules — KPI still dark"},
+        {name:"Saul", role:"Installation Coordinator", status:"warn",
+          kpis:[{label:"Robot Crisis",value:"Aug 17-19",note:"All jobs rescheduled",cls:"red"},{label:"Alabama",value:"Cancelled",note:"Stone delivery Aug 19",cls:"red"},{label:"Error Aug 12",value:"54820",note:"Job not fabricated for install",cls:"amber"},{label:"Last Update",value:"Aug 19",note:"Active this week",cls:"green"}],
+          progressLabel:"Installation Status", progressPct:15, progressNote:"Robot crisis disrupting all ops", blocker:"🔴 Robot down — Saturday jobs pushed to next week"},
+        {name:"Britney", role:"Admin / Front Desk", status:"pending",
+          kpis:[{label:"Start Date",value:"Jul 23",note:"Week 5"},{label:"KPI Sheet",value:"Never started",note:"Still blank",cls:"red"},{label:"Week",value:"5",note:"of onboarding"},{label:"Status",value:"Onboarding",note:"No data yet"}],
+          progressLabel:"Onboarding", progressPct:10, progressNote:"Week 5 — KPI still blank", blocker:"🔴 KPI never started — 5 weeks", pending:true}
+      ]
+    }
+  }
+,
+  {
+    eyebrow: "Week 12",
+    dates: "Aug 21 – 27, 2026",
+    revenue: [
+      {name:"Stephanie", value:"$23,047.00", note:"4 closings — Parrish $14,168 (Aug 26) · Albright $4,940 · Limbacher $3,940 (Aug 21)"},
+      {name:"Jessica (HD)", value:"$8,529.93", note:"5 closings — 3 on Aug 21 (Rogers $1.7K · Zappasodi $1.2K · Martin $2.4K) + 2 more"},
+      {name:"Eveline", value:"$5,070.50", note:"Noura Koudsi $5,070 (Aug 24)"},
+      {name:"Matos", value:"$0", note:"No new entries"}
+    ],
+    activity: [
+      {label:"Total Leads", value:"28", note:"Julia (19) + Eveline (9)"},
+      {label:"Calls Made", value:"90", note:"Julia (46) + Eveline (44)"},
+      {label:"Appts Scheduled", value:"14", note:"Julia (13) + Eveline (1)"},
+      {label:"Week Total", value:"$36,647", note:"Stephanie $23K led by Parrish $14.2K · week in progress"}
+    ],
+    worked: [
+      "Stephanie back strong — Parrish $14,168 on Aug 26 is the largest single closing of the week. Total $23,047 this week.",
+      "Jessica consistent: 5 closings including 3 on Aug 21 alone. Strong Shower Glass pipeline.",
+      "Glendon Aug 24: quick call with all new sales agents to align week expectations",
+      "Glendon Aug 25-26: 1:1 onboarding calls with Chelsea + Sheylla (new sales rep joining)",
+      "Julia Aug 24: strongest day of the week — 13 calls, 4 appts, 11 follow-ups",
+      "Eveline consistent: 44 calls, 9 leads, Noura Koudsi $5,070 closing on Aug 24"
+    ],
+    attention: [
+      "Sheylla — new sales rep starting onboarding this week. Glendon conducting 1:1s Aug 25-26.",
+      "Stephanie KPI sheet still blank since Jul 23 — 5 weeks. She closed $23K this week with zero activity logged.",
+      "Mercedes KPI last entry Jul 16 — 6 weeks of invisible fabrication operations.",
+      "Britney KPI never started — now week 6 of onboarding.",
+      "Chelsea KPI header only — still not started.",
+      "Julia Aug 21 + Aug 23: 0 calls both days. Aug 22: 10 calls but 1 Shower Glass lead in CT pipeline (flag)."
+    ],
+    blockers: [
+      {owner:"Stephanie — 5 Weeks No KPI", text:"Closed $23,047 this week. KPI blank since Jul 23. Revenue visible, activity invisible. This needs to be the last week this is mentioned.", resolved:false},
+      {owner:"Sheylla — New Sales Rep", text:"Starting onboarding this week. Glendon conducting 1:1s. KPI sheet not yet started. Watch for first entries next week.", resolved:false},
+      {owner:"Mercedes — 6 Weeks No KPI", text:"Fabrication manager with zero KPI data since Jul 16. Production volume completely invisible to leadership.", resolved:false},
+      {owner:"Chelsea + Britney — KPI Never Started", text:"Both in onboarding weeks. Chelsea (Week 4) and Britney (Week 6) still have blank KPI sheets.", resolved:false}
+    ],
+    agents: {
+      sales: [
+        {name:"Julia", role:"SDR / Inside Sales — High Volume", status:"active",
+          kpis:[{label:"Calls (Week)",value:"46",note:"Aug 21–27",cls:"gold"},{label:"Best Day",value:"Aug 24",note:"13 calls · 4 appts · 11 FU",cls:"green"},{label:"Leads",value:"19",note:"1 SG lead in CT pipeline flagged"},{label:"Appts Set",value:"13",note:"Week total",cls:"green"}],
+          progressLabel:"Weekly Activity", progressPct:78, progressNote:"Solid", blocker:null},
+        {name:"Stephanie", role:"Sales Agent — Countertops", status:"warn",
+          kpis:[{label:"Revenue (W12)",value:"$23,047",note:"Parrish $14.2K · Albright $4.9K · Limbacher $3.9K",cls:"green"},{label:"KPI Sheet",value:"Blank",note:"Since Jul 23 — 5 weeks",cls:"red"},{label:"Aug Total",value:"$40,789",note:"W9+W11+W12",cls:"green"},{label:"Parrish",value:"$14,168",note:"Aug 26 — biggest closing",cls:"green"}],
+          progressLabel:"Revenue vs Visibility", progressPct:60, progressNote:"$40.8K Aug — activity invisible", blocker:"🔴 5 weeks no KPI — must resolve today"},
+        {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"active",
+          kpis:[{label:"Revenue (W12)",value:"$5,070.50",note:"Noura Koudsi Aug 24",cls:"green"},{label:"Calls",value:"44",note:"Aug 21–27",cls:"gold"},{label:"Leads",value:"9",note:"Aug 21–27"},{label:"Aug Total",value:"$31,929",note:"W9+W10+W11+W12",cls:"green"}],
+          progressLabel:"August Revenue", progressPct:82, progressNote:"$31.9K — best month of year", blocker:null},
+        {name:"Chelsea", role:"Sales Agent — Onboarding", status:"pending",
+          kpis:[{label:"Onboarding",value:"Week 4",note:"1:1 with Glendon Aug 25"},{label:"KPI Sheet",value:"Not started",note:"Still blank",cls:"red"},{label:"Sheylla",value:"Also joining",note:"New rep Aug 25-26"},{label:"Status",value:"Learning",note:"No sales yet"}],
+          progressLabel:"Onboarding", progressPct:30, progressNote:"Week 4 — 1:1 done", blocker:"⚠ KPI still blank — week 4", pending:true}
+      ],
+      ops: [
+        {name:"Mercedes", role:"Fabrication Manager", status:"warn",
+          kpis:[{label:"Last KPI",value:"Jul 16",note:"6 weeks ago",cls:"red"},{label:"Robot",value:"Status?",note:"Was broken Aug 17-19",cls:"amber"},{label:"First SC",value:"Aug 18",note:"Meagan Coleman $600",cls:"green"},{label:"Status",value:"Active",note:"Producing but invisible"}],
+          progressLabel:"Data Visibility", progressPct:5, progressNote:"6 weeks dark", blocker:"🔴 KPI dark 6 weeks"},
+        {name:"Britney", role:"Admin / Front Desk", status:"pending",
+          kpis:[{label:"Start Date",value:"Jul 23",note:"Week 6"},{label:"KPI Sheet",value:"Never started",note:"Still blank",cls:"red"},{label:"Week",value:"6",note:"of onboarding"},{label:"Status",value:"Onboarding",note:"No data"}],
+          progressLabel:"Onboarding", progressPct:10, progressNote:"Week 6 — KPI blank", blocker:"🔴 KPI never started — 6 weeks", pending:true}
+      ]
+    }
+  }
+,
+  {
+    eyebrow: "Week 13",
+    dates: "Aug 28 – 31, 2026",
+    revenue: [
+      {name:"Stephanie", value:"$4,120.00", note:"Job 55257 (Aug 28) — month closing strong"},
+      {name:"Jessica (HD)", value:"$3,935.00", note:"2 closings Aug 28 — Sharon $2.2K + closing $1.7K"},
+      {name:"Eveline", value:"$0", note:"No new entries Aug 28-31"},
+      {name:"Matos", value:"$0", note:"No new entries"}
+    ],
+    activity: [
+      {label:"August FINAL", value:"$168,848", note:"Full month confirmed — best sellers month since February"},
+      {label:"Stephanie Aug", value:"$64,220", note:"Leads August despite robot crisis"},
+      {label:"Anderson Aug", value:"$33,791", note:"Left Aug 15 — closings logged after departure"},
+      {label:"Week Total", value:"$8,055", note:"Last days of August — month now closed"}
+    ],
+    worked: [
+      "AGOSTO FECHADO: $168,848 total — best month since February ($338K)",
+      "Stephanie fechou agosto com $64,220 — forte apesar do robot quebrado e KPI em branco",
+      "Jessica: $31,344 em agosto — voltou forte na última semana com 2 closings em Aug 28",
+      "Eveline: $28,780 em agosto — segundo melhor mês da carreira dela",
+      "Anderson: $33,791 — closings continuaram chegando após sua saída em Aug 15",
+      "Sheylla e Chelsea em onboarding — setembro começa com novo time sendo formado"
+    ],
+    attention: [
+      "Stephanie KPI blank desde Jul 23 — fechou $64K em agosto sem registrar uma linha de atividade. Setembro começa com esse padrão precisando mudar.",
+      "Bath Remodeling pipeline descoberto — Anderson saiu, Chelsea e Sheylla ainda em onboarding. Quem fecha esse gap em setembro?",
+      "Mercedes KPI dark desde Jul 16 — fabricação completamente invisível há 6 semanas.",
+      "Robot quebrou duas vezes em agosto (Jul e Aug 17-19). Plano de manutenção preventiva para setembro?",
+      "Britney e Chelsea: KPI nunca iniciado. Setembro é o prazo final."
+    ],
+    blockers: [
+      {owner:"Stephanie — KPI 5+ Semanas Blank", text:"$64,220 em agosto. Zero entradas no KPI desde Jul 23. Setembro começa hoje — primeira entrada precisa acontecer no primeiro dia.", resolved:false},
+      {owner:"Bath Remodeling — Pipeline Descoberto", text:"Anderson saiu Aug 15. Chelsea e Sheylla em onboarding. Quem cobre o pipeline de Bath Remodeling em setembro?", resolved:false},
+      {owner:"Robot — Manutenção Preventiva", text:"Duas quebras em dois meses (Jul e Aug 17-19). Cada quebra causa reschedules em massa. Plano de manutenção precisa existir antes da próxima quebra.", resolved:false},
+      {owner:"KPI — Britney + Chelsea + Mercedes", text:"Três pessoas em funções diferentes, todas com KPI dark ou nunca iniciado. Setembro não pode começar assim.", resolved:false}
+    ],
+    agents: {
+      sales: [
+        {name:"Julia", role:"SDR / Inside Sales — High Volume", status:"active",
+          kpis:[{label:"Agosto Total",value:"Completing",note:"Final entries pending"},{label:"Leads Aug",value:"~70",note:"Full month estimate",cls:"gold"},{label:"Calls Aug",value:"~350",note:"Full month estimate"},{label:"Status",value:"Active",note:"Onboarding Sheylla + Chelsea"}],
+          progressLabel:"August Performance", progressPct:85, progressNote:"Consistent all month", blocker:null},
+        {name:"Stephanie", role:"Sales Agent — Countertops", status:"warn",
+          kpis:[{label:"August FINAL",value:"$64,220",note:"Leads the month",cls:"green"},{label:"KPI Sheet",value:"Blank",note:"Since Jul 23 — 5+ weeks",cls:"red"},{label:"YTD",value:"$606,155",note:"",cls:"green"},{label:"September",value:"Day 1",note:"KPI must restart today",cls:"amber"}],
+          progressLabel:"August Revenue", progressPct:85, progressNote:"$64.2K — activity invisible", blocker:"🔴 5+ weeks no KPI — September starts today"},
+        {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"active",
+          kpis:[{label:"August FINAL",value:"$28,780",note:"2nd best month ever",cls:"green"},{label:"YTD",value:"$221,346",note:"",cls:"green"},{label:"Best Day",value:"Aug 12",note:"3 closings $13,898",cls:"green"},{label:"September",value:"Pipeline?",note:"What’s ready to close?",cls:"amber"}],
+          progressLabel:"August Revenue", progressPct:78, progressNote:"$28.8K — strong month", blocker:null},
+        {name:"Jessica", role:"Sales Agent — Shower Glass", status:"active",
+          kpis:[{label:"August FINAL",value:"$31,344",note:"Closed strong Aug 28",cls:"green"},{label:"YTD",value:"$380,401",note:"",cls:"green"},{label:"Aug 28",value:"2 closings",note:"$3,935 last day of month",cls:"green"},{label:"September",value:"Ready",note:"Pipeline solid",cls:"green"}],
+          progressLabel:"August Revenue", progressPct:72, progressNote:"$31.3K — recovered well", blocker:null},
+        {name:"Chelsea", role:"Sales Agent — Onboarding Week 4", status:"pending",
+          kpis:[{label:"Onboarding",value:"Week 4",note:"1:1 with Glendon done"},{label:"KPI",value:"Never started",note:"",cls:"red"},{label:"September",value:"Week 5",note:"Must start KPI Day 1"},{label:"Status",value:"Learning",note:"No sales yet"}],
+          progressLabel:"Onboarding", progressPct:35, progressNote:"Week 4 — KPI must start Sep 1", blocker:"🔴 KPI never started — Sep 1 is the deadline", pending:true},
+        {name:"Sheylla", role:"Sales Agent — Onboarding Week 1", status:"pending",
+          kpis:[{label:"Started",value:"Aug 25",note:"1:1 with Glendon Aug 26"},{label:"KPI",value:"Setting up",note:"Week 1",cls:"amber"},{label:"September",value:"Week 2",note:"First full week"},{label:"Status",value:"Onboarding",note:"New rep"}],
+          progressLabel:"Onboarding", progressPct:10, progressNote:"Week 1 — new rep", blocker:null, pending:true}
+      ],
+      ops: [
+        {name:"Mercedes", role:"Fabrication Manager", status:"warn",
+          kpis:[{label:"Last KPI",value:"Jul 16",note:"6+ weeks",cls:"red"},{label:"Aug SC",value:"$600",note:"Meagan Coleman",cls:"green"},{label:"Robot",value:"Fixed?",note:"Was broken Aug 17-19",cls:"amber"},{label:"September",value:"KPI restart",note:"Needed urgently"}],
+          progressLabel:"Visibility", progressPct:5, progressNote:"6+ weeks dark", blocker:"🔴 KPI dark 6+ weeks — Sep 1 restart needed"},
+        {name:"Britney", role:"Admin / Front Desk", status:"pending",
+          kpis:[{label:"Start",value:"Jul 23",note:"Week 6"},{label:"KPI",value:"Never started",note:"",cls:"red"},{label:"September",value:"Week 7",note:"Final deadline"},{label:"Status",value:"Onboarding",note:"Admin role"}],
+          progressLabel:"Onboarding", progressPct:10, progressNote:"Week 6 — KPI never started", blocker:"🔴 Sep 1 is final deadline for KPI", pending:true}
+      ]
+    }
+  }
+,
+  {
+    eyebrow: "Week 14",
+    dates: "Sep 1 – 3, 2026",
+    revenue: [
+      {name:"Stephanie", value:"$24,544.34", note:"6 closings Sep 1–3 — 55264 CT+Faucet $6.8K (Sep 1) · 55266 $5.9K (Sep 1) · 55283 $4.7K (Sep 2) · 2 more Sep 3"},
+      {name:"Jessica (HD)", value:"$2,650.00", note:"3627 Shower Glass (Sep 2)"},
+      {name:"Eveline", value:"$0 confirmed", note:"1 sale in KPI Sep 1 — not yet in Sales Control"},
+      {name:"Matos", value:"$0", note:"No new entries"}
+    ],
+    activity: [
+      {label:"Total Leads", value:"7", note:"Julia (7) — Sep 1-2 only"},
+      {label:"Calls Made", value:"52", note:"Julia (27) + Eveline (26) — Sep 1-2"},
+      {label:"Appts Scheduled", value:"7", note:"Julia (7) — Sep 1-2"},
+      {label:"Week Total", value:"$27,194", note:"Week just started — Sep 1-3 only · Stephanie strong open"}
+    ],
+    worked: [
+      "Stephanie opened September with 6 closings in 3 days — $24,544. Strongest 3-day start to any month this year.",
+      "Glendon Sep 2: Leadership sync with Loiny covering RD Station automation, fabrication SOPs, Stephanie behavior, Fulvio meeting, new KPI model",
+      "Glendon Sep 2: 1:1 with Stephanie + Loiny — KPI gap 5 weeks addressed directly. Behavior affecting team environment raised. Stephanie reinforced as team reference standard.",
+      "Julia Sep 1: 13 calls, 5 appts — strong first day of month. Sep 2: 14 calls, 2 appts.",
+      "Eveline Sep 1: 15 calls, 1 appt, 1 sale (not yet in Sales Control). Sep 2: 11 calls.",
+      "3 unqualified leads Sep 1 (service not offered) — Julia flagged. Lead quality conversation continuing."
+    ],
+    attention: [
+      "Stephanie KPI still blank since Jul 23 — but 1:1 happened Sep 2 with Loiny + Glendon. Monitor if entries start appearing this week.",
+      "Eveline sale Sep 1 not yet in Sales Control — confirm logging",
+      "Chelsea KPI never started — Week 5 of onboarding, header only",
+      "Sheylla KPI — Week 2, check if she started filling",
+      "3 unqualified leads Sep 1 (Julia) — service not offered. Portal cleanup still needed."
+    ],
+    blockers: [
+      {owner:"Stephanie — KPI Gap Addressed", text:"1:1 Sep 2 with Glendon + Loiny. KPI blank since Jul 23 raised directly. Monitor for first entries this week.", resolved:false},
+      {owner:"Eveline — Sep 1 Sale Pending SC", text:"1 sale logged in KPI Sep 1 not yet in Sales Control. Confirm logging.", resolved:false},
+      {owner:"Lead Quality — Unqualified Leads", text:"3 unqualified leads Sep 1 (service not offered). Julia flagged. HD portal cleanup still pending.", resolved:false}
+    ],
+    agents: {
+      sales: [
+        {name:"Julia", role:"SDR / Inside Sales — High Volume", status:"active",
+          kpis:[{label:"Calls (Sep 1-2)",value:"27",note:"Strong start",cls:"gold"},{label:"Appts Set",value:"7",note:"Sep 1-2",cls:"green"},{label:"Leads",value:"7",note:"3 unqualified Sep 1"},{label:"Best Day",value:"Sep 1",note:"13 calls · 5 appts",cls:"green"}],
+          progressLabel:"Week Activity", progressPct:82, progressNote:"Strong start to September", blocker:null},
+        {name:"Stephanie", role:"Sales Agent — Countertops", status:"warn",
+          kpis:[{label:"Sep Revenue",value:"$24,544",note:"6 closings Sep 1–3",cls:"green"},{label:"1:1 Sep 2",value:"Done",note:"Glendon + Loiny — KPI addressed",cls:"amber"},{label:"KPI Sheet",value:"Still blank",note:"Watch for entries this week",cls:"red"},{label:"Aug Final",value:"$64,220",note:"Led August",cls:"green"}],
+          progressLabel:"September Start", progressPct:70, progressNote:"$24.5K in 3 days", blocker:"⚠ KPI addressed in 1:1 — monitor for entries"},
+        {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"active",
+          kpis:[{label:"Calls (Sep 1-2)",value:"26",note:"Active start",cls:"gold"},{label:"Sep 1 Sale",value:"1",note:"Pending Sales Control",cls:"amber"},{label:"Aug Final",value:"$28,780",note:"9 closings",cls:"green"},{label:"Status",value:"Active",note:"Building pipeline"}],
+          progressLabel:"September Start", progressPct:60, progressNote:"Active — sale pending SC", blocker:null},
+        {name:"Jessica", role:"Sales Agent — Shower Glass", status:"active",
+          kpis:[{label:"Sep Revenue",value:"$2,650",note:"3627 SG Sep 2",cls:"green"},{label:"Aug Final",value:"$31,344",note:"9 closings",cls:"green"},{label:"Status",value:"Active",note:"Pipeline continuing"},{label:"YTD",value:"$397,925",note:"",cls:"green"}],
+          progressLabel:"September Start", progressPct:40, progressNote:"$2.7K — week just started", blocker:null},
+        {name:"Chelsea", role:"Sales Agent — Onboarding Week 5", status:"pending",
+          kpis:[{label:"Onboarding",value:"Week 5",note:"1:1 with Glendon done"},{label:"KPI Sheet",value:"Never started",note:"Header only",cls:"red"},{label:"September",value:"Must start",note:"Week 5 = final deadline"},{label:"Status",value:"Learning",note:"No sales yet"}],
+          progressLabel:"Onboarding", progressPct:40, progressNote:"Week 5 — KPI deadline today", blocker:"🔴 KPI never started — Sep is the deadline", pending:true},
+        {name:"Sheylla", role:"Sales Agent — Onboarding Week 2", status:"pending",
+          kpis:[{label:"Started",value:"Aug 25",note:"1:1 with Glendon done"},{label:"KPI Sheet",value:"Week 2",note:"Check entries",cls:"amber"},{label:"September",value:"Week 2",note:"First full month"},{label:"Status",value:"Onboarding",note:"Building knowledge"}],
+          progressLabel:"Onboarding", progressPct:20, progressNote:"Week 2 — monitoring", blocker:null, pending:true}
+      ],
+      ops: [
+        {name:"Mercedes", role:"Fabrication Manager", status:"warn",
+          kpis:[{label:"Last KPI",value:"Jul 16",note:"7+ weeks",cls:"red"},{label:"Robot",value:"Status?",note:"Was broken Aug 17-19",cls:"amber"},{label:"Fabrication SOPs",value:"In progress",note:"Discussed Sep 2 with Loiny",cls:"amber"},{label:"Sep",value:"KPI restart",note:"Needed urgently"}],
+          progressLabel:"Visibility", progressPct:5, progressNote:"7+ weeks dark", blocker:"🔴 KPI dark 7+ weeks — Sep restart critical"},
+        {name:"Britney", role:"Admin / Front Desk", status:"pending",
+          kpis:[{label:"Start",value:"Jul 23",note:"Week 7"},{label:"KPI Sheet",value:"Never started",note:"",cls:"red"},{label:"Week",value:"7",note:"of onboarding"},{label:"Status",value:"Admin",note:"No KPI ever"}],
+          progressLabel:"Onboarding", progressPct:10, progressNote:"Week 7 — KPI never started", blocker:"🔴 Sep 1 was final deadline", pending:true}
+      ]
+    }
+  }
+,
+  {
+    eyebrow: "Week 15",
+    dates: "Sep 4 – 10, 2026",
+    revenue: [
+      {name:"Jarvis Holley", value:"$68,855.00", note:"Sep 8: $41,364 (4 closings) · Sep 9: $27,491 (1 closing) — Bath Remodeling"},
+      {name:"Chelsea Foster", value:"$28,747.64", note:"🎉 First closing ever! Sep 10 — 4 closings incl. $17,991 full renovation"},
+      {name:"Eveline", value:"$14,768.20", note:"3 closings Sep 4 — $3.8K + $5.4K + $5.5K in one day"},
+      {name:"Stephanie", value:"$6,875.00", note:"55300 $1.2K (Sep 8) + 55321 $5.7K (Sep 9)"},
+      {name:"Jessica (HD)", value:"$3,345.00", note:"2 closings — 13934 $2K (Sep 4) + 3592 $1.4K (Sep 9)"}
+    ],
+    activity: [
+      {label:"SDR Leads (Julia+Otavio)", value:"47+5", note:"Julia: 47 leads, 83 calls, 30 appts · Otavio: 5 appts"},
+      {label:"Julia Bath Reno Conv.", value:"60.7%", note:"Avg Sep 5-10 · Sep 9: 100% FU conv. · Sep 10: 66.7%"},
+      {label:"Julia SG Conv.", value:"43.8%", note:"Sep 8 Shower Glass · 25% Sep 9 · 50% Sep 10"},
+      {label:"Week Total (Sales Control)", value:"$124,121", note:"Jarvis $68.9K + Chelsea $28.7K debut · New scorecard system launched"}
+    ],
+    worked: [
+      "Jarvis debut: Sep 8 $41,364 (4 closings) + Sep 9 $27,491 (full renovation) = $68,855 in first 2 days",
+      "🎉 Chelsea Foster first closing: $28,747 on Sep 10 — 4 closings including $17,991 full renovation. First month, first week with sales.",
+      "Eveline: 3 closings on Sep 4 alone — $14,768 in one day. Strong start to the month.",
+      "Glendon Sep 4 — All Team Meeting: HD Annual Review debrief. 12.22% conversion gap identified. In-home visits mandatory. Buy-now promotions. Weekly training Tue/Thu.",
+      "Glendon Sep 4 — SDR Team meeting: new system launched. SDR team takes ownership of all calls going forward.",
+      "Stephanie KPI confirmed ACTIVE as of Sep 4 meeting. Chelsea and Sheylla KPI checked.",
+      "SDR Team Scorecard live: Julia Sep 8 peak day — Bath Reno 13 leads/15 calls/7 appts (53.8% conv.) + SG 16 leads/21 calls/7 appts. Sep 10: 5 entries across Julia+Otavio."
+    ],
+    attention: [
+      "Jarvis Holley — who is he? New Bath Remodeling seller not previously in dashboard. Likely Anderson replacement. Confirm role and add to team.",
+      "Chelsea $28,747 — confirm these are real closings and not test entries. 4 closings on first week is exceptional.",
+      "Stephanie KPI: confirmed active Sep 4 — but Stephanie KPI sheet still shows last entry Jul 23. Monitor if entries appear.",
+      "Julia Sep 8-9: 0 calls but 6 appts logged — new SDR system may track differently. Confirm what changed.",
+      "Sheylla KPI: still header only. Week 3 of onboarding without any data."
+    ],
+    blockers: [
+      {owner:"Jarvis — Who Is He?", text:"New seller with $68,855 in first 2 days. Bath Remodeling full scope. Not previously in dashboard. Need to confirm role, start date, and KPI setup.", resolved:false},
+      {owner:"Stephanie KPI — Confirmed Active But Empty", text:"Sep 4 meeting confirmed KPI active. KPI sheet still shows last entry Jul 23. Watch for first September entries.", resolved:false},
+      {owner:"Sheylla — KPI Still Empty", text:"Week 3 of onboarding. KPI sheet header only. Needs to start this week.", resolved:false},
+      {owner:"Conversion Rate Gap", text:"12.22% conversion gap identified in HD Annual Review. In-home visits now mandatory. 48hr follow-up rule established. Compliance monitoring needed.", resolved:false},
+      {owner:"Showerglass — Material Not Ordered Sep 8", text:"Sep 8 scorecard: material request flagged but not fulfilled. Blocked installs that day. Note by Jessica: 'Request for material to be ordered but I did not order any myself.'", resolved:false},
+      {owner:"Glendon Scorecard — Not Yet Filled", text:"New Coaching Leadership scorecard blank for Sep 4-10. Needs to be filled based on this week’s observations.", resolved:false},
+      {owner:"Stephanie + Jarvis Scorecards — Blank", text:"Both 30-Day scorecards have no entries this week. First week of new system — reinforce daily input habit.", resolved:false}
+    ],
+    agents: {
+      sales: [
+        {name:"Julia", role:"SDR / Inside Sales — New System", status:"active",
+          kpis:[{label:"Leads (Sep 4-10)",value:"28",note:"Strong week",cls:"gold"},{label:"Appts",value:"12",note:"Sep 4–10",cls:"green"},{label:"Labor Day",value:"Sep 7",note:"0 calls, 7 leads"},{label:"New System",value:"Sep 4",note:"SDR owns all calls",cls:"green"}],
+          progressLabel:"Weekly Activity", progressPct:85, progressNote:"New SDR system launched", blocker:null},
+        {name:"Stephanie", role:"Sales Agent — Countertops", status:"active",
+          kpis:[{label:"Sep Revenue",value:"$31,419",note:"W14 $24.5K + W15 $6.9K",cls:"green"},{label:"KPI",value:"Confirmed active",note:"Sep 4 meeting",cls:"amber"},{label:"55321",value:"$5,670",note:"Sep 9 — strongest closing",cls:"green"},{label:"YTD",value:"$637,574",note:"",cls:"green"}],
+          progressLabel:"September Revenue", progressPct:72, progressNote:"$31.4K — solid month", blocker:"⚠ KPI sheet still shows Jul 23 last entry"},
+        {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"active",
+          kpis:[{label:"Sep Revenue",value:"$14,768",note:"3 closings Sep 4",cls:"green"},{label:"Sep 4",value:"$14,768",note:"All in one day",cls:"green"},{label:"Calls (W15)",value:"24",note:"Sep 4–10"},{label:"Aug Final",value:"$28,780",note:"",cls:"green"}],
+          progressLabel:"September Revenue", progressPct:65, progressNote:"$14.8K", blocker:null},
+        {name:"Jessica", role:"Sales Agent — Shower Glass", status:"active",
+          kpis:[{label:"Sep Revenue",value:"$7,671",note:"4 closings total",cls:"green"},{label:"W15",value:"$3,345",note:"Sep 4 + Sep 9"},{label:"Pipeline",value:"Active",note:"Consistent Shower Glass"},{label:"YTD",value:"$405,596",note:"",cls:"green"}],
+          progressLabel:"September Revenue", progressPct:50, progressNote:"$7.7K", blocker:null},
+        {name:"Chelsea", role:"Sales Agent — First Closings!", status:"active",
+          kpis:[{label:"FIRST WEEK",value:"$28,747.64",note:"4 closings Sep 10",cls:"green"},{label:"Biggest",value:"$17,991",note:"Full renovation",cls:"green"},{label:"KPI",value:"Checked Sep 4",note:"Active",cls:"green"},{label:"Status",value:"🎉 Active",note:"First sales week"}],
+          progressLabel:"September Revenue", progressPct:90, progressNote:"$28.7K first week!", blocker:null},
+        {name:"Jarvis", role:"Sales Agent — Bath Remodeling", status:"active",
+          kpis:[{label:"Sep Revenue",value:"$68,855",note:"Sep 8–9 debut",cls:"green"},{label:"Sep 16",value:"$58,864",note:"3 closings — first SC entry",cls:"green"},{label:"Sep 20",value:"$31,064",note:"3 more closings",cls:"green"},{label:"Role",value:"New — confirm",note:"Anderson replacement?",cls:"amber"}],
+          progressLabel:"September Debut", progressPct:100, progressNote:"$68.9K — historic debut", blocker:"⚠ Confirm role + KPI setup needed"},
+        {name:"Sheylla", role:"Sales Agent — Onboarding Week 3", status:"pending",
+          kpis:[{label:"Week",value:"3",note:"of onboarding"},{label:"KPI",value:"Header only",note:"Never started",cls:"red"},{label:"Sales",value:"0",note:"Still onboarding"},{label:"Status",value:"Learning",note:""}],
+          progressLabel:"Onboarding", progressPct:25, progressNote:"Week 3", blocker:"🔴 KPI still empty — Week 3", pending:true}
+      ],
+      ops: [
+        {name:"Mercedes", role:"Fabrication Manager", status:"warn",
+          kpis:[{label:"Last KPI",value:"Jul 16",note:"8+ weeks",cls:"red"},{label:"SOPs",value:"In progress",note:"Discussed Sep 2",cls:"amber"},{label:"Robot",value:"Sep status?",note:""},{label:"Visibility",value:"Dark",note:"8+ weeks no data",cls:"red"}],
+          progressLabel:"Visibility", progressPct:5, progressNote:"8+ weeks dark", blocker:"🔴 KPI dark 8+ weeks"},
+        {name:"Britney", role:"Ops Data Control & Audit", status:"active",
+          kpis:[{label:"Week",value:"7"},{label:"KPI",value:"Never started",note:"",cls:"red"},{label:"Start",value:"Jul 23"},{label:"Status",value:"Admin",note:""}],
+          progressLabel:"Onboarding", progressPct:10, progressNote:"Week 7 — KPI never started", blocker:"🔴 KPI never started", pending:true},
+        {name:"Saulo", role:"Scheduling & Field Coordination", status:"warn",
+          kpis:[{label:"Scorecard",value:"Blank",note:"Sep 17+ all empty",cls:"red"},{label:"GA Capacity",value:"770 SF",note:"Pre-set weekly target",cls:"amber"},{label:"AL Capacity",value:"360 SF",note:"Pre-set weekly target",cls:"amber"},{label:"7-Day Board",value:"Empty",note:"No jobs entered",cls:"red"}],
+          progressLabel:"Scheduling Scorecard", progressPct:0, progressNote:"Launched Sep 17 — zero entries", blocker:"🔴 Blank since launch Sep 17"}
+      ]
+    }
+  }
+,
+  {
+    eyebrow: "Week 16",
+    dates: "Sep 11 – 17, 2026",
+    revenue: [
+      {name:"Jarvis Holley", value:"$58,864.00", note:"Sep 16 — Randy $35,991 (full reno) · Jack $12,882 · Wendell $9,991 — 3 closings em um dia"},
+      {name:"Jessica (HD)", value:"$17,575.00", note:"9 closings Sep 11–16 — Shower Glass consistente"},
+      {name:"Eveline", value:"$1,975.20", note:"2 closings Sep 14 — Alabama HD leads"},
+      {name:"Stephanie", value:"$2,294.00", note:"55340 Countertops Sep 14"}
+    ],
+    activity: [
+      {label:"Week Total", value:"$80,708", note:"Jarvis $58.9K lidera · Jessica 9 closings SG"},
+      {label:"Jarvis Sep 16", value:"$58,864", note:"Primeiro dia de vendas — 3 closings em um dia"},
+      {label:"Jessica Closings", value:"9", note:"Sep 11–16 — Shower Glass pipeline forte"},
+      {label:"SDR Scorecard", value:"Para em Sep 11", note:"Julia e Otavio sem entradas Sep 12–17"}
+    ],
+    worked: [
+      "Jarvis primeira venda: Sep 16 — Randy $35,991 (maior closing individual do mês) + Jack $12,882 + Wendell $9,991 = $58,864 em um único dia",
+      "Jessica: 9 closings Sep 11–16 — Shower Glass consistente. Maior semana de setembro em volume de closings.",
+      "Showerglass scorecard Sep 11-16: Sep 11 $8,215 (HD portal issue) · Sep 14 $1,390 · Sep 15 $5,360 · Sep 16 $3,075 (material not received)",
+      "Eveline: 2 closings Sep 14 Alabama — F60516120 $405 + F62016969 $1,570",
+      "Stephanie: 55340 CT Sep 14 $2,294"
+    ],
+    attention: [
+      "SDR scorecard para em Sep 11 — Julia e Otavio sem entradas Sep 12-17. 6 dias sem visibilidade.",
+      "Showerglass Sep 17: entries incompletas. Sep 18-22: MISSING.",
+      "Jarvis scorecard 90-Day: $58.9K no primeiro dia sem nenhuma entrada no scorecard. Acesso recebido agora.",
+      "Chelsea: nenhuma entrada na Sales Control desde Sep 10. Duas semanas sem atividade visível."
+    ],
+    blockers: [
+      {owner:"SDR — Para Sep 11", text:"SDR Team Scorecard tem dados Sep 5-11. Sep 12-17 sem entradas. Julia e Otavio precisam retomar.", resolved:false},
+      {owner:"Jarvis — Scorecard Vazio", text:"$58,864 no primeiro dia de vendas. Zero entradas no scorecard 90-Day. Acesso recebido agora.", resolved:false},
+      {owner:"Showerglass — Sep 17 Incompleto", text:"Sep 16 blocker: material not being received. Sep 17 entries incompletas.", resolved:false},
+      {owner:"Chelsea — 2 Semanas Sem SC", text:"Debut $28,748 em Sep 10. Sem novas entradas Sep 11-17. O que está no pipeline?", resolved:false}
+    ],
+    agents: {
+      sales: [
+        {name:"Jarvis", role:"Sales Agent — Bath Remodeling", status:"active",
+          kpis:[{label:"Sep 16",value:"$58,864",note:"Primeiro dia de vendas",cls:"green"},{label:"Randy",value:"$35,991",note:"Maior closing do mês",cls:"green"},{label:"Scorecard",value:"Vazio",note:"Acesso recebido agora",cls:"amber"},{label:"Status",value:"Active",note:"Bath Remodeling"}],
+          progressLabel:"September Revenue", progressPct:100, progressNote:"$58.9K no primeiro dia", blocker:"⚠ Scorecard 90-Day vazio — preencher a partir de hoje"},
+        {name:"Jessica", role:"Sales Agent — Shower Glass", status:"active",
+          kpis:[{label:"W16 Revenue",value:"$17,575",note:"9 closings",cls:"green"},{label:"Sep Total",value:"$25,246",note:"Sep 1–17",cls:"green"},{label:"Scorecard",value:"Ativo ✅",note:"Sep 8–16 preenchido"},{label:"YTD",value:"$405,596+",note:"",cls:"green"}],
+          progressLabel:"September Revenue", progressPct:75, progressNote:"$25.2K", blocker:null},
+        {name:"Stephanie", role:"Sales Agent — Countertops", status:"active",
+          kpis:[{label:"W16 Revenue",value:"$2,294",note:"55340 Sep 14",cls:"amber"},{label:"Sep Total",value:"$33,713",note:"Sep 1–17",cls:"green"},{label:"Scorecard",value:"Vazio",note:"Acesso recebido agora",cls:"amber"},{label:"YTD",value:"$639,868+",note:"",cls:"green"}],
+          progressLabel:"September Revenue", progressPct:65, progressNote:"$33.7K", blocker:"⚠ Scorecard 30-Day vazio — preencher a partir de hoje"},
+        {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"active",
+          kpis:[{label:"W16 Revenue",value:"$1,975",note:"2 closings Sep 14",cls:"amber"},{label:"Sep Total",value:"$16,743",note:"Sep 1–17",cls:"green"},{label:"Alabama",value:"Ativo",note:"HD leads convertendo"},{label:"Scorecard",value:"SDR Team",note:"Pendente Chrome",cls:"amber"}],
+          progressLabel:"September Revenue", progressPct:45, progressNote:"$16.7K", blocker:null},
+        {name:"Chelsea", role:"Sales Agent — Active", status:"warn",
+          kpis:[{label:"Sep Total",value:"$28,748",note:"Sep 10 debut",cls:"green"},{label:"Sep 11-17",value:"$0",note:"Sem entradas",cls:"red"},{label:"Scorecard",value:"Vazio",note:"Acesso recebido agora",cls:"amber"},{label:"Status",value:"Monitorar",note:"2 semanas sem SC",cls:"red"}],
+          progressLabel:"Post-Debut Activity", progressPct:20, progressNote:"2 semanas sem SC", blocker:"🔴 2 semanas sem SC — verificar pipeline"},
+        {name:"Julia", role:"SDR — Inside Sales", status:"warn",
+          kpis:[{label:"Scorecard",value:"Para Sep 11",note:"6 dias sem entradas",cls:"red"},{label:"Sep 11 SG",value:"3 appts",note:"100% FU conv",cls:"green"},{label:"Sep 11 Bath",value:"10 appts",note:"10 calls",cls:"green"},{label:"Status",value:"Retomar",note:"Segunda-feira",cls:"amber"}],
+          progressLabel:"SDR Scorecard", progressPct:40, progressNote:"Para em Sep 11", blocker:"🔴 SDR scorecard parou Sep 11"}
+      ],
+      ops: [
+        {name:"Mercedes", role:"Fabrication Manager", status:"warn",
+          kpis:[{label:"Last KPI",value:"Jul 16",note:"9+ semanas",cls:"red"},{label:"Scorecard",value:"Sem acesso",note:""},{label:"SOPs",value:"Em andamento",note:""},{label:"Visibilidade",value:"Dark",note:"",cls:"red"}],
+          progressLabel:"Visibilidade", progressPct:5, progressNote:"9+ semanas dark", blocker:"🔴 KPI dark 9+ semanas"},
+        {name:"Saulo", role:"Scheduling & Field Coordination", status:"warn",
+          kpis:[{label:"Scorecard",value:"Vazio",note:"Lançado Sep 17",cls:"red"},{label:"GA Capacity",value:"770 SF/sem",note:"Pre-set",cls:"amber"},{label:"AL Capacity",value:"360 SF/sem",note:"Pre-set",cls:"amber"},{label:"Acesso",value:"Recebido",note:"Preencher a partir de hoje",cls:"green"}],
+          progressLabel:"Scheduling Scorecard", progressPct:0, progressNote:"Vazio desde Sep 17", blocker:"🔴 Zero entradas desde o lançamento"},
+        {name:"Britney", role:"Ops Data Control & Audit", status:"active",
+          kpis:[{label:"Scorecard",value:"Ativo ✅",note:"Sep 21",cls:"green"},{label:"Exceptions",value:"5",note:"PO/Material Sep 21",cls:"amber"},{label:"Slabs",value:"2",note:"Traceable"},{label:"Jobs Audited",value:"1",note:"Review request sent",cls:"green"}],
+          progressLabel:"30-Day Ops Scorecard", progressPct:35, progressNote:"Primeira entrada Sep 21", blocker:null}
+      ]
+    }
+  },
+  {
+    eyebrow: "Week 17",
+    dates: "Sep 18 – 22, 2026 (em andamento)",
+    revenue: [
+      {name:"Jarvis Holley", value:"$31,064.00", note:"3 closings Sep 20 — Kumar $26,482 · Janet Johnson $2,691 · Linda Reece $1,891"},
+      {name:"Stephanie", value:"$13,534.00", note:"55341 CT $12,268 + Accessories $1,266 (Sep 22)"},
+      {name:"Jessica (HD)", value:"$5,140.00", note:"3659 $1,840 (Sep 18) + 3677 $3,300 (Sep 22)"},
+      {name:"M&M Services", value:"$360.00", note:"Fabricação Sep 22"}
+    ],
+    activity: [
+      {label:"Semana Total", value:"$50,098", note:"Semana em andamento — Sep 18–22"},
+      {label:"Setembro Total", value:"~$212,000", note:"Sep 1–22 confirmado — Jarvis $89.9K + Stephanie $47.2K + Jessica $30.4K"},
+      {label:"Jarvis Sep Total", value:"$89,919", note:"Sep 16 + Sep 20 confirmados"},
+      {label:"Dias Restantes", value:"8", note:"Sep 23–30 — fechar forte"}
+    ],
+    worked: [
+      "Jarvis Sep 20: Kumar $26,482 (Renovation + SG + Flooring) foi o maior closing do dia",
+      "Stephanie Sep 22: 55341 CT $12,268 + Accessories $1,266 — fechamento forte na sexta",
+      "Jessica Sep 18: 3659 $1,840 | Sep 22: 3677 $3,300 — pipeline Shower Glass consistente",
+      "Britney Ops Sep 21: primeira entrada — 5 exceptions PO/Material · 2 slabs traceable · 1 job auditado",
+      "Saulo e Britney receberam acesso aos scorecards esta semana"
+    ],
+    attention: [
+      "Jarvis $89,919 em setembro — primeiro mês. Scorecard 90-Day ainda vazio. Primeira semana com acesso.",
+      "Chelsea: zero SC desde Sep 10. Duas semanas sem atividade visível.",
+      "Sheylla: sem entradas visíveis em setembro inteiro.",
+      "Showerglass Sep 18-22: MISSING — 5 dias sem preenchimento.",
+      "SDR parou Sep 11 — Julia e Otavio precisam retomar imediatamente."
+    ],
+    blockers: [
+      {owner:"Chelsea — 2 Semanas Sem SC", text:"Debut $28,748 em Sep 10. Zero SC Sep 11-22. Verificar pipeline direto.", resolved:false},
+      {owner:"Showerglass Sep 18-22 — MISSING", text:"5 dias sem preenchimento no scorecard. Jessica ou Paul precisam preencher retroativamente.", resolved:false},
+      {owner:"SDR Sep 12-22 — Parado", text:"10 dias sem entradas. Julia e Otavio precisam retomar na segunda-feira.", resolved:false},
+      {owner:"Sheylla — Setembro Inteiro Sem Atividade", text:"Week 4+ de onboarding. Zero SC entries em setembro. Quando é a primeira venda esperada?", resolved:false}
+    ],
+    agents: {
+      sales: [
+        {name:"Jarvis", role:"Sales Agent — Bath Remodeling", status:"active",
+          kpis:[{label:"Sep Total",value:"$89,919",note:"Sep 16 + Sep 20",cls:"green"},{label:"Sep 20",value:"$31,064",note:"3 closings",cls:"green"},{label:"Maior Closing",value:"$35,991",note:"Randy Sep 16",cls:"green"},{label:"Scorecard",value:"Acesso recebido",note:"Preencher agora",cls:"amber"}],
+          progressLabel:"Setembro — Primeiro Mês", progressPct:100, progressNote:"$89.9K confirmado", blocker:"⚠ Scorecard vazio — preencher a partir de hoje"},
+        {name:"Stephanie", role:"Sales Agent — Countertops", status:"active",
+          kpis:[{label:"Sep Total",value:"$47,247",note:"Sep 1–22",cls:"green"},{label:"Sep 22",value:"$13,534",note:"Fechamento forte",cls:"green"},{label:"Scorecard",value:"Acesso recebido",note:"Preencher agora",cls:"amber"},{label:"YTD",value:"$653,402",note:"",cls:"green"}],
+          progressLabel:"September Revenue", progressPct:78, progressNote:"$47.2K", blocker:"⚠ Scorecard 30-Day vazio — preencher agora"},
+        {name:"Jessica", role:"Sales Agent — Shower Glass", status:"active",
+          kpis:[{label:"Sep Total",value:"$30,386",note:"Sep 1–22",cls:"green"},{label:"W17",value:"$5,140",note:"Sep 18 + 22",cls:"green"},{label:"Scorecard",value:"Ativo ✅",note:"Sep 8–17 preenchido"},{label:"YTD",value:"$405,596+",note:"",cls:"green"}],
+          progressLabel:"September Revenue", progressPct:82, progressNote:"$30.4K", blocker:"⚠ Sep 18-22 MISSING no scorecard"},
+        {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"active",
+          kpis:[{label:"Sep Total",value:"$16,743",note:"Sep 1–22",cls:"green"},{label:"W17",value:"$0",note:"Sem novas entradas"},{label:"Alabama",value:"Pipeline",note:"Building"},{label:"Scorecard",value:"SDR Team",note:"Pendente",cls:"amber"}],
+          progressLabel:"September Revenue", progressPct:45, progressNote:"$16.7K", blocker:null},
+        {name:"Chelsea", role:"Sales Agent — Active", status:"warn",
+          kpis:[{label:"Sep Total",value:"$28,748",note:"Sep 10 apenas",cls:"green"},{label:"Sep 11-22",value:"$0",note:"Sem entradas",cls:"red"},{label:"Scorecard",value:"Acesso recebido",note:"Preencher agora",cls:"amber"},{label:"Status",value:"Verificar",note:"2 semanas sem SC",cls:"red"}],
+          progressLabel:"Post-Debut Activity", progressPct:20, progressNote:"2 semanas sem SC", blocker:"🔴 2 semanas sem SC — verificar pipeline"},
+        {name:"Sheylla", role:"Sales Agent — Onboarding", status:"pending",
+          kpis:[{label:"Setembro",value:"$0",note:"Sem SC entries",cls:"red"},{label:"Onboarding",value:"Week 4+",note:""},{label:"Scorecard",value:"Vazio",note:"",cls:"red"},{label:"Status",value:"Aprendendo",note:""}],
+          progressLabel:"Onboarding", progressPct:30, progressNote:"Sem vendas ainda", blocker:"⚠ Setembro inteiro sem atividade visível", pending:true}
+      ],
+      ops: [
+        {name:"Mercedes", role:"Fabrication Manager", status:"warn",
+          kpis:[{label:"Last KPI",value:"Jul 16",note:"9+ semanas",cls:"red"},{label:"Scorecard",value:"Sem acesso",note:""},{label:"SOPs",value:"Em andamento",note:""},{label:"Visibilidade",value:"Dark",note:"",cls:"red"}],
+          progressLabel:"Visibilidade", progressPct:5, progressNote:"9+ semanas dark", blocker:"🔴 KPI dark 9+ semanas"},
+        {name:"Saulo", role:"Scheduling & Field Coordination", status:"warn",
+          kpis:[{label:"Scorecard",value:"Acesso recebido",note:"Preencher agora",cls:"amber"},{label:"GA Capacity",value:"770 SF/sem",note:"Target pre-set",cls:"amber"},{label:"AL Capacity",value:"360 SF/sem",note:"Target pre-set",cls:"amber"},{label:"7-Day Board",value:"Vazio",note:"",cls:"red"}],
+          progressLabel:"Scheduling Scorecard", progressPct:5, progressNote:"Acesso recebido — começar hoje", blocker:"🔴 Zero entradas desde o lançamento"},
+        {name:"Britney", role:"Ops Data Control & Audit", status:"active",
+          kpis:[{label:"Scorecard",value:"Ativo ✅",note:"Sep 21",cls:"green"},{label:"Exceptions",value:"5",note:"PO/Material Sep 21",cls:"amber"},{label:"Slabs",value:"2",note:"Traceable"},{label:"Jobs Audited",value:"1",note:"Review request sent",cls:"green"}],
+          progressLabel:"30-Day Ops Scorecard", progressPct:35, progressNote:"Primeira entrada Sep 21", blocker:null}
+      ]
+    }
+  }
+,
+  {
+    eyebrow: "Week 18",
+    dates: "Sep 23 – 30, 2026 — Fechamento de Setembro",
+    revenue: [
+      {name:"Jessica (HD)", value:"$10,515.00", note:"5 closings — 3666 $1.4K (Sep 24) · 3671 $2.2K + 3692 $1.3K (Sep 28) · 3645 $3.4K + 3670 $2.2K (Sep 29)"},
+      {name:"Stephanie", value:"$0", note:"Sem novas entradas confirmadas"},
+      {name:"Jarvis", value:"$0", note:"Sem novas entradas confirmadas"},
+      {name:"Eveline", value:"$0", note:"Sem novas entradas confirmadas"}
+    ],
+    activity: [
+      {label:"Setembro FINAL", value:"$297,818", note:"Melhor mês de vendedores de 2026 · 5 sellers ativos"},
+      {label:"Jarvis Sep Total", value:"$158,783", note:"Sep 8–9–16–20 — 11 closings no primeiro mês"},
+      {label:"Jessica Sep Total", value:"$40,901", note:"Showerglass $18,080 sold Sep 22–29 · Sep 30 MISSING"},
+      {label:"Stephanie Sep Total", value:"$47,247", note:"Lidera setembro entre as sellers históricas"}
+    ],
+    worked: [
+      "Jessica fechou setembro forte: 5 closings Sep 24–29 = $10,515. Consistente até o último dia do mês.",
+      "Setembro FINAL: $297,818 — melhor mês de vendedores do ano. Primeira vez acima de $200K sem o batch do Matos.",
+      "Jarvis $158,783 no primeiro mês — 11 closings em 4 dias de vendas (Sep 8, 9, 16, 20). Histórico.",
+      "Chelsea $28,748 em Sep 10 (primeiro dia). Sem novas entradas no restante do mês.",
+      "Britney: primeira entrada scorecard Ops em Sep 21. Saulo e Jarvis receberam acesso na última semana.",
+      "Otavio expandiu para Countertops em Sep 22 — trabalhou 17 leads antigos + 4 novos leads, 2 appts agendados.",
+      "SDR Sep 22: Julia Bath Reno 100% conversão (3 leads → 3 appts). Showerglass Sep 29: $5,580 — melhor dia da semana final."
+    ],
+    attention: [
+      "Setembro fechado: $297,818 confirmado na Sales Control.",
+      "Jarvis, Stephanie, Chelsea scorecards: acesso recebido na última semana. Outubro é o primeiro mês completo com scorecard.",
+      "Saulo Scheduling: acesso recebido. Zero entradas ainda. Outubro começa com esse scorecard precisando de dado real.",
+      "Sheylla: setembro inteiro sem atividade visível. Precisa de conversa direta.",
+      "Chelsea: $28.7K em Sep 10 e zero após. O que está no pipeline para outubro?"
+    ],
+    blockers: [
+      {owner:"Showerglass Sep 30 — MISSING", text:"Sep 30 não foi preenchido no scorecard Showerglass. Jessica ou Paul precisam completar retroativamente.", resolved:false},
+      {owner:"Outubro — Primeiro Mês Completo com Scorecards", text:"Jarvis, Stephanie, Chelsea, Saulo e Britney todos receberam acesso em setembro. Outubro é o teste real: scorecard preenchido dia 1.", resolved:false},
+      {owner:"Sheylla — Setembro Sem Atividade", text:"Setembro inteiro sem SC entries e sem Sales Control. Quando é a primeira venda esperada?", resolved:false},
+      {owner:"Chelsea — Apenas Sep 10", text:"$28,748 no primeiro dia e nada mais em setembro. Pipeline para outubro precisa estar definido.", resolved:false}
+    ],
+    agents: {
+      sales: [
+        {name:"Jarvis", role:"Sales Agent — Bath Remodeling", status:"active",
+          kpis:[{label:"Sep FINAL",value:"$158,783",note:"11 closings — 4 dias de vendas",cls:"green"},{label:"Maior closing",value:"$35,991",note:"Randy Sep 16",cls:"green"},{label:"Outubro",value:"Day 1",note:"Scorecard começa hoje",cls:"amber"},{label:"Scorecard",value:"Acesso recebido",note:"Outubro é o teste real",cls:"amber"}],
+          progressLabel:"Setembro — Histórico", progressPct:100, progressNote:"$158.8K — melhor estreia do time", blocker:null},
+        {name:"Stephanie", role:"Sales Agent — Countertops", status:"active",
+          kpis:[{label:"Sep FINAL",value:"$47,247",note:"Lidera sellers históricas",cls:"green"},{label:"YTD",value:"$653,402",note:"",cls:"green"},{label:"Outubro",value:"Day 1",note:"Scorecard começa hoje",cls:"amber"},{label:"Scorecard",value:"Acesso recebido",note:"",cls:"amber"}],
+          progressLabel:"Setembro Revenue", progressPct:78, progressNote:"$47.2K", blocker:null},
+        {name:"Jessica", role:"Sales Agent — Shower Glass", status:"active",
+          kpis:[{label:"Sep FINAL",value:"$40,901",note:"Consistente todo o mês",cls:"green"},{label:"W18",value:"$10,515",note:"5 closings Sep 24–29",cls:"green"},{label:"YTD",value:"$446,497+",note:"",cls:"green"},{label:"Scorecard",value:"Ativo ✅",note:"Showerglass"}],
+          progressLabel:"Setembro Revenue", progressPct:85, progressNote:"$40.9K — melhor setembro", blocker:null},
+        {name:"Chelsea", role:"Sales Agent — Active", status:"warn",
+          kpis:[{label:"Sep FINAL",value:"$28,748",note:"Sep 10 apenas",cls:"green"},{label:"Sep 11-30",value:"$0",note:"3 semanas sem SC",cls:"red"},{label:"Outubro",value:"Pipeline?",note:"O que vem aí?",cls:"amber"},{label:"Scorecard",value:"Acesso recebido",note:"Começa hoje",cls:"amber"}],
+          progressLabel:"Post-Debut", progressPct:20, progressNote:"3 semanas sem atividade", blocker:"🔴 3 semanas sem SC — conversa direta"},
+        {name:"Eveline", role:"SDR / Sales — Alabama + GA", status:"active",
+          kpis:[{label:"Sep FINAL",value:"$16,743",note:"Alabama ativo",cls:"green"},{label:"YTD",value:"$282,346+",note:"",cls:"green"},{label:"Outubro",value:"Pipeline",note:"Alabama + GA"},{label:"Scorecard",value:"SDR Team",note:""}],
+          progressLabel:"Setembro Revenue", progressPct:45, progressNote:"$16.7K", blocker:null},
+        {name:"Sheylla", role:"Sales Agent — Onboarding", status:"pending",
+          kpis:[{label:"Setembro",value:"$0",note:"Sem atividade",cls:"red"},{label:"Scorecard",value:"Vazio",note:"Setembro inteiro",cls:"red"},{label:"Onboarding",value:"Week 5+",note:""},{label:"Status",value:"Conversa",note:"Direta necessária"}],
+          progressLabel:"Onboarding", progressPct:20, progressNote:"Setembro sem atividade", blocker:"🔴 Setembro inteiro sem vendas visíveis", pending:true}
+      ],
+      ops: [
+        {name:"Mercedes", role:"Fabrication Manager", status:"warn",
+          kpis:[{label:"KPI",value:"Jul 16",note:"10+ semanas dark",cls:"red"},{label:"Scorecard",value:"Sem acesso",note:""},{label:"SOPs",value:"Em andamento",note:""},{label:"Status",value:"Invisible",note:"",cls:"red"}],
+          progressLabel:"Visibilidade", progressPct:0, progressNote:"10+ semanas dark", blocker:"🔴 Fabrication completamente invisível"},
+        {name:"Saulo", role:"Scheduling & Field Coordination", status:"warn",
+          kpis:[{label:"Scorecard",value:"Acesso recebido",note:"Outubro Day 1",cls:"amber"},{label:"GA Capacity",value:"770 SF/sem",note:"Target pre-set",cls:"amber"},{label:"AL Capacity",value:"360 SF/sem",note:"Target pre-set",cls:"amber"},{label:"7-Day Board",value:"Vazio",note:"",cls:"red"}],
+          progressLabel:"Scheduling Scorecard", progressPct:5, progressNote:"Começa outubro", blocker:"⚠ Zero entradas — outubro Day 1 é o teste"},
+        {name:"Britney", role:"Ops Data Control & Audit", status:"active",
+          kpis:[{label:"Sep 21",value:"5 exceptions",note:"PO/Material",cls:"amber"},{label:"Slabs",value:"2",note:"Traceable",cls:"green"},{label:"Jobs Audited",value:"1",note:"Review request sent",cls:"green"},{label:"Outubro",value:"Continuar",note:"Daily input",cls:"green"}],
+          progressLabel:"30-Day Ops Scorecard", progressPct:40, progressNote:"Ativa — continuar em outubro", blocker:null}
+      ]
+    }
+  }
+  ,
+  {
+    eyebrow: "Week 19",
+    dates: "Oct 1–7, 2026 — Sales Meeting · Oct 7",
+    revenue: [
+      {name:"Eveline Erbert", value:"$5,140", note:"Countertops · Oct 5 closing"},
+      {name:"Jessica Wolfe", value:"$2,360", note:"SG Job 3708 $1,135 (Oct 5) + Job 3710 $1,225 (Oct 6)"},
+      {name:"Jarvis Holley", value:"$0", note:"No Sales Control entries Oct 1–6"},
+      {name:"Chelsea Foster", value:"$0", note:"No Sales Control entries Oct 1–6"}
+    ],
+    activity: [
+      {label:"Week Revenue", value:"$7,500", note:"Eveline + Jessica — 2 active sellers opening October"},
+      {label:"SDR Leads", value:"36", note:"Julia 28 (Bath Reno 8 + SG 20) · Otavio 8 (Countertops)"},
+      {label:"Appts Set", value:"35", note:"44.4% Lead→Appt conversion · Julia Bath Reno 87.5%"},
+      {label:"FU Appts", value:"16", note:"18.0% FU conversion · 89 follow-up calls made"}
+    ],
+    worked: [
+      "Eveline opened October with $5,140 Countertops closing on Oct 5. First revenue of the month.",
+      "Jessica closed 2 Shower Glass jobs: Job 3708 $1,135 (Oct 5) + Job 3710 $1,225 (Oct 6) = $2,360.",
+      "Julia hitting 87.5% Bath Reno lead→appt conversion in Week 1 of October. Best rate on the team.",
+      "SDR new scorecard (new link) active and being filled consistently — Oct 1–6 data complete.",
+      "Otavio onboarding into Countertops SDR role after migrating Sep 22. 38 calls, 7 appts in first Oct week."
+    ],
+    attention: [
+      "Jarvis 90-Day scorecard completely blank — zero entries Oct 1–6. Direct conversation required before meeting.",
+      "Chelsea 4+ consecutive weeks with no scorecard entries and no revenue. Status unclear — needs check-in.",
+      "Showerglass scorecard has revenue (Jessica closing) but scorecard entries still blank for Oct 1–6.",
+      "Shower Glass material not being received/ordered — Jessica's closings blocked at delivery 4 days straight.",
+      "Saulo Scheduling scorecard: 3 weeks with access, zero entries entered.",
+      "Britney Ops scorecard: last entry Sep 21. October completely blank — jobs need audit update.",
+      "Otavio Oct 1: lead texted STOP and blocked number. Oct 2: 3 cancelled/unresponsive."
+    ],
+    blockers: [
+      "🔴 Shower Glass material — not being ordered/received. Jessica closing but delivery blocked. Owner: Sheylla.",
+      "🔴 Jarvis 90-Day scorecard blank — accountability gap in first full month.",
+      "🔴 Chelsea no visible activity — 4+ weeks. Pipeline ownership of Countertops unclear post-Stephanie."
+    ],
+    scorecardFlags: [
+      {person:"Jarvis Holley", category:"Sales", type:"red", note:"90-Day scorecard blank — zero entries Oct 1–6", blocker:"Must fill before next meeting"},
+      {person:"Chelsea Foster", category:"Sales", type:"red", note:"4+ weeks no scorecard entries and no revenue", blocker:"Direct conversation required"},
+      {person:"Jessica Wolfe", category:"Sales", type:"amber", note:"Revenue active ($2,360) but scorecard not filled", blocker:"Fill Oct 1–6 retroactively"},
+      {person:"SDR Team", category:"SDR", type:"green", note:"New scorecard link active — Oct 1–6 data complete", blocker:null},
+      {person:"Saulo", category:"Ops", type:"amber", note:"3 weeks access · zero entries in Scheduling scorecard", blocker:"Accountability conversation needed"},
+      {person:"Britney", category:"Ops", type:"amber", note:"Last entry Sep 21 — October completely blank", blocker:"Resume daily input immediately"},
+      {person:"Eveline Erbert", category:"Sales", type:"green", note:"$5,140 Countertops — opening October with revenue", blocker:null}
+    ],
+    agents: [
+      {name:"Eveline Erbert", role:"SDR / Sales — Alabama + GA", status:"active",
+        kpis:[
+          {label:"Revenue (Oct)",value:"$5,140",note:"Countertops closing Oct 5",cls:"green"},
+          {label:"YTD",value:"$287,700",note:"Jan–Oct 6",cls:"gold"},
+          {label:"SDR Leads",value:"—",note:"Scorecard not submitted",cls:""},
+          {label:"Status",value:"Active ✓",note:"Generating revenue",cls:"green"}
+        ],
+        progressLabel:"October Opening", progressPct:68, progressNote:"On track", blocker:null},
+
+      {name:"Jessica Wolfe", role:"Sales — Shower Glass", status:"active",
+        kpis:[
+          {label:"Revenue (Oct)",value:"$2,360",note:"Jobs 3708 + 3710",cls:"green"},
+          {label:"YTD",value:"$448,857",note:"Jan–Oct 6",cls:"gold"},
+          {label:"Closings",value:"2",note:"Oct 5 + Oct 6",cls:"green"},
+          {label:"Scorecard",value:"BLANK",note:"Fill retroactively",cls:"red"}
+        ],
+        progressLabel:"October Opening", progressPct:55, progressNote:"Active — scorecard needed", blocker:"Showerglass scorecard not filled Oct 1–6"},
+
+      {name:"Jarvis Holley", role:"Senior Sales — Bath Remodeling", status:"warn",
+        kpis:[
+          {label:"Revenue (Oct)",value:"$0",note:"No SC entries",cls:"amber"},
+          {label:"Sep Final",value:"$158,783",note:"First full month",cls:"gold"},
+          {label:"90-Day Plan",value:"BLANK",note:"Zero entries Oct 1–6",cls:"red"},
+          {label:"Scorecard",value:"BLANK",note:"Must fill now",cls:"red"}
+        ],
+        progressLabel:"90-Day Scorecard", progressPct:0, progressNote:"Zero entries — action required", blocker:"90-Day scorecard completely blank — direct conversation"},
+
+      {name:"Chelsea Foster", role:"Sales — Countertops", status:"warn",
+        kpis:[
+          {label:"Revenue (Oct)",value:"$0",note:"No entries",cls:"red"},
+          {label:"Sep Debut",value:"$28,748",note:"Sep 10 debut",cls:""},
+          {label:"Scorecard",value:"BLANK",note:"4+ weeks silent",cls:"red"},
+          {label:"Status",value:"Unknown",note:"No contact visible",cls:"amber"}
+        ],
+        progressLabel:"October Activity", progressPct:0, progressNote:"No entries — 4+ weeks", blocker:"4+ consecutive weeks no activity or scorecard — status conversation needed"},
+
+      {name:"Julia", role:"SDR — Bath Reno + Shower Glass", status:"active",
+        kpis:[
+          {label:"Leads (Oct W1)",value:"28",note:"Bath Reno 8 + SG 20",cls:"gold"},
+          {label:"Calls Made",value:"83",note:"Oct 1–6",cls:"gold"},
+          {label:"Appts Set",value:"28",note:"Bath Reno 87.5% conv.",cls:"green"},
+          {label:"FU Appts",value:"12",note:"Oct 5 SG: 60% FU conv.",cls:"green"}
+        ],
+        progressLabel:"SDR Performance", progressPct:88, progressNote:"Best conversion rate on team", blocker:null},
+
+      {name:"Otavio", role:"SDR — Countertops (joined Sep 22)", status:"active",
+        kpis:[
+          {label:"Leads (Oct W1)",value:"8",note:"Countertops",cls:""},
+          {label:"Calls Made",value:"38",note:"Oct 1–6",cls:"gold"},
+          {label:"Appts Set",value:"7",note:"37.5% conv.",cls:"green"},
+          {label:"FU Appts",value:"4",note:"12.9% FU conv.",cls:""}
+        ],
+        progressLabel:"SDR Ramp", progressPct:38, progressNote:"Building — first full Oct week", blocker:null}
+    ],
+    ops: [
+      {name:"Saulo", role:"Scheduling & Field Coordination", status:"warn",
+        kpis:[
+          {label:"Scorecard",value:"BLANK",note:"3 weeks access, zero entries",cls:"red"},
+          {label:"Access Since",value:"3 weeks",note:"Has access",cls:"amber"},
+          {label:"Entries",value:"Zero",note:"No data entered",cls:"red"},
+          {label:"Action",value:"Required",note:"Accountability talk",cls:"amber"}
+        ],
+        progressLabel:"Scheduling Scorecard", progressPct:0, progressNote:"Zero entries — accountability needed", blocker:"3 weeks with access, zero entries — direct conversation required"},
+
+      {name:"Britney", role:"Ops Data Control & Audit", status:"warn",
+        kpis:[
+          {label:"Last Entry",value:"Sep 21",note:"Over 2 weeks ago",cls:"amber"},
+          {label:"Oct Status",value:"BLANK",note:"October not started",cls:"red"},
+          {label:"Jobs",value:"Pending",note:"Audit update needed",cls:"red"},
+          {label:"Action",value:"Resume Now",note:"Daily input required",cls:"amber"}
+        ],
+        progressLabel:"Ops Scorecard", progressPct:20, progressNote:"Last entry Sep 21 — resume Oct", blocker:"October completely blank — jobs need audit update"},
+
+      {name:"Sheylla", role:"Procurement Control Center", status:"active",
+        kpis:[
+          {label:"Role",value:"Procurement",note:"Not a seller",cls:""},
+          {label:"SG Material",value:"CRITICAL",note:"Not ordered/received",cls:"red"},
+          {label:"Blocker",value:"4 days",note:"Consecutive delivery issue",cls:"red"},
+          {label:"Impact",value:"Lost Revenue",note:"Jessica closing but blocked",cls:"red"}
+        ],
+        progressLabel:"Material Procurement", progressPct:10, progressNote:"Critical blocker — SG material missing", blocker:"Shower Glass material not ordered — blocking Jessica deliveries for 4 consecutive days"}
+    ]
+  }
+  ,
+  {
+    eyebrow: "Week 20",
+    dates: "Oct 8–13, 2026 — Sales Meeting · Oct 13",
+    revenue: [
+      {name:"Eveline Erbert", value:"$0", note:"No closings logged Oct 8–13"},
+      {name:"Jessica Wolfe", value:"—", note:"Scorecard not updated for this period"},
+      {name:"Jarvis Holley", value:"$0", note:"Scorecard blank Oct 8–13"},
+      {name:"Chelsea Foster", value:"$0", note:"Scorecard blank Oct 8–13"}
+    ],
+    activity: [
+      {label:"Week Revenue", value:"—", note:"No closings logged — scorecards pending update"},
+      {label:"SDR Leads", value:"48", note:"Julia Bath Reno 13 + SG 16 · Otavio CT 19"},
+      {label:"Appts Set", value:"32", note:"66.7% Lead→Appt conversion — strong week"},
+      {label:"FU Appts", value:"35", note:"140% FU conversion · 25 follow-up calls"}
+    ],
+    worked: [
+      "SDR team hit 66.7% lead→appt conversion for Oct 8–13 — best weekly rate this month.",
+      "Otavio Countertops: 19 leads, 14 appts, 73.7% conversion — strong ramp continuing.",
+      "Julia Shower Glass: 16 leads, 11 appts, 68.8% — consistent high performance.",
+      "Follow-up pipeline: 35 FU appts logged across all SDR lines — pipeline building.",
+      "Week 20 sales closings not yet logged — scorecards need update from all reps."
+    ],
+    attention: [
+      "No closings recorded for Oct 8–13 — all rep scorecards blank or pending for this period.",
+      "Jarvis 90-Day scorecard remains blank — no entries Oct 8–13.",
+      "Chelsea no activity — 5+ weeks with no scorecard entries or revenue visible.",
+      "Jessica scorecard not updated — revenue status unknown for this week.",
+      "SDR funnel is strong (66.7% conv.) but closing pipeline visibility remains a gap."
+    ],
+    blockers: [
+      "🔴 No closing data for Oct 8–13 — all rep scorecards need update before meeting.",
+      "🔴 Jarvis 90-Day scorecard still blank — no accountability visible.",
+      "🔴 Chelsea status unknown — 5+ weeks no entries."
+    ],
+    scorecardFlags: [
+      {person:"Jarvis Holley", category:"Sales", type:"red", note:"90-Day scorecard blank — zero entries Oct 8–13", blocker:"Must fill before next meeting"},
+      {person:"Chelsea Foster", category:"Sales", type:"red", note:"5+ weeks no scorecard entries and no revenue", blocker:"Direct conversation required"},
+      {person:"Jessica Wolfe", category:"Sales", type:"amber", note:"Scorecard not updated for Oct 8–13", blocker:"Update this week's data"},
+      {person:"SDR Team", category:"SDR", type:"green", note:"66.7% lead→appt conversion — best rate this month", blocker:null},
+      {person:"Eveline Erbert", category:"Sales", type:"amber", note:"No closings Oct 8–13 — pipeline building", blocker:null}
+    ],
+    agents: [
+      {name:"Eveline Erbert", role:"SDR / Sales — Alabama + GA", status:"active",
+        kpis:[
+          {label:"Revenue (Oct W2)",value:"$0",note:"No closings Oct 8–13",cls:"amber"},
+          {label:"Oct Total",value:"$5,140",note:"W1 closing only",cls:"gold"},
+          {label:"SDR Leads",value:"—",note:"Scorecard not submitted",cls:""},
+          {label:"Status",value:"Active",note:"Pipeline building",cls:"amber"}
+        ],
+        progressLabel:"October W2", progressPct:40, progressNote:"No closings this week", blocker:null},
+
+      {name:"Jessica Wolfe", role:"Sales — Shower Glass", status:"active",
+        kpis:[
+          {label:"Revenue (Oct W2)",value:"—",note:"Scorecard not updated",cls:"amber"},
+          {label:"Oct W1 Total",value:"$2,360",note:"Jobs 3708 + 3710",cls:"green"},
+          {label:"Scorecard",value:"PENDING",note:"Update Oct 8–13",cls:"amber"},
+          {label:"Status",value:"Active",note:"Revenue generating",cls:"green"}
+        ],
+        progressLabel:"October W2", progressPct:50, progressNote:"Scorecard update needed", blocker:"Scorecard not updated for Oct 8–13"},
+
+      {name:"Jarvis Holley", role:"Senior Sales — Bath Remodeling", status:"warn",
+        kpis:[
+          {label:"Revenue (Oct W2)",value:"$0",note:"Scorecard blank",cls:"red"},
+          {label:"Sep Final",value:"$158,783",note:"First full month",cls:"gold"},
+          {label:"90-Day Plan",value:"BLANK",note:"Zero entries Oct 8–13",cls:"red"},
+          {label:"Scorecard",value:"BLANK",note:"Must fill now",cls:"red"}
+        ],
+        progressLabel:"90-Day Scorecard", progressPct:0, progressNote:"Zero entries — action required", blocker:"90-Day scorecard completely blank — direct conversation"},
+
+      {name:"Chelsea Foster", role:"Sales — Countertops", status:"warn",
+        kpis:[
+          {label:"Revenue (Oct W2)",value:"$0",note:"No entries",cls:"red"},
+          {label:"Sep Debut",value:"$28,748",note:"Sep 10 debut",cls:""},
+          {label:"Scorecard",value:"BLANK",note:"5+ weeks silent",cls:"red"},
+          {label:"Status",value:"Unknown",note:"No contact visible",cls:"amber"}
+        ],
+        progressLabel:"October Activity", progressPct:0, progressNote:"No entries — 5+ weeks", blocker:"5+ consecutive weeks no activity or scorecard — status conversation needed"},
+
+      {name:"Julia", role:"SDR — Bath Reno + Shower Glass", status:"active",
+        kpis:[
+          {label:"Leads (Oct W2)",value:"29",note:"Bath Reno 13 + SG 16",cls:"gold"},
+          {label:"Calls Made",value:"51",note:"Oct 8–13",cls:"gold"},
+          {label:"Appts Set",value:"18",note:"Bath Reno 53.8% + SG 68.8%",cls:"green"},
+          {label:"FU Appts",value:"27",note:"FU: 3 calls→15 appts + 9 calls→12 appts",cls:"green"}
+        ],
+        progressLabel:"SDR Performance", progressPct:85, progressNote:"Strong conversion both lines", blocker:null},
+
+      {name:"Otavio", role:"SDR — Countertops", status:"active",
+        kpis:[
+          {label:"Leads (Oct W2)",value:"19",note:"Countertops",cls:"gold"},
+          {label:"Calls Made",value:"27",note:"Oct 8–13",cls:"gold"},
+          {label:"Appts Set",value:"14",note:"73.7% conv. — best rate on team",cls:"green"},
+          {label:"FU Appts",value:"8",note:"13 FU calls → 8 appts (61.5%)",cls:"green"}
+        ],
+        progressLabel:"SDR Ramp", progressPct:73, progressNote:"73.7% conversion — strong ramp", blocker:null}
+    ],
+    ops: [
+      {name:"Saulo", role:"Scheduling & Field Coordination", status:"warn",
+        kpis:[
+          {label:"Scorecard",value:"BLANK",note:"Continued blank Oct 8–13",cls:"red"},
+          {label:"Access Since",value:"4+ weeks",note:"Has access",cls:"amber"},
+          {label:"Entries",value:"Zero",note:"No data entered",cls:"red"},
+          {label:"Action",value:"Required",note:"Accountability talk",cls:"amber"}
+        ],
+        progressLabel:"Scheduling Scorecard", progressPct:0, progressNote:"Zero entries — accountability needed", blocker:"4+ weeks with access, zero entries — escalate"},
+
+      {name:"Britney", role:"Ops Data Control & Audit", status:"warn",
+        kpis:[
+          {label:"Last Entry",value:"Sep 21",note:"3+ weeks ago",cls:"red"},
+          {label:"Oct Status",value:"BLANK",note:"October not started",cls:"red"},
+          {label:"Jobs",value:"Pending",note:"Audit update needed",cls:"red"},
+          {label:"Action",value:"Resume Now",note:"Daily input required",cls:"amber"}
+        ],
+        progressLabel:"Ops Scorecard", progressPct:10, progressNote:"Last entry Sep 21 — Oct completely blank", blocker:"October completely blank — jobs need audit update"},
+
+      {name:"Sheylla", role:"Procurement Control Center", status:"active",
+        kpis:[
+          {label:"Role",value:"Procurement",note:"Not a seller",cls:""},
+          {label:"SG Material",value:"Monitor",note:"Status unclear this week",cls:"amber"},
+          {label:"CT Orders",value:"Active",note:"Countertops pipeline growing",cls:"green"},
+          {label:"Impact",value:"Tracking",note:"SDR strong — orders incoming",cls:"amber"}
+        ],
+        progressLabel:"Material Procurement", progressPct:50, progressNote:"Monitor SG material status", blocker:null}
+    ]
+  }
+  ,
+  {
+    eyebrow: "Week 21",
+    dates: "Oct 14–18, 2026 — Sales Meeting · Oct 20",
+    revenue: [
+      {name:"Eveline Erbert",  value:"$12,144", note:"3 closings — Steven Thomas $5,810 · Leisha Boulware $3,211 · Donald Sowers $3,123"},
+      {name:"Jessica Wolfe",   value:"$3,895",  note:"3 closings — Andria Jackson $1,375 · Rhonda Touton $1,395 · Chavez Tyler $1,125"},
+      {name:"Jarvis Holley",   value:"—",       note:"Left the company Oct 14, 2026"},
+      {name:"Chelsea Foster",  value:"$0",      note:"Scorecard blank Oct 14–18"}
+    ],
+    activity: [
+      {label:"Week Revenue",  value:"$16,039", note:"Eveline $12,144 · Jessica $3,895"},
+      {label:"SDR Leads",     value:"30",      note:"Julia BR 7 · SG 12 · Otavio CT 11"},
+      {label:"Appts Set",     value:"8",       note:"26.7% Lead→Appt — lower volume week"},
+      {label:"FU Appts",      value:"18",      note:"42.9% FU conversion · 42 follow-up calls"}
+    ],
+    worked: [
+      "Eveline Erbert: 3 closings, $12,144 — strong week despite lower SDR volume.",
+      "Jessica Wolfe: 3 closings, $3,895 — consistent SG performance.",
+      "Combined week revenue: $16,039 from 6 closings across 2 reps.",
+      "SDR team active: 30 leads, 70 calls, 8 appts set across all 3 lines.",
+      "Otavio FU pipeline: 9 FU appts from 8 calls (112.5%) — strong conversion.",
+      "Jarvis Holley departed Oct 14 — Bath Remodeling territory now open."
+    ],
+    attention: [
+      "Jarvis left Oct 14 — Bath Remodeling territory unassigned. Coverage plan needed.",
+      "SDR conversion dropped to 26.7% (from 66.7% W2) — shorter week, lower lead volume.",
+      "Chelsea scorecard blank for 6+ consecutive weeks — status and commitment unclear.",
+      "Revenue concentrated in 2 reps — closing coverage gap needs structural fix."
+    ],
+    blockers: [
+      "🔴 Jarvis departure — Bath Remodeling territory uncovered. Immediate replacement or redistribution needed.",
+      "🔴 Chelsea 6+ weeks no activity — direct leadership conversation required.",
+      "🟡 SDR volume down this week — short week effect or structural drop?"
+    ],
+    scorecardFlags: [
+      {person:"Jarvis Holley",   category:"Sales", type:"red",   note:"Left company Oct 14 — territory open",              blocker:"Replacement or redistribution plan required"},
+      {person:"Chelsea Foster",  category:"Sales", type:"red",   note:"6+ weeks no scorecard entries and no revenue",       blocker:"Direct conversation — commitment or exit"},
+      {person:"Eveline Erbert",  category:"Sales", type:"green", note:"3 closings $12,144 — strong week",                   blocker:null},
+      {person:"Jessica Wolfe",   category:"Sales", type:"green", note:"3 closings $3,895 — consistent SG performance",      blocker:null},
+      {person:"SDR Team",        category:"SDR",   type:"amber", note:"26.7% lead→appt — lower volume short week",          blocker:null}
+    ],
+    agents: [
+      {name:"Eveline Erbert", role:"SDR / Sales — Alabama + GA", status:"active",
+        kpis:[
+          {label:"Revenue (Oct W3)",value:"$12,144",note:"3 closings CT",           cls:"green"},
+          {label:"Oct Total",       value:"$17,284",note:"W1 $5,140 + W3 $12,144", cls:"gold"},
+          {label:"Avg Deal (W3)",   value:"$4,048", note:"Steven $5,810 · Leisha $3,211 · Donald $3,123", cls:"gold"},
+          {label:"Status",          value:"Active", note:"Strong comeback week",    cls:"green"}
+        ],
+        progressLabel:"October W3", progressPct:75, progressNote:"3 closings — $12,144 revenue", blocker:null},
+
+      {name:"Jessica Wolfe", role:"Sales — Shower Glass", status:"active",
+        kpis:[
+          {label:"Revenue (Oct W3)",value:"$3,895", note:"3 closings SG",            cls:"green"},
+          {label:"Oct W1 Total",    value:"$2,360", note:"Jobs 3708 + 3710",          cls:"green"},
+          {label:"Oct Running",     value:"$6,255", note:"W1 + W3 combined",          cls:"gold"},
+          {label:"Avg Deal (W3)",   value:"$1,298", note:"Andria · Rhonda · Chavez",  cls:"amber"}
+        ],
+        progressLabel:"October W3", progressPct:65, progressNote:"3 closings — consistent SG revenue", blocker:null},
+
+      {name:"Jarvis Holley", role:"Senior Sales — Bath Remodeling", status:"inactive",
+        kpis:[
+          {label:"Status",       value:"DEPARTED",  note:"Left Oct 14, 2026",     cls:"red"},
+          {label:"Sep Final",    value:"$158,783",  note:"Best month — company record", cls:"gold"},
+          {label:"Oct Revenue",  value:"$0",        note:"No closings before departure", cls:"red"},
+          {label:"Territory",    value:"OPEN",      note:"Bath Remodeling uncovered", cls:"red"}
+        ],
+        progressLabel:"Territory Status", progressPct:0, progressNote:"Departed — territory open", blocker:"Bath Remodeling territory needs coverage plan immediately"},
+
+      {name:"Chelsea Foster", role:"Sales — Countertops", status:"warn",
+        kpis:[
+          {label:"Revenue (Oct W3)",value:"$0",      note:"No entries",          cls:"red"},
+          {label:"Sep Debut",       value:"$28,748", note:"Sep 10 debut",        cls:""},
+          {label:"Scorecard",       value:"BLANK",   note:"6+ weeks silent",     cls:"red"},
+          {label:"Status",          value:"Unknown", note:"No contact visible",  cls:"amber"}
+        ],
+        progressLabel:"October Activity", progressPct:0, progressNote:"6+ weeks no activity", blocker:"6+ consecutive weeks no activity — escalate: commitment or exit conversation"},
+
+      {name:"Julia", role:"SDR — Bath Reno + Shower Glass", status:"active",
+        kpis:[
+          {label:"Leads (Oct W3)", value:"19",  note:"Bath Reno 7 + SG 12",    cls:"gold"},
+          {label:"Calls Made",     value:"47",  note:"Oct 14–18",               cls:"gold"},
+          {label:"Appts Set",      value:"4",   note:"BR 28.6% + SG 16.7%",    cls:"amber"},
+          {label:"FU Appts",       value:"9",   note:"FU: 12 calls→3 + 22 calls→6", cls:"amber"}
+        ],
+        progressLabel:"SDR Performance", progressPct:55, progressNote:"Lower conv. this week — shorter cycle", blocker:null},
+
+      {name:"Otavio", role:"SDR — Countertops", status:"active",
+        kpis:[
+          {label:"Leads (Oct W3)", value:"11",  note:"Countertops",                  cls:"gold"},
+          {label:"Calls Made",     value:"23",  note:"Oct 14–18",                    cls:"gold"},
+          {label:"Appts Set",      value:"4",   note:"36.4% conv.",                  cls:"amber"},
+          {label:"FU Appts",       value:"9",   note:"8 FU calls → 9 appts (112.5%)", cls:"green"}
+        ],
+        progressLabel:"SDR Ramp", progressPct:65, progressNote:"Strong FU rate — 112.5% FU conversion", blocker:null}
+    ],
+    ops: [
+      {name:"Saulo", role:"Scheduling & Field Coordination", status:"warn",
+        kpis:[
+          {label:"Scorecard",    value:"BLANK",     note:"Continued blank Oct 14–18", cls:"red"},
+          {label:"Access Since", value:"5+ weeks",  note:"Has access",                cls:"amber"},
+          {label:"Entries",      value:"Zero",      note:"No data entered",           cls:"red"},
+          {label:"Action",       value:"Required",  note:"Accountability talk",       cls:"amber"}
+        ],
+        progressLabel:"Scheduling Scorecard", progressPct:0, progressNote:"Zero entries — accountability needed", blocker:"5+ weeks with access, zero entries — escalate"},
+
+      {name:"Britney", role:"Ops Data Control & Audit", status:"warn",
+        kpis:[
+          {label:"Last Entry",  value:"Sep 21",  note:"4+ weeks ago",           cls:"red"},
+          {label:"Oct Status",  value:"BLANK",   note:"October not started",    cls:"red"},
+          {label:"Jobs",        value:"Pending", note:"Audit update needed",    cls:"red"},
+          {label:"Action",      value:"Resume",  note:"Daily input required",   cls:"amber"}
+        ],
+        progressLabel:"Ops Scorecard", progressPct:5, progressNote:"Last entry Sep 21 — Oct completely blank", blocker:"October completely blank — jobs need audit update"},
+
+      {name:"Sheylla", role:"Procurement Control Center", status:"active",
+        kpis:[
+          {label:"Role",       value:"Procurement", note:"Not a seller",            cls:""},
+          {label:"SG Material",value:"Monitor",     note:"Status unclear this week",cls:"amber"},
+          {label:"CT Orders",  value:"Active",      note:"Countertops pipeline",    cls:"green"},
+          {label:"Impact",     value:"Tracking",    note:"SDR active — orders incoming", cls:"amber"}
+        ],
+        progressLabel:"Material Procurement", progressPct:50, progressNote:"Monitor SG material status", blocker:null}
+    ]
+  }  ,{
+    eyebrow: "Week 22",
+    dates: "Oct 21–25, 2026 — Sales Meeting · Oct 27",
+    revenue: [
+      {name:"Eveline Erbert",  value:"$12,167", note:"2 closings — Oct 21 $9,827 · Oct 23 $2,340 (Pell City)"},
+      {name:"Jessica Wolfe",   value:"$3,765",  note:"2 closings — Oct 22 $2,115 · Oct 23 $1,650"},
+      {name:"Jarvis Holley",   value:"—",       note:"Left the company Oct 14, 2026"},
+      {name:"Chelsea Foster",  value:"$0",      note:"Scorecard blank Oct 21–25"}
+    ],
+    activity: [
+      {label:"Week Revenue",  value:"$15,932", note:"Eveline $12,167 · Jessica $3,765"},
+      {label:"SDR Leads",     value:"25",      note:"Julia BR 4 · SG 10 · Otavio CT 11"},
+      {label:"Appts Set",     value:"18",      note:"72.0% Lead→Appt — strong bounce-back"},
+      {label:"FU Appts",      value:"4",       note:"12.9% FU conversion · 31 follow-up calls"}
+    ],
+    worked: [
+      "Eveline Erbert: 2 closings, $12,167 — led by $9,827 close on Oct 21.",
+      "Jessica Wolfe: 2 closings, $3,765 — Oct 22 $2,115 and Oct 23 $1,650.",
+      "Combined week revenue: $15,932 from 4 closings across 2 reps.",
+      "SDR team: 25 leads, 56 calls, 18 appts set — 72% lead→appt rate (strong rebound from W3).",
+      "Otavio CT: 11 leads, 9 new appts (81.8%) — highest individual conversion this month.",
+      "Julia Bath Reno: 4 leads, 4 new appts (100%) — perfect conversion this week."
+    ],
+    attention: [
+      "Chelsea scorecard blank 7+ weeks — no revenue, no activity — requires immediate leadership action.",
+      "Jarvis territory (Bath Remodeling) still uncovered — coverage plan not yet confirmed.",
+      "FU conversion dropped to 12.9% — only 4 appts from 31 FU calls — follow-up quality review needed.",
+      "Revenue still concentrated in 2 reps — structural closing gap persists."
+    ],
+    blockers: [
+      "🔴 Chelsea 7+ weeks no activity — commitment or exit conversation required.",
+      "🔴 Jarvis departure — Bath Remodeling territory uncovered. Immediate coverage needed.",
+      "🟡 FU conversion weak (12.9%) — Julia FU calls not converting — review script and process."
+    ],
+    scorecardFlags: [
+      {person:"Jarvis Holley",   category:"Sales", type:"red",   note:"Left company Oct 14 — territory still open",       blocker:"Coverage plan required — 2 weeks unresolved"},
+      {person:"Chelsea Foster",  category:"Sales", type:"red",   note:"7+ weeks no scorecard entries and no revenue",      blocker:"Immediate leadership conversation — commitment or exit"},
+      {person:"Eveline Erbert",  category:"Sales", type:"green", note:"2 closings $12,167 — led by $9,827 close",          blocker:null},
+      {person:"Jessica Wolfe",   category:"Sales", type:"green", note:"2 closings $3,765 — consistent SG performance",     blocker:null},
+      {person:"SDR Team",        category:"SDR",   type:"green", note:"72% lead→appt — strong rebound from W3's 26.7%",   blocker:null}
+    ],
+    agents: [
+      {name:"Eveline Erbert", role:"SDR / Sales — Alabama + GA", status:"active",
+        kpis:[
+          {label:"Revenue (Oct W4)",value:"$12,167",note:"2 closings CT",                cls:"green"},
+          {label:"Oct Running",     value:"$29,451",note:"W1 $5,140 + W3 $12,144 + W4 $12,167", cls:"gold"},
+          {label:"Avg Deal (W4)",   value:"$6,084", note:"Oct 21 $9,827 · Oct 23 $2,340",cls:"gold"},
+          {label:"Status",          value:"Active", note:"Consistent closer",            cls:"green"}
+        ],
+        progressLabel:"October W4", progressPct:80, progressNote:"2 closings — $12,167 revenue", blocker:null},
+
+      {name:"Jessica Wolfe", role:"Sales — Shower Glass", status:"active",
+        kpis:[
+          {label:"Revenue (Oct W4)",value:"$3,765",  note:"2 closings SG",              cls:"green"},
+          {label:"Oct W1",          value:"$2,360",  note:"Jobs 3708 + 3710",           cls:"green"},
+          {label:"Oct Running",     value:"$10,020", note:"W1 + W3 + W4 combined",      cls:"gold"},
+          {label:"Avg Deal (W4)",   value:"$1,883",  note:"Oct 22 $2,115 · Oct 23 $1,650", cls:"amber"}
+        ],
+        progressLabel:"October W4", progressPct:70, progressNote:"2 closings — consistent SG revenue", blocker:null},
+
+      {name:"Jarvis Holley", role:"Senior Sales — Bath Remodeling", status:"inactive",
+        kpis:[
+          {label:"Status",       value:"DEPARTED",  note:"Left Oct 14, 2026",          cls:"red"},
+          {label:"Sep Final",    value:"$158,783",  note:"Best month — company record", cls:"gold"},
+          {label:"Oct Revenue",  value:"$0",        note:"No closings before departure", cls:"red"},
+          {label:"Territory",    value:"OPEN",      note:"Bath Remodeling uncovered",   cls:"red"}
+        ],
+        progressLabel:"Territory Status", progressPct:0, progressNote:"Departed — territory open 2 weeks", blocker:"Bath Remodeling territory needs coverage plan immediately"},
+
+      {name:"Chelsea Foster", role:"Sales — Countertops", status:"warn",
+        kpis:[
+          {label:"Revenue (Oct W4)",value:"$0",      note:"No entries",          cls:"red"},
+          {label:"Sep Debut",       value:"$28,748", note:"Sep 10 debut",        cls:""},
+          {label:"Scorecard",       value:"BLANK",   note:"7+ weeks silent",     cls:"red"},
+          {label:"Status",          value:"Unknown", note:"No contact visible",  cls:"amber"}
+        ],
+        progressLabel:"October Activity", progressPct:0, progressNote:"7+ weeks no activity", blocker:"7+ consecutive weeks no activity — escalate: commitment or exit conversation"},
+
+      {name:"Julia", role:"SDR — Bath Reno + Shower Glass", status:"active",
+        kpis:[
+          {label:"Leads (Oct W4)", value:"14",  note:"Bath Reno 4 + SG 10",     cls:"gold"},
+          {label:"Calls Made",     value:"39",  note:"Oct 21–25",                cls:"gold"},
+          {label:"Appts Set",      value:"9",   note:"BR 100% + SG 50%",        cls:"green"},
+          {label:"FU Appts",       value:"2",   note:"25 FU calls → 2 appts",   cls:"amber"}
+        ],
+        progressLabel:"SDR Performance", progressPct:72, progressNote:"Strong new-lead conv — FU needs work", blocker:null},
+
+      {name:"Otavio", role:"SDR — Countertops", status:"active",
+        kpis:[
+          {label:"Leads (Oct W4)", value:"11",  note:"Countertops",              cls:"gold"},
+          {label:"Calls Made",     value:"17",  note:"Oct 21–25",                cls:"gold"},
+          {label:"Appts Set",      value:"9",   note:"81.8% conv.",              cls:"green"},
+          {label:"FU Appts",       value:"2",   note:"6 FU calls → 2 appts (33.3%)", cls:"amber"}
+        ],
+        progressLabel:"SDR Ramp", progressPct:82, progressNote:"81.8% lead→appt — strongest week yet", blocker:null}
+    ],
+    ops: [
+      {name:"Saulo", role:"Scheduling & Field Coordination", status:"active",
+        kpis:[
+          {label:"Oct 21 Templates",value:"3",    note:"Scheduled this week",       cls:"green"},
+          {label:"Oct 21 Installs", value:"10",   note:"Installs on the board",     cls:"green"},
+          {label:"GA SF Next 7d",   value:"206",  note:"Sold SF scheduled GA",      cls:"green"},
+          {label:"AL SF Next 7d",   value:"85.5", note:"Sold SF scheduled AL",      cls:"amber"}
+        ],
+        progressLabel:"Scheduling Load", progressPct:70, progressNote:"Oct 21 — 3 templates, 10 installs", blocker:null},
+
+      {name:"Britney", role:"Ops Data Control & Audit", status:"warn",
+        kpis:[
+          {label:"Oct 21 Calls",  value:"12",   note:"Active phone day",          cls:"green"},
+          {label:"QB Bills",      value:"0",    note:"Oct 21 — nothing entered",  cls:"amber"},
+          {label:"Admin Tasks",   value:"7",    note:"Oct 21 completed",          cls:"green"},
+          {label:"Oct 22–25",     value:"BLANK",note:"No entries rest of week",   cls:"red"}
+        ],
+        progressLabel:"Ops Scorecard", progressPct:25, progressNote:"Active Oct 21 only — rest of week blank", blocker:"Oct 22–25 blank — confirm data entry or escalate"},
+
+      {name:"Sheylla", role:"Procurement Control Center", status:"active",
+        kpis:[
+          {label:"Role",       value:"Procurement", note:"Not a seller",            cls:""},
+          {label:"SG Material",value:"Monitor",     note:"Status this week unclear",cls:"amber"},
+          {label:"CT Orders",  value:"Active",      note:"Countertops pipeline",    cls:"green"},
+          {label:"Impact",     value:"Tracking",    note:"SDR active — orders incoming", cls:"amber"}
+        ],
+        progressLabel:"Material Procurement", progressPct:50, progressNote:"Monitor SG material status", blocker:null}
+    ]
+  }
+];
+
+let currentMeetingWeek = meetingWeeks.length - 1;
+
+// ============================================================
+// PRESENCE FILTER — controls who's revenue/card shows in the
+// Weekly Meeting Scoreboard. Persists across week navigation.
+// ============================================================
+const ALL_PEOPLE = ["Eveline", "Stephanie", "Jessica", "Matos", "Julia", "Mercedes", "Saul", "Britney", "Chelsea"];
+const PENDING_PEOPLE = ["Britney"]; // onboarding, no data yet — shown distinctly
+
+let presenceState = {};
+ALL_PEOPLE.forEach(p => presenceState[p] = true); // everyone visible by default
+
+function matchesPersonKey(label, person) {
+  // revenue entries use names like "Jessica (HD)" — match loosely
+  return label.toLowerCase().startsWith(person.toLowerCase());
+}
+
+function togglePresence(person) {
+  presenceState[person] = !presenceState[person];
+  renderPresenceChips();
+  renderMeetingWeek();
+}
+
+function setAllPresence(value) {
+  ALL_PEOPLE.forEach(p => presenceState[p] = value);
+  renderPresenceChips();
+  renderMeetingWeek();
+}
+
+function renderPresenceChips() {
+  const el = document.getElementById('presenceChips');
+  if (!el) return;
+  el.innerHTML = ALL_PEOPLE.map(p => {
+    const isOff = !presenceState[p];
+    const isPending = PENDING_PEOPLE.includes(p);
+    return `<div class="presence-chip ${isOff ? 'off' : ''} ${isPending ? 'pending-person' : ''}" onclick="togglePresence('${p}')">
+      <span class="presence-chip-dot"></span>${p}${isPending ? ' (onboarding)' : ''}
+    </div>`;
+  }).join('');
+}
+
+function changeMeetingWeek(delta) {
+  const next = currentMeetingWeek + delta;
+  if (next >= 0 && next < meetingWeeks.length) {
+    currentMeetingWeek = next;
+    renderMeetingWeek();
+  }
+}
+
+function renderSellerKpis(kpis) {
+  return kpis.map(k => `
+    <div class="stat-box">
+      <div class="stat-label">${k.label}</div>
+      <div class="stat-val ${k.cls ? 'text-' + k.cls : ''}">${k.value}</div>
+    </div>`).join('');
+}
+
+function renderSellerCard(agent) {
+  const fillColor = agent.progressPct >= 70 ? 'green' : (agent.progressPct >= 40 ? 'amber' : 'red');
+  const isPending = agent.pending === true;
+  const isCritical = agent.critical === true;
+  const cardStyle = isPending ? 'border:1px dashed var(--amber);background:transparent;'
+                   : isCritical ? 'border:1px solid var(--red);'
+                   : '';
+  return `<div class="seller-card" ${cardStyle ? `style="${cardStyle}"` : ''}>
+    <div class="seller-header">
+      <div>
+        <div class="seller-name" ${isPending ? 'style="color:var(--cream-dim)"' : ''}>${agent.name}</div>
+        <div class="seller-role">${agent.role}</div>
+      </div>
+      <div class="status-dot ${isPending ? '' : agent.status}" ${isPending ? 'style="background:var(--amber);"' : ''}></div>
+    </div>
+    <div class="seller-stats">${renderSellerKpis(agent.kpis)}</div>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>${agent.progressLabel}</span><span class="text-${isPending ? 'amber' : fillColor}">${agent.progressNote}</span></div>
+      <div class="progress-track"><div class="progress-fill ${isPending ? 'amber' : fillColor}" style="width:${agent.progressPct}%"></div></div>
+    </div>
+    ${agent.blocker ? `<div style="margin-top:8px;display:inline-block;background:rgba(224,82,82,.1);border:1px solid rgba(224,82,82,.25);color:var(--red);font-size:10px;padding:3px 8px;border-radius:4px;font-weight:500;">${agent.blocker}</div>` : ''}
+  </div>`;
+}
+
+function renderMeetingWeek() {
+  const w = meetingWeeks[currentMeetingWeek];
+  document.getElementById('wkEyebrow').textContent = w.eyebrow;
+  document.getElementById('wkDates').textContent = w.dates;
+  document.getElementById('wkPrevBtn').style.opacity = currentMeetingWeek === 0 ? '0.3' : '1';
+  document.getElementById('wkNextBtn').style.opacity = currentMeetingWeek === meetingWeeks.length - 1 ? '0.3' : '1';
+
+  let html = '';
+
+  // ACTIVITY KPI ROW
+  html += `<div class="kpi-row kpi-row-4">`;
+  w.activity.forEach(a => {
+    html += `<div class="kpi-card">
+      <div class="kpi-label">${a.label}</div>
+      <div class="kpi-value gold">${a.value}</div>
+      <div class="kpi-sub">${a.note}</div>
+    </div>`;
+  });
+  html += `</div>`;
+
+  // REVENUE ROW (filtered by presence)
+  const visibleRevenue = w.revenue.filter(r => {
+    const match = ALL_PEOPLE.find(p => matchesPersonKey(r.name, p));
+    return match ? presenceState[match] : true;
+  });
+  html += `<div class="section-label">Revenue This Week — By Seller (Sales Control)</div>`;
+  if (visibleRevenue.length === 0) {
+    html += `<div class="card" style="text-align:center;color:var(--cream-dim);font-size:12px;padding:18px;">Everyone is hidden — use the presence filter above to show revenue for people in the room.</div>`;
+  } else {
+    html += `<div class="kpi-row kpi-row-4">`;
+    visibleRevenue.forEach(r => {
+      html += `<div class="kpi-card">
+        <div class="kpi-label">${r.name}</div>
+        <div class="kpi-value green">${r.value}</div>
+        <div class="kpi-sub">${r.note}</div>
+      </div>`;
+    });
+    html += `</div>`;
+  }
+
+  // SALES TEAM CARDS (filtered by presence)
+  if (w.agents && w.agents.sales) {
+    const visibleSales = w.agents.sales.filter(a => presenceState[a.name] !== false);
+    html += `<div class="section-label">Sales Team</div>`;
+    if (visibleSales.length === 0) {
+      html += `<div class="card" style="text-align:center;color:var(--cream-dim);font-size:12px;padding:18px;">No sales team members selected.</div>`;
+    } else {
+      html += `<div class="seller-grid">${visibleSales.map(renderSellerCard).join('')}</div>`;
+    }
+  }
+
+  // OPERATIONS CARDS (filtered by presence)
+  if (w.agents && w.agents.ops) {
+    const visibleOps = w.agents.ops.filter(a => presenceState[a.name] !== false);
+    html += `<div class="section-label">Operations & Fabrication</div>`;
+    if (visibleOps.length === 0) {
+      html += `<div class="card" style="text-align:center;color:var(--cream-dim);font-size:12px;padding:18px;">No operations team members selected.</div>`;
+    } else {
+      html += `<div class="seller-grid">${visibleOps.map(renderSellerCard).join('')}</div>`;
+    }
+  }
+
+  // WORKED / ATTENTION
+  html += `<div class="grid-2" style="margin-top:8px;">
+    <div>
+      <div class="section-label" style="margin-top:0;">✓ What We Worked On</div>
+      <div class="card">
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;">
+          ${w.worked.map(x => `<li style="font-size:12px;color:var(--cream-dim);line-height:1.5;padding-left:18px;position:relative;"><span style="position:absolute;left:0;color:var(--green);font-weight:700;">✓</span>${x}</li>`).join('')}
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div class="section-label" style="margin-top:0;">! Points of Attention for Next Week</div>
+      <div class="card">
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;">
+          ${w.attention.map(x => `<li style="font-size:12px;color:var(--cream-dim);line-height:1.5;padding-left:18px;position:relative;"><span style="position:absolute;left:2px;color:var(--amber);font-weight:700;">!</span>${x}</li>`).join('')}
+        </ul>
+      </div>
+    </div>
+  </div>`;
+
+  // BLOCKERS
+  if (w.blockers && w.blockers.length) {
+    html += `<div class="section-label">Active Blockers — Requires Leadership Attention</div>
+    <div class="grid-2">`;
+    w.blockers.forEach(b => {
+      html += `<div class="alert-card red">
+        <div class="alert-icon">⚠</div>
+        <div>
+          <div class="alert-title" style="color:var(--red)">${b.owner}</div>
+          <div class="alert-body">${b.text}</div>
+        </div>
+      </div>`;
+    });
+    html += `</div>`;
+  }
+
+  document.getElementById('weeklyDashboardContent').innerHTML = html;
+}
+
+// ============================================================
+// MONTHLY EXECUTIVE OVERVIEW — Real data from Sales Control
+// & KPI Sheet (Jan–Jul 2026)
+// ============================================================
+const monthlyData = [
+  {
+    month: "January 2026", short: "Jan",
+    revenue: {stephanie:12143, eveline:0, jessica:0, anderson:0, other:69290},
+    activity: {leads:0, calls:0, appts:0, sales:0},
+    note: "KPI not yet launched. Matos $15.5K + Paul $36.9K + M&M in Other.",
+    total: 81433,
+    sellers: [{name:"Stephanie",value:12143,pct:15},{name:"Other/Matos",value:69290,pct:85}]
+  },
+  {
+    month: "February 2026", short: "Feb",
+    revenue: {stephanie:87789, eveline:21726, jessica:51786, anderson:0, other:234308},
+    activity: {leads:0, calls:0, appts:0, sales:0},
+    note: "Matos $213K batch + Stephanie $87.8K + Jessica $51.8K. Biggest month.",
+    total: 395609,
+    sellers: [{name:"Stephanie",value:87789,pct:22},{name:"Jessica",value:51786,pct:13},{name:"Eveline",value:21726,pct:5},{name:"Other/Matos",value:234308,pct:59}]
+  },
+  {
+    month: "March 2026", short: "Mar",
+    revenue: {stephanie:78172, eveline:41952, jessica:84837, anderson:0, other:70461},
+    activity: {leads:0, calls:0, appts:0, sales:0},
+    note: "Jessica best month — $84.8K. Stephanie $78.2K. Eveline $42K.",
+    total: 275422,
+    sellers: [{name:"Jessica",value:84837,pct:31},{name:"Stephanie",value:78172,pct:28},{name:"Eveline",value:41952,pct:15},{name:"Other",value:70461,pct:26}]
+  },
+  {
+    month: "April 2026", short: "Apr",
+    revenue: {stephanie:81490, eveline:52363, jessica:46319, anderson:0, other:102805},
+    activity: {leads:0, calls:0, appts:0, sales:0},
+    note: "Eveline best month (at the time) — $52.4K. Stephanie $81.5K. Jessica $46.3K.",
+    total: 282977,
+    sellers: [{name:"Stephanie",value:81490,pct:29},{name:"Eveline",value:52363,pct:18},{name:"Jessica",value:46319,pct:16},{name:"Other/M&M",value:102805,pct:36}]
+  },
+  {
+    month: "May 2026", short: "May",
+    revenue: {stephanie:118623, eveline:26780, jessica:79680, anderson:0, other:9529},
+    activity: {leads:8, calls:62, appts:3, sales:0},
+    note: "Stephanie best month ever — $118.6K. Jessica $79.7K. KPI launched.",
+    total: 234612,
+    sellers: [{name:"Stephanie",value:118623,pct:51},{name:"Jessica",value:79680,pct:34},{name:"Eveline",value:26780,pct:11},{name:"Other",value:9529,pct:4}]
+  },
+  {
+    month: "June 2026", short: "Jun",
+    revenue: {stephanie:73714, eveline:41092, jessica:52732, anderson:0, other:247120},
+    activity: {leads:192, calls:778, appts:135, sales:0},
+    note: "Matos $125K + Windson $65.8K + Angela $42K in Other. Stephanie $73.7K. Eveline $41.1K.",
+    total: 414658,
+    sellers: [{name:"Stephanie",value:73714,pct:18},{name:"Eveline",value:41092,pct:10},{name:"Jessica",value:52732,pct:13},{name:"Other/Matos/Windson",value:247120,pct:60}]
+  },
+  {
+    month: "July 2026", short: "Jul",
+    revenue: {stephanie:90004, eveline:53124, jessica:51227, anderson:70855, other:3056},
+    activity: {leads:124, calls:575, appts:72, sales:0},
+    note: "Anderson first full month $70.9K. Stephanie $90K. Eveline $53.1K — best month. Jessica $51.2K.",
+    total: 268266,
+    sellers: [{name:"Stephanie",value:90004,pct:34},{name:"Anderson",value:70855,pct:26},{name:"Eveline",value:53124,pct:20},{name:"Jessica",value:51227,pct:19},{name:"Other",value:3056,pct:1}]
+  },
+  {
+    month: "August 2026", short: "Aug",
+    revenue: {stephanie:64220, eveline:28780, jessica:31344, anderson:33791, other:10713},
+    activity: {leads:70, calls:350, appts:55, sales:0},
+    note: "FINAL · Stephanie $64.2K leads · Anderson $33.8K (left Aug 15) · Eveline $28.8K · Robot crisis Aug 17-19",
+    total: 168848,
+    sellers: [{name:"Stephanie",value:64220,pct:38},{name:"Anderson",value:33791,pct:20},{name:"Jessica",value:31344,pct:19},{name:"Eveline",value:28780,pct:17},{name:"Other",value:10713,pct:6}]
+  }
+,
+  {
+    month: "September 2026", short: "Sep",
+    revenue: {stephanie:47247, eveline:16743, jessica:40901, anderson:0, other:192831},
+    activity: {leads:7, calls:52, appts:7, sales:0},
+    note: "Sep 1–3 only · Stephanie $24.5K strong start · Glendon 1:1 Stephanie + Loiny · KPI gap addressed",
+    total: 30355,
+    sellers: [
+      {name:"Stephanie", value:24544, pct:81},
+      {name:"Jessica", value:2650, pct:9},
+      {name:"Other/M&M", value:3161, pct:10}
+    ]
+  }];
+
+let currentMonth = monthlyData.length - 1; // default to August
+
+function changeMonth(delta) {
+  const next = currentMonth + delta;
+  if (next >= 0 && next < monthlyData.length) {
+    currentMonth = next;
+    renderMonthly();
+  }
+}
+
+function renderMonthly() {
+  const el = document.getElementById('monthlyContent');
+  if (!el) return;
+  if (!monthlyData || monthlyData.length === 0) return;
+  if (typeof currentMonth === 'undefined' || currentMonth < 0 || currentMonth >= monthlyData.length) return;
+  const m = monthlyData[currentMonth];
+  if (!m) return;
+  const eyebrow = document.getElementById('monthEyebrow');
+  const label = document.getElementById('monthLabel');
+  if (eyebrow) eyebrow.textContent = `2026 — ${currentMonth + 1} of ${monthlyData.length}`;
+  if (label) label.textContent = m.month;
+
+  const sellers = [
+    {name:'Eveline', value:m.revenue.eveline, cls:'green'},
+    {name:'Stephanie', value:m.revenue.stephanie, cls:'green'},
+    {name:'Jessica (HD)', value:m.revenue.jessica, cls:'green'},
+    {name:'Matos', value:m.revenue.matos, cls: m.revenue.matos > 10000 ? 'green' : m.revenue.matos > 0 ? 'amber' : 'red'},
+    {name:'Windson', value:m.revenue.windson, cls: m.revenue.windson > 0 ? 'green' : 'amber'},
+    {name:'Other / M&M', value:m.revenue.other, cls:'amber'}
+  ].filter(s => s.value > 0);
+
+  const totalRevenue = m.total;
+  const prevMonth = currentMonth > 0 ? monthlyData[currentMonth - 1] : null;
+  const prevTotal = prevMonth ? prevMonth.total : null;
+  const delta = prevTotal ? ((totalRevenue - prevTotal) / prevTotal * 100).toFixed(1) : null;
+  const deltaColor = delta > 0 ? 'green' : 'red';
+  const deltaIcon = delta > 0 ? '↑' : '↓';
+
+  let html = '';
+
+  // TOTAL BANNER
+  html += `<div class="card" style="margin-bottom:18px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+    <div>
+      <div style="font-size:11px;color:var(--cream-dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Total Revenue — ${m.short} 2026</div>
+      <div style="font-size:36px;font-weight:800;color:var(--gold);">$${totalRevenue.toLocaleString('en-US', {minimumFractionDigits:0})}</div>
+    </div>
+    ${delta !== null ? `<div style="text-align:right;">
+      <div style="font-size:11px;color:var(--cream-dim);margin-bottom:4px;">vs ${prevMonth.short}</div>
+      <div style="font-size:22px;font-weight:700;color:var(--${deltaColor});">${deltaIcon} ${Math.abs(delta)}%</div>
+      <div style="font-size:11px;color:var(--cream-dim);">$${Math.abs(totalRevenue - prevTotal).toLocaleString()} ${delta > 0 ? 'more' : 'less'}</div>
+    </div>` : ''}
+    <div style="font-size:11px;color:var(--cream-dim);max-width:280px;line-height:1.6;">${m.note}</div>
+  </div>`;
+
+  // REVENUE BY SELLER
+  html += `<div class="section-label">Revenue by Seller</div>
+  <div class="kpi-row kpi-row-4">`;
+  sellers.forEach(s => {
+    const pct = ((s.value / totalRevenue) * 100).toFixed(0);
+    html += `<div class="kpi-card">
+      <div class="kpi-label">${s.name}</div>
+      <div class="kpi-value ${s.cls}">$${s.value.toLocaleString('en-US', {minimumFractionDigits:0})}</div>
+      <div class="kpi-sub">${pct}% of month total</div>
+      <div class="progress-wrap" style="margin-top:8px;">
+        <div class="progress-track"><div class="progress-fill ${s.cls}" style="width:${pct}%"></div></div>
+      </div>
+    </div>`;
+  });
+  html += `</div>`;
+
+  // ACTIVITY (if available)
+  if (m.activity.calls > 0 || m.activity.leads > 0) {
+    html += `<div class="section-label">SDR Activity (KPI Sheet)</div>
+    <div class="kpi-row kpi-row-4">
+      <div class="kpi-card"><div class="kpi-label">Total Leads</div><div class="kpi-value gold">${m.activity.leads}</div><div class="kpi-sub">Julia + Eveline</div></div>
+      <div class="kpi-card"><div class="kpi-label">Calls Made</div><div class="kpi-value gold">${m.activity.calls}</div><div class="kpi-sub">Julia + Eveline</div></div>
+      <div class="kpi-card"><div class="kpi-label">Appts Scheduled</div><div class="kpi-value green">${m.activity.appts}</div><div class="kpi-sub">Julia + Eveline</div></div>
+      <div class="kpi-card"><div class="kpi-label">KPI Sheet</div><div class="kpi-value amber">Partial</div><div class="kpi-sub">Launched May 2026</div></div>
+    </div>`;
+  } else {
+    html += `<div class="section-label">SDR Activity</div>
+    <div class="card" style="text-align:center;color:var(--cream-dim);font-size:12px;padding:18px;">
+      KPI sheet not yet in use this month — activity data unavailable before May 2026.
+    </div>`;
+  }
+
+  // MONTH CONTEXT BAR
+  html += `<div style="display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;">`;
+  monthlyData.forEach((md, i) => {
+    const isActive = i === currentMonth;
+    const pct = Math.min(100, Math.round((md.total / 338195) * 100));
+    html += `<div onclick="currentMonth=${i};renderMonthly()" style="
+      flex:1;min-width:60px;cursor:pointer;text-align:center;padding:10px 6px;
+      background:${isActive ? 'var(--surface)' : 'transparent'};
+      border:1px solid ${isActive ? 'var(--gold)' : 'var(--border2)'};
+      border-radius:8px;transition:all 0.15s;">
+      <div style="font-size:10px;color:${isActive ? 'var(--gold)' : 'var(--cream-dim)'};font-weight:${isActive ? '700' : '400'};margin-bottom:4px;">${md.short}</div>
+      <div style="height:40px;display:flex;align-items:flex-end;justify-content:center;margin-bottom:4px;">
+        <div style="width:20px;background:${isActive ? 'var(--gold)' : 'var(--border2)'};border-radius:2px 2px 0 0;height:${pct}%;min-height:3px;"></div>
+      </div>
+      <div style="font-size:9px;color:var(--cream-dim);">$${md.total >= 1000 ? (md.total/1000).toFixed(0)+'K' : md.total}</div>
+    </div>`;
+  });
+  html += `</div>`;
+
+  el.innerHTML = html;
+}
+
+renderPresenceChips();
+renderMeetingWeek();
+renderMonthly();
+
+function switchTab(id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  if (id === 'exec') renderMonthly();
+  if (id === 'annual' || id === 'exec') setTimeout(renderAnnualCharts, 50);
+  if (id === 'pipeline') setTimeout(() => {
+          renderSDRTable(document.getElementById('sdr-month-select').value);
+          renderEvelineTable(document.getElementById('eveline-month-select').value);
+renderChelseaTable(document.getElementById('chelsea-month-select').value);
+        }, 50);
+  const tabs = ['team','pipeline','exec','stores','individual'];
+  const idx = tabs.indexOf(id);
+  document.querySelectorAll('.tab')[idx].classList.add('active');
+}
+
+// ── SDR TABLE DATA ──
+const sdrData = {
+  'sep': {
+    label: 'September 2026 — Full Month',
+    rows: [
+      {name:'Julia / Bath Reno',    leads:81,  calls:184, appts:43, conv:'53.1%', convCls:'green', fuCalls:90,  fuAppts:16, fuConv:'17.8%'},
+      {name:'Julia / Shower Glass', leads:87,  calls:133, appts:40, conv:'46.0%', convCls:'green', fuCalls:51,  fuAppts:13, fuConv:'25.5%'},
+      {name:'Otavio / Countertops', leads:70,  calls:174, appts:40, conv:'57.1%', convCls:'green', fuCalls:104, fuAppts:16, fuConv:'15.4%'},
+    ],
+    total: {leads:238, calls:491, appts:123, conv:'51.7%', convCls:'green', fuCalls:245, fuAppts:45, fuConv:'18.4%'}
+  },
+  'oct-w1': {
+    label: 'October 2026 — Week 1 (Oct 1–7)',
+    rows: [
+      {name:'Julia / Bath Reno',    leads:22, calls:44, appts:8,  conv:'36.4%', convCls:'amber', fuCalls:24, fuAppts:3, fuConv:'12.5%'},
+      {name:'Julia / Shower Glass', leads:27, calls:39, appts:11, conv:'40.7%', convCls:'amber', fuCalls:16, fuAppts:6, fuConv:'37.5%'},
+      {name:'Otavio / Countertops', leads:13, calls:29, appts:8,  conv:'61.5%', convCls:'green', fuCalls:16, fuAppts:1, fuConv:'6.2%'},
+    ],
+    total: {leads:62, calls:112, appts:27, conv:'43.5%', convCls:'green', fuCalls:56, fuAppts:10, fuConv:'17.9%'}
+  },
+  'oct-w2': {
+    label: 'October 2026 — Week 2 (Oct 8–13)',
+    rows: [
+      {name:'Julia / Bath Reno',    leads:13, calls:24, appts:7,  conv:'53.8%', convCls:'green', fuCalls:3,  fuAppts:15, fuConv:'500%'},
+      {name:'Julia / Shower Glass', leads:16, calls:27, appts:11, conv:'68.8%', convCls:'green', fuCalls:9,  fuAppts:12, fuConv:'133%'},
+      {name:'Otavio / Countertops', leads:19, calls:27, appts:14, conv:'73.7%', convCls:'green', fuCalls:13, fuAppts:8,  fuConv:'61.5%'},
+    ],
+    total: {leads:48, calls:78, appts:32, conv:'66.7%', convCls:'green', fuCalls:25, fuAppts:35, fuConv:'140%'}
+  },
+  'oct-w3': {
+    label: 'October 2026 — Week 3 (Oct 14–18)',
+    rows: [
+      {name:'Julia / Bath Reno',    leads:7,  calls:18, appts:2, conv:'28.6%', convCls:'amber', fuCalls:12, fuAppts:3, fuConv:'25.0%'},
+      {name:'Julia / Shower Glass', leads:12, calls:29, appts:2, conv:'16.7%', convCls:'amber', fuCalls:22, fuAppts:6, fuConv:'27.3%'},
+      {name:'Otavio / Countertops', leads:11, calls:23, appts:4, conv:'36.4%', convCls:'amber', fuCalls:8,  fuAppts:9, fuConv:'112.5%'},
+    ],
+    total: {leads:30, calls:70, appts:8, conv:'26.7%', convCls:'amber', fuCalls:42, fuAppts:18, fuConv:'42.9%'}
+  }
+,
+  'oct-w4': {
+    label: 'October 2026 — Week 4 (Oct 21–25)',
+    rows: [
+      {name:'Julia / Bath Reno',    leads:4,  calls:20, appts:4, conv:'100%', convCls:'green', fuCalls:16, fuAppts:2, fuConv:'12.5%'},
+      {name:'Julia / Shower Glass', leads:10, calls:19, appts:5, conv:'50.0%', convCls:'amber', fuCalls:9,  fuAppts:0, fuConv:'0%'},
+      {name:'Otavio / Countertops', leads:11, calls:17, appts:9, conv:'81.8%', convCls:'green', fuCalls:6,  fuAppts:2, fuConv:'33.3%'},
+    ],
+    total: {leads:25, calls:56, appts:18, conv:'72.0%', convCls:'green', fuCalls:31, fuAppts:4, fuConv:'12.9%'}
+  }
+};
+
+function renderSDRTable(key) {
+  const d = sdrData[key];
+  if (!d) return;
+  const clsMap = {green:'#1a3a2a', amber:'#2a2a1a', red:'#2a1a1a'};
+  const txtMap = {green:'var(--green)', amber:'var(--amber)', red:'var(--red)'};
+  function badge(val, cls) {
+    return `<span style="background:${clsMap[cls]||clsMap.green};color:${txtMap[cls]||txtMap.green};border-radius:4px;padding:2px 8px;font-weight:600;">${val}</span>`;
+  }
+  const rowsHtml = d.rows.map(r => `
+    <tr style="border-bottom:1px solid var(--border);">
+      <td style="padding:8px 10px;color:var(--cream);">${r.name}</td>
+      <td style="text-align:right;padding:8px;color:var(--gold);">${r.leads}</td>
+      <td style="text-align:right;padding:8px;">${r.calls}</td>
+      <td style="text-align:right;padding:8px;color:var(--green);">${r.appts}</td>
+      <td style="text-align:right;padding:8px;">${badge(r.conv, r.convCls)}</td>
+      <td style="text-align:right;padding:8px;">${r.fuCalls}</td>
+      <td style="text-align:right;padding:8px;">${r.fuAppts}</td>
+      <td style="text-align:right;padding:8px;">${r.fuConv}</td>
+    </tr>`).join('');
+  const t = d.total;
+  document.getElementById('sdr-table-container').innerHTML = `
+    <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="border-bottom:1px solid var(--border);color:var(--muted);">
+            <th style="text-align:left;padding:6px 10px;">SDR / Dept</th>
+            <th style="text-align:right;padding:6px 8px;">Leads</th>
+            <th style="text-align:right;padding:6px 8px;">Calls</th>
+            <th style="text-align:right;padding:6px 8px;">Appts Set</th>
+            <th style="text-align:right;padding:6px 8px;">Lead→Appt</th>
+            <th style="text-align:right;padding:6px 8px;">FU Calls</th>
+            <th style="text-align:right;padding:6px 8px;">FU Appts</th>
+            <th style="text-align:right;padding:6px 8px;">FU Conv.</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rowsHtml}
+          <tr style="font-weight:700;background:var(--surface2);">
+            <td style="padding:8px 10px;color:var(--gold);">TOTAL</td>
+            <td style="text-align:right;padding:8px;color:var(--gold);">${t.leads}</td>
+            <td style="text-align:right;padding:8px;">${t.calls}</td>
+            <td style="text-align:right;padding:8px;color:var(--green);">${t.appts}</td>
+            <td style="text-align:right;padding:8px;">${badge(t.conv, t.convCls)}</td>
+            <td style="text-align:right;padding:8px;">${t.fuCalls}</td>
+            <td style="text-align:right;padding:8px;">${t.fuAppts}</td>
+            <td style="text-align:right;padding:8px;">${t.fuConv}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>`;
+}
+
+// Init SDR table on load
+document.addEventListener('DOMContentLoaded', () => {
+  renderSDRTable('oct-w4');
+  renderEvelineTable('oct-w4');
+renderChelseaTable('oct-w4');
+});
+
+// ── EVELINE DATA ──────────────────────────────────────────
+const evelineData = {
+  'oct-w4': { label:'October 2026 — Week 4 (Oct 21–25)', closings:2, revenue:'$12,167', avg:'$6,084', revCls:'var(--green)', note:'2 closings — Oct 21 $9,827 · Oct 23 $2,340 (Pell City)' },
+  'oct-w3': { label:'October 2026 — Week 3 (Oct 14–18)', closings:3, revenue:'$12,144', avg:'$4,048', revCls:'var(--green)', note:'3 closings — Steven Thomas $5,810 · Leisha Boulware $3,211 · Donald Sowers $3,123' },
+  'oct-w2': { label:'October 2026 — Week 2 (Oct 8–13)', closings:0, revenue:'$0', avg:'—', revCls:'var(--red)', note:'⚠ No closings logged Oct 8–13' },
+  'oct-w1': { label:'October 2026 — Week 1 (Oct 1–7)', closings:1, revenue:'$5,140', avg:'$5,140', note:'Oct W1 — 1 closing CT' },
+  'sep':    { label:'September 2026',                   closings:7, revenue:'—',      avg:'~$4,010', note:'7 closings — avg est.' },
+  'aug':    { label:'August 2026',                      closings:10,revenue:'$28,780',avg:'$2,878',  note:'10 closings' },
+  'jul':    { label:'July 2026',                        closings:15,revenue:'—',      avg:'~$4,010', note:'15 closings — avg est.' },
+  'jun':    { label:'June 2026',                        closings:8, revenue:'—',      avg:'~$4,010', note:'8 closings — avg est.' },
+  'may':    { label:'May 2026',                         closings:6, revenue:'—',      avg:'~$4,010', note:'6 closings — avg est.' },
+  'apr':    { label:'April 2026',                       closings:13,revenue:'—',      avg:'~$4,010', note:'13 closings — best month' },
+  'mar':    { label:'March 2026',                       closings:9, revenue:'—',      avg:'~$4,010', note:'9 closings' },
+  'feb':    { label:'February 2026',                    closings:6, revenue:'—',      avg:'~$4,010', note:'6 closings' },
+};
+
+function renderEvelineTable(key) {
+  const d = evelineData[key];
+  if (!d) return;
+  const isOct = key.startsWith('oct-');
+  const clsC = d.closings >= 8 ? 'var(--green)' : d.closings >= 5 ? 'var(--amber)' : 'var(--red)';
+  document.getElementById('eveline-table-container').innerHTML = `
+    <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="border-bottom:1px solid var(--border);color:var(--muted);">
+            <th style="text-align:left;padding:6px 10px;">Period</th>
+            <th style="text-align:right;padding:6px 8px;">Closings</th>
+            <th style="text-align:right;padding:6px 8px;">Revenue</th>
+            <th style="text-align:right;padding:6px 8px;">Avg Deal</th>
+            <th style="text-align:right;padding:6px 8px;">Appts→Close</th>
+            <th style="text-align:right;padding:6px 8px;">Leads Recv.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="${isOct ? 'font-weight:700;background:var(--surface2);' : ''}">
+            <td style="padding:8px 10px;color:${isOct ? 'var(--gold)' : 'var(--cream)'};">${d.label}</td>
+            <td style="text-align:right;padding:8px;color:${clsC};font-weight:${isOct?'700':'400'};">${d.closings}</td>
+            <td style="text-align:right;padding:8px;">${d.revenue}</td>
+            <td style="text-align:right;padding:8px;">${d.avg}</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:6px;font-size:11px;color:var(--muted);">${d.note}</div>`;
+}
+
+// ── JARVIS DATA ───────────────────────────────────────────
+const jarvisData = {
+  'oct-w4': { label:'October 2026 — Week 4 (Oct 21–25)', closings:0, revenue:'$0', avg:'—', revCls:'var(--red)', note:'⚠ Jarvis left the company Oct 14, 2026 — inactive' },
+  'oct-w3': { label:'October 2026 — Week 3 (Oct 14–18)', closings:0, revenue:'$0', avg:'—', revCls:'var(--red)', note:'⚠ Jarvis left the company Oct 14, 2026 — inactive' },
+  'oct-w2': { label:'October 2026 — Week 2 (Oct 8–13)', closings:0, revenue:'$0', avg:'—', revCls:'var(--red)', note:'⚠ 0 closings — scorecard blank Oct 8–13' },
+  'oct-w1': { label:'October 2026 — Week 1 (Oct 1–7)', closings:0,  revenue:'$0',       avg:'—',      revCls:'var(--red)',   note:'⚠ 0 closings so far — scorecard still blank' },
+  'sep':    { label:'September 2026 (debut)',           closings:11, revenue:'$158,783', avg:'$14,434', revCls:'var(--green)', note:'Debut month — $158K · highest avg deal in company' },
+};
+
+function renderJarvisTable(key) {
+  const d = jarvisData[key];
+  if (!d) return;
+  const isOct = key.startsWith('oct-');
+  const clsC = d.closings === 0 ? 'var(--red)' : 'var(--green)';
+  document.getElementById('jarvis-table-container').innerHTML = `
+    <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="border-bottom:1px solid var(--border);color:var(--muted);">
+            <th style="text-align:left;padding:6px 10px;">Period</th>
+            <th style="text-align:right;padding:6px 8px;">Closings</th>
+            <th style="text-align:right;padding:6px 8px;">Revenue</th>
+            <th style="text-align:right;padding:6px 8px;">Avg Deal</th>
+            <th style="text-align:right;padding:6px 8px;">Appts Set</th>
+            <th style="text-align:right;padding:6px 8px;">Appt→Close</th>
+            <th style="text-align:right;padding:6px 8px;">Leads Recv.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="${isOct ? 'font-weight:700;background:var(--surface2);' : ''}">
+            <td style="padding:8px 10px;color:${isOct ? 'var(--gold)' : 'var(--cream)'};">${d.label}</td>
+            <td style="text-align:right;padding:8px;color:${clsC};font-weight:700;">${d.closings}</td>
+            <td style="text-align:right;padding:8px;color:${d.revCls};">${d.revenue}</td>
+            <td style="text-align:right;padding:8px;color:${d.closings > 0 ? 'var(--gold)' : 'var(--muted)'};">${d.avg}</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:6px;font-size:11px;color:var(--muted);">${d.note}</div>`;
+}
+
+// ── CHELSEA DATA ──────────────────────────────────────────
+const chelseaData = {
+  'oct-w4': { label:'October 2026 — Week 4 (Oct 21–25)', closings:0, revenue:'$0', avg:'—', revCls:'var(--red)', note:'No closings logged Oct 21–25' },
+  'oct-w3': { label:'October 2026 — Week 3 (Oct 14–18)', closings:3, revenue:'$3,895', avg:'$1,298', revCls:'var(--green)', note:'3 closings — Andria Jackson $1,375 · Rhonda Touton $1,395 · Chavez Tyler $1,125' },
+  'oct-w2': { label:'October 2026 — Week 2 (Oct 8–13)', closings:0, revenue:'$0', avg:'—', revCls:'var(--red)', note:'⚠ 0 closings — scorecard blank Oct 8–13' },
+  'oct-w1': { label:'October 2026 — Week 1 (Oct 1–7)', closings:0, revenue:'$0',      avg:'—',      revCls:'var(--red)',   note:'⚠ 0 closings so far — scorecard still blank' },
+  'sep':    { label:'September 2026 (debut)',           closings:4, revenue:'$28,748', avg:'$7,187', revCls:'var(--green)', note:'Debut month — $28.7K · $7,187 avg deal' },
+};
+
+function renderChelseaTable(key) {
+  const d = chelseaData[key];
+  if (!d) return;
+  const isOct = key.startsWith('oct-');
+  const clsC = d.closings === 0 ? 'var(--red)' : 'var(--green)';
+  document.getElementById('chelsea-table-container').innerHTML = `
+    <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="border-bottom:1px solid var(--border);color:var(--muted);">
+            <th style="text-align:left;padding:6px 10px;">Period</th>
+            <th style="text-align:right;padding:6px 8px;">Closings</th>
+            <th style="text-align:right;padding:6px 8px;">Revenue</th>
+            <th style="text-align:right;padding:6px 8px;">Avg Deal</th>
+            <th style="text-align:right;padding:6px 8px;">Appts Set</th>
+            <th style="text-align:right;padding:6px 8px;">Appt→Close</th>
+            <th style="text-align:right;padding:6px 8px;">Leads Recv.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="${isOct ? 'font-weight:700;background:var(--surface2);' : ''}">
+            <td style="padding:8px 10px;color:${isOct ? 'var(--gold)' : 'var(--cream)'};">${d.label}</td>
+            <td style="text-align:right;padding:8px;color:${clsC};font-weight:700;">${d.closings}</td>
+            <td style="text-align:right;padding:8px;color:${d.revCls};">${d.revenue}</td>
+            <td style="text-align:right;padding:8px;color:${d.closings > 0 ? 'var(--gold)' : 'var(--muted)'};">${d.avg}</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:6px;font-size:11px;color:var(--muted);">${d.note}</div>`;
+}
+
+// ============================================================
+// ANNUAL PERFORMANCE — 2026 Seller Evolution Charts
+// ============================================================
+const seller2026 = {
+  months: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep'],
+  sellers: [
+    { name:'Stephanie', color:'#F5C842', data:[12143,87789,78172,81490,118623,73714,90004,64220,47247] },
+    { name:'Eveline',   color:'#4A9EE0', data:[0,21726,41952,52363,26780,41092,53124,28780,16743] },
+    { name:'Jessica',   color:'#5CBA8A', data:[0,51786,84837,46319,79680,52732,51227,31344,40901] },
+    { name:'Anderson',  color:'#E08050', data:[0,0,0,0,0,0,70855,33791,0] }
+  ]
+};
+
+function heatColor(val, max) {
+  if (val === 0) return 'background:rgba(255,255,255,0.04);color:var(--cream-dim)';
+  const pct = val / max;
+  if (pct >= 0.8) return 'background:rgba(92,186,138,0.25);color:#5CBA8A';
+  if (pct >= 0.5) return 'background:rgba(92,186,138,0.12);color:#8ed4b0';
+  if (pct >= 0.25) return 'background:rgba(245,200,66,0.12);color:#F5C842';
+  return 'background:rgba(245,200,66,0.06);color:var(--amber)';
+}
+
+function fmt(val) {
+  if (val === 0) return '—';
+  if (val >= 100000) return '$' + (val/1000).toFixed(0) + 'K';
+  if (val >= 10000) return '$' + (val/1000).toFixed(0) + 'K';
+  return '$' + (val/1000).toFixed(1) + 'K';
+}
+
+function trendArrow(data) {
+  const last3 = data.filter(v=>v>0).slice(-3);
+  if (last3.length < 2) return '<span style="color:var(--amber)">→ New</span>';
+  const avg_first = last3.slice(0,Math.floor(last3.length/2)).reduce((a,b)=>a+b,0)/Math.ceil(last3.length/2);
+  const last = last3[last3.length-1];
+  if (last > avg_first * 1.1) return '<span style="color:#5CBA8A">↑ Rising</span>';
+  if (last < avg_first * 0.9) return '<span style="color:var(--red)">↓ Falling</span>';
+  return '<span style="color:var(--amber)">→ Stable</span>';
+}
+
+function renderAnnualCharts() {
+  const { months, sellers } = seller2026;
+  const maxVal = Math.max(...sellers.flatMap(s=>s.data));
+  const monthTotals = months.map((_,i) => sellers.reduce((sum,s)=>sum+s.data[i],0));
+  const maxTotal = Math.max(...monthTotals);
+
+  // HEATMAP
+  const tbody = document.getElementById('sellerHeatmapBody');
+  if (tbody) {
+    tbody.innerHTML = sellers.map(s => {
+      const ytd = s.data.reduce((a,b)=>a+b,0);
+      const sellerMax = Math.max(...s.data);
+      const cells = s.data.map(v => {
+        const style = heatColor(v, sellerMax);
+        return `<td style="padding:8px;text-align:center;font-size:11px;font-weight:500;${style};border-top:1px solid rgba(255,255,255,0.04);">${fmt(v)}</td>`;
+      }).join('');
+      return `<tr>
+        <td style="padding:10px 14px;border-top:1px solid rgba(255,255,255,0.04);">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="width:8px;height:8px;border-radius:50%;background:${s.color};flex-shrink:0;"></div>
+            <span style="font-size:12px;font-weight:600;color:var(--cream);">${s.name}</span>
+          </div>
+        </td>
+        ${cells}
+        <td style="padding:10px 12px;text-align:right;font-size:12px;font-weight:700;color:${s.color};border-top:1px solid rgba(255,255,255,0.04);">${fmt(ytd)}</td>
+        <td style="padding:10px 12px;text-align:center;font-size:11px;border-top:1px solid rgba(255,255,255,0.04);">${trendArrow(s.data)}</td>
+      </tr>`;
+    }).join('');
+  }
+
+  // BAR CHART — stacked bars per month with total on top
+  const barChart = document.getElementById('sellerBarChart');
+  if (barChart) {
+    const maxTotalBar = Math.max(...monthTotals);
+    barChart.innerHTML = months.map((m, mi) => {
+      const total = monthTotals[mi];
+      const barH = Math.max(4, (total / maxTotalBar) * 160);
+      // Build stacked segments proportional within the bar height
+      const activeS = sellers.filter(s=>s.data[mi]>0);
+      const segments = activeS.map(s => {
+        const segH = (s.data[mi] / total) * barH;
+        return `<div style="width:100%;height:${segH.toFixed(1)}px;background:${s.color};opacity:0.9;flex-shrink:0;" title="${s.name}: ${fmt(s.data[mi])}"></div>`;
+      });
+      // Total label on top — white, bold
+      const isHighest = total === maxTotalBar;
+      const labelColor = isHighest ? '#F5C842' : 'rgba(255,255,255,0.85)';
+      return `<div style="display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:180px;position:relative;">
+        <div style="position:absolute;top:${(180-barH-22).toFixed(0)}px;width:100%;text-align:center;">
+          <div style="font-size:10px;font-weight:700;color:${labelColor};white-space:nowrap;line-height:1.2;">${fmt(total)}</div>
+        </div>
+        <div style="width:80%;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;border-radius:3px 3px 0 0;height:${barH.toFixed(1)}px;">
+          ${segments.join('')}
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  // LINE CHART SVG
+  const svg = document.getElementById('sellerLineChart');
+  if (svg) {
+    const W = 700, H = 160, PAD = 20;
+    const xStep = (W - PAD*2) / (months.length - 1);
+    const yScale = v => H - PAD - (v / maxVal) * (H - PAD*2);
+
+    let svgContent = '';
+    // Grid lines
+    [0, 0.25, 0.5, 0.75, 1].forEach(pct => {
+      const y = H - PAD - pct * (H - PAD*2);
+      svgContent += `<line x1="${PAD}" y1="${y.toFixed(1)}" x2="${W-PAD}" y2="${y.toFixed(1)}" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>`;
+      if (pct > 0) svgContent += `<text x="${PAD-4}" y="${(y+3).toFixed(1)}" font-size="8" fill="rgba(255,255,255,0.3)" text-anchor="end">${fmt(maxVal*pct)}</text>`;
+    });
+
+    // Lines per seller
+    sellers.forEach(s => {
+      const pts = s.data.map((v,i) => `${(PAD + i*xStep).toFixed(1)},${yScale(v).toFixed(1)}`).join(' ');
+      svgContent += `<polyline points="${pts}" fill="none" stroke="${s.color}" stroke-width="2" stroke-linejoin="round" opacity="0.9"/>`;
+      // Dots
+      s.data.forEach((v,i) => {
+        if (v > 0) {
+          svgContent += `<circle cx="${(PAD + i*xStep).toFixed(1)}" cy="${yScale(v).toFixed(1)}" r="3" fill="${s.color}" stroke="var(--stone)" stroke-width="1.5">
+            <title>${s.name} ${months[i]}: ${fmt(v)}</title>
+          </circle>`;
+        }
+      });
+    });
+
+    // Month labels
+    months.forEach((m,i) => {
+      svgContent += `<text x="${(PAD + i*xStep).toFixed(1)}" y="${H-2}" font-size="9" fill="rgba(255,255,255,0.4)" text-anchor="middle">${m}</text>`;
+    });
+
+    svg.innerHTML = svgContent;
+  }
+}
+
+// Render when Annual tab is clicked
+
 </body>
 </html>
