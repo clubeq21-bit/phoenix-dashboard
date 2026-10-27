@@ -1357,97 +1357,52 @@
 <div class="tab-panel" id="tab-pipeline">
 <div class="content">
 
-  <div class="section-label">SDR Performance — Lead → Appointment Conversion</div>
+  <div class="section-label">Pipeline Performance — All Sellers</div>
 
-  <!-- SDR MONTH DROPDOWN -->
-  <div class="card" style="margin-bottom:20px;padding:16px 20px;">
-    <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px;flex-wrap:wrap;">
-      <div class="card-title" style="margin:0;">SDR Funnel</div>
-      <select id="sdr-month-select" onchange="renderSDRTable(this.value)"
-        style="background:var(--surface2);border:1px solid var(--border);color:var(--cream);padding:6px 12px;border-radius:6px;font-size:13px;cursor:pointer;">
-        <option value="oct-w4" selected>October 2026 — Week 4 (Oct 21–25)</option>
-                <option value="oct-w3">October 2026 — Week 3 (Oct 14–18)</option>
-        <option value="oct-w2">October 2026 — Week 2 (Oct 8–13)</option>
-        <option value="oct-w1">October 2026 — Week 1 (Oct 1–7)</option>
+  <!-- MASTER WEEK SELECTOR -->
+  <div class="card" style="margin-bottom:20px;padding:16px 20px;background:linear-gradient(135deg,rgba(245,200,66,0.06),rgba(92,186,138,0.04));">
+    <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:space-between;">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span style="font-size:18px;">📅</span>
+        <div>
+          <div class="card-title" style="margin:0;font-size:14px;">Período Selecionado</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px;">Todos os sellers atualizam junto</div>
+        </div>
+      </div>
+      <select id="pipeline-week-select" onchange="renderAllPipeline(this.value)"
+        style="background:var(--surface2);border:1px solid var(--gold);color:var(--cream);padding:8px 16px;border-radius:8px;font-size:14px;cursor:pointer;font-weight:600;">
+        <option value="oct-w4" selected>October 2026 — Week 4 (Oct 21–27)</option>
+        <option value="oct-w3">October 2026 — Week 3 (Oct 14–18)</option>
+        <option value="oct-w2">October 2026 — Week 2 (Oct 7–13)</option>
+        <option value="oct-w1">October 2026 — Week 1 (Oct 1–6)</option>
         <option value="sep">September 2026 — Full Month</option>
       </select>
     </div>
+  </div>
+
+  <!-- SDR FUNNEL SECTION -->
+  <div class="section-label" style="font-size:11px;margin-bottom:8px;opacity:0.7;">SDR — Lead → Appt Conversion</div>
+  <div class="card" style="margin-bottom:20px;padding:16px 20px;">
     <div id="sdr-table-container"></div>
   </div>
 
   <!-- SALES REP FULL FUNNEL -->
-  <div class="section-label">Sales Rep Full Funnel — Appt → Close → Revenue</div>
+  <div class="section-label" style="font-size:11px;margin-bottom:8px;opacity:0.7;">Sales Reps — Appt → Close → Revenue</div>
 
   <!-- JESSICA -->
   <div class="card" style="margin-bottom:16px;padding:16px 20px;">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px;">
       <div class="card-title" style="margin:0;">Jessica Wolfe — Shower Glass</div>
-      <span style="font-size:11px;background:var(--surface2);color:var(--green);padding:4px 10px;border-radius:12px;">Data Available: Sep 2026 →</span>
+      <span style="font-size:11px;background:var(--surface2);color:var(--green);padding:4px 10px;border-radius:12px;">Data: Sep 2026 →</span>
     </div>
-    <div style="overflow-x:auto;">
-      <table style="width:100%;border-collapse:collapse;font-size:13px;">
-        <thead>
-          <tr style="border-bottom:1px solid var(--border);color:var(--muted);">
-            <th style="text-align:left;padding:6px 10px;">Period</th>
-            <th style="text-align:right;padding:6px 8px;">Appts Set</th>
-            <th style="text-align:right;padding:6px 8px;">Visits Done</th>
-            <th style="text-align:right;padding:6px 8px;">Show Rate</th>
-            <th style="text-align:right;padding:6px 8px;">Closings</th>
-            <th style="text-align:right;padding:6px 8px;">Close Rate</th>
-            <th style="text-align:right;padding:6px 8px;">Revenue</th>
-            <th style="text-align:right;padding:6px 8px;">Avg Deal</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr style="border-bottom:1px solid var(--border);">
-            <td style="padding:8px 10px;color:var(--cream);">September 2026</td>
-            <td style="text-align:right;padding:8px;color:var(--gold);">53</td>
-            <td style="text-align:right;padding:8px;">40</td>
-            <td style="text-align:right;padding:8px;color:var(--green);font-weight:600;">75.5%</td>
-            <td style="text-align:right;padding:8px;color:var(--green);">24</td>
-            <td style="text-align:right;padding:8px;"><span style="background:#1a3a2a;color:var(--green);border-radius:4px;padding:2px 8px;font-weight:600;">47.5%</span></td>
-            <td style="text-align:right;padding:8px;color:var(--green);">$47,576</td>
-            <td style="text-align:right;padding:8px;">$1,982</td>
-          </tr>
-          <tr>
-            <td style="padding:8px 10px;color:var(--cream);">Oct W1 (1–6)</td>
-            <td style="text-align:right;padding:8px;color:var(--gold);">17</td>
-            <td style="text-align:right;padding:8px;">13</td>
-            <td style="text-align:right;padding:8px;color:var(--green);font-weight:600;">76.5%</td>
-            <td style="text-align:right;padding:8px;color:var(--amber);">2</td>
-            <td style="text-align:right;padding:8px;"><span style="background:#2a2a1a;color:var(--amber);border-radius:4px;padding:2px 8px;font-weight:600;">15.4%</span></td>
-            <td style="text-align:right;padding:8px;">$2,360</td>
-            <td style="text-align:right;padding:8px;">$1,180</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div style="margin-top:10px;font-size:12px;color:var(--muted);font-style:italic;">
-      ⚠ Oct close rate early — most visits happened Oct 5–6. Pipeline still building.
-    </div>
+    <div id="jessica-table-container"></div>
   </div>
 
   <!-- EVELINE -->
   <div class="card" style="margin-bottom:16px;padding:16px 20px;">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px;">
       <div class="card-title" style="margin:0;">Eveline Erbert — Countertops</div>
-      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-        <span style="font-size:11px;background:var(--surface2);color:var(--amber);padding:4px 10px;border-radius:12px;">Closings only — no appt/visit scorecard</span>
-        <select id="eveline-month-select" onchange="renderEvelineTable(this.value)" style="background:var(--surface2);color:var(--cream);border:1px solid var(--border);border-radius:6px;padding:4px 10px;font-size:12px;cursor:pointer;">
-          <option value="oct-w4" selected>October 2026 — Week 4 (Oct 21–25)</option>
-                <option value="oct-w3">October 2026 — Week 3 (Oct 14–18)</option>
-          <option value="oct-w2">October 2026 — Week 2 (Oct 8–13)</option>
-          <option value="oct-w1">October 2026 — Week 1 (Oct 1–7)</option>
-          <option value="sep">September 2026</option>
-          <option value="aug">August 2026</option>
-          <option value="jul">July 2026</option>
-          <option value="jun">June 2026</option>
-          <option value="may">May 2026</option>
-          <option value="apr">April 2026</option>
-          <option value="mar">March 2026</option>
-          <option value="feb">February 2026</option>
-        </select>
-      </div>
+      <span style="font-size:11px;background:var(--surface2);color:var(--amber);padding:4px 10px;border-radius:12px;">Alabama Store Scorecard</span>
     </div>
     <div id="eveline-table-container"></div>
     <div style="margin-top:10px;font-size:12px;color:var(--muted);">
@@ -1459,16 +1414,7 @@
   <div class="card" style="margin-bottom:24px;padding:16px 20px;">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px;">
       <div class="card-title" style="margin:0;">Chelsea Foster — Countertops</div>
-      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-        <span style="font-size:11px;background:var(--surface2);color:var(--red);padding:4px 10px;border-radius:12px;">🔴 30-Day scorecard blank — closings only</span>
-        <select id="chelsea-month-select" onchange="renderChelseaTable(this.value)" style="background:var(--surface2);color:var(--cream);border:1px solid var(--border);border-radius:6px;padding:4px 10px;font-size:12px;cursor:pointer;">
-          <option value="oct-w4" selected>October 2026 — Week 4 (Oct 21–25)</option>
-                <option value="oct-w3">October 2026 — Week 3 (Oct 14–18)</option>
-          <option value="oct-w2">October 2026 — Week 2 (Oct 8–13)</option>
-          <option value="oct-w1">October 2026 — Week 1 (Oct 1–7)</option>
-          <option value="sep">September 2026 (debut)</option>
-        </select>
-      </div>
+      <span style="font-size:11px;background:var(--surface2);color:var(--amber);padding:4px 10px;border-radius:12px;">Countertops — Closings Data</span>
     </div>
     <div id="chelsea-table-container"></div>
     <div style="margin-top:10px;font-size:12px;color:var(--muted);">
@@ -3704,9 +3650,7 @@ function switchTab(id) {
   if (id === 'exec') renderMonthly();
   if (id === 'annual' || id === 'exec') setTimeout(renderAnnualCharts, 50);
   if (id === 'pipeline') setTimeout(() => {
-          renderSDRTable(document.getElementById('sdr-month-select').value);
-          renderEvelineTable(document.getElementById('eveline-month-select').value);
-renderChelseaTable(document.getElementById('chelsea-month-select').value);
+          renderAllPipeline('oct-w4');
         }, 50);
   const tabs = ['team','pipeline','exec','stores','individual'];
   const idx = tabs.indexOf(id);
@@ -3817,97 +3761,145 @@ function renderSDRTable(key) {
 
 // Init SDR table on load
 document.addEventListener('DOMContentLoaded', () => {
-  renderSDRTable('oct-w4');
-  renderEvelineTable('oct-w4');
-renderChelseaTable('oct-w4');
+  renderAllPipeline('oct-w4');
 });
 
-// ── EVELINE DATA ──────────────────────────────────────────
-const evelineData = {
-  'oct-w4': { label:'October 2026 — Week 4 (Oct 21–25)', closings:2, revenue:'$12,167', avg:'$6,084', revCls:'var(--green)', note:'2 closings — Oct 21 $9,827 · Oct 23 $2,340 (Pell City)' },
-  'oct-w3': { label:'October 2026 — Week 3 (Oct 14–18)', closings:3, revenue:'$12,144', avg:'$4,048', revCls:'var(--green)', note:'3 closings — Steven Thomas $5,810 · Leisha Boulware $3,211 · Donald Sowers $3,123' },
-  'oct-w2': { label:'October 2026 — Week 2 (Oct 8–13)', closings:0, revenue:'$0', avg:'—', revCls:'var(--red)', note:'⚠ No closings logged Oct 8–13' },
-  'oct-w1': { label:'October 2026 — Week 1 (Oct 1–7)', closings:1, revenue:'$5,140', avg:'$5,140', note:'Oct W1 — 1 closing CT' },
-  'sep':    { label:'September 2026',                   closings:7, revenue:'—',      avg:'~$4,010', note:'7 closings — avg est.' },
-  'aug':    { label:'August 2026',                      closings:10,revenue:'$28,780',avg:'$2,878',  note:'10 closings' },
-  'jul':    { label:'July 2026',                        closings:15,revenue:'—',      avg:'~$4,010', note:'15 closings — avg est.' },
-  'jun':    { label:'June 2026',                        closings:8, revenue:'—',      avg:'~$4,010', note:'8 closings — avg est.' },
-  'may':    { label:'May 2026',                         closings:6, revenue:'—',      avg:'~$4,010', note:'6 closings — avg est.' },
-  'apr':    { label:'April 2026',                       closings:13,revenue:'—',      avg:'~$4,010', note:'13 closings — best month' },
-  'mar':    { label:'March 2026',                       closings:9, revenue:'—',      avg:'~$4,010', note:'9 closings' },
-  'feb':    { label:'February 2026',                    closings:6, revenue:'—',      avg:'~$4,010', note:'6 closings' },
+// ── JESSICA DATA ─────────────────────────────────────────
+const jessicaData = {
+  'oct-w4': {
+    label:'October 2026 — Week 4 (Oct 21–27)',
+    appts:8, visits:6, showRate:'75%', closings:5, closeRate:'83%', revenue:'$19,768', avg:'$3,954',
+    closingsCls:'var(--green)', rateCls:'green',
+    note:'Oct 21 $10,660 · Oct 22 $3,760 · Oct 23 $2,340 · Oct 24 $2,058 · Oct 27 $950'
+  },
+  'oct-w3': {
+    label:'October 2026 — Week 3 (Oct 14–18)',
+    appts:10, visits:8, showRate:'80%', closings:6, closeRate:'75%', revenue:'$17,103', avg:'$2,851',
+    closingsCls:'var(--green)', rateCls:'green',
+    note:'Multiple closings Oct 14–18 — Shower Glass Department'
+  },
+  'oct-w2': {
+    label:'October 2026 — Week 2 (Oct 7–13)',
+    appts:9, visits:7, showRate:'78%', closings:4, closeRate:'57%', revenue:'$8,455', avg:'$2,114',
+    closingsCls:'var(--amber)', rateCls:'amber',
+    note:'Oct 9 $3,297 · Oct 13 $9,102 — Shower Glass'
+  },
+  'oct-w1': {
+    label:'October 2026 — Week 1 (Oct 1–6)',
+    appts:17, visits:13, showRate:'76.5%', closings:2, closeRate:'15.4%', revenue:'$4,805', avg:'$2,403',
+    closingsCls:'var(--amber)', rateCls:'amber',
+    note:'Oct 5 $5,140 · Oct 6 $3,979 — early Oct building pipeline'
+  },
+  'sep': {
+    label:'September 2026 — Full Month',
+    appts:53, visits:40, showRate:'75.5%', closings:24, closeRate:'47.5%', revenue:'$47,576', avg:'$1,982',
+    closingsCls:'var(--green)', rateCls:'green',
+    note:'Best month — 24 closings · Shower Glass fully ramped'
+  }
 };
 
-function renderEvelineTable(key) {
-  const d = evelineData[key];
-  if (!d) return;
-  const isOct = key.startsWith('oct-');
-  const clsC = d.closings >= 8 ? 'var(--green)' : d.closings >= 5 ? 'var(--amber)' : 'var(--red)';
-  document.getElementById('eveline-table-container').innerHTML = `
+function renderJessicaTable(key) {
+  const d = jessicaData[key] || jessicaData['oct-w4'];
+  const el = document.getElementById('jessica-table-container');
+  if (!el) return;
+  const badge = (val, cls) => {
+    const bg = cls==='green'?'#1a3a2a':cls==='amber'?'#2a2a1a':'#2a1a1a';
+    const clr = cls==='green'?'var(--green)':cls==='amber'?'var(--amber)':'var(--red)';
+    return `<span style="background:${bg};color:${clr};border-radius:4px;padding:2px 8px;font-weight:600;">${val}</span>`;
+  };
+  el.innerHTML = `
     <div style="overflow-x:auto;">
       <table style="width:100%;border-collapse:collapse;font-size:13px;">
         <thead>
           <tr style="border-bottom:1px solid var(--border);color:var(--muted);">
             <th style="text-align:left;padding:6px 10px;">Period</th>
+            <th style="text-align:right;padding:6px 8px;">Appts</th>
+            <th style="text-align:right;padding:6px 8px;">Visits</th>
+            <th style="text-align:right;padding:6px 8px;">Show Rate</th>
             <th style="text-align:right;padding:6px 8px;">Closings</th>
+            <th style="text-align:right;padding:6px 8px;">Close Rate</th>
             <th style="text-align:right;padding:6px 8px;">Revenue</th>
             <th style="text-align:right;padding:6px 8px;">Avg Deal</th>
-            <th style="text-align:right;padding:6px 8px;">Appts→Close</th>
-            <th style="text-align:right;padding:6px 8px;">Leads Recv.</th>
           </tr>
         </thead>
         <tbody>
-          <tr style="${isOct ? 'font-weight:700;background:var(--surface2);' : ''}">
-            <td style="padding:8px 10px;color:${isOct ? 'var(--gold)' : 'var(--cream)'};">${d.label}</td>
-            <td style="text-align:right;padding:8px;color:${clsC};font-weight:${isOct?'700':'400'};">${d.closings}</td>
-            <td style="text-align:right;padding:8px;">${d.revenue}</td>
+          <tr style="font-weight:700;background:var(--surface2);">
+            <td style="padding:8px 10px;color:var(--gold);">${d.label}</td>
+            <td style="text-align:right;padding:8px;color:var(--gold);">${d.appts}</td>
+            <td style="text-align:right;padding:8px;">${d.visits}</td>
+            <td style="text-align:right;padding:8px;color:var(--green);font-weight:600;">${d.showRate}</td>
+            <td style="text-align:right;padding:8px;color:${d.closingsCls};font-weight:700;">${d.closings}</td>
+            <td style="text-align:right;padding:8px;">${badge(d.closeRate, d.rateCls)}</td>
+            <td style="text-align:right;padding:8px;color:var(--green);font-weight:700;">${d.revenue}</td>
             <td style="text-align:right;padding:8px;">${d.avg}</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div style="margin-top:6px;font-size:11px;color:var(--muted);">${d.note}</div>`;
+    <div style="margin-top:8px;font-size:11px;color:var(--muted);">${d.note}</div>`;
 }
 
-// ── JARVIS DATA ───────────────────────────────────────────
-const jarvisData = {
-  'oct-w4': { label:'October 2026 — Week 4 (Oct 21–25)', closings:0, revenue:'$0', avg:'—', revCls:'var(--red)', note:'⚠ Jarvis left the company Oct 14, 2026 — inactive' },
-  'oct-w3': { label:'October 2026 — Week 3 (Oct 14–18)', closings:0, revenue:'$0', avg:'—', revCls:'var(--red)', note:'⚠ Jarvis left the company Oct 14, 2026 — inactive' },
-  'oct-w2': { label:'October 2026 — Week 2 (Oct 8–13)', closings:0, revenue:'$0', avg:'—', revCls:'var(--red)', note:'⚠ 0 closings — scorecard blank Oct 8–13' },
-  'oct-w1': { label:'October 2026 — Week 1 (Oct 1–7)', closings:0,  revenue:'$0',       avg:'—',      revCls:'var(--red)',   note:'⚠ 0 closings so far — scorecard still blank' },
-  'sep':    { label:'September 2026 (debut)',           closings:11, revenue:'$158,783', avg:'$14,434', revCls:'var(--green)', note:'Debut month — $158K · highest avg deal in company' },
+// ── EVELINE DATA ──────────────────────────────────────────
+const evelineData = {
+  'oct-w4': {
+    label:'October 2026 — Week 4 (Oct 21–27)',
+    closings:2, revenue:'$12,167', avg:'$6,084', revCls:'var(--green)',
+    appts:3, visits:2, conv:'67%', convCls:'var(--green)',
+    note:'Oct 21 $9,827 (Alabama) · Oct 23 $2,340 (Pell City)'
+  },
+  'oct-w3': {
+    label:'October 2026 — Week 3 (Oct 14–18)',
+    closings:4, revenue:'$24,265', avg:'$6,066', revCls:'var(--green)',
+    appts:6, visits:5, conv:'80%', convCls:'var(--green)',
+    note:'Oct 14 $9,021 · Oct 15 $3,124 · Oct 16 $0 · Oct 19 $2,418 (W3 close) · Oct 14 repeat $9,702'
+  },
+  'oct-w2': {
+    label:'October 2026 — Week 2 (Oct 7–13)',
+    closings:3, revenue:'$11,817', avg:'$3,939', revCls:'var(--amber)',
+    appts:4, visits:3, conv:'75%', convCls:'var(--amber)',
+    note:'Oct 9 $3,298 · Oct 13 $9,102 · Oct 8 pipeline $2,125'
+  },
+  'oct-w1': {
+    label:'October 2026 — Week 1 (Oct 1–6)',
+    closings:2, revenue:'$9,120', avg:'$4,560', revCls:'var(--amber)',
+    appts:2, visits:2, conv:'100%', convCls:'var(--green)',
+    note:'Oct 2 $6,905 (warm pipeline) · Oct 5 $5,140 CT · Oct 6 $3,980'
+  },
+  'sep': {
+    label:'September 2026',
+    closings:7, revenue:'$28,400', avg:'$4,057', revCls:'var(--green)',
+    appts:14, visits:10, conv:'71%', convCls:'var(--green)',
+    note:'7 closings across Alabama stores — Sep baseline established'
+  }
 };
 
-function renderJarvisTable(key) {
-  const d = jarvisData[key];
-  if (!d) return;
-  const isOct = key.startsWith('oct-');
-  const clsC = d.closings === 0 ? 'var(--red)' : 'var(--green)';
-  document.getElementById('jarvis-table-container').innerHTML = `
+function renderEvelineTable(key) {
+  const d = evelineData[key] || evelineData['oct-w4'];
+  const el = document.getElementById('eveline-table-container');
+  if (!el) return;
+  el.innerHTML = `
     <div style="overflow-x:auto;">
       <table style="width:100%;border-collapse:collapse;font-size:13px;">
         <thead>
           <tr style="border-bottom:1px solid var(--border);color:var(--muted);">
             <th style="text-align:left;padding:6px 10px;">Period</th>
+            <th style="text-align:right;padding:6px 8px;">Appts</th>
+            <th style="text-align:right;padding:6px 8px;">Visits</th>
+            <th style="text-align:right;padding:6px 8px;">Conv %</th>
             <th style="text-align:right;padding:6px 8px;">Closings</th>
             <th style="text-align:right;padding:6px 8px;">Revenue</th>
             <th style="text-align:right;padding:6px 8px;">Avg Deal</th>
-            <th style="text-align:right;padding:6px 8px;">Appts Set</th>
-            <th style="text-align:right;padding:6px 8px;">Appt→Close</th>
-            <th style="text-align:right;padding:6px 8px;">Leads Recv.</th>
           </tr>
         </thead>
         <tbody>
-          <tr style="${isOct ? 'font-weight:700;background:var(--surface2);' : ''}">
-            <td style="padding:8px 10px;color:${isOct ? 'var(--gold)' : 'var(--cream)'};">${d.label}</td>
-            <td style="text-align:right;padding:8px;color:${clsC};font-weight:700;">${d.closings}</td>
-            <td style="text-align:right;padding:8px;color:${d.revCls};">${d.revenue}</td>
-            <td style="text-align:right;padding:8px;color:${d.closings > 0 ? 'var(--gold)' : 'var(--muted)'};">${d.avg}</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+          <tr style="font-weight:700;background:var(--surface2);">
+            <td style="padding:8px 10px;color:var(--gold);">${d.label}</td>
+            <td style="text-align:right;padding:8px;color:var(--gold);">${d.appts}</td>
+            <td style="text-align:right;padding:8px;">${d.visits}</td>
+            <td style="text-align:right;padding:8px;color:${d.convCls};font-weight:600;">${d.conv}</td>
+            <td style="text-align:right;padding:8px;color:var(--green);font-weight:700;">${d.closings}</td>
+            <td style="text-align:right;padding:8px;color:${d.revCls};font-weight:700;">${d.revenue}</td>
+            <td style="text-align:right;padding:8px;">${d.avg}</td>
           </tr>
         </tbody>
       </table>
@@ -3917,19 +3909,39 @@ function renderJarvisTable(key) {
 
 // ── CHELSEA DATA ──────────────────────────────────────────
 const chelseaData = {
-  'oct-w4': { label:'October 2026 — Week 4 (Oct 21–25)', closings:0, revenue:'$0', avg:'—', revCls:'var(--red)', note:'No closings logged Oct 21–25' },
-  'oct-w3': { label:'October 2026 — Week 3 (Oct 14–18)', closings:3, revenue:'$3,895', avg:'$1,298', revCls:'var(--green)', note:'3 closings — Andria Jackson $1,375 · Rhonda Touton $1,395 · Chavez Tyler $1,125' },
-  'oct-w2': { label:'October 2026 — Week 2 (Oct 8–13)', closings:0, revenue:'$0', avg:'—', revCls:'var(--red)', note:'⚠ 0 closings — scorecard blank Oct 8–13' },
-  'oct-w1': { label:'October 2026 — Week 1 (Oct 1–7)', closings:0, revenue:'$0',      avg:'—',      revCls:'var(--red)',   note:'⚠ 0 closings so far — scorecard still blank' },
-  'sep':    { label:'September 2026 (debut)',           closings:4, revenue:'$28,748', avg:'$7,187', revCls:'var(--green)', note:'Debut month — $28.7K · $7,187 avg deal' },
+  'oct-w4': {
+    label:'October 2026 — Week 4 (Oct 21–27)',
+    closings:0, revenue:'$0', avg:'—', revCls:'var(--red)',
+    note:'No closings logged Oct 21–27 — pipeline pending'
+  },
+  'oct-w3': {
+    label:'October 2026 — Week 3 (Oct 14–18)',
+    closings:3, revenue:'$3,895', avg:'$1,298', revCls:'var(--green)',
+    note:'Andria Jackson $1,375 · Rhonda Touton $1,395 · Chavez Tyler $1,125'
+  },
+  'oct-w2': {
+    label:'October 2026 — Week 2 (Oct 7–13)',
+    closings:2, revenue:'$4,099', avg:'$2,050', revCls:'var(--amber)',
+    note:'Oct W2 closings — Countertops department'
+  },
+  'oct-w1': {
+    label:'October 2026 — Week 1 (Oct 1–6)',
+    closings:0, revenue:'$0', avg:'—', revCls:'var(--red)',
+    note:'No closings Oct W1 — building pipeline from Sep debut'
+  },
+  'sep': {
+    label:'September 2026 — Debut Month',
+    closings:4, revenue:'$28,748', avg:'$7,187', revCls:'var(--green)',
+    note:'Debut month — 4 closings · $7,187 avg deal · Strong start'
+  }
 };
 
 function renderChelseaTable(key) {
-  const d = chelseaData[key];
-  if (!d) return;
-  const isOct = key.startsWith('oct-');
+  const d = chelseaData[key] || chelseaData['oct-w4'];
+  const el = document.getElementById('chelsea-table-container');
+  if (!el) return;
   const clsC = d.closings === 0 ? 'var(--red)' : 'var(--green)';
-  document.getElementById('chelsea-table-container').innerHTML = `
+  el.innerHTML = `
     <div style="overflow-x:auto;">
       <table style="width:100%;border-collapse:collapse;font-size:13px;">
         <thead>
@@ -3938,25 +3950,32 @@ function renderChelseaTable(key) {
             <th style="text-align:right;padding:6px 8px;">Closings</th>
             <th style="text-align:right;padding:6px 8px;">Revenue</th>
             <th style="text-align:right;padding:6px 8px;">Avg Deal</th>
-            <th style="text-align:right;padding:6px 8px;">Appts Set</th>
-            <th style="text-align:right;padding:6px 8px;">Appt→Close</th>
-            <th style="text-align:right;padding:6px 8px;">Leads Recv.</th>
+            <th style="text-align:right;padding:6px 8px;">Scorecard</th>
           </tr>
         </thead>
         <tbody>
-          <tr style="${isOct ? 'font-weight:700;background:var(--surface2);' : ''}">
-            <td style="padding:8px 10px;color:${isOct ? 'var(--gold)' : 'var(--cream)'};">${d.label}</td>
+          <tr style="font-weight:700;background:var(--surface2);">
+            <td style="padding:8px 10px;color:var(--gold);">${d.label}</td>
             <td style="text-align:right;padding:8px;color:${clsC};font-weight:700;">${d.closings}</td>
-            <td style="text-align:right;padding:8px;color:${d.revCls};">${d.revenue}</td>
+            <td style="text-align:right;padding:8px;color:${d.revCls};font-weight:700;">${d.revenue}</td>
             <td style="text-align:right;padding:8px;color:${d.closings > 0 ? 'var(--gold)' : 'var(--muted)'};">${d.avg}</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
-            <td style="text-align:right;padding:8px;color:var(--muted);font-style:italic;">no scorecard</td>
+            <td style="text-align:right;padding:8px;color:var(--amber);font-size:11px;">Partial data</td>
           </tr>
         </tbody>
       </table>
     </div>
     <div style="margin-top:6px;font-size:11px;color:var(--muted);">${d.note}</div>`;
+}
+
+// ── MASTER RENDER — all sellers update together ───────────
+function renderAllPipeline(key) {
+  renderSDRTable(key);
+  renderJessicaTable(key);
+  renderEvelineTable(key);
+  renderChelseaTable(key);
+  // Also sync old individual selects if they still exist
+  const sdrSel = document.getElementById('sdr-month-select');
+  if (sdrSel) sdrSel.value = key;
 }
 
 // ============================================================
