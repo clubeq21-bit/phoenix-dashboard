@@ -3643,127 +3643,6 @@ function updateSellerCards(week) {
   if (cp) { cp.style.width = ch.prog + '%'; cp.className = 'progress-fill ' + (ch.prog > 20 ? 'green' : 'red'); }
 }
 
-function switchTab(id) {
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  document.getElementById('tab-' + id).classList.add('active');
-  if (id === 'exec') renderMonthly();
-  if (id === 'annual' || id === 'exec') setTimeout(renderAnnualCharts, 50);
-  if (id === 'pipeline') setTimeout(() => {
-          renderAllPipeline('oct-w4');
-        }, 50);
-  const tabs = ['team','pipeline','exec','stores','individual'];
-  const idx = tabs.indexOf(id);
-  document.querySelectorAll('.tab')[idx].classList.add('active');
-}
-
-// ── SDR TABLE DATA ──
-const sdrData = {
-  'sep': {
-    label: 'September 2026 — Full Month',
-    rows: [
-      {name:'Julia / Bath Reno',    leads:81,  calls:184, appts:43, conv:'53.1%', convCls:'green', fuCalls:90,  fuAppts:16, fuConv:'17.8%'},
-      {name:'Julia / Shower Glass', leads:87,  calls:133, appts:40, conv:'46.0%', convCls:'green', fuCalls:51,  fuAppts:13, fuConv:'25.5%'},
-      {name:'Otavio / Countertops', leads:70,  calls:174, appts:40, conv:'57.1%', convCls:'green', fuCalls:104, fuAppts:16, fuConv:'15.4%'},
-    ],
-    total: {leads:238, calls:491, appts:123, conv:'51.7%', convCls:'green', fuCalls:245, fuAppts:45, fuConv:'18.4%'}
-  },
-  'oct-w1': {
-    label: 'October 2026 — Week 1 (Oct 1–7)',
-    rows: [
-      {name:'Julia / Bath Reno',    leads:22, calls:44, appts:8,  conv:'36.4%', convCls:'amber', fuCalls:24, fuAppts:3, fuConv:'12.5%'},
-      {name:'Julia / Shower Glass', leads:27, calls:39, appts:11, conv:'40.7%', convCls:'amber', fuCalls:16, fuAppts:6, fuConv:'37.5%'},
-      {name:'Otavio / Countertops', leads:13, calls:29, appts:8,  conv:'61.5%', convCls:'green', fuCalls:16, fuAppts:1, fuConv:'6.2%'},
-    ],
-    total: {leads:62, calls:112, appts:27, conv:'43.5%', convCls:'green', fuCalls:56, fuAppts:10, fuConv:'17.9%'}
-  },
-  'oct-w2': {
-    label: 'October 2026 — Week 2 (Oct 8–13)',
-    rows: [
-      {name:'Julia / Bath Reno',    leads:13, calls:24, appts:7,  conv:'53.8%', convCls:'green', fuCalls:3,  fuAppts:15, fuConv:'500%'},
-      {name:'Julia / Shower Glass', leads:16, calls:27, appts:11, conv:'68.8%', convCls:'green', fuCalls:9,  fuAppts:12, fuConv:'133%'},
-      {name:'Otavio / Countertops', leads:19, calls:27, appts:14, conv:'73.7%', convCls:'green', fuCalls:13, fuAppts:8,  fuConv:'61.5%'},
-    ],
-    total: {leads:48, calls:78, appts:32, conv:'66.7%', convCls:'green', fuCalls:25, fuAppts:35, fuConv:'140%'}
-  },
-  'oct-w3': {
-    label: 'October 2026 — Week 3 (Oct 14–18)',
-    rows: [
-      {name:'Julia / Bath Reno',    leads:7,  calls:18, appts:2, conv:'28.6%', convCls:'amber', fuCalls:12, fuAppts:3, fuConv:'25.0%'},
-      {name:'Julia / Shower Glass', leads:12, calls:29, appts:2, conv:'16.7%', convCls:'amber', fuCalls:22, fuAppts:6, fuConv:'27.3%'},
-      {name:'Otavio / Countertops', leads:11, calls:23, appts:4, conv:'36.4%', convCls:'amber', fuCalls:8,  fuAppts:9, fuConv:'112.5%'},
-    ],
-    total: {leads:30, calls:70, appts:8, conv:'26.7%', convCls:'amber', fuCalls:42, fuAppts:18, fuConv:'42.9%'}
-  }
-,
-  'oct-w4': {
-    label: 'October 2026 — Week 4 (Oct 21–25)',
-    rows: [
-      {name:'Julia / Bath Reno',    leads:4,  calls:20, appts:4, conv:'100%', convCls:'green', fuCalls:16, fuAppts:2, fuConv:'12.5%'},
-      {name:'Julia / Shower Glass', leads:10, calls:19, appts:5, conv:'50.0%', convCls:'amber', fuCalls:9,  fuAppts:0, fuConv:'0%'},
-      {name:'Otavio / Countertops', leads:11, calls:17, appts:9, conv:'81.8%', convCls:'green', fuCalls:6,  fuAppts:2, fuConv:'33.3%'},
-    ],
-    total: {leads:25, calls:56, appts:18, conv:'72.0%', convCls:'green', fuCalls:31, fuAppts:4, fuConv:'12.9%'}
-  }
-};
-
-function renderSDRTable(key) {
-  const d = sdrData[key];
-  if (!d) return;
-  const clsMap = {green:'#1a3a2a', amber:'#2a2a1a', red:'#2a1a1a'};
-  const txtMap = {green:'var(--green)', amber:'var(--amber)', red:'var(--red)'};
-  function badge(val, cls) {
-    return `<span style="background:${clsMap[cls]||clsMap.green};color:${txtMap[cls]||txtMap.green};border-radius:4px;padding:2px 8px;font-weight:600;">${val}</span>`;
-  }
-  const rowsHtml = d.rows.map(r => `
-    <tr style="border-bottom:1px solid var(--border);">
-      <td style="padding:8px 10px;color:var(--cream);">${r.name}</td>
-      <td style="text-align:right;padding:8px;color:var(--gold);">${r.leads}</td>
-      <td style="text-align:right;padding:8px;">${r.calls}</td>
-      <td style="text-align:right;padding:8px;color:var(--green);">${r.appts}</td>
-      <td style="text-align:right;padding:8px;">${badge(r.conv, r.convCls)}</td>
-      <td style="text-align:right;padding:8px;">${r.fuCalls}</td>
-      <td style="text-align:right;padding:8px;">${r.fuAppts}</td>
-      <td style="text-align:right;padding:8px;">${r.fuConv}</td>
-    </tr>`).join('');
-  const t = d.total;
-  document.getElementById('sdr-table-container').innerHTML = `
-    <div style="overflow-x:auto;">
-      <table style="width:100%;border-collapse:collapse;font-size:13px;">
-        <thead>
-          <tr style="border-bottom:1px solid var(--border);color:var(--muted);">
-            <th style="text-align:left;padding:6px 10px;">SDR / Dept</th>
-            <th style="text-align:right;padding:6px 8px;">Leads</th>
-            <th style="text-align:right;padding:6px 8px;">Calls</th>
-            <th style="text-align:right;padding:6px 8px;">Appts Set</th>
-            <th style="text-align:right;padding:6px 8px;">Lead→Appt</th>
-            <th style="text-align:right;padding:6px 8px;">FU Calls</th>
-            <th style="text-align:right;padding:6px 8px;">FU Appts</th>
-            <th style="text-align:right;padding:6px 8px;">FU Conv.</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${rowsHtml}
-          <tr style="font-weight:700;background:var(--surface2);">
-            <td style="padding:8px 10px;color:var(--gold);">TOTAL</td>
-            <td style="text-align:right;padding:8px;color:var(--gold);">${t.leads}</td>
-            <td style="text-align:right;padding:8px;">${t.calls}</td>
-            <td style="text-align:right;padding:8px;color:var(--green);">${t.appts}</td>
-            <td style="text-align:right;padding:8px;">${badge(t.conv, t.convCls)}</td>
-            <td style="text-align:right;padding:8px;">${t.fuCalls}</td>
-            <td style="text-align:right;padding:8px;">${t.fuAppts}</td>
-            <td style="text-align:right;padding:8px;">${t.fuConv}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>`;
-}
-
-// Init SDR table on load
-document.addEventListener('DOMContentLoaded', () => {
-  renderAllPipeline('oct-w4');
-});
-
 // ── JESSICA DATA ─────────────────────────────────────────
 const jessicaData = {
   'oct-w4': {
@@ -3978,6 +3857,129 @@ function renderAllPipeline(key) {
   if (sdrSel) sdrSel.value = key;
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+  renderAllPipeline('oct-w4');
+});
+
+
+
+function switchTab(id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  if (id === 'exec') renderMonthly();
+  if (id === 'annual' || id === 'exec') setTimeout(renderAnnualCharts, 50);
+  if (id === 'pipeline') setTimeout(() => {
+          renderAllPipeline('oct-w4');
+        }, 50);
+  const tabs = ['team','pipeline','exec','stores','individual'];
+  const idx = tabs.indexOf(id);
+  document.querySelectorAll('.tab')[idx].classList.add('active');
+}
+
+// ── SDR TABLE DATA ──
+const sdrData = {
+  'sep': {
+    label: 'September 2026 — Full Month',
+    rows: [
+      {name:'Julia / Bath Reno',    leads:81,  calls:184, appts:43, conv:'53.1%', convCls:'green', fuCalls:90,  fuAppts:16, fuConv:'17.8%'},
+      {name:'Julia / Shower Glass', leads:87,  calls:133, appts:40, conv:'46.0%', convCls:'green', fuCalls:51,  fuAppts:13, fuConv:'25.5%'},
+      {name:'Otavio / Countertops', leads:70,  calls:174, appts:40, conv:'57.1%', convCls:'green', fuCalls:104, fuAppts:16, fuConv:'15.4%'},
+    ],
+    total: {leads:238, calls:491, appts:123, conv:'51.7%', convCls:'green', fuCalls:245, fuAppts:45, fuConv:'18.4%'}
+  },
+  'oct-w1': {
+    label: 'October 2026 — Week 1 (Oct 1–7)',
+    rows: [
+      {name:'Julia / Bath Reno',    leads:22, calls:44, appts:8,  conv:'36.4%', convCls:'amber', fuCalls:24, fuAppts:3, fuConv:'12.5%'},
+      {name:'Julia / Shower Glass', leads:27, calls:39, appts:11, conv:'40.7%', convCls:'amber', fuCalls:16, fuAppts:6, fuConv:'37.5%'},
+      {name:'Otavio / Countertops', leads:13, calls:29, appts:8,  conv:'61.5%', convCls:'green', fuCalls:16, fuAppts:1, fuConv:'6.2%'},
+    ],
+    total: {leads:62, calls:112, appts:27, conv:'43.5%', convCls:'green', fuCalls:56, fuAppts:10, fuConv:'17.9%'}
+  },
+  'oct-w2': {
+    label: 'October 2026 — Week 2 (Oct 8–13)',
+    rows: [
+      {name:'Julia / Bath Reno',    leads:13, calls:24, appts:7,  conv:'53.8%', convCls:'green', fuCalls:3,  fuAppts:15, fuConv:'500%'},
+      {name:'Julia / Shower Glass', leads:16, calls:27, appts:11, conv:'68.8%', convCls:'green', fuCalls:9,  fuAppts:12, fuConv:'133%'},
+      {name:'Otavio / Countertops', leads:19, calls:27, appts:14, conv:'73.7%', convCls:'green', fuCalls:13, fuAppts:8,  fuConv:'61.5%'},
+    ],
+    total: {leads:48, calls:78, appts:32, conv:'66.7%', convCls:'green', fuCalls:25, fuAppts:35, fuConv:'140%'}
+  },
+  'oct-w3': {
+    label: 'October 2026 — Week 3 (Oct 14–18)',
+    rows: [
+      {name:'Julia / Bath Reno',    leads:7,  calls:18, appts:2, conv:'28.6%', convCls:'amber', fuCalls:12, fuAppts:3, fuConv:'25.0%'},
+      {name:'Julia / Shower Glass', leads:12, calls:29, appts:2, conv:'16.7%', convCls:'amber', fuCalls:22, fuAppts:6, fuConv:'27.3%'},
+      {name:'Otavio / Countertops', leads:11, calls:23, appts:4, conv:'36.4%', convCls:'amber', fuCalls:8,  fuAppts:9, fuConv:'112.5%'},
+    ],
+    total: {leads:30, calls:70, appts:8, conv:'26.7%', convCls:'amber', fuCalls:42, fuAppts:18, fuConv:'42.9%'}
+  }
+,
+  'oct-w4': {
+    label: 'October 2026 — Week 4 (Oct 21–25)',
+    rows: [
+      {name:'Julia / Bath Reno',    leads:4,  calls:20, appts:4, conv:'100%', convCls:'green', fuCalls:16, fuAppts:2, fuConv:'12.5%'},
+      {name:'Julia / Shower Glass', leads:10, calls:19, appts:5, conv:'50.0%', convCls:'amber', fuCalls:9,  fuAppts:0, fuConv:'0%'},
+      {name:'Otavio / Countertops', leads:11, calls:17, appts:9, conv:'81.8%', convCls:'green', fuCalls:6,  fuAppts:2, fuConv:'33.3%'},
+    ],
+    total: {leads:25, calls:56, appts:18, conv:'72.0%', convCls:'green', fuCalls:31, fuAppts:4, fuConv:'12.9%'}
+  }
+};
+
+function renderSDRTable(key) {
+  const d = sdrData[key];
+  if (!d) return;
+  const clsMap = {green:'#1a3a2a', amber:'#2a2a1a', red:'#2a1a1a'};
+  const txtMap = {green:'var(--green)', amber:'var(--amber)', red:'var(--red)'};
+  function badge(val, cls) {
+    return `<span style="background:${clsMap[cls]||clsMap.green};color:${txtMap[cls]||txtMap.green};border-radius:4px;padding:2px 8px;font-weight:600;">${val}</span>`;
+  }
+  const rowsHtml = d.rows.map(r => `
+    <tr style="border-bottom:1px solid var(--border);">
+      <td style="padding:8px 10px;color:var(--cream);">${r.name}</td>
+      <td style="text-align:right;padding:8px;color:var(--gold);">${r.leads}</td>
+      <td style="text-align:right;padding:8px;">${r.calls}</td>
+      <td style="text-align:right;padding:8px;color:var(--green);">${r.appts}</td>
+      <td style="text-align:right;padding:8px;">${badge(r.conv, r.convCls)}</td>
+      <td style="text-align:right;padding:8px;">${r.fuCalls}</td>
+      <td style="text-align:right;padding:8px;">${r.fuAppts}</td>
+      <td style="text-align:right;padding:8px;">${r.fuConv}</td>
+    </tr>`).join('');
+  const t = d.total;
+  document.getElementById('sdr-table-container').innerHTML = `
+    <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="border-bottom:1px solid var(--border);color:var(--muted);">
+            <th style="text-align:left;padding:6px 10px;">SDR / Dept</th>
+            <th style="text-align:right;padding:6px 8px;">Leads</th>
+            <th style="text-align:right;padding:6px 8px;">Calls</th>
+            <th style="text-align:right;padding:6px 8px;">Appts Set</th>
+            <th style="text-align:right;padding:6px 8px;">Lead→Appt</th>
+            <th style="text-align:right;padding:6px 8px;">FU Calls</th>
+            <th style="text-align:right;padding:6px 8px;">FU Appts</th>
+            <th style="text-align:right;padding:6px 8px;">FU Conv.</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rowsHtml}
+          <tr style="font-weight:700;background:var(--surface2);">
+            <td style="padding:8px 10px;color:var(--gold);">TOTAL</td>
+            <td style="text-align:right;padding:8px;color:var(--gold);">${t.leads}</td>
+            <td style="text-align:right;padding:8px;">${t.calls}</td>
+            <td style="text-align:right;padding:8px;color:var(--green);">${t.appts}</td>
+            <td style="text-align:right;padding:8px;">${badge(t.conv, t.convCls)}</td>
+            <td style="text-align:right;padding:8px;">${t.fuCalls}</td>
+            <td style="text-align:right;padding:8px;">${t.fuAppts}</td>
+            <td style="text-align:right;padding:8px;">${t.fuConv}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>`;
+}
+
+// Init SDR table on load
 // ============================================================
 // ANNUAL PERFORMANCE — 2026 Seller Evolution Charts
 // ============================================================
