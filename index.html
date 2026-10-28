@@ -450,7 +450,7 @@
     <div class="section-label" style="margin-bottom:0;">Sales Team</div>
     <div style="display:flex;align-items:center;gap:10px;">
       <select id="team-week-select" onchange="updateSellerCards(this.value)" style="background:var(--surface2);color:var(--cream);border:1px solid var(--border);border-radius:6px;padding:4px 8px;font-size:11px;cursor:pointer;">
-        <option value="oct-w4">Oct 21–25</option>
+        <option value="oct-w4">Oct 21–27</option>
         <option value="oct-w3">Oct 14–18</option>
         <option value="oct-w2">Oct 8–13</option>
         <option value="oct-w1">Oct 1–7</option>
@@ -1096,7 +1096,7 @@
   <div class="section-label" style="margin-top:28px;">Store Visits — Weekly Sales Rep Activity</div>
   <div class="card" style="padding:0;overflow:hidden;margin-bottom:18px;">
     <div style="padding:14px 16px;border-bottom:1px solid var(--border);background:rgba(255,255,255,0.03);">
-      <div style="font-size:11px;color:var(--cream-dim);text-transform:uppercase;letter-spacing:.8px;font-weight:600;">Oct 21–25, 2026</div>
+      <div style="font-size:11px;color:var(--cream-dim);text-transform:uppercase;letter-spacing:.8px;font-weight:600;">Oct 21–27, 2026</div>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr;padding:10px 14px;border-bottom:1px solid var(--border);background:rgba(255,255,255,0.02);">
       <div style="font-size:10px;font-weight:600;color:var(--cream-faint);text-transform:uppercase;letter-spacing:.8px;">Rep</div>
@@ -1124,7 +1124,7 @@
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr;padding:10px 14px;">
       <div style="font-size:12px;color:var(--cream);font-weight:500;">Chelsea</div>
-      <div style="font-size:12px;color:var(--cream-dim);">Oct 21–25</div>
+      <div style="font-size:12px;color:var(--cream-dim);">Oct 21–27</div>
       <div style="font-size:12px;color:var(--amber);">No visits logged</div>
       <div style="font-size:12px;color:var(--cream-dim);">—</div>
       <div style="font-size:12px;color:var(--cream-dim);">—</div>
@@ -1209,7 +1209,7 @@
       <div style="background:rgba(255,255,255,0.04);border-radius:6px;padding:10px;text-align:center;">
         <div style="font-size:10px;color:var(--cream-dim);margin-bottom:4px;">October (WTD)</div>
         <div style="font-size:14px;font-weight:700;color:#4A9EE0;">$12,167</div>
-        <div style="font-size:10px;color:var(--cream-dim);">Oct 21–25 · 2 closings</div>
+        <div style="font-size:10px;color:var(--cream-dim);">Oct 21–27 · 2 closings</div>
       </div>
       <div style="background:rgba(255,255,255,0.04);border-radius:6px;padding:10px;text-align:center;">
         <div style="font-size:10px;color:var(--cream-dim);margin-bottom:4px;">Scorecard</div>
@@ -1249,7 +1249,7 @@
       <div style="background:rgba(255,255,255,0.04);border-radius:6px;padding:10px;text-align:center;">
         <div style="font-size:10px;color:var(--cream-dim);margin-bottom:4px;">October (WTD)</div>
         <div style="font-size:14px;font-weight:700;color:#5CBA8A;">$3,765</div>
-        <div style="font-size:10px;color:var(--cream-dim);">Oct 21–25 · 2 closings</div>
+        <div style="font-size:10px;color:var(--cream-dim);">Oct 21–27 · 2 closings</div>
       </div>
       <div style="background:rgba(255,255,255,0.04);border-radius:6px;padding:10px;text-align:center;">
         <div style="font-size:10px;color:var(--cream-dim);margin-bottom:4px;">Scorecard</div>
@@ -3092,12 +3092,12 @@ const meetingWeeks = [
     ]
   }  ,{
     eyebrow: "Week 22",
-    dates: "Oct 21–25, 2026 — Sales Meeting · Oct 27",
+    dates: "Oct 21–27, 2026 — Sales Meeting · Oct 27",
     revenue: [
       {name:"Eveline Erbert",  value:"$12,167", note:"2 closings — Oct 21 $9,827 · Oct 23 $2,340 (Pell City)"},
       {name:"Jessica Wolfe",   value:"$3,765",  note:"2 closings — Oct 22 $2,115 · Oct 23 $1,650"},
       {name:"Jarvis Holley",   value:"—",       note:"Left the company Oct 14, 2026"},
-      {name:"Chelsea Foster",  value:"$0",      note:"Scorecard blank Oct 21–25"}
+      {name:"Chelsea Foster",  value:"$0",      note:"Scorecard blank Oct 21–27"}
     ],
     activity: [
       {label:"Week Revenue",  value:"$15,932", note:"Eveline $12,167 · Jessica $3,765"},
@@ -3171,7 +3171,7 @@ const meetingWeeks = [
       {name:"Julia", role:"SDR — Bath Reno + Shower Glass", status:"active",
         kpis:[
           {label:"Leads (Oct W4)", value:"14",  note:"Bath Reno 4 + SG 10",     cls:"gold"},
-          {label:"Calls Made",     value:"39",  note:"Oct 21–25",                cls:"gold"},
+          {label:"Calls Made",     value:"39",  note:"Oct 21–27",                cls:"gold"},
           {label:"Appts Set",      value:"9",   note:"BR 100% + SG 50%",        cls:"green"},
           {label:"FU Appts",       value:"2",   note:"25 FU calls → 2 appts",   cls:"amber"}
         ],
@@ -3180,7 +3180,7 @@ const meetingWeeks = [
       {name:"Otavio", role:"SDR — Countertops", status:"active",
         kpis:[
           {label:"Leads (Oct W4)", value:"11",  note:"Countertops",              cls:"gold"},
-          {label:"Calls Made",     value:"17",  note:"Oct 21–25",                cls:"gold"},
+          {label:"Calls Made",     value:"17",  note:"Oct 21–27",                cls:"gold"},
           {label:"Appts Set",      value:"9",   note:"81.8% conv.",              cls:"green"},
           {label:"FU Appts",       value:"2",   note:"6 FU calls → 2 appts (33.3%)", cls:"amber"}
         ],
@@ -3624,21 +3624,21 @@ function toggleSeller(name) {
 function updateSellerCards(week) {
   // Eveline data per week
   const evelineWk = {
-    'oct-w4': {rev:'$12,167', ytd:'$300,427', cls:'2',  avg:'$6,084',  prog:68, label:'Oct 21–25 · On Track'},
+    'oct-w4': {rev:'$12,167', ytd:'$300,427', cls:'2',  avg:'$6,084',  prog:68, label:'Oct 21–27 · On Track'},
     'oct-w3': {rev:'$12,144', ytd:'$288,260', cls:'3',  avg:'$4,048',  prog:55, label:'Oct 14–18 · Strong'},
     'oct-w2': {rev:'$0',      ytd:'$276,116', cls:'0',  avg:'—',        prog:0,  label:'Oct 8–13 · No closings'},
     'oct-w1': {rev:'$5,140',  ytd:'$276,116', cls:'1',  avg:'$5,140',  prog:20, label:'Oct 1–7 · 1 closing'},
     'sep':    {rev:'$16,743', ytd:'$276,116', cls:'5',  avg:'$3,349',  prog:45, label:'September FINAL'},
   };
   const jessicaWk = {
-    'oct-w4': {rev:'$3,765',  ytd:'$452,622', cls:'2',  avg:'$1,883',  prog:55, label:'Oct 21–25 · Active'},
+    'oct-w4': {rev:'$3,765',  ytd:'$452,622', cls:'2',  avg:'$1,883',  prog:55, label:'Oct 21–27 · Active'},
     'oct-w3': {rev:'$0',      ytd:'$448,857', cls:'0',  avg:'—',        prog:0,  label:'Oct 14–18 · No closings'},
     'oct-w2': {rev:'$0',      ytd:'$448,857', cls:'0',  avg:'—',        prog:0,  label:'Oct 8–13 · No closings'},
     'oct-w1': {rev:'$0',      ytd:'$448,857', cls:'0',  avg:'—',        prog:0,  label:'Oct 1–7 · No data W1'},
     'sep':    {rev:'$40,901', ytd:'$448,857', cls:'?',  avg:'—',        prog:70, label:'Sep FINAL'},
   };
   const chelseaWk = {
-    'oct-w4': {rev:'$0',      ytd:'$32,643',  cls:'0',  avg:'—',        prog:0,  label:'Oct 21–25 · No closings'},
+    'oct-w4': {rev:'$0',      ytd:'$32,643',  cls:'0',  avg:'—',        prog:0,  label:'Oct 21–27 · No closings'},
     'oct-w3': {rev:'$3,895',  ytd:'$32,643',  cls:'3',  avg:'$1,298',  prog:30, label:'Oct 14–18 · 3 closings'},
     'oct-w2': {rev:'$0',      ytd:'$28,748',  cls:'0',  avg:'—',        prog:0,  label:'Oct 8–13 · Scorecard blank'},
     'oct-w1': {rev:'$0',      ytd:'$28,748',  cls:'0',  avg:'—',        prog:0,  label:'Oct 1–7 · Scorecard blank'},
@@ -3649,7 +3649,7 @@ function updateSellerCards(week) {
   const js = jessicaWk[week] || jessicaWk['oct-w4'];
   const ch = chelseaWk[week] || chelseaWk['oct-w4'];
   const wLabel = {
-    'oct-w4':'Oct 21–25','oct-w3':'Oct 14–18','oct-w2':'Oct 8–13','oct-w1':'Oct 1–7','sep':'September'
+    'oct-w4':'Oct 21–27','oct-w3':'Oct 14–18','oct-w2':'Oct 8–13','oct-w1':'Oct 1–7','sep':'September'
   }[week] || week;
 
   // Update Eveline card
@@ -3928,7 +3928,7 @@ const sdrData = {
   }
 ,
   'oct-w4': {
-    label: 'October 2026 — Week 4 (Oct 21–25)',
+    label: 'October 2026 — Week 4 (Oct 21–27)',
     rows: [
       {name:'Julia / Bath Reno',    leads:4,  calls:20, appts:4, conv:'100%', convCls:'green', fuCalls:16, fuAppts:2, fuConv:'12.5%'},
       {name:'Julia / Shower Glass', leads:10, calls:19, appts:5, conv:'50.0%', convCls:'amber', fuCalls:9,  fuAppts:0, fuConv:'0%'},
