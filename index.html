@@ -3300,6 +3300,7 @@ function renderSellerCard(agent) {
 
 function renderMeetingWeek() {
   const w = meetingWeeks[currentMeetingWeek];
+  if (!document.getElementById('wkEyebrow')) return; // elements not in DOM yet
   document.getElementById('wkEyebrow').textContent = w.eyebrow;
   document.getElementById('wkDates').textContent = w.dates;
   document.getElementById('wkPrevBtn').style.opacity = currentMeetingWeek === 0 ? '0.3' : '1';
