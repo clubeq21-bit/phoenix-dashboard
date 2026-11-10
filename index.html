@@ -416,12 +416,12 @@
 <div class="tab-panel active" id="tab-team">
 <div class="content">
 
-  <div class="section-label">Company Overview — Week 23 · Oct 28, 2026 · Sales Meeting</div>
+  <div class="section-label">Company Overview — November 2026 · Sales Scoreboard</div>
   <div class="kpi-row kpi-row-5">
     <div class="kpi-card">
       <div class="kpi-label">Revenue (Oct)</div>
       <div class="kpi-value gold">$192,674</div>
-      <div class="kpi-sub">Matos $86,300 · Eveline $48,249 · Jessica $50,131 · Chelsea $7,994</div>
+      <div class="kpi-sub">Eveline $57,303 · Jessica $20,468 · Chelsea — · Matos —</div>
     </div>
     <div class="kpi-card">
       <div class="kpi-label">SDR Leads (Week)</div>
@@ -450,13 +450,13 @@
     <div class="section-label" style="margin-bottom:0;">Sales Team</div>
     <div style="display:flex;align-items:center;gap:10px;">
       <select id="team-week-select" onchange="updateSellerCards(this.value)" style="background:var(--surface2);color:var(--cream);border:1px solid var(--border);border-radius:6px;padding:4px 8px;font-size:11px;cursor:pointer;">
-        <option value="nov-w2" selected>Nov W2 (Nov 4–10)</option>
-        <option value="nov-w1">Nov W1 (Oct 28–Nov 3)</option>
-        <option value="oct-w4">Oct 21–25</option>
-        <option value="oct-w3">Oct 14–18</option>
-        <option value="oct-w2">Oct 8–13</option>
-        <option value="oct-w1">Oct 1–7</option>
-        <option value="sep">September</option>
+        <option value="nov-w2" selected>Nov W2 (Nov 10–15) — atual</option>
+        <option value="nov-w1">Nov W1 (Nov 3–8) — completa</option>
+        <option value="oct-w4">Oct W4 (Oct 27–Nov 1)</option>
+        <option value="oct-w3">Oct W3 (Oct 20–25)</option>
+        <option value="oct-w2">Oct W2 (Oct 13–18)</option>
+        <option value="oct-w1">Oct W1 (Oct 6–11)</option>
+        <option value="sep">Setembro</option>
       </select>
       <div id="seller-toggle-bar" style="display:flex;gap:5px;flex-wrap:wrap;">
         <button onclick="toggleSeller('eveline')" id="btn-eveline" class="seller-toggle-btn active-toggle">Eveline</button>
@@ -478,16 +478,16 @@
         <div class="status-dot active"></div>
       </div>
       <div class="seller-stats" id="eveline-stats">
-        <div class="stat-box"><div class="stat-label">Revenue (Oct)</div><div class="stat-val text-green">$65,221</div></div>
-        <div class="stat-box"><div class="stat-label">YTD</div><div class="stat-val text-gold">$336,509</div></div>
-        <div class="stat-box"><div class="stat-label">Avg Deal</div><div class="stat-val text-green">$4,825</div></div>
-        <div class="stat-box"><div class="stat-label">Closings</div><div class="stat-val text-green">10</div></div>
+        <div class="stat-box"><div class="stat-label">Revenue (Nov)</div><div class="stat-val text-green">$57,303</div></div>
+        <div class="stat-box"><div class="stat-label">Oct Final</div><div class="stat-val text-gold">$65,221</div></div>
+        <div class="stat-box"><div class="stat-label">Avg Deal Nov</div><div class="stat-val text-green">$11,461</div></div>
+        <div class="stat-box"><div class="stat-label">Closings Nov</div><div class="stat-val text-green">5</div></div>
       </div>
       <div class="seller-stats" style="margin-top:6px;border-top:1px solid var(--border);padding-top:6px;" id="eveline-conv">
         <div class="stat-box"><div class="stat-label">Appts Nov W2</div><div class="stat-val text-gold">5</div></div>
         <div class="stat-box"><div class="stat-label">Visits Nov W2</div><div class="stat-val text-gold">4</div></div>
         <div class="stat-box"><div class="stat-label">Closings Nov W2</div><div class="stat-val text-green">5</div></div>
-        <div class="stat-box"><div class="stat-label">Revenue Nov W2</div><div class="stat-val text-green">$57,303</div><div class="stat-val text-green">2</div></div>
+        <div class="stat-box"><div class="stat-label">Revenue Nov W2</div><div class="stat-val text-green">$57,303</div></div>
       </div>
       <div class="progress-wrap">
         <div class="progress-label"><span>Alabama Store — Strong October</span><span class="text-green">$48,249</span></div>
@@ -505,16 +505,16 @@
         <div class="status-dot active"></div>
       </div>
       <div class="seller-stats" id="jessica-stats">
-        <div class="stat-box"><div class="stat-label">Revenue (Oct)</div><div class="stat-val text-green">$50,131</div></div>
-        <div class="stat-box"><div class="stat-label">YTD</div><div class="stat-val text-gold">$502,753</div></div>
-        <div class="stat-box"><div class="stat-label">Closings</div><div class="stat-val text-green">8+</div></div>
-        <div class="stat-box"><div class="stat-label">Avg Deal</div><div class="stat-val text-gold">$6,266</div></div>
+        <div class="stat-box"><div class="stat-label">Revenue (Nov)</div><div class="stat-val text-green">$20,468</div></div>
+        <div class="stat-box"><div class="stat-label">Oct Final</div><div class="stat-val text-gold">$50,131</div></div>
+        <div class="stat-box"><div class="stat-label">Closings Nov</div><div class="stat-val text-green">10</div></div>
+        <div class="stat-box"><div class="stat-label">Avg Deal Nov</div><div class="stat-val text-gold">$2,047</div></div>
       </div>
       <div class="seller-stats" style="margin-top:6px;border-top:1px solid var(--border);padding-top:6px;" id="jessica-conv">
         <div class="stat-box"><div class="stat-label">Consults Nov W2</div><div class="stat-val text-gold">4</div></div>
         <div class="stat-box"><div class="stat-label">Quotes Nov W2</div><div class="stat-val text-gold">4</div></div>
         <div class="stat-box"><div class="stat-label">Sales Nov W2</div><div class="stat-val text-green">2</div></div>
-        <div class="stat-box"><div class="stat-label">Revenue Nov W2</div><div class="stat-val text-green">$3,300</div><div class="stat-val text-green">5</div></div>
+        <div class="stat-box"><div class="stat-label">Revenue Nov W2</div><div class="stat-val text-green">$3,300</div></div>
       </div>
       <div class="progress-wrap">
         <div class="progress-label"><span>October — Strong month Showerglass</span><span class="text-green">$50,131</span></div>
@@ -532,10 +532,10 @@
         <div class="status-dot warn"></div>
       </div>
       <div class="seller-stats" id="chelsea-stats">
-        <div class="stat-box"><div class="stat-label">Revenue (Oct)</div><div class="stat-val text-amber">$7,994</div></div>
-        <div class="stat-box"><div class="stat-label">Sep Debut</div><div class="stat-val">$28,748</div></div>
-        <div class="stat-box"><div class="stat-label">Closings</div><div class="stat-val text-amber">2+</div></div>
-        <div class="stat-box"><div class="stat-label">Avg Deal</div><div class="stat-val text-amber">$3,997</div></div>
+        <div class="stat-box"><div class="stat-label">Revenue (Nov)</div><div class="stat-val text-amber">—</div></div>
+        <div class="stat-box"><div class="stat-label">Oct Final</div><div class="stat-val text-gold">$7,994</div></div>
+        <div class="stat-box"><div class="stat-label">Closings Nov</div><div class="stat-val text-amber">—</div></div>
+        <div class="stat-box"><div class="stat-label">Scorecard</div><div class="stat-val text-red">⚠ Sem dados</div></div>
       </div>
       <div class="seller-stats" style="margin-top:6px;border-top:1px solid var(--border);padding-top:6px;" id="chelsea-conv">
         <div class="stat-box"><div class="stat-label">Appts Nov W2</div><div class="stat-val text-amber">—</div></div>
@@ -559,16 +559,16 @@
         <div class="status-dot active"></div>
       </div>
       <div class="seller-stats" id="matos-stats">
-        <div class="stat-box"><div class="stat-label">Revenue (Oct)</div><div class="stat-val text-green">$116,291</div></div>
-        <div class="stat-box"><div class="stat-label">Closings Oct</div><div class="stat-val text-green">6</div></div>
-        <div class="stat-box"><div class="stat-label">Avg Deal</div><div class="stat-val text-gold">$23,258</div></div>
-        <div class="stat-box"><div class="stat-label">Pipeline Nov</div><div class="stat-val text-amber">9 proposals</div></div>
+        <div class="stat-box"><div class="stat-label">Revenue (Nov)</div><div class="stat-val text-amber">—</div></div>
+        <div class="stat-box"><div class="stat-label">Oct Final</div><div class="stat-val text-gold">$116,291</div></div>
+        <div class="stat-box"><div class="stat-label">Pipeline Nov</div><div class="stat-val text-amber">9 propostas</div></div>
+        <div class="stat-box"><div class="stat-label">Closings Nov</div><div class="stat-val text-amber">0</div></div>
       </div>
       <div class="seller-stats" style="margin-top:6px;border-top:1px solid var(--border);padding-top:6px;" id="matos-conv">
         <div class="stat-box"><div class="stat-label">Leads Nov W2</div><div class="stat-val text-amber">—</div></div>
         <div class="stat-box"><div class="stat-label">Appts Nov W2</div><div class="stat-val text-amber">—</div></div>
         <div class="stat-box"><div class="stat-label">Quotes Nov W2</div><div class="stat-val text-amber">—</div></div>
-        <div class="stat-box"><div class="stat-label">Closings Nov W2</div><div class="stat-val text-green">$35,700</div></div>
+        <div class="stat-box"><div class="stat-label">Closings Nov W2</div><div class="stat-val text-amber">—</div></div>
       </div>
       <div class="progress-wrap">
         <div class="progress-label"><span>Oct Closings: Keith $18K · Tony $35.7K · Greer $15.7K · Ken $16.9K</span><span class="text-gold">$86,300</span></div>
@@ -578,7 +578,7 @@
   </div>
 
   <!-- SDR Team -->
-  <div class="section-label">SDR Team — Oct 28, 2026</div>
+  <div class="section-label">SDR Team — Nov W2 (Nov 10–15)</div>
   <div class="seller-grid">
 
     <!-- Julia -->
@@ -666,7 +666,7 @@
   </div>
 
   <!-- Key Alerts -->
-  <div class="section-label">Leadership Notes — Oct 28</div>
+  <div class="section-label">Leadership Notes — Nov 10, 2026</div>
   <div class="grid-2">
     <div>
       <div class="alert-card red">
