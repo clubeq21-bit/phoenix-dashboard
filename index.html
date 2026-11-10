@@ -450,6 +450,8 @@
     <div class="section-label" style="margin-bottom:0;">Sales Team</div>
     <div style="display:flex;align-items:center;gap:10px;">
       <select id="team-week-select" onchange="updateSellerCards(this.value)" style="background:var(--surface2);color:var(--cream);border:1px solid var(--border);border-radius:6px;padding:4px 8px;font-size:11px;cursor:pointer;">
+        <option value="nov-w2" selected>Nov W2 (Nov 4–10)</option>
+        <option value="nov-w1">Nov W1 (Oct 28–Nov 3)</option>
         <option value="oct-w4">Oct 21–25</option>
         <option value="oct-w3">Oct 14–18</option>
         <option value="oct-w2">Oct 8–13</option>
@@ -476,16 +478,16 @@
         <div class="status-dot active"></div>
       </div>
       <div class="seller-stats" id="eveline-stats">
-        <div class="stat-box"><div class="stat-label">Revenue (Oct)</div><div class="stat-val text-green">$48,249</div></div>
+        <div class="stat-box"><div class="stat-label">Revenue (Oct)</div><div class="stat-val text-green">$65,221</div></div>
         <div class="stat-box"><div class="stat-label">YTD</div><div class="stat-val text-gold">$336,509</div></div>
         <div class="stat-box"><div class="stat-label">Avg Deal</div><div class="stat-val text-green">$4,825</div></div>
         <div class="stat-box"><div class="stat-label">Closings</div><div class="stat-val text-green">10</div></div>
       </div>
       <div class="seller-stats" style="margin-top:6px;border-top:1px solid var(--border);padding-top:6px;" id="eveline-conv">
-        <div class="stat-box"><div class="stat-label">Leads (W4)</div><div class="stat-val text-gold">3</div></div>
-        <div class="stat-box"><div class="stat-label">Appts (W4)</div><div class="stat-val text-green">2</div></div>
-        <div class="stat-box"><div class="stat-label">Quotes Sent</div><div class="stat-val text-green">2</div></div>
-        <div class="stat-box"><div class="stat-label">Closings W4</div><div class="stat-val text-green">2</div></div>
+        <div class="stat-box"><div class="stat-label">Appts Nov W2</div><div class="stat-val text-gold">5</div></div>
+        <div class="stat-box"><div class="stat-label">Visits Nov W2</div><div class="stat-val text-gold">4</div></div>
+        <div class="stat-box"><div class="stat-label">Closings Nov W2</div><div class="stat-val text-green">5</div></div>
+        <div class="stat-box"><div class="stat-label">Revenue Nov W2</div><div class="stat-val text-green">$57,303</div><div class="stat-val text-green">2</div></div>
       </div>
       <div class="progress-wrap">
         <div class="progress-label"><span>Alabama Store — Strong October</span><span class="text-green">$48,249</span></div>
@@ -509,10 +511,10 @@
         <div class="stat-box"><div class="stat-label">Avg Deal</div><div class="stat-val text-gold">$6,266</div></div>
       </div>
       <div class="seller-stats" style="margin-top:6px;border-top:1px solid var(--border);padding-top:6px;" id="jessica-conv">
-        <div class="stat-box"><div class="stat-label">Appts (W4)</div><div class="stat-val text-gold">8</div></div>
-        <div class="stat-box"><div class="stat-label">Visits (W4)</div><div class="stat-val text-green">6</div></div>
-        <div class="stat-box"><div class="stat-label">Quotes Sent</div><div class="stat-val text-green">6</div></div>
-        <div class="stat-box"><div class="stat-label">Closings W4</div><div class="stat-val text-green">5</div></div>
+        <div class="stat-box"><div class="stat-label">Consults Nov W2</div><div class="stat-val text-gold">4</div></div>
+        <div class="stat-box"><div class="stat-label">Quotes Nov W2</div><div class="stat-val text-gold">4</div></div>
+        <div class="stat-box"><div class="stat-label">Sales Nov W2</div><div class="stat-val text-green">2</div></div>
+        <div class="stat-box"><div class="stat-label">Revenue Nov W2</div><div class="stat-val text-green">$3,300</div><div class="stat-val text-green">5</div></div>
       </div>
       <div class="progress-wrap">
         <div class="progress-label"><span>October — Strong month Showerglass</span><span class="text-green">$50,131</span></div>
@@ -536,10 +538,10 @@
         <div class="stat-box"><div class="stat-label">Avg Deal</div><div class="stat-val text-amber">$3,997</div></div>
       </div>
       <div class="seller-stats" style="margin-top:6px;border-top:1px solid var(--border);padding-top:6px;" id="chelsea-conv">
-        <div class="stat-box"><div class="stat-label">Closings (Oct)</div><div class="stat-val text-amber">5</div></div>
-        <div class="stat-box"><div class="stat-label">W4 Revenue</div><div class="stat-val text-red">$0</div></div>
-        <div class="stat-box"><div class="stat-label">W3 Revenue</div><div class="stat-val text-green">$3,895</div></div>
-        <div class="stat-box"><div class="stat-label">Scorecard</div><div class="stat-val text-red">⚠ Blank Oct</div></div>
+        <div class="stat-box"><div class="stat-label">Appts Nov W2</div><div class="stat-val text-amber">—</div></div>
+        <div class="stat-box"><div class="stat-label">Quotes Nov W2</div><div class="stat-val text-amber">—</div></div>
+        <div class="stat-box"><div class="stat-label">Sales Nov W2</div><div class="stat-val text-amber">—</div></div>
+        <div class="stat-box"><div class="stat-label">Revenue Nov W2</div><div class="stat-val text-amber">—</div></div>
       </div>
       <div class="progress-wrap">
         <div class="progress-label"><span>October Countertops</span><span class="text-amber">$7,994</span></div>
@@ -563,10 +565,10 @@
         <div class="stat-box"><div class="stat-label">Pipeline</div><div class="stat-val text-amber">19 leads</div></div>
       </div>
       <div class="seller-stats" style="margin-top:6px;border-top:1px solid var(--border);padding-top:6px;" id="matos-conv">
-        <div class="stat-box"><div class="stat-label">Proposals</div><div class="stat-val text-amber">15 active</div></div>
-        <div class="stat-box"><div class="stat-label">FU Pending</div><div class="stat-val text-red">3 overdue</div></div>
-        <div class="stat-box"><div class="stat-label">Conv %</div><div class="stat-val text-green">21%</div></div>
-        <div class="stat-box"><div class="stat-label">Biggest</div><div class="stat-val text-green">$35,700</div></div>
+        <div class="stat-box"><div class="stat-label">Leads Nov W2</div><div class="stat-val text-amber">—</div></div>
+        <div class="stat-box"><div class="stat-label">Appts Nov W2</div><div class="stat-val text-amber">—</div></div>
+        <div class="stat-box"><div class="stat-label">Quotes Nov W2</div><div class="stat-val text-amber">—</div></div>
+        <div class="stat-box"><div class="stat-label">Closings Nov W2</div><div class="stat-val text-green">$35,700</div></div>
       </div>
       <div class="progress-wrap">
         <div class="progress-label"><span>Oct Closings: Keith $18K · Tony $35.7K · Greer $15.7K · Ken $16.9K</span><span class="text-gold">$86,300</span></div>
